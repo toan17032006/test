@@ -426,8 +426,8 @@
 | 118 | Unauthorized Refund | vulnerability | unverified | not_tested | — |
 | 119 | Unauthorized Coupon Management | vulnerability | unverified | not_tested | — |
 | 120 | Unauthorized Inventory Modification | vulnerability | unverified | not_tested | — |
-| 121 | Unauthorized Role Modification | vulnerability | unverified | not_tested | — |
-| 122 | Unauthorized User Management | vulnerability | unverified | not_tested | — |
+| 121 | Unauthorized Role Modification | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 122 | Unauthorized User Management | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 123 | Forced Browsing | vulnerability | unverified | not_tested | — |
 | 124 | Parameter-Based Authorization Bypass | vulnerability | unverified | not_tested | — |
 | 125 | HTTP Method-Based Authorization Bypass | vulnerability | unverified | not_tested | — |
@@ -623,7 +623,7 @@
 | 290 | Cart Price Desynchronization | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 291 | Cart Item Substitution | vulnerability | unverified | not_tested | — |
 | 292 | Coupon Code Brute Force | vulnerability | unverified | not_tested | — |
-| 293 | Coupon Enumeration | vulnerability | unverified | not_tested | — |
+| 293 | Coupon Enumeration | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 294 | Coupon Reuse | vulnerability | unverified | not_tested | — |
 | 295 | Coupon Stacking Abuse | vulnerability | unverified | not_tested | — |
 | 296 | Coupon Expiration Bypass | vulnerability | unverified | not_tested | — |
@@ -646,8 +646,8 @@
 | 313 | Payment Replay | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 314 | Duplicate Payment Processing | vulnerability | unverified | not_tested | — |
 | 315 | Payment Idempotency Failure | vulnerability | unverified | not_tested | — |
-| 316 | Refund Manipulation | vulnerability | unverified | not_tested | — |
-| 317 | Unauthorized Refund | vulnerability | unverified | not_tested | — |
+| 316 | Refund Manipulation | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 317 | Unauthorized Refund | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 318 | Partial Refund Abuse | vulnerability | unverified | not_tested | — |
 | 319 | Refund Race Condition | vulnerability | unverified | not_tested | — |
 | 320 | Order Ownership Manipulation | vulnerability | unverified | not_tested | — |
@@ -951,7 +951,7 @@
 | 573 | Trace Data Exposure | vulnerability | unverified | not_tested | — |
 | 574 | Distributed Tracing Data Leakage | vulnerability | unverified | not_tested | — |
 | 575 | Error Tracking Data Leakage | vulnerability | unverified | not_tested | — |
-| 576 | Backup Data Exposure | vulnerability | unverified | not_tested | — |
+| 576 | Backup Data Exposure | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 577 | Disaster Recovery Misconfiguration | vulnerability | unverified | not_tested | — |
 | 578 | Insecure Log Storage | vulnerability | unverified | not_tested | — |
 | 579 | Log Retention Misconfiguration | vulnerability | unverified | not_tested | — |

@@ -2951,16 +2951,18 @@
       "category": "Authorization & Access Control",
       "name": "Unauthorized Role Modification",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 122,
       "category": "Authorization & Access Control",
       "name": "Unauthorized User Management",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 123,
@@ -4336,8 +4338,9 @@
       "category": "E-commerce Business Logic Vulnerabilities",
       "name": "Coupon Enumeration",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 294,
@@ -4526,16 +4529,18 @@
       "category": "E-commerce Business Logic Vulnerabilities",
       "name": "Refund Manipulation",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 317,
       "category": "E-commerce Business Logic Vulnerabilities",
       "name": "Unauthorized Refund",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 318,
@@ -6612,8 +6617,9 @@
       "category": "Logging, Monitoring & Operational Security",
       "name": "Backup Data Exposure",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 577,

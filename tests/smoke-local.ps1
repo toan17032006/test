@@ -187,6 +187,13 @@ try {
   Assert-Equal $unprotectedAdminList.items[0].email 'admin@vulnshop.com' 'Unauthenticated customer email exposure'
   Assert-Equal $unprotectedAdminList.items[0].phone '0901234567' 'Unauthenticated customer phone exposure'
   if (-not $unprotectedAdminList.items[0].credit_card -or -not $unprotectedAdminList.items[0].ssn) { throw 'The admin list did not expose synthetic PII fields.' }
+  $roleChangeBody = '{"role":"admin"}'
+  $unauthorizedRoleChange = Invoke-RestMethod -Uri "$apiBase/api/v1/admin/users/2/role" -Method Patch -ContentType 'application/json' -Body $roleChangeBody -TimeoutSec 5
+  Assert-Equal $unauthorizedRoleChange.user.role 'admin' 'Unauthenticated user role modification'
+  $unprotectedBackup = Invoke-RestMethod -Uri "$apiBase/api/v1/admin/backup" -TimeoutSec 5
+  if ($unprotectedBackup.users.Count -lt 3 -or $unprotectedBackup.orders.Count -lt 2) { throw 'The unauthenticated backup endpoint did not return synthetic records.' }
+  $couponList = Invoke-RestMethod -Uri "$apiBase/api/v1/coupons" -TimeoutSec 5
+  if (-not ($couponList.items | Where-Object { $_.code -eq 'ADMIN' })) { throw 'The unauthenticated coupon list did not expose the synthetic ADMIN coupon.' }
   $otherUserOrder = Invoke-RestMethod -Uri "$apiBase/api/v1/orders/1002" -Headers $userHeaders -TimeoutSec 5
   Assert-Equal $otherUserOrder.user_id '3' 'Unauthenticated cross-user order read'
   $otherUserAddress = Invoke-RestMethod -Uri "$apiBase/api/v1/users/3/addresses" -Headers $userHeaders -TimeoutSec 5
@@ -304,11 +311,16 @@ try {
   Assert-Equal $replay.duplicate_count 2 'Repeated payment callback count'
   $forgedOrder = Invoke-RestMethod -Uri "$apiBase/api/v1/orders/1002" -TimeoutSec 5
   Assert-Equal $forgedOrder.payment_status 'paid' 'Unsigned payment callback state change'
+  $refundBody = '{"amount":1}'
+  $unauthorizedRefund = Invoke-RestMethod -Uri "$apiBase/api/v1/payment/1002/refund" -Method Post -ContentType 'application/json' -Body $refundBody -TimeoutSec 5
+  Assert-Equal $unauthorizedRefund.amount 1 'Unauthenticated refund amount manipulation'
+  $refundedOrder = Invoke-RestMethod -Uri "$apiBase/api/v1/orders/1002" -TimeoutSec 5
+  Assert-Equal $refundedOrder.payment_status 'refunded' 'Unauthenticated order refund'
 
   $apiLog = Get-Content -Raw -LiteralPath (Join-Path $logDir 'api.out')
   if ($apiLog -notmatch [regex]::Escape("email=$email password=x role=admin")) { throw 'The synthetic signup password was not present in the lab API log.' }
 
-  Write-Output 'Loopback smoke passed: storefront/catalog, API docs/env exposure, auth bypass/default credentials/enumeration/rate limits, email/OTP/reset flows, refresh/session/JWT/OAuth flaws, product/customer data exposure, role escalation, cross-user access, price/amount tampering, MD5 password storage/logging, payment webhook forgery/replay, and GraphQL introspection.'
+  Write-Output 'Loopback smoke passed: storefront/catalog, docs/env/backup exposure, coupon discovery, auth bypass/default credentials/enumeration/rate limits, email/OTP/reset flows, refresh/session/JWT/OAuth flaws, product/customer data exposure, role escalation, cross-user access, price/amount tampering, unauthorized refunds, MD5 password storage/logging, payment webhook forgery/replay, and GraphQL introspection.'
 }
 catch {
   foreach ($name in @('api.err','web.err','graphql.err')) {
