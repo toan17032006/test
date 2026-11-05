@@ -98,6 +98,11 @@ class CatalogTests(unittest.TestCase):
         self.assertTrue(all(row["test_status"] in {"not_tested", "verified"} for row in mapped))
         self.assertTrue(any(row["test_status"] == "not_tested" for row in mapped))
 
+    def test_source_annotation_ids_match_the_catalog_topics(self):
+        source_ids = set(collect_source_refs())
+        self.assertTrue({72, 74, 75, 77, 480, 643, 648}.issubset(source_ids))
+        self.assertTrue({40, 42, 227, 375}.isdisjoint(source_ids))
+
     def test_checklist_ui_displays_verified_state_and_evidence(self):
         page = (ROOT / "vulndb" / "index.html").read_text(encoding="utf-8")
         self.assertIn("verified: 'Đã xác minh'", page)

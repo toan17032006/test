@@ -17,7 +17,7 @@ NEO4J_PASS = os.getenv("NEO4J_PASS", "password")
 INFLUXDB_URL = os.getenv("INFLUXDB_URL", "http://localhost:8086")
 INFLUXDB_TOKEN = os.getenv("INFLUXDB_TOKEN", "vulnshop-super-secret-token")
 
-# Intentionally weak secrets (vuln #375, #376)
+# Hardcoded weak JWT and application secrets (vuln #75, #376)
 SECRET_KEY = os.getenv("SECRET_KEY", "super-secret-key-12345")
 JWT_SECRET = os.getenv("JWT_SECRET", "jwt-secret-weak")
 JWT_ALGORITHM = "HS256"

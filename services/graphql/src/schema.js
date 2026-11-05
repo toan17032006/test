@@ -5,8 +5,8 @@
 const { gql } = require('graphql-tag');
 
 const typeDefs = gql`
-  # VULN #260: Password field exposed in schema - sensitive data leakage
-  # VULN #657: PII fields exposed in schema (creditCard, ssn, refreshToken)
+  # VULN #251: Password field exposed in schema - excessive data exposure
+  # VULN #643, #648: PII and payment fields exposed in schema
   type User {
     id: ID!
     username: String!
@@ -15,9 +15,9 @@ const typeDefs = gql`
     phone: String
     address: String
     role: String            # admin, user, moderator
-    creditCard: String      # VULN #657: PII exposure
-    ssn: String             # VULN #657: SSN directly in schema
-    bankAccount: String     # VULN #657: Bank info exposed
+    creditCard: String      # VULN #648: Payment data exposed
+    ssn: String             # VULN #643: SSN directly in schema
+    bankAccount: String     # VULN #643: Bank info exposed
     orders: [Order]
     cart: Cart
     wishlist: [Product]
@@ -102,7 +102,7 @@ const typeDefs = gql`
     discount: Float
   }
 
-  # VULN #115: Payment card data exposed in API responses
+  # VULN #648: Payment card data exposed in API responses
   type PaymentInfo {
     id: ID!
     cardNumber: String      # VULN: Full card number exposed

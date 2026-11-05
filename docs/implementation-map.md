@@ -2,7 +2,7 @@
 
 > Generated from explicit vulnerability annotations in the lab source. A source reference shows where a behavior is declared or implemented; it does not prove runtime reachability. Check `test_status` and the linked runtime/audit evidence separately.
 
-Annotated vulnerability IDs: **121 / 661**.
+Annotated vulnerability IDs: **120 / 661**.
 
 | ID | Vulnerability | Annotated source locations |
 |---:|---|---|
@@ -22,9 +22,7 @@ Annotated vulnerability IDs: **121 / 661**.
 | 34 | Username Enumeration | `backend/routes/auth.py:134`, `backend/routes/auth.py:208`, `frontend/routes/index.js:323` |
 | 35 | Email Enumeration | `backend/routes/auth.py:134`, `backend/routes/auth.py:141`, `backend/routes/auth.py:274` |
 | 38 | Brute Force | `backend/routes/auth.py:187`, `backend/routes/auth.py:191` |
-| 40 | Credential Stuffing | `services/graphql/src/auth.js:3`, `services/graphql/src/auth.js:7` |
-| 41 | Missing Login Rate Limiting | `backend/config.py:58`, `backend/routes/auth.py:191`, `services/graphql/src/auth.js:11`, `services/graphql/src/auth.js:3` |
-| 42 | Rate Limit Bypass | `services/graphql/src/auth.js:12`, `services/graphql/src/auth.js:3` |
+| 41 | Missing Login Rate Limiting | `backend/config.py:58`, `backend/routes/auth.py:191` |
 | 43 | CAPTCHA Bypass | `backend/routes/auth.py:192` |
 | 44 | MFA Bypass | `backend/routes/auth.py:360`, `backend/routes/auth.py:366` |
 | 46 | OTP Brute Force | `backend/routes/auth.py:360`, `backend/routes/auth.py:361` |
@@ -48,10 +46,11 @@ Annotated vulnerability IDs: **121 / 661**.
 | 69 | Session Not Invalidated After Password Change | `backend/routes/auth.py:326` |
 | 70 | Concurrent Session Abuse | `backend/routes/auth.py:226`, `backend/routes/auth.py:231` |
 | 71 | Insecure Session Cookie | `backend/config.py:78`, `backend/config.py:79`, `backend/routes/auth.py:248` |
-| 72 | JWT None Algorithm | `backend/routes/auth.py:407`, `backend/routes/auth.py:415` |
+| 72 | JWT None Algorithm | `backend/routes/auth.py:407`, `backend/routes/auth.py:415`, `services/graphql/src/auth.js:12`, `services/graphql/src/auth.js:3` |
 | 73 | JWT Algorithm Confusion | `backend/routes/auth.py:416` |
-| 74 | JWT Signature Validation Bypass | `backend/routes/auth.py:420` |
-| 77 | JWT Expiration Validation Bypass | `backend/config.py:24`, `backend/routes/auth.py:111`, `backend/routes/auth.py:427` |
+| 74 | JWT Signature Validation Bypass | `backend/routes/auth.py:420`, `services/graphql/src/auth.js:12`, `services/graphql/src/auth.js:3` |
+| 75 | JWT Weak Secret | `backend/config.py:20`, `services/graphql/src/auth.js:3`, `services/graphql/src/auth.js:7` |
+| 77 | JWT Expiration Validation Bypass | `backend/config.py:24`, `backend/routes/auth.py:111`, `backend/routes/auth.py:427`, `services/graphql/src/auth.js:11`, `services/graphql/src/auth.js:3` |
 | 81 | JWT Sensitive Data Exposure | `backend/routes/auth.py:100`, `backend/routes/auth.py:106`, `backend/routes/auth.py:107`, `backend/routes/auth.py:108`, `backend/routes/auth.py:220` |
 | 82 | Refresh Token Reuse | `backend/routes/auth.py:222`, `backend/routes/auth.py:389`, `backend/routes/auth.py:401` |
 | 83 | Refresh Token Rotation Failure | `backend/routes/auth.py:389`, `backend/routes/auth.py:394` |
@@ -66,7 +65,7 @@ Annotated vulnerability IDs: **121 / 661**.
 | 104 | Missing Function-Level Authorization | `backend/routes/auth.py:473`, `backend/routes/products.py:203`, `backend/routes/products.py:204`, `backend/routes/products.py:245`, `services/graphql/src/resolvers.js:3`, `services/graphql/src/resolvers.js:44`, `services/graphql/src/schema.js:275`, `services/graphql/src/schema.js:278`, `services/graphql/src/schema.js:3` |
 | 108 | Admin Endpoint Exposure | `services/graphql/src/auth.js:92`, `services/graphql/src/resolvers.js:191`, `services/graphql/src/resolvers.js:3`, `services/graphql/src/resolvers.js:405`, `services/graphql/src/schema.js:171`, `services/graphql/src/schema.js:275`, `services/graphql/src/schema.js:3`, `services/graphql/src/schema.js:308`, `services/graphql/src/schema.js:339` |
 | 113 | Unauthorized Order Access | `services/graphql/src/resolvers.js:128`, `services/graphql/src/resolvers.js:3`, `services/graphql/src/schema.js:275`, `services/graphql/src/schema.js:292`, `services/graphql/src/schema.js:3`, `services/graphql/src/schema.js:80` |
-| 115 | Unauthorized Payment Access | `services/graphql/src/resolvers.js:164`, `services/graphql/src/resolvers.js:3`, `services/graphql/src/schema.js:105`, `services/graphql/src/schema.js:275`, `services/graphql/src/schema.js:3`, `services/graphql/src/schema.js:300` |
+| 115 | Unauthorized Payment Access | `services/graphql/src/resolvers.js:164`, `services/graphql/src/resolvers.js:3`, `services/graphql/src/schema.js:275`, `services/graphql/src/schema.js:3`, `services/graphql/src/schema.js:300` |
 | 125 | HTTP Method-Based Authorization Bypass | `backend/routes/products.py:230` |
 | 128 | SQL Injection | `backend/routes/auth.py:197`, `backend/routes/products.py:112`, `backend/routes/products.py:115`, `backend/routes/products.py:135`, `backend/routes/products.py:3` |
 | 136 | NoSQL Injection | `backend/routes/products.py:3` |
@@ -81,14 +80,13 @@ Annotated vulnerability IDs: **121 / 661**.
 | 198 | SSRF | `backend/routes/products.py:254`, `backend/routes/products.py:258` |
 | 203 | SSRF Through Image Processing | `backend/routes/products.py:254` |
 | 204 | SSRF Through PDF Generation | `services/worker/worker.py:3`, `services/worker/worker.py:360`, `services/worker/worker.py:390`, `services/worker/worker.py:396` |
-| 227 | Web Cache Poisoning | `backend/main.py:311` |
 | 230 | Race Condition | `services/worker/worker.py:3`, `services/worker/worker.py:306`, `services/worker/worker.py:319`, `services/worker/worker.py:327`, `services/worker/worker.py:331`, `services/worker/worker.py:345` |
 | 239 | Regular Expression DoS (ReDoS) | `backend/routes/products.py:118` |
 | 250 | API Mass Assignment | `backend/routes/products.py:203`, `backend/routes/products.py:205`, `backend/routes/products.py:238`, `backend/routes/products.py:3`, `backend/routes/products.py:85`, `services/graphql/src/resolvers.js:3`, `services/graphql/src/resolvers.js:316`, `services/graphql/src/resolvers.js:363`, `services/graphql/src/schema.js:211`, `services/graphql/src/schema.js:3`, `services/graphql/src/schema.js:328`, `services/graphql/src/schema.js:335` |
-| 251 | API Excessive Data Exposure | `backend/routes/products.py:141`, `backend/routes/products.py:185`, `backend/routes/products.py:190` |
+| 251 | API Excessive Data Exposure | `backend/routes/products.py:141`, `backend/routes/products.py:185`, `backend/routes/products.py:190`, `services/graphql/src/schema.js:8` |
 | 253 | API Versioning Bypass | `backend/main.py:61` |
 | 259 | API Sorting Injection | `backend/routes/products.py:135` |
-| 260 | API GraphQL Introspection Abuse | `services/graphql/src/index.js:223`, `services/graphql/src/index.js:3`, `services/graphql/src/index.js:88`, `services/graphql/src/schema.js:3`, `services/graphql/src/schema.js:8` |
+| 260 | API GraphQL Introspection Abuse | `services/graphql/src/index.js:223`, `services/graphql/src/index.js:3`, `services/graphql/src/index.js:88`, `services/graphql/src/schema.js:3` |
 | 264 | GraphQL Query Depth Abuse | `services/graphql/src/index.js:224`, `services/graphql/src/index.js:3`, `services/graphql/src/index.js:91`, `services/graphql/src/resolvers.js:3`, `services/graphql/src/schema.js:3` |
 | 265 | GraphQL Query Complexity Abuse | `services/graphql/src/index.js:225`, `services/graphql/src/index.js:3`, `services/graphql/src/index.js:95`, `services/graphql/src/resolvers.js:3`, `services/graphql/src/schema.js:3` |
 | 266 | GraphQL Batching Abuse | `services/graphql/src/index.js:226`, `services/graphql/src/index.js:3`, `services/graphql/src/index.js:98`, `services/graphql/src/resolvers.js:3`, `services/graphql/src/schema.js:3` |
@@ -107,7 +105,6 @@ Annotated vulnerability IDs: **121 / 661**.
 | 355 | ImageMagick Vulnerability | `services/worker/worker.py:3`, `services/worker/worker.py:598`, `services/worker/worker.py:619`, `services/worker/worker.py:628`, `services/worker/worker.py:650` |
 | 369 | Path Traversal Through File Names | `services/worker/worker.py:3`, `services/worker/worker.py:361`, `services/worker/worker.py:376`, `services/worker/worker.py:382`, `services/worker/worker.py:466`, `services/worker/worker.py:599`, `services/worker/worker.py:601`, `services/worker/worker.py:605` |
 | 372 | MD5 Password Storage | `backend/routes/auth.py:154`, `backend/routes/auth.py:155`, `backend/routes/auth.py:214`, `backend/routes/auth.py:31`, `backend/routes/auth.py:32` |
-| 375 | Hardcoded Encryption Keys | `backend/config.py:20` |
 | 376 | Hardcoded Secrets | `backend/config.py:20`, `backend/config.py:26`, `backend/routes/auth.py:378` |
 | 378 | Predictable Token Generation | `backend/config.py:67`, `backend/routes/auth.py:93` |
 | 393 | Sensitive Data in URL | `backend/routes/auth.py:169` |
@@ -115,6 +112,7 @@ Annotated vulnerability IDs: **121 / 661**.
 | 406 | Database SQL Injection | `backend/main.py:223` |
 | 410 | Database Backup Exposure | `backend/main.py:218`, `services/worker/worker.py:3`, `services/worker/worker.py:523`, `services/worker/worker.py:528`, `services/worker/worker.py:555`, `services/worker/worker.py:561`, `services/worker/worker.py:567`, `services/worker/worker.py:585`, `services/worker/worker.py:61` |
 | 435 | Cloud Access Key Leakage | `backend/config.py:38`, `backend/main.py:161` |
+| 480 | HTTP Security Header Misconfiguration | `backend/main.py:311` |
 | 558 | Password Logging | `backend/main.py:280`, `backend/main.py:284`, `backend/routes/auth.py:135`, `backend/routes/auth.py:188`, `backend/routes/auth.py:329` |
 | 559 | Token Logging | `backend/main.py:284`, `backend/routes/auth.py:123`, `services/graphql/src/resolvers.js:20`, `services/worker/worker.py:102`, `services/worker/worker.py:131`, `services/worker/worker.py:155`, `services/worker/worker.py:157`, `services/worker/worker.py:188`, `services/worker/worker.py:196`, `services/worker/worker.py:242`, `services/worker/worker.py:280`, `services/worker/worker.py:3`, `services/worker/worker.py:308`, `services/worker/worker.py:310`, `services/worker/worker.py:362`, `services/worker/worker.py:37`, `services/worker/worker.py:372`, `services/worker/worker.py:475`, `services/worker/worker.py:525`, `services/worker/worker.py:534` |
 | 560 | PII Logging | `backend/main.py:284` |
@@ -124,6 +122,7 @@ Annotated vulnerability IDs: **121 / 661**.
 | 589 | File Upload DoS | `backend/config.py:54` |
 | 603 | Unbounded Pagination | `backend/routes/products.py:108`, `backend/routes/products.py:110`, `backend/routes/products.py:112` |
 | 631 | Payment Provider Integration Flaws | `backend/config.py:44` |
-| 643 | Customer PII Exposure | `backend/routes/auth.py:473` |
+| 643 | Customer PII Exposure | `backend/routes/auth.py:473`, `services/graphql/src/schema.js:19`, `services/graphql/src/schema.js:20`, `services/graphql/src/schema.js:9` |
+| 648 | Payment Information Exposure | `services/graphql/src/schema.js:105`, `services/graphql/src/schema.js:18`, `services/graphql/src/schema.js:9` |
 | 651 | Internal Business Data Exposure | `backend/routes/products.py:143`, `backend/routes/products.py:190`, `backend/routes/products.py:20`, `backend/routes/products.py:26` |
-| 657 | Personal Data Export Authorization Bypass | `services/graphql/src/schema.js:18`, `services/graphql/src/schema.js:19`, `services/graphql/src/schema.js:20`, `services/graphql/src/schema.js:9`, `services/worker/worker.py:3`, `services/worker/worker.py:442`, `services/worker/worker.py:447`, `services/worker/worker.py:453`, `services/worker/worker.py:459`, `services/worker/worker.py:461`, `services/worker/worker.py:482` |
+| 657 | Personal Data Export Authorization Bypass | `services/worker/worker.py:3`, `services/worker/worker.py:442`, `services/worker/worker.py:447`, `services/worker/worker.py:453`, `services/worker/worker.py:459`, `services/worker/worker.py:461`, `services/worker/worker.py:482` |

@@ -1,15 +1,15 @@
 // VulnShop GraphQL Auth Middleware
 // INTENTIONALLY VULNERABLE - weak JWT validation
-// Vulnerabilities: #40 (weak secret), #41 (no expiry check), #42 (alg:none bypass)
+// Vulnerabilities: #75 (weak secret), #77 (expiry bypass), #74 (signature bypass), #72 (alg:none acceptance)
 
 const jwt = require('jsonwebtoken');
 
-// VULN #40: Hardcoded, weak JWT secret
+// VULN #75: Hardcoded, weak JWT secret
 const JWT_SECRET = process.env.JWT_SECRET || 'secret123';
 const REFRESH_SECRET = process.env.REFRESH_SECRET || 'refresh_secret';
 
-// VULN #41: JWT token with no expiry validation
-// VULN #42: Algorithm confusion - accepts 'none' algorithm
+// VULN #77: Expired tokens can pass through the unverified decode fallback
+// VULN #74, #72: The unverified decode fallback bypasses signatures, including for alg:none tokens
 function verifyToken(token) {
   if (!token) return null;
 

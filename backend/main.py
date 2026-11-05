@@ -308,7 +308,7 @@ async def log_requests(request: Request, call_next):
     response.headers["X-Powered-By"] = f"FastAPI/{FRAMEWORK_VERSION}"
     response.headers["Server"] = "vulnshop/1.0"
     response.headers["X-Debug-Mode"] = str(DEBUG)
-    # No security headers added (vuln #227)
+    # No security headers added (vuln #480)
     return response
 
 if __name__ == "__main__":

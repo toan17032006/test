@@ -2282,9 +2282,8 @@
       "category": "Authentication Vulnerabilities",
       "name": "Credential Stuffing",
       "record_type": "vulnerability",
-      "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "implementation_status": "unverified",
+      "test_status": "not_tested"
     },
     {
       "id": 41,
@@ -2301,9 +2300,8 @@
       "category": "Authentication Vulnerabilities",
       "name": "Rate Limit Bypass",
       "record_type": "vulnerability",
-      "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "implementation_status": "unverified",
+      "test_status": "not_tested"
     },
     {
       "id": 43,
@@ -2613,8 +2611,9 @@
       "category": "Authentication Vulnerabilities",
       "name": "JWT Weak Secret",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 76,
@@ -3532,8 +3531,9 @@
       "name": "SameSite Cookie Misconfiguration",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 185,
@@ -3557,8 +3557,9 @@
       "name": "CORS Misconfiguration",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 188,
@@ -3574,8 +3575,9 @@
       "name": "CORS Credential Exposure",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 190,
@@ -3881,9 +3883,8 @@
       "category": "Server-Side Vulnerabilities",
       "name": "Web Cache Poisoning",
       "record_type": "vulnerability",
-      "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "implementation_status": "unverified",
+      "test_status": "not_tested"
     },
     {
       "id": 228,
@@ -5124,9 +5125,8 @@
       "category": "Cryptography & Data Protection",
       "name": "Hardcoded Encryption Keys",
       "record_type": "vulnerability",
-      "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "implementation_status": "unverified",
+      "test_status": "not_tested"
     },
     {
       "id": 376,
@@ -5974,8 +5974,10 @@
       "category": "Network & Infrastructure Security",
       "name": "HTTP Security Header Misconfiguration",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 481,
@@ -7338,8 +7340,9 @@
       "category": "Business Data & Privacy",
       "name": "Payment Information Exposure",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 649,
