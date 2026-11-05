@@ -78,7 +78,8 @@
           const name = makeCell('td', row.name, 'name');
           const details = [];
           if (row.record_type !== 'test_matrix_field') details.push(`Triển khai: ${implementationLabels[row.implementation_status] || row.implementation_status}`);
-          if (row.evidence) details.push(`Bằng chứng: ${row.evidence}`);
+          if (row.implementation_evidence) details.push(`Mã nguồn: ${row.implementation_evidence}`);
+          if (row.evidence) details.push(`Bằng chứng kiểm thử/audit: ${row.evidence}`);
           if (details.length) name.append(makeCell('span', details.join(' · '), 'sub'));
           tr.append(name, makeCell('td', row.category), makeCell('td', labels[row.record_type] || row.record_type));
           const statusCell = document.createElement('td');

@@ -1989,32 +1989,36 @@
       "category": "Reconnaissance & Information Disclosure",
       "name": "Server Version Disclosure",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 8,
       "category": "Reconnaissance & Information Disclosure",
       "name": "Technology Stack Disclosure",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 9,
       "category": "Reconnaissance & Information Disclosure",
       "name": "Framework Fingerprinting",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 10,
       "category": "Reconnaissance & Information Disclosure",
       "name": "Debug Information Exposure",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 11,
@@ -2053,8 +2057,9 @@
       "category": "Reconnaissance & Information Disclosure",
       "name": "Backup File Exposure",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 16,
@@ -2071,7 +2076,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 18,
@@ -2088,7 +2094,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 20,
@@ -2097,7 +2104,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 21,
@@ -2128,24 +2136,27 @@
       "category": "Reconnaissance & Information Disclosure",
       "name": "Error Message Information Leakage",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 25,
       "category": "Reconnaissance & Information Disclosure",
       "name": "Stack Trace Disclosure",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 26,
       "category": "Reconnaissance & Information Disclosure",
       "name": "Internal IP Disclosure",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 27,
@@ -2186,7 +2197,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 32,
@@ -2204,7 +2216,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 34,
@@ -2213,7 +2226,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 35,
@@ -2222,7 +2236,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 36,
@@ -2248,7 +2263,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 39,
@@ -2263,8 +2279,9 @@
       "category": "Authentication Vulnerabilities",
       "name": "Credential Stuffing",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 41,
@@ -2273,15 +2290,17 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 42,
       "category": "Authentication Vulnerabilities",
       "name": "Rate Limit Bypass",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 43,
@@ -2290,7 +2309,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 44,
@@ -2299,7 +2319,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 45,
@@ -2316,7 +2337,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 47,
@@ -2325,7 +2347,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 48,
@@ -2334,15 +2357,17 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 49,
       "category": "Authentication Vulnerabilities",
       "name": "OTP Expiration Bypass",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 50,
@@ -2359,7 +2384,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 52,
@@ -2368,7 +2394,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 53,
@@ -2377,15 +2404,17 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 54,
       "category": "Authentication Vulnerabilities",
       "name": "Password Reset Token Not Expiring",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 55,
@@ -2403,7 +2432,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 57,
@@ -2412,7 +2442,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 58,
@@ -2421,7 +2452,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 59,
@@ -2430,7 +2462,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 60,
@@ -2447,7 +2480,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 62,
@@ -2456,7 +2490,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 63,
@@ -2471,8 +2506,9 @@
       "category": "Authentication Vulnerabilities",
       "name": "Authentication Logic Flaws",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 65,
@@ -2481,15 +2517,17 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 66,
       "category": "Authentication Vulnerabilities",
       "name": "Session Hijacking",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 67,
@@ -2506,7 +2544,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 69,
@@ -2515,15 +2554,17 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 70,
       "category": "Authentication Vulnerabilities",
       "name": "Concurrent Session Abuse",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 71,
@@ -2532,7 +2573,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 72,
@@ -2541,15 +2583,17 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 73,
       "category": "Authentication Vulnerabilities",
       "name": "JWT Algorithm Confusion",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 74,
@@ -2558,7 +2602,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 75,
@@ -2583,7 +2628,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 78,
@@ -2619,7 +2665,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 82,
@@ -2628,7 +2675,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 83,
@@ -2637,15 +2685,17 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 84,
       "category": "Authentication Vulnerabilities",
       "name": "OAuth Account Takeover",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 85,
@@ -2654,7 +2704,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 86,
@@ -2663,7 +2714,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 87,
@@ -2727,16 +2779,18 @@
       "category": "Authentication Vulnerabilities",
       "name": "Social Login Account Linking Abuse",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 95,
       "category": "Authentication Vulnerabilities",
       "name": "Insecure Account Linking",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 96,
@@ -2753,7 +2807,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 98,
@@ -2795,7 +2850,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 103,
@@ -2804,7 +2860,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 104,
@@ -2813,7 +2870,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 105,
@@ -2846,7 +2904,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 109,
@@ -2887,7 +2946,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 114,
@@ -2902,8 +2962,9 @@
       "category": "Authorization & Access Control",
       "name": "Unauthorized Payment Access",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 116,
@@ -2985,8 +3046,9 @@
       "category": "Authorization & Access Control",
       "name": "HTTP Method-Based Authorization Bypass",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 126,
@@ -3009,8 +3071,9 @@
       "category": "Injection Vulnerabilities",
       "name": "SQL Injection",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 129,
@@ -3073,8 +3136,9 @@
       "category": "Injection Vulnerabilities",
       "name": "NoSQL Injection",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 137,
@@ -3273,8 +3337,9 @@
       "category": "Injection Vulnerabilities",
       "name": "SMTP Injection",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 162,
@@ -3329,8 +3394,9 @@
       "category": "Injection Vulnerabilities",
       "name": "CSV Injection",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 169,
@@ -3345,16 +3411,18 @@
       "category": "Cross-Site Vulnerabilities",
       "name": "Reflected XSS",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 171,
       "category": "Cross-Site Vulnerabilities",
       "name": "Stored XSS",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 172,
@@ -3401,8 +3469,9 @@
       "category": "Cross-Site Vulnerabilities",
       "name": "HTML Injection",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 178,
@@ -3457,8 +3526,9 @@
       "category": "Cross-Site Vulnerabilities",
       "name": "SameSite Cookie Misconfiguration",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 185,
@@ -3481,8 +3551,9 @@
       "category": "Cross-Site Vulnerabilities",
       "name": "CORS Misconfiguration",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 188,
@@ -3497,8 +3568,9 @@
       "category": "Cross-Site Vulnerabilities",
       "name": "CORS Credential Exposure",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 190,
@@ -3569,8 +3641,9 @@
       "category": "Server-Side Vulnerabilities",
       "name": "SSRF",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 199,
@@ -3609,16 +3682,18 @@
       "category": "Server-Side Vulnerabilities",
       "name": "SSRF Through Image Processing",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 204,
       "category": "Server-Side Vulnerabilities",
       "name": "SSRF Through PDF Generation",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 205,
@@ -3801,8 +3876,9 @@
       "category": "Server-Side Vulnerabilities",
       "name": "Web Cache Poisoning",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 228,
@@ -3825,8 +3901,9 @@
       "category": "Server-Side Vulnerabilities",
       "name": "Race Condition",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 231,
@@ -3897,8 +3974,9 @@
       "category": "Server-Side Vulnerabilities",
       "name": "Regular Expression DoS (ReDoS)",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 240,
@@ -3985,8 +4063,9 @@
       "category": "API Security Vulnerabilities",
       "name": "API Mass Assignment",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 251,
@@ -3995,7 +4074,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 252,
@@ -4011,8 +4091,9 @@
       "category": "API Security Vulnerabilities",
       "name": "API Versioning Bypass",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 254,
@@ -4059,8 +4140,9 @@
       "category": "API Security Vulnerabilities",
       "name": "API Sorting Injection",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 260,
@@ -4069,7 +4151,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 261,
@@ -4100,40 +4183,45 @@
       "category": "API Security Vulnerabilities",
       "name": "GraphQL Query Depth Abuse",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 265,
       "category": "API Security Vulnerabilities",
       "name": "GraphQL Query Complexity Abuse",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 266,
       "category": "API Security Vulnerabilities",
       "name": "GraphQL Batching Abuse",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 267,
       "category": "API Security Vulnerabilities",
       "name": "GraphQL Subscription Authorization Bypass",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 268,
       "category": "API Security Vulnerabilities",
       "name": "GraphQL Federation Trust Abuse",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 269,
@@ -4156,16 +4244,18 @@
       "category": "API Security Vulnerabilities",
       "name": "WebSocket Authentication Bypass",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 272,
       "category": "API Security Vulnerabilities",
       "name": "WebSocket Authorization Bypass",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 273,
@@ -4215,7 +4305,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 279,
@@ -4231,16 +4322,18 @@
       "category": "API Security Vulnerabilities",
       "name": "Webhook SSRF",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 281,
       "category": "API Security Vulnerabilities",
       "name": "Webhook Secret Leakage",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 282,
@@ -4257,7 +4350,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 284,
@@ -4401,8 +4495,9 @@
       "category": "E-commerce Business Logic Vulnerabilities",
       "name": "Flash Sale Race Condition",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 301,
@@ -4441,8 +4536,9 @@
       "category": "E-commerce Business Logic Vulnerabilities",
       "name": "Concurrent Purchase Race Condition",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 306,
@@ -4477,7 +4573,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 310,
@@ -4776,8 +4873,9 @@
       "category": "File Upload & File Processing",
       "name": "Unrestricted File Upload",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 346,
@@ -4856,8 +4954,9 @@
       "category": "File Upload & File Processing",
       "name": "ImageMagick Vulnerability",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 356,
@@ -4968,8 +5067,9 @@
       "category": "File Upload & File Processing",
       "name": "Path Traversal Through File Names",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 370,
@@ -4994,7 +5094,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 373,
@@ -5017,16 +5118,18 @@
       "category": "Cryptography & Data Protection",
       "name": "Hardcoded Encryption Keys",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 376,
       "category": "Cryptography & Data Protection",
       "name": "Hardcoded Secrets",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 377,
@@ -5041,8 +5144,9 @@
       "category": "Cryptography & Data Protection",
       "name": "Predictable Token Generation",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 379,
@@ -5161,8 +5265,9 @@
       "category": "Cryptography & Data Protection",
       "name": "Sensitive Data in URL",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 394,
@@ -5226,8 +5331,9 @@
       "category": "Database Security",
       "name": "Database Public Exposure",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 402,
@@ -5266,8 +5372,9 @@
       "category": "Database Security",
       "name": "Database SQL Injection",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 407,
@@ -5298,8 +5405,9 @@
       "category": "Database Security",
       "name": "Database Backup Exposure",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 411,
@@ -5500,7 +5608,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 436,
@@ -6487,23 +6596,26 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 559,
       "category": "Logging, Monitoring & Operational Security",
       "name": "Token Logging",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 560,
       "category": "Logging, Monitoring & Operational Security",
       "name": "PII Logging",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 561,
@@ -6518,8 +6630,9 @@
       "category": "Logging, Monitoring & Operational Security",
       "name": "CRLF Log Injection",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 563,
@@ -6582,8 +6695,9 @@
       "category": "Logging, Monitoring & Operational Security",
       "name": "Metrics Endpoint Exposure",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 571,
@@ -6719,8 +6833,9 @@
       "category": "DoS & Resource Exhaustion",
       "name": "Regex DoS",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 588,
@@ -6735,8 +6850,9 @@
       "category": "DoS & Resource Exhaustion",
       "name": "File Upload DoS",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 590,
@@ -6847,8 +6963,9 @@
       "category": "DoS & Resource Exhaustion",
       "name": "Unbounded Pagination",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 604,
@@ -7072,8 +7189,9 @@
       "category": "Third-Party Integration Security",
       "name": "Payment Provider Integration Flaws",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 632,
@@ -7170,7 +7288,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 644,
@@ -7238,7 +7357,8 @@
       "record_type": "vulnerability",
       "implementation_status": "observed",
       "test_status": "verified",
-      "evidence": "docs/smoke-findings.md"
+      "evidence": "docs/smoke-findings.md",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 652,
@@ -7286,8 +7406,9 @@
       "category": "Business Data & Privacy",
       "name": "Personal Data Export Authorization Bypass",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 658,

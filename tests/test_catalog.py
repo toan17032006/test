@@ -6,7 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from scripts.render_checklist import render
+from scripts.render_checklist import collect_source_refs, render, render_implementation_map
 
 
 class CatalogTests(unittest.TestCase):
@@ -74,10 +74,35 @@ class CatalogTests(unittest.TestCase):
         actual = (ROOT / "vulndb" / "checklist.md").read_text(encoding="utf-8")
         self.assertEqual(actual, expected)
 
+    def test_source_map_and_catalog_annotations_match_source(self):
+        source_refs = collect_source_refs()
+        expected_ids = set(source_refs)
+        mapped = {
+            row["id"]: row
+            for row in self.catalog["entries"]
+            if row.get("implementation_evidence") == "docs/implementation-map.md"
+        }
+        self.assertEqual(set(mapped), expected_ids)
+        self.assertTrue(all(row["implementation_status"] == "observed" for row in mapped.values()))
+        self.assertEqual(
+            (ROOT / "docs" / "implementation-map.md").read_text(encoding="utf-8"),
+            render_implementation_map(self.catalog, source_refs),
+        )
+
+    def test_source_observations_do_not_change_runtime_test_status(self):
+        mapped = [
+            row for row in self.catalog["entries"]
+            if row.get("implementation_evidence") == "docs/implementation-map.md"
+        ]
+        self.assertTrue(mapped)
+        self.assertTrue(all(row["test_status"] in {"not_tested", "verified"} for row in mapped))
+        self.assertTrue(any(row["test_status"] == "not_tested" for row in mapped))
+
     def test_checklist_ui_displays_verified_state_and_evidence(self):
         page = (ROOT / "vulndb" / "index.html").read_text(encoding="utf-8")
         self.assertIn("verified: 'Đã xác minh'", page)
-        self.assertIn("Bằng chứng: ${row.evidence}", page)
+        self.assertIn("Mã nguồn: ${row.implementation_evidence}", page)
+        self.assertIn("Bằng chứng kiểm thử/audit: ${row.evidence}", page)
         self.assertIn("node.textContent = safe(value)", page)
 
 
