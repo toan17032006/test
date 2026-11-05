@@ -77,7 +77,7 @@
 | 59 | GraphQL | Backend và API | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 60 | GraphQL Federation | Backend và API | unverified | not_tested | — |
 | 61 | gRPC | Backend và API | unverified | not_tested | — |
-| 62 | WebSocket | Backend và API | unverified | not_tested | — |
+| 62 | WebSocket | Backend và API | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 63 | Webhook | Backend và API | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 64 | Microservices | Backend và API | unverified | not_tested | — |
 | 65 | Monolithic Architecture | Backend và API | unverified | not_tested | — |
@@ -204,8 +204,8 @@
 | 186 | SQL Injection | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 187 | NoSQL Injection | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 188 | GraphQL Injection | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 189 | XSS | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 190 | CSRF | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
+| 189 | XSS | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 190 | CSRF | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 191 | SSRF | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 192 | IDOR / BOLA | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 193 | Broken Authentication | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
@@ -255,7 +255,7 @@
 | 237 | API Excessive Data Exposure | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 238 | GraphQL Introspection Abuse | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 239 | GraphQL DoS | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 240 | WebSocket Authorization Bypass | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
+| 240 | WebSocket Authorization Bypass | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 241 | Webhook SSRF | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 242 | Cloud Storage Misconfiguration | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 243 | IAM Misconfiguration | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
@@ -302,7 +302,7 @@
 | 4 | DNS Misconfiguration | vulnerability | unverified | not_tested | — |
 | 5 | DNS Cache Poisoning | vulnerability | unverified | not_tested | — |
 | 6 | Virtual Host Misconfiguration | vulnerability | unverified | not_tested | — |
-| 7 | Server Version Disclosure | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 7 | Server Version Disclosure | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 8 | Technology Stack Disclosure | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 9 | Framework Fingerprinting | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 10 | Debug Information Exposure | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
@@ -349,7 +349,7 @@
 | 46 | OTP Brute Force | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 47 | OTP Replay | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 48 | OTP Predictability | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
-| 49 | OTP Expiration Bypass | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 49 | OTP Expiration Bypass | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 50 | OTP Race Condition | vulnerability | unverified | not_tested | — |
 | 51 | Password Reset Token Leakage | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 52 | Password Reset Token Prediction | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
@@ -364,18 +364,18 @@
 | 61 | Authentication Bypass | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 62 | Insecure Remember Me | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 63 | Broken Authentication | vulnerability | unverified | not_tested | — |
-| 64 | Authentication Logic Flaws | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 64 | Authentication Logic Flaws | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 65 | Session Fixation | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
-| 66 | Session Hijacking | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 66 | Session Hijacking | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 67 | Session Replay | vulnerability | unverified | not_tested | — |
 | 68 | Session Not Invalidated After Logout | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 69 | Session Not Invalidated After Password Change | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
-| 70 | Concurrent Session Abuse | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 70 | Concurrent Session Abuse | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 71 | Insecure Session Cookie | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 72 | JWT None Algorithm | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
-| 73 | JWT Algorithm Confusion | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 73 | JWT Algorithm Confusion | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 74 | JWT Signature Validation Bypass | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
-| 75 | JWT Weak Secret | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 75 | JWT Weak Secret | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 76 | JWT Key Confusion | vulnerability | unverified | not_tested | — |
 | 77 | JWT Expiration Validation Bypass | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 78 | JWT Audience Validation Bypass | vulnerability | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
@@ -485,17 +485,17 @@
 
 | ID | Name | Type | Implementation | Test | Evidence |
 |---:|---|---|---|---|---|
-| 170 | Reflected XSS | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
-| 171 | Stored XSS | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 170 | Reflected XSS | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 171 | Stored XSS | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 172 | DOM-Based XSS | vulnerability | unverified | not_tested | — |
 | 173 | Blind XSS | vulnerability | unverified | not_tested | — |
 | 174 | Mutation XSS | vulnerability | unverified | not_tested | — |
 | 175 | Self-XSS | vulnerability | unverified | not_tested | — |
 | 176 | Context-Specific XSS | vulnerability | unverified | not_tested | — |
-| 177 | HTML Injection | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 177 | HTML Injection | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 178 | CSS Injection | vulnerability | unverified | not_tested | — |
 | 179 | JavaScript Context Injection | vulnerability | unverified | not_tested | — |
-| 180 | CSRF | vulnerability | unverified | not_tested | — |
+| 180 | CSRF | vulnerability | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 181 | Login CSRF | vulnerability | unverified | not_tested | — |
 | 182 | Logout CSRF | vulnerability | unverified | not_tested | — |
 | 183 | Stored CSRF | vulnerability | unverified | not_tested | — |
@@ -505,7 +505,7 @@
 | 187 | CORS Misconfiguration | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 188 | CORS Origin Reflection | vulnerability | unverified | not_tested | — |
 | 189 | CORS Credential Exposure | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
-| 190 | CSP Misconfiguration | vulnerability | unverified | not_tested | — |
+| 190 | CSP Misconfiguration | vulnerability | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 191 | CSP Bypass | vulnerability | unverified | not_tested | — |
 | 192 | PostMessage Origin Validation Bypass | vulnerability | unverified | not_tested | — |
 | 193 | Cross-Origin Data Leakage | vulnerability | unverified | not_tested | — |
@@ -590,23 +590,23 @@
 | 262 | GraphQL Field-Level Authorization Bypass | vulnerability | unverified | not_tested | — |
 | 263 | GraphQL Alias-Based DoS | vulnerability | unverified | not_tested | — |
 | 264 | GraphQL Query Depth Abuse | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
-| 265 | GraphQL Query Complexity Abuse | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 265 | GraphQL Query Complexity Abuse | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 266 | GraphQL Batching Abuse | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
-| 267 | GraphQL Subscription Authorization Bypass | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 267 | GraphQL Subscription Authorization Bypass | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 268 | GraphQL Federation Trust Abuse | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
 | 269 | gRPC Authorization Bypass | vulnerability | unverified | not_tested | — |
 | 270 | gRPC Reflection Exposure | vulnerability | unverified | not_tested | — |
-| 271 | WebSocket Authentication Bypass | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
-| 272 | WebSocket Authorization Bypass | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
-| 273 | WebSocket Origin Validation Bypass | vulnerability | unverified | not_tested | — |
-| 274 | WebSocket Message Injection | vulnerability | unverified | not_tested | — |
+| 271 | WebSocket Authentication Bypass | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 272 | WebSocket Authorization Bypass | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 273 | WebSocket Origin Validation Bypass | vulnerability | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 274 | WebSocket Message Injection | vulnerability | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 275 | WebSocket Replay | vulnerability | unverified | not_tested | — |
 | 276 | WebSocket Resource Exhaustion | vulnerability | unverified | not_tested | — |
 | 277 | Webhook Forgery | vulnerability | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 278 | Webhook Signature Validation Bypass | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 279 | Webhook Replay | vulnerability | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
-| 280 | Webhook SSRF | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
-| 281 | Webhook Secret Leakage | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 280 | Webhook SSRF | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 281 | Webhook Secret Leakage | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 282 | Webhook Event Injection | vulnerability | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 
 ## E-commerce Business Logic Vulnerabilities
@@ -718,7 +718,7 @@
 | 375 | Hardcoded Encryption Keys | vulnerability | unverified | not_tested | — |
 | 376 | Hardcoded Secrets | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 377 | Weak Random Number Generator | vulnerability | unverified | not_tested | — |
-| 378 | Predictable Token Generation | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 378 | Predictable Token Generation | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 379 | Weak Encryption | vulnerability | unverified | not_tested | — |
 | 380 | Improper Encryption Mode | vulnerability | unverified | not_tested | — |
 | 381 | ECB Mode Usage | vulnerability | unverified | not_tested | — |
@@ -936,8 +936,8 @@
 | 558 | Password Logging | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 559 | Token Logging | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 560 | PII Logging | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
-| 561 | Log Injection | vulnerability | unverified | not_tested | — |
-| 562 | CRLF Log Injection | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 561 | Log Injection | vulnerability | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 562 | CRLF Log Injection | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 563 | Audit Log Tampering | vulnerability | unverified | not_tested | — |
 | 564 | Audit Log Deletion | vulnerability | unverified | not_tested | — |
 | 565 | Missing Security Audit Trail | vulnerability | unverified | not_tested | — |
@@ -1062,9 +1062,9 @@
 
 | ID | Name | Type | Implementation | Test | Evidence |
 |---:|---|---|---|---|---|
-| 662 | Reconnaissance → Information Disclosure → Credential Discovery → Account Takeover | attack_chain | unverified | not_tested | — |
+| 662 | Reconnaissance → Information Disclosure → Credential Discovery → Account Takeover | attack_chain | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 663 | XSS → Session Theft → Account Takeover | attack_chain | unverified | not_tested | — |
-| 664 | CSRF → Privileged Action → Account Compromise | attack_chain | unverified | not_tested | — |
+| 664 | CSRF → Privileged Action → Account Compromise | attack_chain | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 665 | IDOR → PII Disclosure → Account Targeting | attack_chain | unverified | not_tested | — |
 | 666 | SSRF → Cloud Metadata → IAM Credentials → Cloud Access | attack_chain | unverified | not_tested | — |
 | 667 | SQL Injection → Database Access → Data Exfiltration | attack_chain | unverified | not_tested | — |
@@ -1073,21 +1073,21 @@
 | 670 | Path Traversal → Configuration Disclosure → Credential Theft | attack_chain | unverified | not_tested | — |
 | 671 | XXE → Local File Read → Credential Exposure | attack_chain | unverified | not_tested | — |
 | 672 | SSTI → Server-Side Code Execution | attack_chain | unverified | not_tested | — |
-| 673 | JWT Forgery → Authorization Bypass → Privilege Escalation | attack_chain | unverified | not_tested | — |
+| 673 | JWT Forgery → Authorization Bypass → Privilege Escalation | attack_chain | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 674 | OAuth Misconfiguration → Account Linking Abuse → Account Takeover | attack_chain | unverified | not_tested | — |
 | 675 | API BOLA → Cross-Customer Data Access → Data Exfiltration | attack_chain | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 676 | GraphQL Introspection → Sensitive Field Discovery → Authorization Bypass | attack_chain | unverified | not_tested | — |
-| 677 | Webhook SSRF → Internal Service Access | attack_chain | unverified | not_tested | — |
+| 677 | Webhook SSRF → Internal Service Access | attack_chain | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 678 | Payment Callback Forgery → Fake Payment → Order Fraud | attack_chain | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
-| 679 | Coupon Abuse → Price Manipulation → Financial Loss | attack_chain | unverified | not_tested | — |
+| 679 | Coupon Abuse → Price Manipulation → Financial Loss | attack_chain | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 680 | Race Condition → Overselling → Inventory Inconsistency | attack_chain | unverified | not_tested | — |
-| 681 | Refund Abuse → Unauthorized Financial Transaction | attack_chain | unverified | not_tested | — |
+| 681 | Refund Abuse → Unauthorized Financial Transaction | attack_chain | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 682 | Container Misconfiguration → Container Escape → Host Access | attack_chain | unverified | not_tested | — |
 | 683 | Kubernetes RBAC Abuse → Cluster Privilege Escalation | attack_chain | unverified | not_tested | — |
 | 684 | CI/CD Secret Exposure → Pipeline Compromise → Production Access | attack_chain | unverified | not_tested | — |
 | 685 | Dependency Compromise → Supply Chain Attack → RCE | attack_chain | unverified | not_tested | — |
 | 686 | Cloud Storage Exposure → Sensitive Data Exfiltration | attack_chain | unverified | not_tested | — |
-| 687 | Admin Panel Exposure → Credential Compromise → Full Application Access | attack_chain | unverified | not_tested | — |
+| 687 | Admin Panel Exposure → Credential Compromise → Full Application Access | attack_chain | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 688 | Weak Network Segmentation → Internal Service Compromise | attack_chain | unverified | not_tested | — |
 | 689 | Redis Exposure → Data Manipulation → Application Compromise | attack_chain | unverified | not_tested | — |
 | 690 | Database Credential Leakage → Database Compromise → Customer Data Exfiltration | attack_chain | unverified | not_tested | — |

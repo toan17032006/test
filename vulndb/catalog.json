@@ -464,8 +464,9 @@
       "id": 62,
       "category": "Backend và API",
       "name": "WebSocket",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 63,
@@ -1386,15 +1387,17 @@
       "id": 189,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "XSS",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 190,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "CSRF",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 191,
@@ -1766,8 +1769,9 @@
       "id": 240,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "WebSocket Authorization Bypass",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 241,
@@ -2088,8 +2092,9 @@
       "name": "Server Version Disclosure",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 8,
@@ -2468,8 +2473,9 @@
       "name": "OTP Expiration Bypass",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 50,
@@ -2609,8 +2615,9 @@
       "name": "Authentication Logic Flaws",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 65,
@@ -2628,8 +2635,9 @@
       "name": "Session Hijacking",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 67,
@@ -2665,8 +2673,9 @@
       "name": "Concurrent Session Abuse",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 71,
@@ -2694,8 +2703,9 @@
       "name": "JWT Algorithm Confusion",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 74,
@@ -2713,8 +2723,9 @@
       "name": "JWT Weak Secret",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 76,
@@ -3519,8 +3530,9 @@
       "name": "Reflected XSS",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 171,
@@ -3528,8 +3540,9 @@
       "name": "Stored XSS",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 172,
@@ -3577,8 +3590,9 @@
       "name": "HTML Injection",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 178,
@@ -3601,8 +3615,9 @@
       "category": "Cross-Site Vulnerabilities",
       "name": "CSRF",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 181,
@@ -3687,8 +3702,9 @@
       "category": "Cross-Site Vulnerabilities",
       "name": "CSP Misconfiguration",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 191,
@@ -4306,8 +4322,9 @@
       "name": "GraphQL Query Complexity Abuse",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 266,
@@ -4325,8 +4342,9 @@
       "name": "GraphQL Subscription Authorization Bypass",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 268,
@@ -4359,8 +4377,9 @@
       "name": "WebSocket Authentication Bypass",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 272,
@@ -4368,24 +4387,27 @@
       "name": "WebSocket Authorization Bypass",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 273,
       "category": "API Security Vulnerabilities",
       "name": "WebSocket Origin Validation Bypass",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 274,
       "category": "API Security Vulnerabilities",
       "name": "WebSocket Message Injection",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 275,
@@ -4437,8 +4459,9 @@
       "name": "Webhook SSRF",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 281,
@@ -4446,8 +4469,9 @@
       "name": "Webhook Secret Leakage",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 282,
@@ -5260,8 +5284,9 @@
       "name": "Predictable Token Generation",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 379,
@@ -6742,8 +6767,9 @@
       "category": "Logging, Monitoring & Operational Security",
       "name": "Log Injection",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 562,
@@ -6751,8 +6777,9 @@
       "name": "CRLF Log Injection",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 563,
@@ -7571,8 +7598,9 @@
       "category": "Các chuỗi khai thác Attack Chain",
       "name": "Reconnaissance → Information Disclosure → Credential Discovery → Account Takeover",
       "record_type": "attack_chain",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 663,
@@ -7587,8 +7615,9 @@
       "category": "Các chuỗi khai thác Attack Chain",
       "name": "CSRF → Privileged Action → Account Compromise",
       "record_type": "attack_chain",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 665,
@@ -7659,8 +7688,9 @@
       "category": "Các chuỗi khai thác Attack Chain",
       "name": "JWT Forgery → Authorization Bypass → Privilege Escalation",
       "record_type": "attack_chain",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 674,
@@ -7692,8 +7722,9 @@
       "category": "Các chuỗi khai thác Attack Chain",
       "name": "Webhook SSRF → Internal Service Access",
       "record_type": "attack_chain",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 678,
@@ -7709,8 +7740,9 @@
       "category": "Các chuỗi khai thác Attack Chain",
       "name": "Coupon Abuse → Price Manipulation → Financial Loss",
       "record_type": "attack_chain",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 680,
@@ -7725,8 +7757,9 @@
       "category": "Các chuỗi khai thác Attack Chain",
       "name": "Refund Abuse → Unauthorized Financial Transaction",
       "record_type": "attack_chain",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 682,
@@ -7773,8 +7806,9 @@
       "category": "Các chuỗi khai thác Attack Chain",
       "name": "Admin Panel Exposure → Credential Compromise → Full Application Access",
       "record_type": "attack_chain",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 688,

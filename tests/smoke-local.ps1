@@ -24,11 +24,14 @@ function New-UnsignedTestJwt($payload) {
   return "$header.$body."
 }
 
-function New-SignedTestJwt($payload, [string]$secret) {
-  $header = ConvertTo-Base64Url '{"alg":"HS256","typ":"JWT"}'
+function New-SignedTestJwt($payload, [string]$secret, [string]$algorithm = 'HS256') {
+  $header = ConvertTo-Base64Url ('{"alg":"' + $algorithm + '","typ":"JWT"}')
   $body = ConvertTo-Base64Url ($payload | ConvertTo-Json -Compress)
   $message = [Text.Encoding]::UTF8.GetBytes("$header.$body")
-  $hmac = [System.Security.Cryptography.HMACSHA256]::new([Text.Encoding]::UTF8.GetBytes($secret))
+  $secretBytes = [Text.Encoding]::UTF8.GetBytes($secret)
+  if ($algorithm -eq 'HS384') { $hmac = [System.Security.Cryptography.HMACSHA384]::new($secretBytes) }
+  elseif ($algorithm -eq 'HS512') { $hmac = [System.Security.Cryptography.HMACSHA512]::new($secretBytes) }
+  else { $hmac = [System.Security.Cryptography.HMACSHA256]::new($secretBytes) }
   try { $signature = [Convert]::ToBase64String($hmac.ComputeHash($message)).TrimEnd('=').Replace('+','-').Replace('/','_') }
   finally { $hmac.Dispose() }
   return "$header.$body.$signature"
@@ -60,14 +63,14 @@ $api = $null
 $web = $null
 $graphql = $null
 $oldEnvironment = @{}
-foreach ($name in @('UPLOAD_DIR','API_URL','HOST','PORT','VULNDB_DIR','NODE_ENV','SESSION_SECRET','SECRET_KEY','JWT_SECRET','ADMIN_PASSWORD','AWS_ACCESS_KEY_ID','AWS_SECRET_ACCESS_KEY','SMTP_HOST','SMTP_PORT','DATABASE_URL','MYSQL_URL','MONGODB_URL','REDIS_URL','PYTHONUNBUFFERED')) {
+foreach ($name in @('UPLOAD_DIR','API_URL','HOST','PORT','VULNDB_DIR','NODE_ENV','SESSION_SECRET','SECRET_KEY','JWT_SECRET','ADMIN_PASSWORD','AWS_ACCESS_KEY_ID','AWS_SECRET_ACCESS_KEY','SMTP_HOST','SMTP_PORT','DATABASE_URL','MYSQL_URL','MONGODB_URL','REDIS_URL','LAB_ONLY_STRIPE_WEBHOOK_SECRET','PYTHONUNBUFFERED')) {
   $oldEnvironment[$name] = [Environment]::GetEnvironmentVariable($name, 'Process')
 }
 
 try {
   $env:UPLOAD_DIR = Join-Path $repoRoot 'uploads'
   $env:SECRET_KEY = 'local-smoke-secret'
-  $env:JWT_SECRET = 'local-smoke-jwt'
+  $env:JWT_SECRET = 'jwt-secret-weak'
   $env:PYTHONUNBUFFERED = '1'
   $env:ADMIN_PASSWORD = 'admin123'
   $env:AWS_ACCESS_KEY_ID = 'LAB_ONLY_NOT_A_CREDENTIAL'
@@ -78,6 +81,7 @@ try {
   $env:MYSQL_URL = 'mysql://lab:lab@127.0.0.1:1/vulnshop'
   $env:MONGODB_URL = 'mongodb://127.0.0.1:1/vulnshop'
   $env:REDIS_URL = 'redis://127.0.0.1:1/0'
+  $env:LAB_ONLY_STRIPE_WEBHOOK_SECRET = 'LAB_ONLY_STRIPE_WEBHOOK_SECRET_MARKER'
   $api = Start-Process -FilePath 'python' -ArgumentList @('-m','uvicorn','main:app','--host','127.0.0.1','--port',"$apiPort") -WorkingDirectory (Join-Path $repoRoot 'backend') -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $logDir 'api.out') -RedirectStandardError (Join-Path $logDir 'api.err')
 
   $env:API_URL = "http://127.0.0.1:$apiPort"
@@ -95,6 +99,7 @@ try {
   $graphqlBase = "http://127.0.0.1:$graphqlPort"
 
   $ready = $false
+  $readinessError = ''
   for ($i = 0; $i -lt 30; $i++) {
     try {
       $null = Invoke-RestMethod -Uri "$apiBase/health" -TimeoutSec 2
@@ -102,9 +107,15 @@ try {
       $null = Invoke-RestMethod -Uri "$webBase/api/vuln-catalog" -TimeoutSec 2
       $query = Invoke-RestMethod -Uri "$graphqlBase/graphql" -Method Post -ContentType 'application/json' -Body '{"query":"{ __schema { queryType { name } } }"}' -TimeoutSec 2
       if ($query.data.__schema.queryType.name -eq 'Query') { $ready = $true; break }
-    } catch { Start-Sleep -Milliseconds 300 }
+    } catch { $readinessError = $_.Exception.Message; Start-Sleep -Milliseconds 300 }
   }
-  if (-not $ready) { throw 'The local services did not become ready.' }
+  if (-not $ready) {
+    foreach ($name in @('api.out','web.out','graphql.out')) {
+      $path = Join-Path $logDir $name
+      if (Test-Path $path) { $content = Get-Content -Raw -LiteralPath $path; if ($content) { Write-Output "$name`:`n$content" } }
+    }
+    throw "The local services did not become ready ($apiBase, $webBase, $graphqlBase). Last readiness error: $readinessError"
+  }
 
   $paths = @('/','/products','/products/1','/cart','/checkout','/login','/register','/profile','/admin/vulns','/admin/dashboard','/orders?user_id=3','/track/1002')
   foreach ($path in $paths) {
@@ -119,6 +130,10 @@ try {
   Assert-Equal $searchApi.items[0].id 1 'Product search API result'
   $searchSuggestions = Invoke-RestMethod -Uri "$apiBase/api/v1/search/suggest?q=iPhone" -TimeoutSec 5
   Assert-Equal $searchSuggestions.suggestions[0] 'iPhone 15 Pro Max' 'Product search suggestions'
+  $reflectedPayload = '<img src=x onerror="document.documentElement.dataset.labXss=''reflected''">'
+  $encodedReflectedPayload = [uri]::EscapeDataString($reflectedPayload)
+  $reflectedXssPage = Invoke-WebRequest -Uri "$webBase/products?q=$encodedReflectedPayload" -TimeoutSec 8
+  if ($reflectedXssPage.Content -notmatch 'onerror=.*labXss.*reflected') { throw 'The storefront did not render the synthetic reflected markup in raw HTML.' }
   $filteredProducts = Invoke-RestMethod -Uri "$apiBase/api/v1/products?category=Electronics&sort=id" -TimeoutSec 5
   if ($filteredProducts.total -lt 2) { throw 'The category filter did not return the synthetic electronics products.' }
   $flashSale = Invoke-RestMethod -Uri "$apiBase/api/v1/products/flash-sale" -TimeoutSec 5
@@ -152,7 +167,7 @@ try {
   if ($metrics.internal_endpoints.Count -lt 3) { throw 'The metrics endpoint did not disclose internal routes.' }
   $debugInfo = Invoke-RestMethod -Uri "$apiBase/debug" -TimeoutSec 5
   Assert-Equal $debugInfo.aws_key 'LAB_ONLY_NOT_A_CREDENTIAL' 'Unauthenticated debug credential exposure'
-  Assert-Equal $debugInfo.jwt_secret 'local-smoke-jwt' 'Unauthenticated debug JWT secret exposure'
+  Assert-Equal $debugInfo.jwt_secret 'jwt-secret-weak' 'Unauthenticated debug JWT secret exposure'
   Assert-Equal $debugInfo.admin_password 'admin123' 'Unauthenticated debug admin password exposure'
   $backupInfo = Invoke-RestMethod -Uri "$apiBase/backup/db.sql" -TimeoutSec 5
   Assert-Equal $backupInfo.url '/uploads/backup_2024.sql' 'Unauthenticated database backup path disclosure'
@@ -172,6 +187,8 @@ try {
   Assert-Equal $docsResponse.StatusCode 200 'Unauthenticated API documentation'
   $envResponse = Invoke-WebRequest -Uri "$apiBase/.env" -TimeoutSec 5
   if ($envResponse.Content -notmatch 'AWS_ACCESS_KEY_ID=LAB_ONLY_NOT_A_CREDENTIAL') { throw 'The synthetic environment marker was not exposed by the lab env endpoint.' }
+  $webhookTest = Invoke-RestMethod -Uri "$webBase/webhook/test" -TimeoutSec 5
+  Assert-Equal $webhookTest.env.LAB_ONLY_STRIPE_WEBHOOK_SECRET 'LAB_ONLY_STRIPE_WEBHOOK_SECRET_MARKER' 'Unauthenticated webhook environment and secret exposure'
 
   $graphqlFederation = Invoke-WebRequest -Uri "$graphqlBase/graphql" -Method Post -ContentType 'application/json' -Body '{"query":"{ _service { sdl } }"}' -SkipHttpErrorCheck -TimeoutSec 8
   Assert-Equal $graphqlFederation.StatusCode 400 'GraphQL federation service metadata availability'
@@ -185,13 +202,22 @@ try {
   $graphqlDepthBody = @{ query = $graphqlDepthQuery } | ConvertTo-Json -Compress
   $graphqlDepth = Invoke-RestMethod -Uri "$graphqlBase/graphql" -Method Post -ContentType 'application/json' -Body $graphqlDepthBody -TimeoutSec 8
   if ($graphqlDepth.errors) { throw 'The GraphQL service rejected the bounded 16-level introspection query.' }
+  $complexityAliases = @()
+  for ($aliasIndex = 1; $aliasIndex -le 100; $aliasIndex++) { $complexityAliases += "probe${aliasIndex}: __typename" }
+  $complexityQuery = '{ ' + ($complexityAliases -join ' ') + ' }'
+  $complexityBody = @{ query = $complexityQuery } | ConvertTo-Json -Compress
+  $complexityResponse = Invoke-RestMethod -Uri "$graphqlBase/graphql" -Method Post -ContentType 'application/json' -Body $complexityBody -TimeoutSec 8
+  Assert-Equal $complexityResponse.data.probe100 'Query' 'Bounded GraphQL 100-field complexity probe'
+  $webSocketProbeOutput = & node (Join-Path $repoRoot 'tests/websocket-smoke.js') $webBase $graphqlBase
+  if ($LASTEXITCODE -ne 0) { throw 'The bounded unauthenticated WebSocket probes failed.' }
+  $webSocketProbeOutput | ForEach-Object { Write-Output $_ }
 
   $bypassBody = '{"admin":true}'
   $bypass = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/bypass" -Method Post -ContentType 'application/json' -Body $bypassBody -TimeoutSec 5
   Assert-Equal $bypass.bypass $true 'Authentication bypass endpoint'
   Assert-Equal $bypass.user.role 'admin' 'Authentication bypass administrator role'
 
-  $defaultLoginBody = @{ email = 'admin@vulnshop.com'; password = 'admin123' } | ConvertTo-Json -Compress
+  $defaultLoginBody = @{ email = 'admin@vulnshop.com'; password = $debugInfo.admin_password } | ConvertTo-Json -Compress
   $defaultLogin = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/login" -Method Post -ContentType 'application/json' -Body $defaultLoginBody -TimeoutSec 5
   Assert-Equal $defaultLogin.user.role 'admin' 'Weak default admin credentials'
   Assert-Equal $defaultLogin.user.password_plain 'admin123' 'Sensitive fields in JWT login response'
@@ -208,6 +234,8 @@ try {
     $rateProbe = Get-ApiErrorMessage "$apiBase/api/v1/auth/login" $wrongPasswordBody
     Assert-Equal $rateProbe 'Invalid password' 'Missing login rate limit'
   }
+  $newlineLoginBody = @{ email = "linebreak@example.test`r`n[LAB_FORGED_LOG_ENTRY]"; password = 'synthetic' } | ConvertTo-Json -Compress
+  $null = Get-ApiErrorMessage "$apiBase/api/v1/auth/login" $newlineLoginBody
 
   $productRecord = Invoke-RestMethod -Uri "$apiBase/api/v1/products/1" -TimeoutSec 5
   Assert-Equal $productRecord.product.price 29990000 'Synthetic product catalog price'
@@ -250,6 +278,12 @@ try {
   Assert-Equal $fakeReview.review.user_name 'Unauthenticated Reviewer' 'Fake product review injection'
   $reviewList = Invoke-RestMethod -Uri "$apiBase/api/v1/products/1/reviews" -TimeoutSec 5
   Assert-Equal $reviewList.reviews[0].content 'Synthetic smoke review' 'Unauthenticated review ownership bypass'
+  $storedPayload = '<img src=x onerror="document.documentElement.dataset.labXss=''stored''">'
+  $storedReviewBody = @{ content = $storedPayload; rating = 5; user_name = 'Synthetic XSS Marker' } | ConvertTo-Json -Compress
+  $storedReview = Invoke-RestMethod -Uri "$apiBase/api/v1/products/1/review" -Method Post -ContentType 'application/json' -Body $storedReviewBody -TimeoutSec 5
+  Assert-Equal $storedReview.review.content $storedPayload 'Synthetic stored HTML payload'
+  $storedXssPage = Invoke-WebRequest -Uri "$webBase/products/1" -TimeoutSec 8
+  if ($storedXssPage.Content -notmatch 'onerror=.*labXss.*stored') { throw 'The storefront did not render the synthetic stored markup in raw HTML.' }
 
   $session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
   $null = Invoke-WebRequest -Uri "$webBase/cart" -WebSession $session -TimeoutSec 5
@@ -268,6 +302,26 @@ try {
   Assert-Equal $storefrontLogout.StatusCode 200 'Storefront logout redirect'
   $loggedOutProfile = Invoke-WebRequest -Uri "$webBase/profile" -WebSession $storefrontAuthSession -TimeoutSec 5
   if ($loggedOutProfile.Content -notmatch 'Guest User') { throw 'The storefront session still appeared authenticated after logout.' }
+
+  $csrfSession = New-Object Microsoft.PowerShell.Commands.WebRequestSession
+  $normalUserLogin = Invoke-WebRequest -Uri "$webBase/login" -Method Post -WebSession $csrfSession -ContentType 'application/x-www-form-urlencoded' -Body 'email=user%40vulnshop.com&password=password' -TimeoutSec 8
+  Assert-Equal $normalUserLogin.StatusCode 200 'Regular storefront user login'
+  $normalUserHome = Invoke-WebRequest -Uri "$webBase/" -WebSession $csrfSession -TimeoutSec 5
+  if ($normalUserHome.Content -match 'class="dropdown-item text-danger" href="/admin"') { throw 'The seeded regular user unexpectedly had the admin menu entry before the cross-origin request.' }
+  $csrfProfileBody = 'name=LAB_CSRF_ADMIN&role=admin'
+  $csrfProfileUpdate = Invoke-WebRequest -Uri "$webBase/profile" -Method Post -Headers @{ Origin = 'https://attacker.invalid' } -WebSession $csrfSession -ContentType 'application/x-www-form-urlencoded' -Body $csrfProfileBody -TimeoutSec 8
+  Assert-Equal $csrfProfileUpdate.StatusCode 200 'Cross-origin profile form submission'
+  $csrfPromotedHome = Invoke-WebRequest -Uri "$webBase/" -WebSession $csrfSession -TimeoutSec 5
+  if ($csrfPromotedHome.Content -notmatch 'class="dropdown-item text-danger" href="/admin"' -or $csrfPromotedHome.Content -notmatch 'LAB_CSRF_ADMIN') { throw 'The cross-origin profile post did not promote the synthetic account session to admin.' }
+  $sessionReplay = New-Object Microsoft.PowerShell.Commands.WebRequestSession
+  $storefrontUri = [uri]"$webBase/"
+  $capturedSessionCookies = $csrfSession.Cookies.GetCookies($storefrontUri)
+  $sessionCookie = $capturedSessionCookies | Where-Object { $_.Name -eq 'sessionId' } | Select-Object -First 1
+  if (-not $sessionCookie) { throw 'The synthetic authenticated session did not issue the expected sessionId cookie.' }
+  if ($sessionCookie.HttpOnly -or $sessionCookie.Secure) { throw 'The storefront session cookie unexpectedly had HttpOnly or Secure protection.' }
+  foreach ($cookie in $capturedSessionCookies) { $sessionReplay.Cookies.Add($storefrontUri, $cookie) }
+  $replayedSessionHome = Invoke-WebRequest -Uri "$webBase/" -WebSession $sessionReplay -TimeoutSec 5
+  if ($replayedSessionHome.Content -notmatch 'class="dropdown-item text-danger" href="/admin"' -or $replayedSessionHome.Content -notmatch 'LAB_CSRF_ADMIN') { throw 'Replaying the copied storefront session cookie did not restore the authenticated admin session.' }
 
   $urlToken = 'LAB_ONLY_QUERY_TOKEN'
   $urlEmail = 'lab-pii-marker@example.test'
@@ -318,6 +372,10 @@ try {
   $loginBody = @{ email = $email; password = 'x' } | ConvertTo-Json -Compress
   $login = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/login" -Method Post -ContentType 'application/json' -Body $loginBody -TimeoutSec 8
   if (-not $login.access_token) { throw 'Login did not return an access token.' }
+  $concurrentLogin = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/login" -Method Post -ContentType 'application/json' -Body $loginBody -TimeoutSec 5
+  if (-not $concurrentLogin.access_token -or $concurrentLogin.session_id -eq $login.session_id) { throw 'The lab did not issue a distinct second session for the same account.' }
+  $firstSessionAfterConcurrentLogin = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/me" -Headers @{ Authorization = "Bearer $($login.access_token)" } -TimeoutSec 5
+  Assert-Equal $firstSessionAfterConcurrentLogin.user.email $email 'Earlier session remained valid after concurrent login'
   $me = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/me" -Headers @{ Authorization = "Bearer $($login.access_token)" } -TimeoutSec 5
   Assert-Equal $me.user.role 'admin' 'Authenticated profile role'
   Assert-Equal $me.token_payload.password_plain 'x' 'Sensitive password data in JWT claims'
@@ -339,6 +397,7 @@ try {
     Assert-Equal $otpError 'Invalid OTP code' 'Missing OTP attempt limit'
   }
   $validOtpBody = @{ email = $email; otp = '123456' } | ConvertTo-Json -Compress
+  Start-Sleep -Seconds 31
   $validOtpFirst = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/mfa/verify" -Method Post -ContentType 'application/json' -Body $validOtpBody -TimeoutSec 5
   $validOtpReplay = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/mfa/verify" -Method Post -ContentType 'application/json' -Body $validOtpBody -TimeoutSec 5
   if (-not $validOtpFirst.token -or -not $validOtpReplay.token) { throw 'The lab did not accept repeated valid OTP input.' }
@@ -398,14 +457,22 @@ try {
   $noneToken = New-UnsignedTestJwt $nonePayload
   $noneAccepted = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/me" -Headers @{ Authorization = "Bearer $noneToken" } -TimeoutSec 5
   Assert-Equal $noneAccepted.user.email $email 'Unsigned JWT acceptance'
+  Assert-Equal $noneAccepted.user.role 'admin' 'Unsigned JWT privilege escalation to the synthetic admin account'
   $expiredPayload = @{ sub = $email; role = 'admin'; exp = 1 }
-  $expiredToken = New-SignedTestJwt $expiredPayload 'local-smoke-jwt'
+  $expiredToken = New-SignedTestJwt $expiredPayload 'jwt-secret-weak'
   $expiredAccepted = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/me" -Headers @{ Authorization = "Bearer $expiredToken" } -TimeoutSec 5
   Assert-Equal $expiredAccepted.expired_token $true 'Expired JWT acceptance'
   $unvalidatedClaims = @{ sub = $email; aud = 'attacker.invalid'; iss = 'https://attacker.invalid'; exp = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds() + 3600 }
-  $claimsToken = New-SignedTestJwt $unvalidatedClaims 'local-smoke-jwt'
+  $claimsToken = New-SignedTestJwt $unvalidatedClaims 'jwt-secret-weak'
   $claimsAccepted = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/me" -Headers @{ Authorization = "Bearer $claimsToken" } -TimeoutSec 5
   Assert-Equal $claimsAccepted.user.email $email 'JWT audience and issuer validation'
+  $alternateAlgorithmToken = New-SignedTestJwt $unvalidatedClaims 'jwt-secret-weak' 'HS384'
+  $alternateAlgorithmAccepted = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/me" -Headers @{ Authorization = "Bearer $alternateAlgorithmToken" } -TimeoutSec 5
+  Assert-Equal $alternateAlgorithmAccepted.user.email $email 'Alternate JWT HMAC algorithm acceptance'
+  $weakSecretPayload = @{ sub = 'admin@vulnshop.com'; role = 'admin'; exp = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds() + 3600 }
+  $weakSecretToken = New-SignedTestJwt $weakSecretPayload 'jwt-secret-weak'
+  $weakSecretAccepted = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/me" -Headers @{ Authorization = "Bearer $weakSecretToken" } -TimeoutSec 5
+  Assert-Equal $weakSecretAccepted.user.email 'admin@vulnshop.com' 'Known default weak JWT secret accepted a forged lab admin token'
 
   $oauthBody = @{ code = 'LAB_FAKE_CODE'; redirect_uri = 'https://attacker.invalid/callback'; state = 'unvalidated-state' } | ConvertTo-Json -Compress
   $oauth = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/social/google" -Method Post -ContentType 'application/json' -Body $oauthBody -TimeoutSec 5
@@ -439,6 +506,13 @@ try {
   $orderId = $order.order_id
   Assert-Equal $order.order.total 17 'API accepted order total'
   Assert-Equal $order.order.user_id '3' 'Client-controlled order ownership'
+  $chainOrderBody = '{"user_id":"3","items":[{"product_id":1,"quantity":1,"unit_price":17}],"coupon_code":"SALE10","total":17}'
+  $chainOrder = Invoke-RestMethod -Uri "$apiBase/api/v1/orders" -Method Post -Headers $userHeaders -ContentType 'application/json' -Body $chainOrderBody -TimeoutSec 5
+  Assert-Equal $chainOrder.order.coupon_code 'SALE10' 'Coupon-to-price-manipulation chain order'
+  $chainPaymentBody = "{`"order_id`":$($chainOrder.order_id),`"amount`":0}"
+  $chainPayment = Invoke-RestMethod -Uri "$apiBase/api/v1/payment/process" -Method Post -ContentType 'application/json' -Body $chainPaymentBody -TimeoutSec 5
+  Assert-Equal $chainPayment.payment.amount 0 'Zero-amount payment in coupon and price manipulation chain'
+  Assert-Equal $chainPayment.order.payment_status 'paid' 'Mock fulfillment after manipulated coupon and price'
   $orderHistoryPage = Invoke-WebRequest -Uri "$webBase/orders?user_id=3" -TimeoutSec 8
   if ($orderHistoryPage.Content -notmatch [regex]::Escape([string]$orderId)) { throw 'The synthetic order was missing from the unauthenticated order history page.' }
   $canceledOrder = Invoke-RestMethod -Uri "$apiBase/api/v1/orders/$orderId/cancel" -Method Post -TimeoutSec 5
@@ -455,6 +529,14 @@ try {
   Assert-Equal $deliveredOrder.order.shipping_status 'delivered' 'Synthetic order delivery status'
   $trackingPage = Invoke-WebRequest -Uri "$webBase/track/$shippingOrderId" -TimeoutSec 8
   if ($trackingPage.Content -notmatch [regex]::Escape([string]$shippingOrderId)) { throw 'The synthetic order was missing from the order tracking page.' }
+  $ssrfOrderBody = '{"user_id":"5","items":[{"product_id":1,"quantity":1,"unit_price":100}],"total":100}'
+  $ssrfOrder = Invoke-RestMethod -Uri "$apiBase/api/v1/orders" -Method Post -Headers @{ 'x-user-id' = '5' } -ContentType 'application/json' -Body $ssrfOrderBody -TimeoutSec 5
+  $ssrfCallbackUrl = "$apiBase/api/v1/orders/$($ssrfOrder.order_id)/shipping-status"
+  $ssrfWebhookBody = @{ order_id = $ssrfOrder.order_id; status = 'shipped'; amount = 100; transaction_id = 'LAB_ONLY_SSRF'; callback_url = $ssrfCallbackUrl } | ConvertTo-Json -Compress
+  $ssrfWebhook = Invoke-RestMethod -Uri "$webBase/webhook/payment" -Method Post -ContentType 'application/json' -Body $ssrfWebhookBody -TimeoutSec 8
+  Assert-Equal $ssrfWebhook.received $true 'Loopback webhook callback processing'
+  $ssrfOrderAfterCallback = Invoke-RestMethod -Uri "$apiBase/api/v1/orders/$($ssrfOrder.order_id)" -TimeoutSec 5
+  Assert-Equal $ssrfOrderAfterCallback.shipping_status 'shipped' 'Webhook SSRF into loopback order service'
   $payment = Invoke-RestMethod -Uri "$apiBase/api/v1/payment/process" -Method Post -ContentType 'application/json' -Body ("{`"order_id`":$orderId,`"amount`":0}") -TimeoutSec 5
   Assert-Equal $payment.payment.amount 0 'Mock payment accepted a zero amount'
   Assert-Equal $payment.order.payment_status 'paid' 'Mock payment status'
@@ -478,12 +560,13 @@ try {
 
   $apiLog = Get-Content -Raw -LiteralPath (Join-Path $logDir 'api.out')
   if ($apiLog -notmatch [regex]::Escape("email=$email password=x role=admin")) { throw 'The synthetic signup password was not present in the lab API log.' }
+  if ($apiLog -notmatch '(?m)^\[LAB_FORGED_LOG_ENTRY\]') { throw 'The synthetic CRLF marker did not appear as a forged API log line.' }
   $webLog = Get-Content -Raw -LiteralPath (Join-Path $logDir 'web.out')
   foreach ($loggedMarker in @($urlToken,$urlEmail)) {
     if ($webLog -notmatch [regex]::Escape($loggedMarker)) { throw "The expected synthetic URL marker was not present in the storefront access log: $loggedMarker" }
   }
 
-  Write-Output 'Loopback smoke passed: storefront/catalog/search/suggestions/filter/product detail/cart/checkout/order history/tracking/logout/admin dashboard/notification/shipping/flash sale/Q&A, service fingerprinting/debug/health/metrics/backup disclosure, missing security headers/CORS reflection, docs/env exposure, auth SQL injection/default credentials/enumeration/rate limits, email/OTP/reset flows, refresh/session/JWT/OAuth flaws, product mass assignment/unauthenticated PUT/CSV export/pagination, synthetic payment data and fake reviews, role/order ownership changes, cart price/quantity tampering, duplicate payments, unauthorized cancellation/refunds, payment webhook forgery/replay, GraphQL depth/batching/introspection/stack traces.'
+  Write-Output 'Loopback smoke passed: storefront/catalog/search/suggestions/reflected and stored HTML/cart/checkout/order history/tracking/logout/admin dashboard/notification/shipping/flash sale/Q&A, REST and GraphQL WebSocket probes, service fingerprinting/debug/health/metrics/backup disclosure, missing security headers/CORS reflection, docs/env/webhook secret exposure, auth SQL injection/default credentials/enumeration/rate limits, email/OTP/reset/concurrent-session flows, refresh/session fixation/hijacking/JWT/OAuth flaws, product mass assignment/unauthenticated PUT/CSV export/pagination, synthetic payment data and fake reviews, role/order ownership changes, cart price/quantity tampering, duplicate payments, unauthorized cancellation/refunds, payment webhook forgery/replay, loopback webhook SSRF, CRLF log injection, GraphQL depth/complexity/batching/introspection/stack traces.'
 }
 catch {
   foreach ($name in @('api.err','web.err','graphql.err')) {
