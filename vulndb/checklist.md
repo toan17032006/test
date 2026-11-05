@@ -104,7 +104,7 @@
 | 86 | Product Pricing | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 87 | Discount Management | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 88 | Coupon Management | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
-| 89 | Flash Sale | Chức năng thương mại điện tử | unverified | not_tested | — |
+| 89 | Flash Sale | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 90 | Inventory Management | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 91 | Stock Reservation | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 92 | Shopping Cart | Chức năng thương mại điện tử | unverified | not_tested | — |
@@ -246,8 +246,8 @@
 | 228 | DNS Misconfiguration | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 229 | Subdomain Takeover | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 230 | Open Redirect | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 231 | Clickjacking | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 232 | Host Header Injection | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
+| 231 | Clickjacking | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 232 | Host Header Injection | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 233 | HTTP Request Smuggling | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 234 | Cache Poisoning | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 235 | Cache Deception | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
@@ -263,7 +263,7 @@
 | 245 | Kubernetes Misconfiguration | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 246 | Secrets Exposure | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 247 | CI/CD Pipeline Vulnerabilities | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 248 | Dependency / Supply Chain Vulnerabilities | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
+| 248 | Dependency / Supply Chain Vulnerabilities | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 249 | Logging & Monitoring Weaknesses | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 250 | Backup Exposure | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 251 | Information Disclosure | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
@@ -281,12 +281,12 @@
 | 263 | Đặt hàng → Hủy đơn → Hoàn tiền | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
 | 264 | Đặt hàng → Theo dõi vận chuyển → Nhận hàng | Các kịch bản nghiệp vụ end-to-end | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 265 | Yêu cầu đổi trả → Duyệt yêu cầu → Hoàn tiền | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
-| 266 | Admin → Quản lý người dùng → Phân quyền | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
+| 266 | Admin → Quản lý người dùng → Phân quyền | Các kịch bản nghiệp vụ end-to-end | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 267 | Admin → Quản lý sản phẩm → Quản lý kho | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
 | 268 | Admin → Quản lý đơn hàng → Quản lý thanh toán | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
 | 269 | User A → Truy cập dữ liệu User B (kiểm thử IDOR/BOLA) | Các kịch bản nghiệp vụ end-to-end | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 270 | User thường → Truy cập chức năng Admin (kiểm thử phân quyền) | Các kịch bản nghiệp vụ end-to-end | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
-| 271 | Guest → Truy cập tài nguyên yêu cầu đăng nhập | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
+| 271 | Guest → Truy cập tài nguyên yêu cầu đăng nhập | Các kịch bản nghiệp vụ end-to-end | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 272 | Nhiều người dùng đồng thời mua sản phẩm giới hạn tồn kho | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
 | 273 | Gửi lại payment callback/webhook | Các kịch bản nghiệp vụ end-to-end | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 274 | Thay đổi giá, số lượng, coupon trong quá trình checkout | Các kịch bản nghiệp vụ end-to-end | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |

@@ -660,8 +660,9 @@
       "id": 89,
       "category": "Chức năng thương mại điện tử",
       "name": "Flash Sale",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 90,
@@ -1691,15 +1692,17 @@
       "id": 231,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Clickjacking",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 232,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Host Header Injection",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 233,
@@ -1814,8 +1817,9 @@
       "id": 248,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Dependency / Supply Chain Vulnerabilities",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 249,
@@ -1949,8 +1953,9 @@
       "id": 266,
       "category": "Các kịch bản nghiệp vụ end-to-end",
       "name": "Admin → Quản lý người dùng → Phân quyền",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 267,
@@ -1986,8 +1991,9 @@
       "id": 271,
       "category": "Các kịch bản nghiệp vụ end-to-end",
       "name": "Guest → Truy cập tài nguyên yêu cầu đăng nhập",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 272,

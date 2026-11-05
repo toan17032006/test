@@ -119,6 +119,8 @@ try {
   Assert-Equal $searchApi.items[0].id 1 'Product search API result'
   $filteredProducts = Invoke-RestMethod -Uri "$apiBase/api/v1/products?category=Electronics&sort=id" -TimeoutSec 5
   if ($filteredProducts.total -lt 2) { throw 'The category filter did not return the synthetic electronics products.' }
+  $flashSale = Invoke-RestMethod -Uri "$apiBase/api/v1/products/flash-sale" -TimeoutSec 5
+  Assert-Equal $flashSale.flash_sales[0].product_id 1 'Synthetic flash-sale listing'
   $productQna = Invoke-RestMethod -Uri "$apiBase/api/v1/products/1/qna?q=Synthetic+question" -TimeoutSec 5
   Assert-Equal $productQna.question 'Synthetic question' 'Product Q&A query'
   $notificationBody = @{ user_id = 'smoke-notify'; title = 'Synthetic smoke notice'; message = 'Lab-only notification' } | ConvertTo-Json -Compress
@@ -427,7 +429,7 @@ try {
   $apiLog = Get-Content -Raw -LiteralPath (Join-Path $logDir 'api.out')
   if ($apiLog -notmatch [regex]::Escape("email=$email password=x role=admin")) { throw 'The synthetic signup password was not present in the lab API log.' }
 
-  Write-Output 'Loopback smoke passed: storefront/catalog/search/filter/product detail/cart/checkout/notification/shipping, service fingerprinting/debug/health/metrics disclosure, missing security headers/CORS reflection, docs/env/backup exposure, auth SQL injection/default credentials/enumeration/rate limits, email/OTP/reset flows, refresh/session/JWT/OAuth flaws, product mass assignment/CSV export/pagination/customer data exposure and fake reviews, role/order ownership changes, cart price/quantity tampering, duplicate payments, unauthorized cancellation/refunds, payment webhook forgery/replay, and GraphQL introspection.'
+  Write-Output 'Loopback smoke passed: storefront/catalog/search/filter/product detail/cart/checkout/notification/shipping/flash sale/Q&A, service fingerprinting/debug/health/metrics disclosure, missing security headers/CORS reflection, docs/env/backup exposure, auth SQL injection/default credentials/enumeration/rate limits, email/OTP/reset flows, refresh/session/JWT/OAuth flaws, product mass assignment/CSV export/pagination/customer data exposure and fake reviews, role/order ownership changes, cart price/quantity tampering, duplicate payments, unauthorized cancellation/refunds, payment webhook forgery/replay, and GraphQL introspection.'
 }
 catch {
   foreach ($name in @('api.err','web.err','graphql.err')) {
