@@ -1,4 +1,4 @@
-$ErrorActionPreference = 'Stop'
+﻿$ErrorActionPreference = 'Stop'
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $logDir = Join-Path $env:TEMP ("vulnshop-smoke-" + [guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path $logDir | Out-Null
@@ -103,7 +103,7 @@ try {
   for ($i = 0; $i -lt 30; $i++) {
     try {
       $null = Invoke-RestMethod -Uri "$apiBase/health" -TimeoutSec 2
-      $null = Invoke-WebRequest -Uri "$webBase/admin/vulns" -TimeoutSec 2
+      $null = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/admin/vulns" -TimeoutSec 2
       $null = Invoke-RestMethod -Uri "$webBase/api/vuln-catalog" -TimeoutSec 2
       $query = Invoke-RestMethod -Uri "$graphqlBase/graphql" -Method Post -ContentType 'application/json' -Body '{"query":"{ __schema { queryType { name } } }"}' -TimeoutSec 2
       if ($query.data.__schema.queryType.name -eq 'Query') { $ready = $true; break }
@@ -119,12 +119,12 @@ try {
 
   $paths = @('/','/products','/products/1','/cart','/checkout','/login','/register','/profile','/admin/vulns','/admin/dashboard','/orders?user_id=3','/track/1002')
   foreach ($path in $paths) {
-    $response = Invoke-WebRequest -Uri "$webBase$path" -TimeoutSec 8
+    $response = Invoke-WebRequest -UseBasicParsing -Uri "$webBase$path" -TimeoutSec 8
     Assert-Equal $response.StatusCode 200 "GET $path"
   }
-  $productPage = Invoke-WebRequest -Uri "$webBase/products/1" -TimeoutSec 8
+  $productPage = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/products/1" -TimeoutSec 8
   if ($productPage.Content -notmatch 'iPhone 15 Pro Max') { throw 'The product detail page did not render the API product name.' }
-  $searchPage = Invoke-WebRequest -Uri "$webBase/products?q=iPhone" -TimeoutSec 8
+  $searchPage = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/products?q=iPhone" -TimeoutSec 8
   if ($searchPage.Content -notmatch 'iPhone 15 Pro Max') { throw 'The product search page did not render the matching product.' }
   $searchApi = Invoke-RestMethod -Uri "$apiBase/api/v1/search?q=iPhone&limit=1" -TimeoutSec 5
   Assert-Equal $searchApi.items[0].id 1 'Product search API result'
@@ -132,7 +132,7 @@ try {
   Assert-Equal $searchSuggestions.suggestions[0] 'iPhone 15 Pro Max' 'Product search suggestions'
   $reflectedPayload = '<img src=x onerror="document.documentElement.dataset.labXss=''reflected''">'
   $encodedReflectedPayload = [uri]::EscapeDataString($reflectedPayload)
-  $reflectedXssPage = Invoke-WebRequest -Uri "$webBase/products?q=$encodedReflectedPayload" -TimeoutSec 8
+  $reflectedXssPage = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/products?q=$encodedReflectedPayload" -TimeoutSec 8
   if ($reflectedXssPage.Content -notmatch 'onerror=.*labXss.*reflected') { throw 'The storefront did not render the synthetic reflected markup in raw HTML.' }
   $filteredProducts = Invoke-RestMethod -Uri "$apiBase/api/v1/products?category=Electronics&sort=id" -TimeoutSec 5
   if ($filteredProducts.total -lt 2) { throw 'The category filter did not return the synthetic electronics products.' }
@@ -157,7 +157,7 @@ try {
 
   $rootInfo = Invoke-RestMethod -Uri "$apiBase/" -TimeoutSec 5
   Assert-Equal $rootInfo.framework 'FastAPI 0.104.1' 'Unauthenticated framework version disclosure'
-  $phpInfo = Invoke-WebRequest -Uri "$apiBase/phpinfo.php" -TimeoutSec 5
+  $phpInfo = Invoke-WebRequest -UseBasicParsing -Uri "$apiBase/phpinfo.php" -TimeoutSec 5
   if ($phpInfo.Content -notmatch 'Apache/2\.4\.54|SECRET_KEY') { throw 'The synthetic fingerprinting page did not disclose its service markers.' }
   $healthInfo = Invoke-RestMethod -Uri "$apiBase/health" -TimeoutSec 5
   Assert-Equal $healthInfo.database_url 'postgresql://lab:lab@127.0.0.1:1/vulnshop' 'Unauthenticated internal service configuration disclosure'
@@ -174,34 +174,45 @@ try {
   if ($backupInfo.note -notmatch 'full database dump') { throw 'The backup reference did not disclose its claimed dump contents.' }
   $invalidSort = Invoke-RestMethod -Uri "$apiBase/api/v1/products?sort=private_column" -TimeoutSec 5
   if ($invalidSort.error -notmatch 'private_column' -or $invalidSort.hint -notmatch 'price') { throw 'The product endpoint did not reflect internal sort validation details.' }
-  $securityHeaders = Invoke-WebRequest -Uri "$apiBase/" -TimeoutSec 5
+  $securityHeaders = Invoke-WebRequest -UseBasicParsing -Uri "$apiBase/" -TimeoutSec 5
   foreach ($headerName in @('Content-Security-Policy','Strict-Transport-Security','X-Frame-Options','X-Content-Type-Options')) {
     if ($securityHeaders.Headers.AllKeys -contains $headerName) { throw "The expected missing security header was present: $headerName" }
   }
   $corsHeaders = @{ Origin = 'https://attacker.invalid'; Cookie = 'lab_session=synthetic' }
-  $corsResponse = Invoke-WebRequest -Uri "$apiBase/" -Headers $corsHeaders -TimeoutSec 5
+  $corsResponse = Invoke-WebRequest -UseBasicParsing -Uri "$apiBase/" -Headers $corsHeaders -TimeoutSec 5
   Assert-Equal $corsResponse.Headers['Access-Control-Allow-Origin'] 'https://attacker.invalid' 'CORS origin reflection'
   Assert-Equal $corsResponse.Headers['Access-Control-Allow-Credentials'] 'true' 'Credentialed CORS response'
 
-  $docsResponse = Invoke-WebRequest -Uri "$apiBase/docs" -TimeoutSec 5
+  $docsResponse = Invoke-WebRequest -UseBasicParsing -Uri "$apiBase/docs" -TimeoutSec 5
   Assert-Equal $docsResponse.StatusCode 200 'Unauthenticated API documentation'
-  $envResponse = Invoke-WebRequest -Uri "$apiBase/.env" -TimeoutSec 5
+  $envResponse = Invoke-WebRequest -UseBasicParsing -Uri "$apiBase/.env" -TimeoutSec 5
   if ($envResponse.Content -notmatch 'AWS_ACCESS_KEY_ID=LAB_ONLY_NOT_A_CREDENTIAL') { throw 'The synthetic environment marker was not exposed by the lab env endpoint.' }
   $webhookTest = Invoke-RestMethod -Uri "$webBase/webhook/test" -TimeoutSec 5
   Assert-Equal $webhookTest.env.LAB_ONLY_STRIPE_WEBHOOK_SECRET 'LAB_ONLY_STRIPE_WEBHOOK_SECRET_MARKER' 'Unauthenticated webhook environment and secret exposure'
 
-  $graphqlFederation = Invoke-WebRequest -Uri "$graphqlBase/graphql" -Method Post -ContentType 'application/json' -Body '{"query":"{ _service { sdl } }"}' -SkipHttpErrorCheck -TimeoutSec 8
-  Assert-Equal $graphqlFederation.StatusCode 400 'GraphQL federation service metadata availability'
-  if ($graphqlFederation.Content -notmatch 'Cannot query field.*_service') { throw 'The GraphQL service did not report its unavailable federation metadata field.' }
-  if ($graphqlFederation.Content -notmatch 'stacktrace|stackTrace') { throw 'The GraphQL validation error did not include a stack trace.' }
+  $graphqlFederationStatus = 0
+  try {
+    $null = Invoke-WebRequest -UseBasicParsing -Uri "$graphqlBase/graphql" -Method Post -ContentType 'application/json' -Body '{"query":"{ _service { sdl } }"}' -TimeoutSec 8
+    $graphqlFederationStatus = 200
+  } catch {
+    if ($_.Exception.Response) { $graphqlFederationStatus = [int]$_.Exception.Response.StatusCode } else { $graphqlFederationStatus = 0 }
+  }
+  $graphqlFederationContent = Get-ApiErrorMessage "$graphqlBase/graphql" '{"query":"{ _service { sdl } }"}'
+  Assert-Equal $graphqlFederationStatus 400 'GraphQL federation service metadata availability'
+  if ($graphqlFederationContent -notmatch 'Cannot query field.*_service') { throw 'The GraphQL service did not report its unavailable federation metadata field.' }
+  if ($graphqlFederationContent -notmatch 'stacktrace|stackTrace') { throw 'The GraphQL validation error did not include a stack trace.' }
   $graphqlBatchBody = '[{"query":"{ __typename }"},{"query":"{ __schema { queryType { name } } }"}]'
   $graphqlBatch = Invoke-RestMethod -Uri "$graphqlBase/graphql" -Method Post -ContentType 'application/json' -Body $graphqlBatchBody -TimeoutSec 8
   Assert-Equal $graphqlBatch.Count 2 'Unauthenticated GraphQL request batching'
   $deepTypeFields = ('ofType { ' * 12) + 'name ' + ('}' * 12)
   $graphqlDepthQuery = '{ __type(name:"User") { fields { type { ' + $deepTypeFields + ' } } } }'
   $graphqlDepthBody = @{ query = $graphqlDepthQuery } | ConvertTo-Json -Compress
-  $graphqlDepth = Invoke-RestMethod -Uri "$graphqlBase/graphql" -Method Post -ContentType 'application/json' -Body $graphqlDepthBody -TimeoutSec 8
-  if ($graphqlDepth.errors) { throw 'The GraphQL service rejected the bounded 16-level introspection query.' }
+  # The response embeds a literal "__type" key, which Windows PowerShell 5.1's
+  # JSON parser reserves for type hints, so assert on the raw body instead of
+  # a parsed object.
+  $graphqlDepthRaw = Invoke-WebRequest -UseBasicParsing -Uri "$graphqlBase/graphql" -Method Post -ContentType 'application/json' -Body $graphqlDepthBody -TimeoutSec 8
+  if ($graphqlDepthRaw.Content -match '"errors"') { throw 'The GraphQL service rejected the bounded 16-level introspection query.' }
+  if ($graphqlDepthRaw.Content -notmatch '__type') { throw 'The GraphQL depth probe response did not include the introspected type.' }
   $complexityAliases = @()
   for ($aliasIndex = 1; $aliasIndex -le 100; $aliasIndex++) { $complexityAliases += "probe${aliasIndex}: __typename" }
   $complexityQuery = '{ ' + ($complexityAliases -join ' ') + ' }'
@@ -257,6 +268,45 @@ try {
     Write-Output 'SKIP SSRF route check: the declared httpx dependency is not installed in this Python runtime.'
   }
 
+  $dbBackup = Invoke-RestMethod -Uri "$apiBase/backup/db.sql" -TimeoutSec 5
+  Assert-Equal $dbBackup.message 'DB backup available' 'Unauthenticated database backup disclosure'
+  $backupBytes = Invoke-WebRequest -UseBasicParsing -Uri "$apiBase$($dbBackup.url)" -TimeoutSec 5
+  $backupText = if ($backupBytes.Content -is [string]) { $backupBytes.Content } else { [System.Text.Encoding]::UTF8.GetString($backupBytes.Content) }
+  if ($backupText -notmatch 'LAB_ONLY_SYNTHETIC_BACKUP_MARKER') { throw 'The exposed backup URL did not serve the synthetic dump marker.' }
+  if ($backupText -notmatch [regex]::Escape('admin@vulnshop.com')) { throw 'The exposed synthetic dump did not include user rows.' }
+
+  $dbQueryProbe = [uri]::EscapeDataString("'; DROP TABLE users;--")
+  $internalDbQuery = Invoke-RestMethod -Uri "$apiBase/api/internal/db-query?q=$dbQueryProbe" -TimeoutSec 5
+  if ($internalDbQuery.query -notmatch [regex]::Escape('DROP TABLE users')) { throw 'The internal database query endpoint did not echo the injected SQL fragment.' }
+  Assert-Equal $internalDbQuery.warning 'SQL Injection possible here' 'Unauthenticated internal database query endpoint'
+
+  $sortInjection = [uri]::EscapeDataString('(SELECT sleep(5))')
+  $sortProbe = Invoke-RestMethod -Uri "$apiBase/api/v1/products?sort=$sortInjection" -TimeoutSec 5
+  if ($sortProbe.error -notmatch [regex]::Escape('SELECT sleep(5)')) { throw 'The product list endpoint did not reflect the injected sort field.' }
+  if ($sortProbe.hint -notmatch 'id, name, price, stock') { throw 'The product list error response did not include the internal allowlist hint.' }
+
+  $flashSale = Invoke-RestMethod -Uri "$apiBase/api/v1/products/flash-sale" -TimeoutSec 5
+  Assert-Equal $flashSale.note 'Race condition possible - no locking' 'Flash sale surface without purchase locking'
+  Assert-Equal $flashSale.flash_sales[0].stock_limit 10 'Flash sale stock limit disclosed without locking'
+
+  $attackerRedirect = 'https://attacker.invalid/oauth-callback'
+  $oauthProbeBody = @{ redirect_uri = $attackerRedirect; state = 'lab-state' } | ConvertTo-Json -Compress
+  $oauthProbe = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/social/google" -Method Post -ContentType 'application/json' -Body $oauthProbeBody -TimeoutSec 5
+  Assert-Equal $oauthProbe.redirect_uri $attackerRedirect 'OAuth redirect_uri echoed without validation'
+  if ($oauthProbe.auth_url -notmatch [regex]::Escape($attackerRedirect)) { throw 'The OAuth authorization URL did not embed the attacker-controlled redirect_uri.' }
+  $oauthLinkBody = @{ redirect_uri = $attackerRedirect; code = 'attacker-supplied-code' } | ConvertTo-Json -Compress
+  $oauthLink = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/social/google" -Method Post -ContentType 'application/json' -Body $oauthLinkBody -TimeoutSec 5
+  if (-not $oauthLink.token) { throw 'The OAuth social login returned no token for an attacker-supplied code.' }
+  $linkedUser = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/me" -Headers @{ Authorization = "Bearer $($oauthLink.token)" } -TimeoutSec 5
+  if (-not $linkedUser.user.is_verified) { throw 'The synthetic OAuth-linked account was not pre-verified.' }
+
+  $phpUpload = Invoke-RestMethod -Uri "$apiBase/api/v1/files/upload?filename=shell.php&content_type=application/x-php" -Method Post -Body 'lab-payload' -ContentType 'application/octet-stream' -TimeoutSec 5
+  Assert-Equal $phpUpload.file.filename 'shell.php' 'Unrestricted upload accepted an executable extension'
+  if ($phpUpload.file.public_url -notmatch '^/api/v1/files/\d+$') { throw 'The uploaded file was not published under a public file URL.' }
+  $traversalName = [uri]::EscapeDataString('../../synthetic-escape.txt')
+  $traversalUpload = Invoke-RestMethod -Uri "$apiBase/api/v1/files/upload?filename=$traversalName" -Method Post -Body 'lab-payload' -ContentType 'application/octet-stream' -TimeoutSec 5
+  Assert-Equal $traversalUpload.file.filename '../../synthetic-escape.txt' 'Upload accepted a path traversal filename'
+
   $formulaProductBody = @{
     name = '=1+1'; description = 'Synthetic CSV formula marker'; price = 1; stock = 1
     category = 'Lab'; brand = 'Synthetic'; cost = 0.01; is_admin_product = $true
@@ -265,8 +315,11 @@ try {
   $massAssignedProduct = Invoke-RestMethod -Uri "$apiBase/api/v1/products" -Method Post -ContentType 'application/json' -Body $formulaProductBody -TimeoutSec 5
   Assert-Equal $massAssignedProduct.product.is_admin_product $true 'Unauthenticated product mass assignment'
   Assert-Equal $massAssignedProduct.product.hidden_discount 100 'Hidden discount mass assignment'
-  $csvExport = Invoke-WebRequest -Uri "$apiBase/api/v1/products/export" -TimeoutSec 5
-  if ($csvExport.Content -notmatch '(?m)^\d+,=1\+1,') { throw 'The CSV export did not preserve the synthetic formula marker as an active cell formula.' }
+  $csvExport = Invoke-WebRequest -UseBasicParsing -Uri "$apiBase/api/v1/products/export" -TimeoutSec 5
+  $csvText = if ($csvExport.Content -is [string]) { $csvExport.Content } else { [System.Text.Encoding]::UTF8.GetString($csvExport.Content) }
+  if ($csvText -notmatch '(?m)^\d+,=1\+1,') { throw 'The CSV export did not preserve the synthetic formula marker as an active cell formula.' }
+  if ($csvText -notmatch 'Supplier Cost') { throw 'The unauthenticated CSV export omitted the internal cost columns.' }
+  if ($csvText -notmatch [regex]::Escape('Profit margin 40%')) { throw 'The unauthenticated CSV export disclosed internal admin notes.' }
   $unauthProductUpdateBody = '{"price":-1,"admin_note":"Synthetic unauthenticated PUT"}'
   $unauthProductUpdate = Invoke-RestMethod -Uri "$apiBase/api/v1/products/$($massAssignedProduct.product.id)" -Method Put -ContentType 'application/json' -Body $unauthProductUpdateBody -TimeoutSec 5
   Assert-Equal $unauthProductUpdate.product.price -1 'Unauthenticated product update through PUT'
@@ -285,36 +338,36 @@ try {
   $storedReviewBody = @{ content = $storedPayload; rating = 5; user_name = 'Synthetic XSS Marker' } | ConvertTo-Json -Compress
   $storedReview = Invoke-RestMethod -Uri "$apiBase/api/v1/products/1/review" -Method Post -ContentType 'application/json' -Body $storedReviewBody -TimeoutSec 5
   Assert-Equal $storedReview.review.content $storedPayload 'Synthetic stored HTML payload'
-  $storedXssPage = Invoke-WebRequest -Uri "$webBase/products/1" -TimeoutSec 8
+  $storedXssPage = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/products/1" -TimeoutSec 8
   if ($storedXssPage.Content -notmatch 'onerror=.*labXss.*stored') { throw 'The storefront did not render the synthetic stored markup in raw HTML.' }
 
   $session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
-  $null = Invoke-WebRequest -Uri "$webBase/cart" -WebSession $session -TimeoutSec 5
+  $null = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/cart" -WebSession $session -TimeoutSec 5
   $added = Invoke-RestMethod -Uri "$webBase/cart/add" -Method Post -WebSession $session -ContentType 'application/json' -Body '{"productId":1,"name":"Lab phone","price":100,"qty":2,"image":"/img/lab.png"}' -TimeoutSec 5
   Assert-Equal $added.cartCount 1 'Storefront cart item count'
   $formBody = 'shipping_name=Lab+User&shipping_address=Synthetic+address&shipping_phone=0900000000&payment_method=cod&total_amount=200&shipping_fee=0&coupon_code='
-  $checkout = Invoke-WebRequest -Uri "$webBase/checkout" -Method Post -WebSession $session -ContentType 'application/x-www-form-urlencoded' -Body $formBody -TimeoutSec 8
+  $checkout = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/checkout" -Method Post -WebSession $session -ContentType 'application/x-www-form-urlencoded' -Body $formBody -TimeoutSec 8
   Assert-Equal $checkout.StatusCode 200 'Storefront checkout'
-  $emptyCart = Invoke-WebRequest -Uri "$webBase/cart" -WebSession $session -TimeoutSec 5
+  $emptyCart = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/cart" -WebSession $session -TimeoutSec 5
   if ($emptyCart.Content -notmatch 'Giỏ hàng đang trống') { throw 'Checkout did not clear the session cart.' }
 
   $storefrontAuthSession = New-Object Microsoft.PowerShell.Commands.WebRequestSession
-  $storefrontLogin = Invoke-WebRequest -Uri "$webBase/login" -Method Post -WebSession $storefrontAuthSession -ContentType 'application/x-www-form-urlencoded' -Body 'email=admin%40vulnshop.com&password=admin123' -TimeoutSec 8
+  $storefrontLogin = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/login" -Method Post -WebSession $storefrontAuthSession -ContentType 'application/x-www-form-urlencoded' -Body 'email=admin%40vulnshop.com&password=admin123' -TimeoutSec 8
   Assert-Equal $storefrontLogin.StatusCode 200 'Storefront login redirect'
-  $storefrontLogout = Invoke-WebRequest -Uri "$webBase/logout" -WebSession $storefrontAuthSession -TimeoutSec 8
+  $storefrontLogout = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/logout" -WebSession $storefrontAuthSession -TimeoutSec 8
   Assert-Equal $storefrontLogout.StatusCode 200 'Storefront logout redirect'
-  $loggedOutProfile = Invoke-WebRequest -Uri "$webBase/profile" -WebSession $storefrontAuthSession -TimeoutSec 5
+  $loggedOutProfile = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/profile" -WebSession $storefrontAuthSession -TimeoutSec 5
   if ($loggedOutProfile.Content -notmatch 'Guest User') { throw 'The storefront session still appeared authenticated after logout.' }
 
   $csrfSession = New-Object Microsoft.PowerShell.Commands.WebRequestSession
-  $normalUserLogin = Invoke-WebRequest -Uri "$webBase/login" -Method Post -WebSession $csrfSession -ContentType 'application/x-www-form-urlencoded' -Body 'email=user%40vulnshop.com&password=password' -TimeoutSec 8
+  $normalUserLogin = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/login" -Method Post -WebSession $csrfSession -ContentType 'application/x-www-form-urlencoded' -Body 'email=user%40vulnshop.com&password=password' -TimeoutSec 8
   Assert-Equal $normalUserLogin.StatusCode 200 'Regular storefront user login'
-  $normalUserHome = Invoke-WebRequest -Uri "$webBase/" -WebSession $csrfSession -TimeoutSec 5
+  $normalUserHome = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/" -WebSession $csrfSession -TimeoutSec 5
   if ($normalUserHome.Content -match 'class="dropdown-item text-danger" href="/admin"') { throw 'The seeded regular user unexpectedly had the admin menu entry before the cross-origin request.' }
   $csrfProfileBody = 'name=LAB_CSRF_ADMIN&role=admin'
-  $csrfProfileUpdate = Invoke-WebRequest -Uri "$webBase/profile" -Method Post -Headers @{ Origin = 'https://attacker.invalid' } -WebSession $csrfSession -ContentType 'application/x-www-form-urlencoded' -Body $csrfProfileBody -TimeoutSec 8
+  $csrfProfileUpdate = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/profile" -Method Post -Headers @{ Origin = 'https://attacker.invalid' } -WebSession $csrfSession -ContentType 'application/x-www-form-urlencoded' -Body $csrfProfileBody -TimeoutSec 8
   Assert-Equal $csrfProfileUpdate.StatusCode 200 'Cross-origin profile form submission'
-  $csrfPromotedHome = Invoke-WebRequest -Uri "$webBase/" -WebSession $csrfSession -TimeoutSec 5
+  $csrfPromotedHome = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/" -WebSession $csrfSession -TimeoutSec 5
   if ($csrfPromotedHome.Content -notmatch 'class="dropdown-item text-danger" href="/admin"' -or $csrfPromotedHome.Content -notmatch 'LAB_CSRF_ADMIN') { throw 'The cross-origin profile post did not promote the synthetic account session to admin.' }
   $sessionReplay = New-Object Microsoft.PowerShell.Commands.WebRequestSession
   $storefrontUri = [uri]"$webBase/"
@@ -323,12 +376,12 @@ try {
   if (-not $sessionCookie) { throw 'The synthetic authenticated session did not issue the expected sessionId cookie.' }
   if ($sessionCookie.HttpOnly -or $sessionCookie.Secure) { throw 'The storefront session cookie unexpectedly had HttpOnly or Secure protection.' }
   foreach ($cookie in $capturedSessionCookies) { $sessionReplay.Cookies.Add($storefrontUri, $cookie) }
-  $replayedSessionHome = Invoke-WebRequest -Uri "$webBase/" -WebSession $sessionReplay -TimeoutSec 5
+  $replayedSessionHome = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/" -WebSession $sessionReplay -TimeoutSec 5
   if ($replayedSessionHome.Content -notmatch 'class="dropdown-item text-danger" href="/admin"' -or $replayedSessionHome.Content -notmatch 'LAB_CSRF_ADMIN') { throw 'Replaying the copied storefront session cookie did not restore the authenticated admin session.' }
 
   $urlToken = 'LAB_ONLY_QUERY_TOKEN'
   $urlEmail = 'lab-pii-marker@example.test'
-  $urlTokenPage = Invoke-WebRequest -Uri "$webBase/reset-password?token=$urlToken&email=$urlEmail" -TimeoutSec 5
+  $urlTokenPage = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/reset-password?token=$urlToken&email=$urlEmail" -TimeoutSec 5
   if ($urlTokenPage.Content -notmatch [regex]::Escape($urlToken)) { throw 'The synthetic reset token was not reflected into the reset form.' }
 
   $email = "smoke-$([guid]::NewGuid().ToString('N'))@example.test"
@@ -339,7 +392,7 @@ try {
   Assert-Equal $registeredProfile.password_plain 'x' 'Unauthenticated profile password exposure'
   if ($registeredProfile.password_hash.Length -ne 32) { throw 'The lab password hash was not the expected MD5-sized value.' }
   $md5 = [System.Security.Cryptography.MD5]::Create()
-  try { $expectedMd5 = [Convert]::ToHexString($md5.ComputeHash([Text.Encoding]::UTF8.GetBytes('x'))).ToLowerInvariant() }
+  try { $expectedMd5 = ([System.BitConverter]::ToString($md5.ComputeHash([Text.Encoding]::UTF8.GetBytes('x')))).Replace('-','').ToLowerInvariant() }
   finally { $md5.Dispose() }
   Assert-Equal $registeredProfile.password_hash $expectedMd5 'Weak MD5 password storage'
   Assert-Equal $registeredProfile.role 'admin' 'Signup privilege escalation by mass assignment'
@@ -384,7 +437,7 @@ try {
   Assert-Equal $me.token_payload.password_plain 'x' 'Sensitive password data in JWT claims'
 
   $rememberBody = @{ email = $email; password = 'x'; remember_me = $true } | ConvertTo-Json -Compress
-  $rememberResponse = Invoke-WebRequest -Uri "$apiBase/api/v1/auth/login" -Method Post -ContentType 'application/json' -Body $rememberBody -TimeoutSec 5
+  $rememberResponse = Invoke-WebRequest -UseBasicParsing -Uri "$apiBase/api/v1/auth/login" -Method Post -ContentType 'application/json' -Body $rememberBody -TimeoutSec 5
   $cookieHeader = [string]::Join('; ', $rememberResponse.Headers['Set-Cookie'])
   if ($cookieHeader -notmatch 'remember_me=') { throw 'The remember-me cookie was not issued.' }
   if ($cookieHeader -notmatch 'Max-Age=99999999') { throw 'The remember-me cookie did not use the lab persistent lifetime.' }
@@ -439,7 +492,7 @@ try {
   try {
     for ($second = $forgotStart - 5; $second -le $forgotEnd + 5; $second++) {
       $candidateRaw = [Text.Encoding]::UTF8.GetBytes(('{0}:{1}:reset' -f $resetEmail, $second))
-      $candidate = [Convert]::ToHexString($tokenHasher.ComputeHash($candidateRaw)).ToLowerInvariant().Substring(0,16)
+      $candidate = ([System.BitConverter]::ToString($tokenHasher.ComputeHash($candidateRaw))).Replace('-','').ToLowerInvariant().Substring(0,16)
       if ($candidate -eq $forgot.token) { $tokenPredicted = $true; break }
     }
   } finally { $tokenHasher.Dispose() }
@@ -516,7 +569,7 @@ try {
   $chainPayment = Invoke-RestMethod -Uri "$apiBase/api/v1/payment/process" -Method Post -ContentType 'application/json' -Body $chainPaymentBody -TimeoutSec 5
   Assert-Equal $chainPayment.payment.amount 0 'Zero-amount payment in coupon and price manipulation chain'
   Assert-Equal $chainPayment.order.payment_status 'paid' 'Mock fulfillment after manipulated coupon and price'
-  $orderHistoryPage = Invoke-WebRequest -Uri "$webBase/orders?user_id=3" -TimeoutSec 8
+  $orderHistoryPage = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/orders?user_id=3" -TimeoutSec 8
   if ($orderHistoryPage.Content -notmatch [regex]::Escape([string]$orderId)) { throw 'The synthetic order was missing from the unauthenticated order history page.' }
   $canceledOrder = Invoke-RestMethod -Uri "$apiBase/api/v1/orders/$orderId/cancel" -Method Post -TimeoutSec 5
   Assert-Equal $canceledOrder.order.status 'cancelled' 'Unauthenticated cross-user order cancellation'
@@ -530,7 +583,7 @@ try {
   $deliveredBody = @{ order_id = $shippingOrderId; status = 'delivered'; tracking_number = 'LAB-SHIP-100' } | ConvertTo-Json -Compress
   $deliveredOrder = Invoke-RestMethod -Uri "$apiBase/api/v1/webhooks/shipping" -Method Post -ContentType 'application/json' -Body $deliveredBody -TimeoutSec 5
   Assert-Equal $deliveredOrder.order.shipping_status 'delivered' 'Synthetic order delivery status'
-  $trackingPage = Invoke-WebRequest -Uri "$webBase/track/$shippingOrderId" -TimeoutSec 8
+  $trackingPage = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/track/$shippingOrderId" -TimeoutSec 8
   if ($trackingPage.Content -notmatch [regex]::Escape([string]$shippingOrderId)) { throw 'The synthetic order was missing from the order tracking page.' }
   $ssrfOrderBody = '{"user_id":"5","items":[{"product_id":1,"quantity":1,"unit_price":100}],"total":100}'
   $ssrfOrder = Invoke-RestMethod -Uri "$apiBase/api/v1/orders" -Method Post -Headers @{ 'x-user-id' = '5' } -ContentType 'application/json' -Body $ssrfOrderBody -TimeoutSec 5

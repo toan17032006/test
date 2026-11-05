@@ -2164,8 +2164,9 @@
       "name": "Backup File Exposure",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 16,
@@ -2809,8 +2810,9 @@
       "name": "OAuth Account Takeover",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 85,
@@ -2895,8 +2897,9 @@
       "name": "Social Login Account Linking Abuse",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 95,
@@ -2904,8 +2907,9 @@
       "name": "Insecure Account Linking",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 96,
@@ -3456,8 +3460,9 @@
       "name": "SMTP Injection",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 162,
@@ -3812,8 +3817,9 @@
       "name": "SSRF Through Image Processing",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 204,
@@ -4271,8 +4277,9 @@
       "name": "API Sorting Injection",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 260,
@@ -4637,8 +4644,9 @@
       "name": "Flash Sale Race Condition",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 301,
@@ -4678,8 +4686,9 @@
       "name": "Concurrent Purchase Race Condition",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 306,
@@ -5015,8 +5024,9 @@
       "name": "Unrestricted File Upload",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 346,
@@ -5209,8 +5219,9 @@
       "name": "Path Traversal Through File Names",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 370,
@@ -5475,8 +5486,9 @@
       "name": "Database Public Exposure",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 402,
@@ -5516,8 +5528,9 @@
       "name": "Database SQL Injection",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 407,
@@ -5549,8 +5562,9 @@
       "name": "Database Backup Exposure",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 411,
@@ -7341,8 +7355,9 @@
       "name": "Payment Provider Integration Flaws",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 632,
@@ -7560,8 +7575,9 @@
       "name": "Personal Data Export Authorization Bypass",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 658,
