@@ -19,7 +19,7 @@ Annotated vulnerability IDs: **120 / 661**.
 | 26 | Internal IP Disclosure | `backend/main.py:131`, `backend/main.py:147` |
 | 31 | Weak Password Policy | `backend/routes/auth.py:134`, `backend/routes/auth.py:138`, `backend/routes/auth.py:322` |
 | 33 | Default Admin Account | `backend/config.py:26` |
-| 34 | Username Enumeration | `backend/routes/auth.py:134`, `backend/routes/auth.py:208`, `frontend/routes/index.js:323` |
+| 34 | Username Enumeration | `backend/routes/auth.py:134`, `backend/routes/auth.py:208`, `frontend/routes/index.js:328` |
 | 35 | Email Enumeration | `backend/routes/auth.py:134`, `backend/routes/auth.py:141`, `backend/routes/auth.py:274` |
 | 38 | Brute Force | `backend/routes/auth.py:187`, `backend/routes/auth.py:191` |
 | 41 | Missing Login Rate Limiting | `backend/config.py:58`, `backend/routes/auth.py:191` |
@@ -97,7 +97,7 @@ Annotated vulnerability IDs: **120 / 661**.
 | 278 | Webhook Signature Validation Bypass | `backend/config.py:83`, `frontend/routes/webhook.js:9` |
 | 280 | Webhook SSRF | `frontend/routes/webhook.js:31` |
 | 281 | Webhook Secret Leakage | `backend/config.py:84` |
-| 283 | Product Price Manipulation | `frontend/routes/index.js:135`, `frontend/routes/index.js:192` |
+| 283 | Product Price Manipulation | `frontend/routes/index.js:140`, `frontend/routes/index.js:197` |
 | 300 | Flash Sale Race Condition | `backend/routes/products.py:179` |
 | 305 | Concurrent Purchase Race Condition | `backend/routes/products.py:179` |
 | 309 | Payment Amount Manipulation | `services/graphql/src/resolvers.js:3`, `services/graphql/src/resolvers.js:440`, `services/graphql/src/resolvers.js:483`, `services/graphql/src/schema.js:242`, `services/graphql/src/schema.js:253`, `services/graphql/src/schema.js:262`, `services/graphql/src/schema.js:3`, `services/graphql/src/schema.js:328`, `services/graphql/src/schema.js:347`, `services/graphql/src/schema.js:352`, `services/worker/worker.py:307`, `services/worker/worker.py:314`, `services/worker/worker.py:335` |

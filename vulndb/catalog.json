@@ -153,36 +153,41 @@
       "id": 21,
       "category": "Frontend và Browser",
       "name": "Homepage",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 22,
       "category": "Frontend và Browser",
       "name": "Product Listing",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 23,
       "category": "Frontend và Browser",
       "name": "Product Detail",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 24,
       "category": "Frontend và Browser",
       "name": "Product Search",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 25,
       "category": "Frontend và Browser",
       "name": "Product Filtering",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 26,
@@ -202,8 +207,9 @@
       "id": 28,
       "category": "Frontend và Browser",
       "name": "Shopping Cart",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 29,
@@ -216,8 +222,9 @@
       "id": 30,
       "category": "Frontend và Browser",
       "name": "Checkout",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 31,
@@ -244,15 +251,17 @@
       "id": 34,
       "category": "Frontend và Browser",
       "name": "Login",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 35,
       "category": "Frontend và Browser",
       "name": "Sign Up",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 36,
@@ -293,22 +302,25 @@
       "id": 41,
       "category": "Frontend và Browser",
       "name": "Multi-Factor Authentication",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 42,
       "category": "Frontend và Browser",
       "name": "Social Login",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 43,
       "category": "Frontend và Browser",
       "name": "OAuth2 / OIDC",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 44,
@@ -321,15 +333,17 @@
       "id": 45,
       "category": "Frontend và Browser",
       "name": "Session Management",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 46,
       "category": "Frontend và Browser",
       "name": "Cookies",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 47,
@@ -370,8 +384,9 @@
       "id": 52,
       "category": "Frontend và Browser",
       "name": "CORS",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 53,
@@ -384,8 +399,9 @@
       "id": 54,
       "category": "Frontend và Browser",
       "name": "HTTP Security Headers",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 55,
@@ -412,15 +428,17 @@
       "id": 58,
       "category": "Backend và API",
       "name": "REST API",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 59,
       "category": "Backend và API",
       "name": "GraphQL",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 60,
@@ -447,8 +465,9 @@
       "id": 63,
       "category": "Backend và API",
       "name": "Webhook",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 64,
@@ -475,15 +494,17 @@
       "id": 67,
       "category": "Backend và API",
       "name": "Rate Limiting",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 68,
       "category": "Backend và API",
       "name": "Input Validation",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 69,
@@ -496,22 +517,25 @@
       "id": 70,
       "category": "Backend và API",
       "name": "Authentication",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 71,
       "category": "Backend và API",
       "name": "Authorization",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 72,
       "category": "Backend và API",
       "name": "RBAC",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 73,
@@ -531,8 +555,9 @@
       "id": 75,
       "category": "Backend và API",
       "name": "Business Logic",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 76,
@@ -622,8 +647,9 @@
       "id": 88,
       "category": "Chức năng thương mại điện tử",
       "name": "Coupon Management",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 89,
@@ -664,15 +690,17 @@
       "id": 94,
       "category": "Chức năng thương mại điện tử",
       "name": "Guest Checkout",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 95,
       "category": "Chức năng thương mại điện tử",
       "name": "Customer Checkout",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 96,
@@ -706,43 +734,49 @@
       "id": 100,
       "category": "Chức năng thương mại điện tử",
       "name": "Payment Gateway",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 101,
       "category": "Chức năng thương mại điện tử",
       "name": "Cash on Delivery (COD)",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 102,
       "category": "Chức năng thương mại điện tử",
       "name": "Payment Refund",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 103,
       "category": "Chức năng thương mại điện tử",
       "name": "Payment Callback",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 104,
       "category": "Chức năng thương mại điện tử",
       "name": "Payment Webhook",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 105,
       "category": "Chức năng thương mại điện tử",
       "name": "Order Management",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 106,
@@ -755,8 +789,9 @@
       "id": 107,
       "category": "Chức năng thương mại điện tử",
       "name": "Order Cancellation",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 108,
@@ -790,8 +825,9 @@
       "id": 112,
       "category": "Chức năng thương mại điện tử",
       "name": "Review & Rating",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 113,
@@ -853,8 +889,9 @@
       "id": 121,
       "category": "Chức năng thương mại điện tử",
       "name": "Notification System",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 122,
@@ -986,8 +1023,9 @@
       "id": 140,
       "category": "Quản trị hệ thống",
       "name": "User Management",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 141,
@@ -1021,8 +1059,9 @@
       "id": 145,
       "category": "Quản trị hệ thống",
       "name": "Payment Management",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 146,
@@ -1049,8 +1088,9 @@
       "id": 149,
       "category": "Quản trị hệ thống",
       "name": "Role & Permission Management",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 150,
@@ -1203,8 +1243,9 @@
       "id": 171,
       "category": "DevOps và vận hành",
       "name": "Dependency Management",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 172,
@@ -1259,8 +1300,9 @@
       "id": 179,
       "category": "DevOps và vận hành",
       "name": "Logging",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 180,
@@ -1350,29 +1392,33 @@
       "id": 192,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "IDOR / BOLA",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 193,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Broken Authentication",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 194,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Broken Authorization",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 195,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Privilege Escalation",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 196,
@@ -1385,22 +1431,25 @@
       "id": 197,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Session Fixation",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 198,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "JWT Vulnerabilities",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 199,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "OAuth Misconfiguration",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 200,
@@ -1413,15 +1462,17 @@
       "id": 201,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Password Reset Vulnerabilities",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 202,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Account Enumeration",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 203,
@@ -1448,36 +1499,41 @@
       "id": 206,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Business Logic Abuse",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 207,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Price Manipulation",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 208,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Coupon Abuse",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 209,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Cart Manipulation",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 210,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Payment Manipulation",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 211,
@@ -1504,15 +1560,17 @@
       "id": 214,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Payment Replay",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 215,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Webhook Forgery",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 216,
@@ -1574,8 +1632,9 @@
       "id": 224,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "CORS Misconfiguration",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 225,
@@ -1595,8 +1654,9 @@
       "id": 227,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Security Header Misconfiguration",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 228,
@@ -1658,22 +1718,25 @@
       "id": 236,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "API Mass Assignment",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 237,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "API Excessive Data Exposure",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 238,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "GraphQL Introspection Abuse",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 239,
@@ -1728,8 +1791,9 @@
       "id": 246,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Secrets Exposure",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 247,
@@ -1749,36 +1813,41 @@
       "id": 249,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Logging & Monitoring Weaknesses",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 250,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Backup Exposure",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 251,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Information Disclosure",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 252,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "Sensitive Data Exposure",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 253,
       "category": "Các chức năng và bề mặt kiểm thử bảo mật",
       "name": "PII Leakage",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 254,
@@ -1805,8 +1874,9 @@
       "id": 257,
       "category": "Các kịch bản nghiệp vụ end-to-end",
       "name": "Đăng ký → Xác minh email → Đăng nhập",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 258,
@@ -1819,8 +1889,9 @@
       "id": 259,
       "category": "Các kịch bản nghiệp vụ end-to-end",
       "name": "Tìm kiếm → Xem sản phẩm → Thêm giỏ hàng",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 260,
@@ -1833,8 +1904,9 @@
       "id": 261,
       "category": "Các kịch bản nghiệp vụ end-to-end",
       "name": "Checkout → Thanh toán → Xác nhận đơn hàng",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 262,
@@ -1889,15 +1961,17 @@
       "id": 269,
       "category": "Các kịch bản nghiệp vụ end-to-end",
       "name": "User A → Truy cập dữ liệu User B (kiểm thử IDOR/BOLA)",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 270,
       "category": "Các kịch bản nghiệp vụ end-to-end",
       "name": "User thường → Truy cập chức năng Admin (kiểm thử phân quyền)",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 271,
@@ -1917,22 +1991,25 @@
       "id": 273,
       "category": "Các kịch bản nghiệp vụ end-to-end",
       "name": "Gửi lại payment callback/webhook",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 274,
       "category": "Các kịch bản nghiệp vụ end-to-end",
       "name": "Thay đổi giá, số lượng, coupon trong quá trình checkout",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 275,
       "category": "Các kịch bản nghiệp vụ end-to-end",
       "name": "Truy cập API trực tiếp bỏ qua giao diện frontend",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     }
   ],
   "entries": [

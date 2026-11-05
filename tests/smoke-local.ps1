@@ -111,6 +111,22 @@ try {
     $response = Invoke-WebRequest -Uri "$webBase$path" -TimeoutSec 8
     Assert-Equal $response.StatusCode 200 "GET $path"
   }
+  $productPage = Invoke-WebRequest -Uri "$webBase/products/1" -TimeoutSec 8
+  if ($productPage.Content -notmatch 'iPhone 15 Pro Max') { throw 'The product detail page did not render the API product name.' }
+  $searchPage = Invoke-WebRequest -Uri "$webBase/products?q=iPhone" -TimeoutSec 8
+  if ($searchPage.Content -notmatch 'iPhone 15 Pro Max') { throw 'The product search page did not render the matching product.' }
+  $searchApi = Invoke-RestMethod -Uri "$apiBase/api/v1/search?q=iPhone&limit=1" -TimeoutSec 5
+  Assert-Equal $searchApi.items[0].id 1 'Product search API result'
+  $filteredProducts = Invoke-RestMethod -Uri "$apiBase/api/v1/products?category=Electronics&sort=id" -TimeoutSec 5
+  if ($filteredProducts.total -lt 2) { throw 'The category filter did not return the synthetic electronics products.' }
+  $notificationBody = @{ user_id = 'smoke-notify'; title = 'Synthetic smoke notice'; message = 'Lab-only notification' } | ConvertTo-Json -Compress
+  $createdNotification = Invoke-RestMethod -Uri "$apiBase/api/v1/notify" -Method Post -ContentType 'application/json' -Body $notificationBody -TimeoutSec 5
+  $notificationHeaders = @{ 'x-user-id' = 'smoke-notify' }
+  $notificationFeed = Invoke-RestMethod -Uri "$apiBase/api/v1/notify" -Headers $notificationHeaders -TimeoutSec 5
+  Assert-Equal $notificationFeed.unread 1 'Notification unread count'
+  Assert-Equal $notificationFeed.items[0].message 'Lab-only notification' 'Notification feed content'
+  $markedNotification = Invoke-RestMethod -Uri "$apiBase/api/v1/notify/$($createdNotification.notification.id)/read" -Method Post -TimeoutSec 5
+  Assert-Equal $markedNotification.updated $true 'Notification read state'
 
   $catalog = Invoke-RestMethod -Uri "$webBase/api/vuln-catalog" -TimeoutSec 8
   Assert-Equal $catalog.counts.components 275 'Component inventory count'
@@ -393,7 +409,7 @@ try {
   $apiLog = Get-Content -Raw -LiteralPath (Join-Path $logDir 'api.out')
   if ($apiLog -notmatch [regex]::Escape("email=$email password=x role=admin")) { throw 'The synthetic signup password was not present in the lab API log.' }
 
-  Write-Output 'Loopback smoke passed: storefront/catalog, service fingerprinting/health/metrics disclosure, missing security headers/CORS reflection, docs/env/backup exposure, auth SQL injection/default credentials/enumeration/rate limits, email/OTP/reset flows, refresh/session/JWT/OAuth flaws, product mass assignment/CSV export/pagination/customer data exposure and fake reviews, role/order ownership changes, cart price/quantity tampering, duplicate payments, unauthorized cancellation/refunds, payment webhook forgery/replay, and GraphQL introspection.'
+  Write-Output 'Loopback smoke passed: storefront/catalog/search/filter/product detail/cart/checkout, service fingerprinting/health/metrics disclosure, missing security headers/CORS reflection, docs/env/backup exposure, auth SQL injection/default credentials/enumeration/rate limits, email/OTP/reset flows, refresh/session/JWT/OAuth flaws, product mass assignment/CSV export/pagination/customer data exposure and fake reviews, role/order ownership changes, cart price/quantity tampering, duplicate payments, unauthorized cancellation/refunds, payment webhook forgery/replay, and GraphQL introspection.'
 }
 catch {
   foreach ($name in @('api.err','web.err','graphql.err')) {

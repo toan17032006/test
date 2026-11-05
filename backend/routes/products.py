@@ -118,7 +118,7 @@ async def list_products(
         # ReDoS vulnerability (vuln #239, #587) - catastrophic backtracking
         try:
             # Vulnerable regex pattern
-            pattern = re.compile(f".*{search}.*{search}.*")  # ReDoS possible
+            pattern = re.compile(f".*{search}.*", re.IGNORECASE)  # ReDoS possible
             products = [p for p in products if pattern.search(p["name"])]
         except re.error:
             products = []

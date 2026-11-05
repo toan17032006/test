@@ -56,7 +56,7 @@
       const safe = value => String(value ?? '');
       const makeCell = (tag, value, className) => { const node = document.createElement(tag); node.textContent = safe(value); if (className) node.className = className; return node; };
       const selectedType = () => el('type').value;
-      const allRows = () => [...state.data.entries, ...state.data.components.map(row => ({ ...row, record_type: 'component', test_status: 'not_applicable' }))];
+      const allRows = () => [...state.data.entries, ...state.data.components.map(row => ({ ...row, record_type: 'component' }))];
       const filterRows = () => {
         const q = el('search').value.trim().toLocaleLowerCase();
         const type = selectedType(), category = el('category').value, status = el('status-filter').value;

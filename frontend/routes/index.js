@@ -29,7 +29,8 @@ router.get('/', async (req, res) => {
     let products = mockProducts;
     try {
       const r = await axios.get(`${API_URL}/api/v1/products?limit=6`, { timeout: 2000 });
-      if (r.data && r.data.items) products = r.data.items;
+      if (r.data && Array.isArray(r.data.products)) products = r.data.products;
+      else if (r.data && Array.isArray(r.data.items)) products = r.data.items;
     } catch (_) {}
     res.render('home', {
       title: 'VulnShop - Mua sắm online giá tốt nhất',
@@ -59,9 +60,11 @@ router.get('/products', async (req, res) => {
 
   let products = mockProducts;
   try {
-    const params = new URLSearchParams({ q: query, category, sort, page, min_price: minPrice, max_price: maxPrice, brand });
+    const apiSort = ['id', 'name', 'price', 'stock'].includes(sort) ? sort : 'id';
+    const params = new URLSearchParams({ search: query, category, sort: apiSort, page, min_price: minPrice, max_price: maxPrice, brand });
     const r = await axios.get(`${API_URL}/api/v1/products?${params}`, { timeout: 2000 });
-    if (r.data && r.data.items) products = r.data.items;
+    if (r.data && Array.isArray(r.data.products)) products = r.data.products;
+    else if (r.data && Array.isArray(r.data.items)) products = r.data.items;
   } catch (_) {
     if (query) products = mockProducts.filter(p => p.name.toLowerCase().includes(query.toLowerCase()));
     if (category) products = products.filter(p => p.category === category);
@@ -96,12 +99,14 @@ router.get('/products/:id', async (req, res) => {
 
   try {
     const r = await axios.get(`${API_URL}/api/v1/products/${productId}`, { timeout: 2000 });
-    if (r.data) product = r.data;
+    if (r.data && r.data.product) product = r.data.product;
+    else if (r.data) product = r.data;
   } catch (_) {}
 
   try {
     const r = await axios.get(`${API_URL}/api/v1/products/${productId}/reviews`, { timeout: 2000 });
-    if (r.data && r.data.items) reviews = r.data.items;
+    if (r.data && Array.isArray(r.data.reviews)) reviews = r.data.reviews;
+    else if (r.data && Array.isArray(r.data.items)) reviews = r.data.items;
   } catch (_) {}
 
   res.render('product_detail', {

@@ -36,61 +36,61 @@
 | 18 | Firewall | Hạ tầng và Cloud | unverified | not_tested | — |
 | 19 | VPN | Hạ tầng và Cloud | unverified | not_tested | — |
 | 20 | SSH | Hạ tầng và Cloud | unverified | not_tested | — |
-| 21 | Homepage | Frontend và Browser | unverified | not_tested | — |
-| 22 | Product Listing | Frontend và Browser | unverified | not_tested | — |
-| 23 | Product Detail | Frontend và Browser | unverified | not_tested | — |
-| 24 | Product Search | Frontend và Browser | unverified | not_tested | — |
-| 25 | Product Filtering | Frontend và Browser | unverified | not_tested | — |
+| 21 | Homepage | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 22 | Product Listing | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 23 | Product Detail | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 24 | Product Search | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 25 | Product Filtering | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 26 | Product Sorting | Frontend và Browser | unverified | not_tested | — |
 | 27 | Category Navigation | Frontend và Browser | unverified | not_tested | — |
-| 28 | Shopping Cart | Frontend và Browser | unverified | not_tested | — |
+| 28 | Shopping Cart | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 29 | Wishlist | Frontend và Browser | unverified | not_tested | — |
-| 30 | Checkout | Frontend và Browser | unverified | not_tested | — |
+| 30 | Checkout | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 31 | Order Tracking | Frontend và Browser | unverified | not_tested | — |
 | 32 | User Profile | Frontend và Browser | unverified | not_tested | — |
 | 33 | Address Book | Frontend và Browser | unverified | not_tested | — |
-| 34 | Login | Frontend và Browser | unverified | not_tested | — |
-| 35 | Sign Up | Frontend và Browser | unverified | not_tested | — |
+| 34 | Login | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 35 | Sign Up | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 36 | Logout | Frontend và Browser | unverified | not_tested | — |
 | 37 | Forgot Password | Frontend và Browser | unverified | not_tested | — |
 | 38 | Reset Password | Frontend và Browser | unverified | not_tested | — |
 | 39 | Email Verification | Frontend và Browser | unverified | not_tested | — |
 | 40 | Phone Verification | Frontend và Browser | unverified | not_tested | — |
-| 41 | Multi-Factor Authentication | Frontend và Browser | unverified | not_tested | — |
-| 42 | Social Login | Frontend và Browser | unverified | not_tested | — |
-| 43 | OAuth2 / OIDC | Frontend và Browser | unverified | not_tested | — |
+| 41 | Multi-Factor Authentication | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 42 | Social Login | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 43 | OAuth2 / OIDC | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 44 | SSO | Frontend và Browser | unverified | not_tested | — |
-| 45 | Session Management | Frontend và Browser | unverified | not_tested | — |
-| 46 | Cookies | Frontend và Browser | unverified | not_tested | — |
+| 45 | Session Management | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 46 | Cookies | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 47 | LocalStorage | Frontend và Browser | unverified | not_tested | — |
 | 48 | SessionStorage | Frontend và Browser | unverified | not_tested | — |
 | 49 | IndexedDB | Frontend và Browser | unverified | not_tested | — |
 | 50 | Service Workers | Frontend và Browser | unverified | not_tested | — |
 | 51 | Browser Cache | Frontend và Browser | unverified | not_tested | — |
-| 52 | CORS | Frontend và Browser | unverified | not_tested | — |
+| 52 | CORS | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 53 | CSP | Frontend và Browser | unverified | not_tested | — |
-| 54 | HTTP Security Headers | Frontend và Browser | unverified | not_tested | — |
+| 54 | HTTP Security Headers | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 55 | Responsive Design | Frontend và Browser | unverified | not_tested | — |
 | 56 | Admin Dashboard | Frontend và Browser | unverified | not_tested | — |
 | 57 | User Dashboard | Frontend và Browser | unverified | not_tested | — |
-| 58 | REST API | Backend và API | unverified | not_tested | — |
-| 59 | GraphQL | Backend và API | unverified | not_tested | — |
+| 58 | REST API | Backend và API | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 59 | GraphQL | Backend và API | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 60 | GraphQL Federation | Backend và API | unverified | not_tested | — |
 | 61 | gRPC | Backend và API | unverified | not_tested | — |
 | 62 | WebSocket | Backend và API | unverified | not_tested | — |
-| 63 | Webhook | Backend và API | unverified | not_tested | — |
+| 63 | Webhook | Backend và API | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 64 | Microservices | Backend và API | unverified | not_tested | — |
 | 65 | Monolithic Architecture | Backend và API | unverified | not_tested | — |
 | 66 | API Versioning | Backend và API | unverified | not_tested | — |
-| 67 | Rate Limiting | Backend và API | unverified | not_tested | — |
-| 68 | Input Validation | Backend và API | unverified | not_tested | — |
+| 67 | Rate Limiting | Backend và API | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 68 | Input Validation | Backend và API | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 69 | Output Encoding | Backend và API | unverified | not_tested | — |
-| 70 | Authentication | Backend và API | unverified | not_tested | — |
-| 71 | Authorization | Backend và API | unverified | not_tested | — |
-| 72 | RBAC | Backend và API | unverified | not_tested | — |
+| 70 | Authentication | Backend và API | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 71 | Authorization | Backend và API | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 72 | RBAC | Backend và API | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 73 | ABAC | Backend và API | unverified | not_tested | — |
 | 74 | Multi-Tenancy | Backend và API | unverified | not_tested | — |
-| 75 | Business Logic | Backend và API | unverified | not_tested | — |
+| 75 | Business Logic | Backend và API | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 76 | Background Jobs | Backend và API | unverified | not_tested | — |
 | 77 | Workflow Engine | Backend và API | unverified | not_tested | — |
 | 78 | Event-Driven Architecture | Backend và API | unverified | not_tested | — |
@@ -103,31 +103,31 @@
 | 85 | Product Brands | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 86 | Product Pricing | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 87 | Discount Management | Chức năng thương mại điện tử | unverified | not_tested | — |
-| 88 | Coupon Management | Chức năng thương mại điện tử | unverified | not_tested | — |
+| 88 | Coupon Management | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 89 | Flash Sale | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 90 | Inventory Management | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 91 | Stock Reservation | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 92 | Shopping Cart | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 93 | Cart Synchronization | Chức năng thương mại điện tử | unverified | not_tested | — |
-| 94 | Guest Checkout | Chức năng thương mại điện tử | unverified | not_tested | — |
-| 95 | Customer Checkout | Chức năng thương mại điện tử | unverified | not_tested | — |
+| 94 | Guest Checkout | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 95 | Customer Checkout | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 96 | Shipping Management | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 97 | Shipping Fee Calculation | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 98 | Shipping Address | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 99 | Billing Address | Chức năng thương mại điện tử | unverified | not_tested | — |
-| 100 | Payment Gateway | Chức năng thương mại điện tử | unverified | not_tested | — |
-| 101 | Cash on Delivery (COD) | Chức năng thương mại điện tử | unverified | not_tested | — |
-| 102 | Payment Refund | Chức năng thương mại điện tử | unverified | not_tested | — |
-| 103 | Payment Callback | Chức năng thương mại điện tử | unverified | not_tested | — |
-| 104 | Payment Webhook | Chức năng thương mại điện tử | unverified | not_tested | — |
-| 105 | Order Management | Chức năng thương mại điện tử | unverified | not_tested | — |
+| 100 | Payment Gateway | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 101 | Cash on Delivery (COD) | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 102 | Payment Refund | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 103 | Payment Callback | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 104 | Payment Webhook | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 105 | Order Management | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 106 | Order History | Chức năng thương mại điện tử | unverified | not_tested | — |
-| 107 | Order Cancellation | Chức năng thương mại điện tử | unverified | not_tested | — |
+| 107 | Order Cancellation | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 108 | Order Return | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 109 | Order Exchange | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 110 | Invoice Generation | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 111 | Tax Calculation | Chức năng thương mại điện tử | unverified | not_tested | — |
-| 112 | Review & Rating | Chức năng thương mại điện tử | unverified | not_tested | — |
+| 112 | Review & Rating | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 113 | Product Q&A | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 114 | Wishlist | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 115 | Recently Viewed Products | Chức năng thương mại điện tử | unverified | not_tested | — |
@@ -136,7 +136,7 @@
 | 118 | Gift Cards | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 119 | Affiliate System | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 120 | Subscription Products | Chức năng thương mại điện tử | unverified | not_tested | — |
-| 121 | Notification System | Chức năng thương mại điện tử | unverified | not_tested | — |
+| 121 | Notification System | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 122 | Email Notification | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 123 | SMS Notification | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 124 | Push Notification | Chức năng thương mại điện tử | unverified | not_tested | — |
@@ -155,16 +155,16 @@
 | 137 | Database Encryption | Database và Data Storage | unverified | not_tested | — |
 | 138 | Data Masking | Database và Data Storage | unverified | not_tested | — |
 | 139 | Admin Dashboard | Quản trị hệ thống | unverified | not_tested | — |
-| 140 | User Management | Quản trị hệ thống | unverified | not_tested | — |
+| 140 | User Management | Quản trị hệ thống | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 141 | Product Management | Quản trị hệ thống | unverified | not_tested | — |
 | 142 | Category Management | Quản trị hệ thống | unverified | not_tested | — |
 | 143 | Order Management | Quản trị hệ thống | unverified | not_tested | — |
 | 144 | Inventory Management | Quản trị hệ thống | unverified | not_tested | — |
-| 145 | Payment Management | Quản trị hệ thống | unverified | not_tested | — |
+| 145 | Payment Management | Quản trị hệ thống | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 146 | Refund Management | Quản trị hệ thống | unverified | not_tested | — |
 | 147 | Coupon Management | Quản trị hệ thống | unverified | not_tested | — |
 | 148 | Promotion Management | Quản trị hệ thống | unverified | not_tested | — |
-| 149 | Role & Permission Management | Quản trị hệ thống | unverified | not_tested | — |
+| 149 | Role & Permission Management | Quản trị hệ thống | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 150 | Audit Log | Quản trị hệ thống | unverified | not_tested | — |
 | 151 | System Configuration | Quản trị hệ thống | unverified | not_tested | — |
 | 152 | Feature Flags | Quản trị hệ thống | unverified | not_tested | — |
@@ -186,7 +186,7 @@
 | 168 | AI Integration | Tích hợp bên thứ ba | unverified | not_tested | — |
 | 169 | CI/CD Pipeline | DevOps và vận hành | unverified | not_tested | — |
 | 170 | Source Code Repository | DevOps và vận hành | unverified | not_tested | — |
-| 171 | Dependency Management | DevOps và vận hành | unverified | not_tested | — |
+| 171 | Dependency Management | DevOps và vận hành | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 172 | Package Registry | DevOps và vận hành | unverified | not_tested | — |
 | 173 | Infrastructure as Code (Terraform, Ansible) | DevOps và vận hành | unverified | not_tested | — |
 | 174 | Docker Compose | DevOps và vận hành | unverified | not_tested | — |
@@ -194,7 +194,7 @@
 | 176 | Secrets Management | DevOps và vận hành | unverified | not_tested | — |
 | 177 | Configuration Management | DevOps và vận hành | unverified | not_tested | — |
 | 178 | Monitoring | DevOps và vận hành | unverified | not_tested | — |
-| 179 | Logging | DevOps và vận hành | unverified | not_tested | — |
+| 179 | Logging | DevOps và vận hành | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 180 | Distributed Tracing | DevOps và vận hành | unverified | not_tested | — |
 | 181 | Error Tracking | DevOps và vận hành | unverified | not_tested | — |
 | 182 | Metrics & Alerting | DevOps và vận hành | unverified | not_tested | — |
@@ -207,30 +207,30 @@
 | 189 | XSS | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 190 | CSRF | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 191 | SSRF | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 192 | IDOR / BOLA | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 193 | Broken Authentication | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 194 | Broken Authorization | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 195 | Privilege Escalation | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
+| 192 | IDOR / BOLA | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 193 | Broken Authentication | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 194 | Broken Authorization | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 195 | Privilege Escalation | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 196 | Session Hijacking | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 197 | Session Fixation | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 198 | JWT Vulnerabilities | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 199 | OAuth Misconfiguration | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
+| 197 | Session Fixation | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 198 | JWT Vulnerabilities | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 199 | OAuth Misconfiguration | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 200 | SAML Vulnerabilities | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 201 | Password Reset Vulnerabilities | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 202 | Account Enumeration | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
+| 201 | Password Reset Vulnerabilities | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 202 | Account Enumeration | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 203 | Brute Force | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 204 | Credential Stuffing | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 205 | Rate Limit Bypass | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 206 | Business Logic Abuse | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 207 | Price Manipulation | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 208 | Coupon Abuse | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 209 | Cart Manipulation | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 210 | Payment Manipulation | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
+| 206 | Business Logic Abuse | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 207 | Price Manipulation | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 208 | Coupon Abuse | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 209 | Cart Manipulation | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 210 | Payment Manipulation | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 211 | Race Conditions | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 212 | Inventory Manipulation | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 213 | Checkout Bypass | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 214 | Payment Replay | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 215 | Webhook Forgery | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
+| 214 | Payment Replay | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 215 | Webhook Forgery | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 216 | File Upload Vulnerabilities | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 217 | Path Traversal | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 218 | Local File Inclusion (LFI) | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
@@ -239,10 +239,10 @@
 | 221 | Server-Side Template Injection (SSTI) | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 222 | XXE | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 223 | Deserialization Vulnerabilities | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 224 | CORS Misconfiguration | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
+| 224 | CORS Misconfiguration | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 225 | CSP Misconfiguration | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 226 | TLS Misconfiguration | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 227 | Security Header Misconfiguration | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
+| 227 | Security Header Misconfiguration | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 228 | DNS Misconfiguration | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 229 | Subdomain Takeover | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 230 | Open Redirect | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
@@ -251,9 +251,9 @@
 | 233 | HTTP Request Smuggling | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 234 | Cache Poisoning | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 235 | Cache Deception | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 236 | API Mass Assignment | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 237 | API Excessive Data Exposure | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 238 | GraphQL Introspection Abuse | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
+| 236 | API Mass Assignment | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 237 | API Excessive Data Exposure | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 238 | GraphQL Introspection Abuse | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 239 | GraphQL DoS | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 240 | WebSocket Authorization Bypass | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 241 | Webhook SSRF | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
@@ -261,22 +261,22 @@
 | 243 | IAM Misconfiguration | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 244 | Container Escape | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 245 | Kubernetes Misconfiguration | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 246 | Secrets Exposure | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
+| 246 | Secrets Exposure | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 247 | CI/CD Pipeline Vulnerabilities | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 248 | Dependency / Supply Chain Vulnerabilities | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 249 | Logging & Monitoring Weaknesses | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 250 | Backup Exposure | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 251 | Information Disclosure | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 252 | Sensitive Data Exposure | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 253 | PII Leakage | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
+| 249 | Logging & Monitoring Weaknesses | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 250 | Backup Exposure | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 251 | Information Disclosure | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 252 | Sensitive Data Exposure | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 253 | PII Leakage | Các chức năng và bề mặt kiểm thử bảo mật | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 254 | Business Email Compromise Scenarios | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 255 | Denial of Service (DoS) | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
 | 256 | Distributed Denial of Service (DDoS) | Các chức năng và bề mặt kiểm thử bảo mật | unverified | not_tested | — |
-| 257 | Đăng ký → Xác minh email → Đăng nhập | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
+| 257 | Đăng ký → Xác minh email → Đăng nhập | Các kịch bản nghiệp vụ end-to-end | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 258 | Đăng nhập → Quản lý hồ sơ → Đổi mật khẩu | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
-| 259 | Tìm kiếm → Xem sản phẩm → Thêm giỏ hàng | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
+| 259 | Tìm kiếm → Xem sản phẩm → Thêm giỏ hàng | Các kịch bản nghiệp vụ end-to-end | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 260 | Giỏ hàng → Áp mã giảm giá → Checkout | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
-| 261 | Checkout → Thanh toán → Xác nhận đơn hàng | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
+| 261 | Checkout → Thanh toán → Xác nhận đơn hàng | Các kịch bản nghiệp vụ end-to-end | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 262 | Thanh toán thất bại → Thử lại thanh toán | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
 | 263 | Đặt hàng → Hủy đơn → Hoàn tiền | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
 | 264 | Đặt hàng → Theo dõi vận chuyển → Nhận hàng | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
@@ -284,13 +284,13 @@
 | 266 | Admin → Quản lý người dùng → Phân quyền | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
 | 267 | Admin → Quản lý sản phẩm → Quản lý kho | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
 | 268 | Admin → Quản lý đơn hàng → Quản lý thanh toán | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
-| 269 | User A → Truy cập dữ liệu User B (kiểm thử IDOR/BOLA) | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
-| 270 | User thường → Truy cập chức năng Admin (kiểm thử phân quyền) | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
+| 269 | User A → Truy cập dữ liệu User B (kiểm thử IDOR/BOLA) | Các kịch bản nghiệp vụ end-to-end | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 270 | User thường → Truy cập chức năng Admin (kiểm thử phân quyền) | Các kịch bản nghiệp vụ end-to-end | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 271 | Guest → Truy cập tài nguyên yêu cầu đăng nhập | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
 | 272 | Nhiều người dùng đồng thời mua sản phẩm giới hạn tồn kho | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
-| 273 | Gửi lại payment callback/webhook | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
-| 274 | Thay đổi giá, số lượng, coupon trong quá trình checkout | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
-| 275 | Truy cập API trực tiếp bỏ qua giao diện frontend | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
+| 273 | Gửi lại payment callback/webhook | Các kịch bản nghiệp vụ end-to-end | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 274 | Thay đổi giá, số lượng, coupon trong quá trình checkout | Các kịch bản nghiệp vụ end-to-end | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 275 | Truy cập API trực tiếp bỏ qua giao diện frontend | Các kịch bản nghiệp vụ end-to-end | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 
 ## Reconnaissance & Information Disclosure
 

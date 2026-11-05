@@ -19,8 +19,29 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(len(components), 275)
         self.assertEqual([row["id"] for row in components], list(range(1, 276)))
         self.assertTrue(all(row["category"] and row["name"] for row in components))
-        self.assertTrue(all(row["implementation_status"] == "unverified" for row in components))
-        self.assertTrue(all(row["test_status"] == "not_tested" for row in components))
+        verified = [row for row in components if row["test_status"] == "verified"]
+        self.assertTrue(verified)
+        for row in verified:
+            self.assertEqual(row["implementation_status"], "observed", row["id"])
+            self.assertEqual(row.get("evidence"), "docs/component-smoke.md", row["id"])
+            self.assertTrue((ROOT / row["evidence"]).is_file())
+        self.assertTrue(all(row["implementation_status"] == "unverified" for row in components if row["test_status"] == "not_tested"))
+
+    def test_component_smoke_report_lists_every_verified_component(self):
+        expected = {row["id"] for row in self.catalog["components"] if row.get("evidence") == "docs/component-smoke.md"}
+        report = (ROOT / "docs" / "component-smoke.md").read_text(encoding="utf-8")
+        documented = set()
+        in_table = False
+        for line in report.splitlines():
+            if line.startswith("| IDs"):
+                in_table = True
+                continue
+            if in_table and not line.startswith("|"):
+                break
+            if not in_table or line.startswith("|---"):
+                continue
+            documented.update(int(value.strip()) for value in line.split("|")[1].split(","))
+        self.assertEqual(documented, expected)
 
     def test_all_726_listed_entries_are_preserved_once(self):
         entries = self.catalog["entries"]
@@ -108,6 +129,7 @@ class CatalogTests(unittest.TestCase):
         self.assertIn("verified: 'Đã xác minh'", page)
         self.assertIn("Mã nguồn: ${row.implementation_evidence}", page)
         self.assertIn("Bằng chứng kiểm thử/audit: ${row.evidence}", page)
+        self.assertIn("components.map(row => ({ ...row, record_type: 'component' }))", page)
         self.assertIn("node.textContent = safe(value)", page)
 
 
