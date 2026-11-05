@@ -6,7 +6,10 @@ The automated smoke reproduced the following behaviors and records them as `obse
 
 | IDs | Finding | Direct evidence |
 |---|---|---|
+| 8, 9, 26, 570 | Service fingerprinting, internal health information, and metrics disclosure | The root returned its framework version, the synthetic phpinfo page disclosed fixed service markers, health returned the synthetic database URL and internal IP, and unauthenticated metrics returned a lab secret marker and internal routes. |
 | 17, 19, 20 | Exposed environment configuration, API docs, and GraphQL introspection | Unauthenticated `/.env` returned deliberately fake environment values; `/docs` returned 200; GraphQL `__schema` returned the `Query` root. |
+| 128 | SQL injection training simulation | A synthetic login payload matching the route's explicit SQLi exercise branch authenticated as the seeded lab admin. This demonstrates the route simulation, not SQL execution against a database. |
+| 168, 250, 603 | CSV formula injection, product mass assignment, and unbounded pagination | An unauthenticated product create accepted admin-only fields; its synthetic `=1+1` name was exported without formula neutralization; requesting `limit=1` still returned multiple catalog rows. |
 | 293, 576 | Coupon enumeration and backup data exposure | Unauthenticated coupon listing revealed the synthetic `ADMIN` coupon; the admin backup endpoint returned synthetic user and order records. |
 | 284, 285, 286, 287, 289 | Negative/zero price, quantity, and cart ownership abuse | The API accepted negative and zero unit prices, a negative quantity, and returned user 3's cart through a caller-selected user ID. |
 | 294 | Coupon reuse | The same synthetic coupon validated successfully twice without a use limit. |
@@ -32,4 +35,4 @@ The automated smoke reproduced the following behaviors and records them as `obse
 
 Dependency findings **#543 Vulnerable Dependencies**, **#544 Outdated Dependencies**, and **#618 JavaScript Dependency Vulnerability** are recorded separately in [dependency-audit.md](dependency-audit.md).
 
-These results cover only the listed findings. The other vulnerability entries, attack chains, components, and environment-dependent infrastructure checks remain `unverified` / `not_tested`; catalog completeness does not imply complete implementation.
+These results cover only the listed findings. The recommendation SSRF check for #198 and #200 was skipped because `httpx` is declared in `backend/requirements.txt` but is not installed in this Python runtime. The other vulnerability entries, attack chains, components, and environment-dependent infrastructure checks remain `unverified` / `not_tested`; catalog completeness does not imply complete implementation.

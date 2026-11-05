@@ -118,6 +118,17 @@ try {
   Assert-Equal $catalog.counts.attack_chains 29 'Attack-chain inventory count'
   Assert-Equal $catalog.counts.test_matrix_fields 36 'Test-matrix inventory count'
 
+  $rootInfo = Invoke-RestMethod -Uri "$apiBase/" -TimeoutSec 5
+  Assert-Equal $rootInfo.framework 'FastAPI 0.104.1' 'Unauthenticated framework version disclosure'
+  $phpInfo = Invoke-WebRequest -Uri "$apiBase/phpinfo.php" -TimeoutSec 5
+  if ($phpInfo.Content -notmatch 'Apache/2\.4\.54|SECRET_KEY') { throw 'The synthetic fingerprinting page did not disclose its service markers.' }
+  $healthInfo = Invoke-RestMethod -Uri "$apiBase/health" -TimeoutSec 5
+  Assert-Equal $healthInfo.database_url 'postgresql://lab:lab@127.0.0.1:1/vulnshop' 'Unauthenticated internal service configuration disclosure'
+  if (-not $healthInfo.internal_ip) { throw 'The health endpoint did not disclose an internal address.' }
+  $metrics = Invoke-RestMethod -Uri "$apiBase/metrics" -TimeoutSec 5
+  Assert-Equal $metrics.secret_key 'local-smoke-secret' 'Unauthenticated metrics secret exposure'
+  if ($metrics.internal_endpoints.Count -lt 3) { throw 'The metrics endpoint did not disclose internal routes.' }
+
   $docsResponse = Invoke-WebRequest -Uri "$apiBase/docs" -TimeoutSec 5
   Assert-Equal $docsResponse.StatusCode 200 'Unauthenticated API documentation'
   $envResponse = Invoke-WebRequest -Uri "$apiBase/.env" -TimeoutSec 5
@@ -132,6 +143,9 @@ try {
   $defaultLogin = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/login" -Method Post -ContentType 'application/json' -Body $defaultLoginBody -TimeoutSec 5
   Assert-Equal $defaultLogin.user.role 'admin' 'Weak default admin credentials'
   Assert-Equal $defaultLogin.user.password_plain 'admin123' 'Sensitive fields in JWT login response'
+  $sqliBody = @{ email = "admin@vulnshop.com' OR '1'='1'--"; password = 'admin123' } | ConvertTo-Json -Compress
+  $sqliLogin = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/login" -Method Post -ContentType 'application/json' -Body $sqliBody -TimeoutSec 5
+  Assert-Equal $sqliLogin.user.role 'admin' 'Synthetic SQL injection login bypass'
   $missingAccountBody = @{ email = "missing-$([guid]::NewGuid().ToString('N'))@example.test"; password = 'wrong' } | ConvertTo-Json -Compress
   $missingAccountMessage = Get-ApiErrorMessage "$apiBase/api/v1/auth/login" $missingAccountBody
   $wrongPasswordBody = @{ email = 'admin@vulnshop.com'; password = 'wrong' } | ConvertTo-Json -Compress
@@ -147,6 +161,30 @@ try {
   Assert-Equal $productRecord.product.price 29990000 'Synthetic product catalog price'
   Assert-Equal $productRecord.internal_data.cost 15000000 'Unauthenticated internal cost disclosure'
   Assert-Equal $productRecord.internal_data.admin_note 'Profit margin 40%' 'Unauthenticated internal business data disclosure'
+  $httpxAvailable = $false
+  try { & python -c 'import httpx' *> $null; $httpxAvailable = ($LASTEXITCODE -eq 0) } catch { $httpxAvailable = $false }
+  if ($httpxAvailable) {
+    $recommendationUrl = [uri]::EscapeDataString("$apiBase/health")
+    $loopbackSsrf = Invoke-RestMethod -Uri "$apiBase/api/v1/products/1/recommendations?url=$recommendationUrl" -TimeoutSec 8
+    Assert-Equal $loopbackSsrf.url_fetched "$apiBase/health" 'Loopback-only SSRF target'
+    if ($loopbackSsrf.recommendations -notmatch 'postgresql://lab:lab@127\.0\.0\.1:1/vulnshop') { throw 'The recommendation fetch did not return the synthetic loopback health response.' }
+  } else {
+    Write-Output 'SKIP SSRF route check: the declared httpx dependency is not installed in this Python runtime.'
+  }
+
+  $formulaProductBody = @{
+    name = '=1+1'; description = 'Synthetic CSV formula marker'; price = 1; stock = 1
+    category = 'Lab'; brand = 'Synthetic'; cost = 0.01; is_admin_product = $true
+    admin_note = 'LAB_ONLY'; supplier_cost = 0.01; hidden_discount = 100
+  } | ConvertTo-Json -Compress
+  $massAssignedProduct = Invoke-RestMethod -Uri "$apiBase/api/v1/products" -Method Post -ContentType 'application/json' -Body $formulaProductBody -TimeoutSec 5
+  Assert-Equal $massAssignedProduct.product.is_admin_product $true 'Unauthenticated product mass assignment'
+  Assert-Equal $massAssignedProduct.product.hidden_discount 100 'Hidden discount mass assignment'
+  $csvExport = Invoke-WebRequest -Uri "$apiBase/api/v1/products/export" -TimeoutSec 5
+  if ($csvExport.Content -notmatch '(?m)^\d+,=1\+1,') { throw 'The CSV export did not preserve the synthetic formula marker as an active cell formula.' }
+  $unboundedList = Invoke-RestMethod -Uri "$apiBase/api/v1/products?limit=1&offset=0&page=1" -TimeoutSec 5
+  if ($unboundedList.products.Count -le 1) { throw 'The product endpoint unexpectedly capped results to the requested page size.' }
+
   $reviewBody = @{ content = 'Synthetic smoke review'; rating = 5; user_name = 'Unauthenticated Reviewer' } | ConvertTo-Json -Compress
   $fakeReview = Invoke-RestMethod -Uri "$apiBase/api/v1/products/1/review" -Method Post -ContentType 'application/json' -Body $reviewBody -TimeoutSec 5
   Assert-Equal $fakeReview.review.user_name 'Unauthenticated Reviewer' 'Fake product review injection'
@@ -347,7 +385,7 @@ try {
   $apiLog = Get-Content -Raw -LiteralPath (Join-Path $logDir 'api.out')
   if ($apiLog -notmatch [regex]::Escape("email=$email password=x role=admin")) { throw 'The synthetic signup password was not present in the lab API log.' }
 
-  Write-Output 'Loopback smoke passed: storefront/catalog, docs/env/backup exposure, coupon discovery/reuse, auth bypass/default credentials/enumeration/rate limits, email/OTP/reset flows, refresh/session/JWT/OAuth flaws, product/customer data exposure and fake reviews, role/order ownership changes, cart price/quantity tampering, duplicate payments, unauthorized cancellation/refunds, payment webhook forgery/replay, and GraphQL introspection.'
+  Write-Output 'Loopback smoke passed: storefront/catalog, service fingerprinting/health/metrics disclosure, docs/env/backup exposure, auth SQL injection/default credentials/enumeration/rate limits, email/OTP/reset flows, refresh/session/JWT/OAuth flaws, product mass assignment/CSV export/pagination/customer data exposure and fake reviews, role/order ownership changes, cart price/quantity tampering, duplicate payments, unauthorized cancellation/refunds, payment webhook forgery/replay, and GraphQL introspection.'
 }
 catch {
   foreach ($name in @('api.err','web.err','graphql.err')) {
@@ -362,7 +400,9 @@ catch {
 finally {
   foreach ($process in @($web,$api,$graphql)) {
     if ($process -and -not $process.HasExited) { Stop-Process -Id $process.Id -Force -ErrorAction SilentlyContinue }
+    if ($process) { try { $null = $process.WaitForExit(5000) } catch {} }
   }
+  Start-Sleep -Milliseconds 150
   foreach ($file in Get-ChildItem -LiteralPath $logDir -File -ErrorAction SilentlyContinue) { Remove-Item -LiteralPath $file.FullName -Force }
   Remove-Item -LiteralPath $logDir -Force -ErrorAction SilentlyContinue
   foreach ($name in $oldEnvironment.Keys) { [Environment]::SetEnvironmentVariable($name, $oldEnvironment[$name], 'Process') }

@@ -303,8 +303,8 @@
 | 5 | DNS Cache Poisoning | vulnerability | unverified | not_tested | — |
 | 6 | Virtual Host Misconfiguration | vulnerability | unverified | not_tested | — |
 | 7 | Server Version Disclosure | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
-| 8 | Technology Stack Disclosure | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
-| 9 | Framework Fingerprinting | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 8 | Technology Stack Disclosure | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 9 | Framework Fingerprinting | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 10 | Debug Information Exposure | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
 | 11 | Source Code Disclosure | vulnerability | unverified | not_tested | — |
 | 12 | Source Map Exposure | vulnerability | unverified | not_tested | — |
@@ -321,7 +321,7 @@
 | 23 | Sensitive Metadata Exposure | vulnerability | unverified | not_tested | — |
 | 24 | Error Message Information Leakage | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
 | 25 | Stack Trace Disclosure | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
-| 26 | Internal IP Disclosure | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 26 | Internal IP Disclosure | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 27 | Cloud Metadata Exposure | vulnerability | unverified | not_tested | — |
 | 28 | Public Cloud Storage Exposure | vulnerability | unverified | not_tested | — |
 | 29 | PII Exposure | vulnerability | unverified | not_tested | — |
@@ -438,7 +438,7 @@
 
 | ID | Name | Type | Implementation | Test | Evidence |
 |---:|---|---|---|---|---|
-| 128 | SQL Injection | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 128 | SQL Injection | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 129 | Blind SQL Injection | vulnerability | unverified | not_tested | — |
 | 130 | Boolean-Based SQL Injection | vulnerability | unverified | not_tested | — |
 | 131 | Time-Based SQL Injection | vulnerability | unverified | not_tested | — |
@@ -478,7 +478,7 @@
 | 165 | Search Query Injection | vulnerability | unverified | not_tested | — |
 | 166 | JSON Injection | vulnerability | unverified | not_tested | — |
 | 167 | YAML Deserialization Injection | vulnerability | unverified | not_tested | — |
-| 168 | CSV Injection | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 168 | CSV Injection | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 169 | HTTP Parameter Pollution | vulnerability | unverified | not_tested | — |
 
 ## Cross-Site Vulnerabilities
@@ -575,7 +575,7 @@
 | 247 | API8 - Security Misconfiguration | vulnerability | unverified | not_tested | — |
 | 248 | API9 - Improper Inventory Management | vulnerability | unverified | not_tested | — |
 | 249 | API10 - Unsafe Consumption of APIs | vulnerability | unverified | not_tested | — |
-| 250 | API Mass Assignment | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 250 | API Mass Assignment | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 251 | API Excessive Data Exposure | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 252 | API Parameter Tampering | vulnerability | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 253 | API Versioning Bypass | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
@@ -945,7 +945,7 @@
 | 567 | Missing Authorization Monitoring | vulnerability | unverified | not_tested | — |
 | 568 | Missing Alerting | vulnerability | unverified | not_tested | — |
 | 569 | Monitoring Dashboard Exposure | vulnerability | unverified | not_tested | — |
-| 570 | Metrics Endpoint Exposure | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 570 | Metrics Endpoint Exposure | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 571 | Debug Endpoint Exposure | vulnerability | unverified | not_tested | — |
 | 572 | Health Check Information Leakage | vulnerability | unverified | not_tested | — |
 | 573 | Trace Data Exposure | vulnerability | unverified | not_tested | — |
@@ -983,7 +983,7 @@
 | 600 | WebSocket Connection Exhaustion | vulnerability | unverified | not_tested | — |
 | 601 | Rate Limit Bypass | vulnerability | unverified | not_tested | — |
 | 602 | Cache Exhaustion | vulnerability | unverified | not_tested | — |
-| 603 | Unbounded Pagination | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 603 | Unbounded Pagination | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 604 | Unbounded Search Query | vulnerability | unverified | not_tested | — |
 
 ## Frontend & Client-Side Security
