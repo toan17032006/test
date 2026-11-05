@@ -144,6 +144,10 @@ try {
   $metrics = Invoke-RestMethod -Uri "$apiBase/metrics" -TimeoutSec 5
   Assert-Equal $metrics.secret_key 'local-smoke-secret' 'Unauthenticated metrics secret exposure'
   if ($metrics.internal_endpoints.Count -lt 3) { throw 'The metrics endpoint did not disclose internal routes.' }
+  $debugInfo = Invoke-RestMethod -Uri "$apiBase/debug" -TimeoutSec 5
+  Assert-Equal $debugInfo.aws_key 'LAB_ONLY_NOT_A_CREDENTIAL' 'Unauthenticated debug credential exposure'
+  Assert-Equal $debugInfo.jwt_secret 'local-smoke-jwt' 'Unauthenticated debug JWT secret exposure'
+  Assert-Equal $debugInfo.admin_password 'admin123' 'Unauthenticated debug admin password exposure'
   $securityHeaders = Invoke-WebRequest -Uri "$apiBase/" -TimeoutSec 5
   foreach ($headerName in @('Content-Security-Policy','Strict-Transport-Security','X-Frame-Options','X-Content-Type-Options')) {
     if ($securityHeaders.Headers.AllKeys -contains $headerName) { throw "The expected missing security header was present: $headerName" }
@@ -419,7 +423,7 @@ try {
   $apiLog = Get-Content -Raw -LiteralPath (Join-Path $logDir 'api.out')
   if ($apiLog -notmatch [regex]::Escape("email=$email password=x role=admin")) { throw 'The synthetic signup password was not present in the lab API log.' }
 
-  Write-Output 'Loopback smoke passed: storefront/catalog/search/filter/product detail/cart/checkout/notification/shipping, service fingerprinting/health/metrics disclosure, missing security headers/CORS reflection, docs/env/backup exposure, auth SQL injection/default credentials/enumeration/rate limits, email/OTP/reset flows, refresh/session/JWT/OAuth flaws, product mass assignment/CSV export/pagination/customer data exposure and fake reviews, role/order ownership changes, cart price/quantity tampering, duplicate payments, unauthorized cancellation/refunds, payment webhook forgery/replay, and GraphQL introspection.'
+  Write-Output 'Loopback smoke passed: storefront/catalog/search/filter/product detail/cart/checkout/notification/shipping, service fingerprinting/debug/health/metrics disclosure, missing security headers/CORS reflection, docs/env/backup exposure, auth SQL injection/default credentials/enumeration/rate limits, email/OTP/reset flows, refresh/session/JWT/OAuth flaws, product mass assignment/CSV export/pagination/customer data exposure and fake reviews, role/order ownership changes, cart price/quantity tampering, duplicate payments, unauthorized cancellation/refunds, payment webhook forgery/replay, and GraphQL introspection.'
 }
 catch {
   foreach ($name in @('api.err','web.err','graphql.err')) {

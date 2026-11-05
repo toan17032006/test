@@ -2098,8 +2098,9 @@
       "name": "Debug Information Exposure",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 11,

@@ -6,7 +6,7 @@ The automated smoke reproduced the following behaviors and records them as `obse
 
 | IDs | Finding | Direct evidence |
 |---|---|---|
-| 8, 9, 26, 570 | Service fingerprinting, internal health information, and metrics disclosure | The root returned its framework version, the synthetic phpinfo page disclosed fixed service markers, health returned the synthetic database URL and internal IP, and unauthenticated metrics returned a lab secret marker and internal routes. |
+| 8, 9, 10, 26, 570 | Service fingerprinting, debug/health details, and metrics disclosure | The root returned its framework version, the synthetic phpinfo page disclosed fixed service markers, `/debug` returned only asserted lab marker secrets, health returned the synthetic database URL and internal IP, and unauthenticated metrics returned a lab secret marker and internal routes. The debug response body was not written to logs or reports. |
 | 184, 187, 189, 480 | SameSite cookie and CORS misconfiguration; missing security headers | The synthetic login cookie used `SameSite=None` without `Secure`; a request with `Origin: https://attacker.invalid` and a fake cookie received the reflected origin plus `Access-Control-Allow-Credentials: true`; the API root lacked CSP, HSTS, frame, and content-type protections. |
 | 282 | Webhook event injection | An unauthenticated shipping webhook advanced a synthetic order from pending to shipped to delivered and set a lab tracking number without a signature. |
 | 17, 19, 20 | Exposed environment configuration, API docs, and GraphQL introspection | Unauthenticated `/.env` returned deliberately fake environment values; `/docs` returned 200; GraphQL `__schema` returned the `Query` root. |

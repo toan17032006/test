@@ -305,7 +305,7 @@
 | 7 | Server Version Disclosure | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
 | 8 | Technology Stack Disclosure | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 9 | Framework Fingerprinting | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
-| 10 | Debug Information Exposure | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 10 | Debug Information Exposure | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 11 | Source Code Disclosure | vulnerability | unverified | not_tested | — |
 | 12 | Source Map Exposure | vulnerability | unverified | not_tested | — |
 | 13 | Git Repository Exposure | vulnerability | unverified | not_tested | — |
