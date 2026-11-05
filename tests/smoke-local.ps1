@@ -14,6 +14,45 @@ function Assert-Equal($actual, $expected, $label) {
   if ($actual -ne $expected) { throw "$label expected '$expected', got '$actual'." }
 }
 
+function ConvertTo-Base64Url([string]$value) {
+  return [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($value)).TrimEnd('=').Replace('+','-').Replace('/','_')
+}
+
+function New-UnsignedTestJwt($payload) {
+  $header = ConvertTo-Base64Url '{"alg":"none","typ":"JWT"}'
+  $body = ConvertTo-Base64Url ($payload | ConvertTo-Json -Compress)
+  return "$header.$body."
+}
+
+function New-SignedTestJwt($payload, [string]$secret) {
+  $header = ConvertTo-Base64Url '{"alg":"HS256","typ":"JWT"}'
+  $body = ConvertTo-Base64Url ($payload | ConvertTo-Json -Compress)
+  $message = [Text.Encoding]::UTF8.GetBytes("$header.$body")
+  $hmac = [System.Security.Cryptography.HMACSHA256]::new([Text.Encoding]::UTF8.GetBytes($secret))
+  try { $signature = [Convert]::ToBase64String($hmac.ComputeHash($message)).TrimEnd('=').Replace('+','-').Replace('/','_') }
+  finally { $hmac.Dispose() }
+  return "$header.$body.$signature"
+}
+
+function Get-ApiErrorMessage([string]$uri, [string]$body) {
+  try {
+    $null = Invoke-RestMethod -Uri $uri -Method Post -ContentType 'application/json' -Body $body -TimeoutSec 5
+    return ''
+  } catch {
+    $responseBody = $_.ErrorDetails.Message
+    if ($responseBody) {
+      try {
+        $parsed = $responseBody | ConvertFrom-Json
+        if ($parsed.detail) { return [string]$parsed.detail }
+        if ($parsed.error) { return [string]$parsed.error }
+        return $responseBody
+      }
+      catch { return $responseBody }
+    }
+    return $_.Exception.Message
+  }
+}
+
 do { $apiPort = Get-FreeLoopbackPort } while ($apiPort -in @($webPort,$graphqlPort))
 do { $webPort = Get-FreeLoopbackPort } while ($webPort -eq $apiPort)
 do { $graphqlPort = Get-FreeLoopbackPort } while ($graphqlPort -in @($apiPort,$webPort))
@@ -89,6 +128,21 @@ try {
   Assert-Equal $bypass.bypass $true 'Authentication bypass endpoint'
   Assert-Equal $bypass.user.role 'admin' 'Authentication bypass administrator role'
 
+  $defaultLoginBody = @{ email = 'admin@vulnshop.com'; password = 'admin123' } | ConvertTo-Json -Compress
+  $defaultLogin = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/login" -Method Post -ContentType 'application/json' -Body $defaultLoginBody -TimeoutSec 5
+  Assert-Equal $defaultLogin.user.role 'admin' 'Weak default admin credentials'
+  Assert-Equal $defaultLogin.user.password_plain 'admin123' 'Sensitive fields in JWT login response'
+  $missingAccountBody = @{ email = "missing-$([guid]::NewGuid().ToString('N'))@example.test"; password = 'wrong' } | ConvertTo-Json -Compress
+  $missingAccountMessage = Get-ApiErrorMessage "$apiBase/api/v1/auth/login" $missingAccountBody
+  $wrongPasswordBody = @{ email = 'admin@vulnshop.com'; password = 'wrong' } | ConvertTo-Json -Compress
+  $wrongPasswordMessage = Get-ApiErrorMessage "$apiBase/api/v1/auth/login" $wrongPasswordBody
+  Assert-Equal $missingAccountMessage 'User not found' 'Username enumeration error response'
+  Assert-Equal $wrongPasswordMessage 'Invalid password' 'Existing-account enumeration error response'
+  for ($attempt = 0; $attempt -lt 5; $attempt++) {
+    $rateProbe = Get-ApiErrorMessage "$apiBase/api/v1/auth/login" $wrongPasswordBody
+    Assert-Equal $rateProbe 'Invalid password' 'Missing login rate limit'
+  }
+
   $productRecord = Invoke-RestMethod -Uri "$apiBase/api/v1/products/1" -TimeoutSec 5
   Assert-Equal $productRecord.product.price 29990000 'Synthetic product catalog price'
   Assert-Equal $productRecord.internal_data.cost 15000000 'Unauthenticated internal cost disclosure'
@@ -116,6 +170,16 @@ try {
   finally { $md5.Dispose() }
   Assert-Equal $registeredProfile.password_hash $expectedMd5 'Weak MD5 password storage'
   Assert-Equal $registeredProfile.role 'admin' 'Signup privilege escalation by mass assignment'
+  $duplicateRegistrationBody = @{ email = $email; name = 'Duplicate User'; password = 'different' } | ConvertTo-Json -Compress
+  $duplicateRegistrationMessage = Get-ApiErrorMessage "$apiBase/api/v1/auth/register" $duplicateRegistrationBody
+  if ($duplicateRegistrationMessage -notmatch 'already registered') { throw 'Registration did not distinguish an existing email address.' }
+  $verifyBypass = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/verify-email-bypass?email=$email" -TimeoutSec 5
+  Assert-Equal $verifyBypass.bypass $true 'Email verification without a token'
+  $verifyUrl = "$apiBase/api/v1/auth/verify-email?token=$($registered.verify_token)&email=$email"
+  $verifyFirst = Invoke-RestMethod -Uri $verifyUrl -TimeoutSec 5
+  $verifyReplay = Invoke-RestMethod -Uri $verifyUrl -TimeoutSec 5
+  Assert-Equal $verifyFirst.email $email 'Email verification token use'
+  Assert-Equal $verifyReplay.email $email 'Email verification token replay'
   $userHeaders = @{ 'x-user-id' = '2' }
   $unprotectedAdminList = Invoke-RestMethod -Uri "$apiBase/api/v1/admin/users" -TimeoutSec 5
   if ($unprotectedAdminList.total -lt 4) { throw 'The admin user list was not available to an unauthenticated caller.' }
@@ -132,6 +196,97 @@ try {
   if (-not $login.access_token) { throw 'Login did not return an access token.' }
   $me = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/me" -Headers @{ Authorization = "Bearer $($login.access_token)" } -TimeoutSec 5
   Assert-Equal $me.user.role 'admin' 'Authenticated profile role'
+  Assert-Equal $me.token_payload.password_plain 'x' 'Sensitive password data in JWT claims'
+
+  $rememberBody = @{ email = $email; password = 'x'; remember_me = $true } | ConvertTo-Json -Compress
+  $rememberResponse = Invoke-WebRequest -Uri "$apiBase/api/v1/auth/login" -Method Post -ContentType 'application/json' -Body $rememberBody -TimeoutSec 5
+  $cookieHeader = [string]::Join('; ', $rememberResponse.Headers['Set-Cookie'])
+  if ($cookieHeader -notmatch 'remember_me=') { throw 'The remember-me cookie was not issued.' }
+  if ($cookieHeader -notmatch 'Max-Age=99999999') { throw 'The remember-me cookie did not use the lab persistent lifetime.' }
+  if ($cookieHeader -notmatch 'SameSite=none') { throw 'The session cookie did not expose its permissive SameSite setting.' }
+  if ($cookieHeader -match 'HttpOnly|Secure') { throw 'The test expected session/auth cookies without HttpOnly or Secure flags.' }
+
+  $mfaSetup = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/mfa/setup?email=$email" -Method Post -TimeoutSec 5
+  Assert-Equal $mfaSetup.current_otp '123456' 'Predictable MFA one-time password'
+  $invalidOtpBody = @{ email = $email; otp = '999999' } | ConvertTo-Json -Compress
+  for ($attempt = 0; $attempt -lt 3; $attempt++) {
+    $otpError = Get-ApiErrorMessage "$apiBase/api/v1/auth/mfa/verify" $invalidOtpBody
+    Assert-Equal $otpError 'Invalid OTP code' 'Missing OTP attempt limit'
+  }
+  $validOtpBody = @{ email = $email; otp = '123456' } | ConvertTo-Json -Compress
+  $validOtpFirst = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/mfa/verify" -Method Post -ContentType 'application/json' -Body $validOtpBody -TimeoutSec 5
+  $validOtpReplay = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/mfa/verify" -Method Post -ContentType 'application/json' -Body $validOtpBody -TimeoutSec 5
+  if (-not $validOtpFirst.token -or -not $validOtpReplay.token) { throw 'The lab did not accept repeated valid OTP input.' }
+  $mfaBody = @{ email = $email; otp = '000000' } | ConvertTo-Json -Compress
+  $mfaBypass = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/mfa/verify" -Method Post -ContentType 'application/json' -Body $mfaBody -TimeoutSec 5
+  if (-not $mfaBypass.token) { throw 'The MFA backdoor did not return a token.' }
+  $mfaReplay = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/mfa/verify" -Method Post -ContentType 'application/json' -Body $mfaBody -TimeoutSec 5
+  if (-not $mfaReplay.token) { throw 'The lab did not accept replayed OTP input.' }
+
+  $refreshBody = @{ refresh_token = $login.refresh_token } | ConvertTo-Json -Compress
+  $refreshOne = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/refresh" -Method Post -ContentType 'application/json' -Body $refreshBody -TimeoutSec 5
+  $refreshTwo = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/refresh" -Method Post -ContentType 'application/json' -Body $refreshBody -TimeoutSec 5
+  Assert-Equal $refreshOne.refresh_token $login.refresh_token 'Refresh token reuse'
+  Assert-Equal $refreshTwo.refresh_token $login.refresh_token 'Refresh token rotation failure'
+
+  $fixedHeaders = @{ 'X-Session-Id' = 'fixed-lab-session' }
+  $fixedLogin = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/login" -Method Post -Headers $fixedHeaders -ContentType 'application/json' -Body $loginBody -TimeoutSec 5
+  Assert-Equal $fixedLogin.session_id 'fixed-lab-session' 'Session fixation'
+  $null = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/logout" -Method Post -Headers @{ Authorization = "Bearer $($login.access_token)" } -TimeoutSec 5
+  $afterLogout = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/me" -Headers @{ Authorization = "Bearer $($login.access_token)" } -TimeoutSec 5
+  Assert-Equal $afterLogout.user.email $email 'Session remained valid after logout'
+
+  $unknownResetBody = @{ email = "unknown-$([guid]::NewGuid().ToString('N'))@example.test" } | ConvertTo-Json -Compress
+  $unknownResetMessage = Get-ApiErrorMessage "$apiBase/api/v1/auth/forgot-password" $unknownResetBody
+  if ($unknownResetMessage -notmatch 'not found') { throw 'Password reset did not reveal whether the email address exists.' }
+  $forgotStart = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
+  $resetEmail = 'admin@vulnshop.com'
+  $forgotBody = @{ email = $resetEmail } | ConvertTo-Json -Compress
+  $forgotHeaders = @{ Host = 'attacker.invalid'; 'X-Forwarded-Proto' = 'https' }
+  $forgot = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/forgot-password" -Method Post -Headers $forgotHeaders -ContentType 'application/json' -Body $forgotBody -TimeoutSec 8
+  if (-not $forgot.token) { throw 'The password reset endpoint did not disclose its token.' }
+  if ($forgot.reset_url -notmatch '^https://attacker\.invalid/') { throw 'The reset URL did not trust the attacker-controlled Host header.' }
+  $forgotEnd = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds()
+  $tokenPredicted = $false
+  $tokenHasher = [System.Security.Cryptography.MD5]::Create()
+  try {
+    for ($second = $forgotStart - 5; $second -le $forgotEnd + 5; $second++) {
+      $candidateRaw = [Text.Encoding]::UTF8.GetBytes(('{0}:{1}:reset' -f $resetEmail, $second))
+      $candidate = [Convert]::ToHexString($tokenHasher.ComputeHash($candidateRaw)).ToLowerInvariant().Substring(0,16)
+      if ($candidate -eq $forgot.token) { $tokenPredicted = $true; break }
+    }
+  } finally { $tokenHasher.Dispose() }
+  if (-not $tokenPredicted) { throw 'The reset token did not match the timestamp-derived prediction.' }
+  $resetBodyOne = @{ token = $forgot.token; new_password = 'reset-one' } | ConvertTo-Json -Compress
+  $resetOne = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/reset-password" -Method Post -ContentType 'application/json' -Body $resetBodyOne -TimeoutSec 5
+  Assert-Equal $resetOne.new_password 'reset-one' 'Password reset response exposure'
+  $resetBodyTwo = @{ token = $forgot.token; new_password = 'reset-two' } | ConvertTo-Json -Compress
+  $resetTwo = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/reset-password" -Method Post -ContentType 'application/json' -Body $resetBodyTwo -TimeoutSec 5
+  Assert-Equal $resetTwo.new_password 'reset-two' 'Password reset token reuse'
+  $newPasswordLoginBody = @{ email = $resetEmail; password = 'reset-two' } | ConvertTo-Json -Compress
+  $resetLogin = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/login" -Method Post -ContentType 'application/json' -Body $newPasswordLoginBody -TimeoutSec 5
+  if (-not $resetLogin.access_token) { throw 'The unauthenticated reset flow did not change the synthetic account password.' }
+  $oldTokenAfterReset = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/me" -Headers @{ Authorization = "Bearer $($defaultLogin.access_token)" } -TimeoutSec 5
+  Assert-Equal $oldTokenAfterReset.user.email $resetEmail 'Session remained valid after password reset'
+
+  $nonePayload = @{ sub = $email; role = 'admin'; exp = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds() + 3600 }
+  $noneToken = New-UnsignedTestJwt $nonePayload
+  $noneAccepted = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/me" -Headers @{ Authorization = "Bearer $noneToken" } -TimeoutSec 5
+  Assert-Equal $noneAccepted.user.email $email 'Unsigned JWT acceptance'
+  $expiredPayload = @{ sub = $email; role = 'admin'; exp = 1 }
+  $expiredToken = New-SignedTestJwt $expiredPayload 'local-smoke-jwt'
+  $expiredAccepted = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/me" -Headers @{ Authorization = "Bearer $expiredToken" } -TimeoutSec 5
+  Assert-Equal $expiredAccepted.expired_token $true 'Expired JWT acceptance'
+  $unvalidatedClaims = @{ sub = $email; aud = 'attacker.invalid'; iss = 'https://attacker.invalid'; exp = [DateTimeOffset]::UtcNow.ToUnixTimeSeconds() + 3600 }
+  $claimsToken = New-SignedTestJwt $unvalidatedClaims 'local-smoke-jwt'
+  $claimsAccepted = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/me" -Headers @{ Authorization = "Bearer $claimsToken" } -TimeoutSec 5
+  Assert-Equal $claimsAccepted.user.email $email 'JWT audience and issuer validation'
+
+  $oauthBody = @{ code = 'LAB_FAKE_CODE'; redirect_uri = 'https://attacker.invalid/callback'; state = 'unvalidated-state' } | ConvertTo-Json -Compress
+  $oauth = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/social/google" -Method Post -ContentType 'application/json' -Body $oauthBody -TimeoutSec 5
+  Assert-Equal $oauth.redirect_uri 'https://attacker.invalid/callback' 'OAuth redirect URI manipulation'
+  Assert-Equal $oauth.state 'unvalidated-state' 'OAuth state parameter not validated'
+  if (-not $oauth.token) { throw 'The fake OAuth flow did not return its synthetic token.' }
 
   $addedApiItem = Invoke-RestMethod -Uri "$apiBase/api/v1/cart/items" -Method Post -Headers $userHeaders -ContentType 'application/json' -Body '{"product_id":1,"quantity":2,"unit_price":10}' -TimeoutSec 5
   Assert-Equal $addedApiItem.total 20 'API cart subtotal'
@@ -153,7 +308,7 @@ try {
   $apiLog = Get-Content -Raw -LiteralPath (Join-Path $logDir 'api.out')
   if ($apiLog -notmatch [regex]::Escape("email=$email password=x role=admin")) { throw 'The synthetic signup password was not present in the lab API log.' }
 
-  Write-Output 'Loopback smoke passed: 9 storefront pages, complete catalog totals, API docs/env exposure, auth bypass, synthetic product/user data exposure, role escalation, cross-user access, price/amount tampering, MD5 password storage/logging, mock payment/webhook forgery and replay, and GraphQL introspection.'
+  Write-Output 'Loopback smoke passed: storefront/catalog, API docs/env exposure, auth bypass/default credentials/enumeration/rate limits, email/OTP/reset flows, refresh/session/JWT/OAuth flaws, product/customer data exposure, role escalation, cross-user access, price/amount tampering, MD5 password storage/logging, payment webhook forgery/replay, and GraphQL introspection.'
 }
 catch {
   foreach ($name in @('api.err','web.err','graphql.err')) {

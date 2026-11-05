@@ -2193,32 +2193,36 @@
       "category": "Authentication Vulnerabilities",
       "name": "Weak Default Credentials",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 33,
       "category": "Authentication Vulnerabilities",
       "name": "Default Admin Account",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 34,
       "category": "Authentication Vulnerabilities",
       "name": "Username Enumeration",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 35,
       "category": "Authentication Vulnerabilities",
       "name": "Email Enumeration",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 36,
@@ -2233,16 +2237,18 @@
       "category": "Authentication Vulnerabilities",
       "name": "Account Enumeration",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 38,
       "category": "Authentication Vulnerabilities",
       "name": "Brute Force",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 39,
@@ -2265,8 +2271,9 @@
       "category": "Authentication Vulnerabilities",
       "name": "Missing Login Rate Limiting",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 42,
@@ -2281,16 +2288,18 @@
       "category": "Authentication Vulnerabilities",
       "name": "CAPTCHA Bypass",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 44,
       "category": "Authentication Vulnerabilities",
       "name": "MFA Bypass",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 45,
@@ -2305,24 +2314,27 @@
       "category": "Authentication Vulnerabilities",
       "name": "OTP Brute Force",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 47,
       "category": "Authentication Vulnerabilities",
       "name": "OTP Replay",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 48,
       "category": "Authentication Vulnerabilities",
       "name": "OTP Predictability",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 49,
@@ -2345,24 +2357,27 @@
       "category": "Authentication Vulnerabilities",
       "name": "Password Reset Token Leakage",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 52,
       "category": "Authentication Vulnerabilities",
       "name": "Password Reset Token Prediction",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 53,
       "category": "Authentication Vulnerabilities",
       "name": "Password Reset Token Reuse",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 54,
@@ -2377,40 +2392,45 @@
       "category": "Authentication Vulnerabilities",
       "name": "Password Reset Account Takeover",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 56,
       "category": "Authentication Vulnerabilities",
       "name": "Password Reset Host Header Injection",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 57,
       "category": "Authentication Vulnerabilities",
       "name": "Insecure Email Verification",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 58,
       "category": "Authentication Vulnerabilities",
       "name": "Email Verification Token Reuse",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 59,
       "category": "Authentication Vulnerabilities",
       "name": "Email Verification Bypass",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 60,
@@ -2434,8 +2454,9 @@
       "category": "Authentication Vulnerabilities",
       "name": "Insecure Remember Me",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 63,
@@ -2458,8 +2479,9 @@
       "category": "Authentication Vulnerabilities",
       "name": "Session Fixation",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 66,
@@ -2482,16 +2504,18 @@
       "category": "Authentication Vulnerabilities",
       "name": "Session Not Invalidated After Logout",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 69,
       "category": "Authentication Vulnerabilities",
       "name": "Session Not Invalidated After Password Change",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 70,
@@ -2506,16 +2530,18 @@
       "category": "Authentication Vulnerabilities",
       "name": "Insecure Session Cookie",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 72,
       "category": "Authentication Vulnerabilities",
       "name": "JWT None Algorithm",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 73,
@@ -2530,8 +2556,9 @@
       "category": "Authentication Vulnerabilities",
       "name": "JWT Signature Validation Bypass",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 75,
@@ -2554,56 +2581,63 @@
       "category": "Authentication Vulnerabilities",
       "name": "JWT Expiration Validation Bypass",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 78,
       "category": "Authentication Vulnerabilities",
       "name": "JWT Audience Validation Bypass",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 79,
       "category": "Authentication Vulnerabilities",
       "name": "JWT Issuer Validation Bypass",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 80,
       "category": "Authentication Vulnerabilities",
       "name": "JWT Token Replay",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 81,
       "category": "Authentication Vulnerabilities",
       "name": "JWT Sensitive Data Exposure",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 82,
       "category": "Authentication Vulnerabilities",
       "name": "Refresh Token Reuse",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 83,
       "category": "Authentication Vulnerabilities",
       "name": "Refresh Token Rotation Failure",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 84,
@@ -2618,24 +2652,27 @@
       "category": "Authentication Vulnerabilities",
       "name": "OAuth Redirect URI Manipulation",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 86,
       "category": "Authentication Vulnerabilities",
       "name": "OAuth State Parameter CSRF",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 87,
       "category": "Authentication Vulnerabilities",
       "name": "OAuth PKCE Bypass",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 88,

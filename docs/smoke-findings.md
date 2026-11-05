@@ -6,14 +6,23 @@ The automated smoke reproduced the following behaviors and records them as `obse
 
 | IDs | Finding | Direct evidence |
 |---|---|---|
-| 17, 19, 20 | Exposed environment configuration, API docs, and GraphQL introspection | Unauthenticated `/.env` returned only a test marker; `/docs` returned 200; GraphQL `__schema` returned the `Query` root. |
+| 17, 19, 20 | Exposed environment configuration, API docs, and GraphQL introspection | Unauthenticated `/.env` returned deliberately fake environment values; `/docs` returned 200; GraphQL `__schema` returned the `Query` root. |
+| 32, 33 | Weak default credentials and default admin account | The seeded synthetic admin account accepted `admin123` without CAPTCHA. |
 | 31, 61 | Weak password policy and authentication bypass | Registration accepted a one-character password; `/auth/bypass` returned an admin principal for `{"admin":true}`. |
+| 34, 35, 37, 38, 41, 43 | Account enumeration, missing login throttling, and CAPTCHA bypass | Unknown and known usernames returned different errors; duplicate registration and password reset distinguished known emails; five invalid logins did not lock out the account; a valid login required no CAPTCHA. |
+| 44, 46, 47, 48 | MFA bypass and weak OTP controls | MFA setup returned the fixed `123456`; invalid attempts were not throttled; the OTP and `000000` backdoor both succeeded repeatedly. |
+| 51, 52, 53, 55, 56 | Password-reset token exposure/prediction/reuse and account takeover | The unauthenticated reset endpoint returned a timestamp-derived token, which was reproduced and reused to change the synthetic admin password; an attacker-controlled `Host` header appeared in the reset URL. |
+| 57, 58, 59 | Email verification weaknesses | Registration returned the verification token, the same token verified twice, and a separate endpoint verified the account without a token. |
 | 97, 98, 102, 103, 104, 108, 113, 116 | Object-level access failures, role escalation, and exposed admin routes | A caller identifying as user 2 read user 3's order and address; unauthenticated signup set the new account's role to admin; the admin user list returned without authentication. |
 | 251, 252, 260 | Excessive API data, parameter tampering, and GraphQL introspection | Product responses included internal cost/admin notes; cart and order requests set below-catalog prices and totals; schema introspection succeeded. |
 | 277, 278, 279, 283, 288, 290, 307, 308, 309, 311, 312, 313 | Forged/replayed payment events and client-controlled pricing | A below-catalog cart price and altered order total were accepted; a zero-amount mock payment set an order to paid; an unsigned payment webhook changed another synthetic order to paid and accepted the same event twice. |
+| 62, 65, 68, 69, 71 | Insecure remember-me and session controls | A long-lived cookie lacked `HttpOnly`/`Secure`, a caller-supplied session ID was retained, and access tokens stayed valid after logout and password reset. |
+| 72, 74, 77, 78, 79, 80, 81, 82, 83 | JWT and refresh-token weaknesses | An unsigned token and an expired token were accepted; incorrect audience/issuer claims were not checked; access and refresh tokens were reusable; login responses/claims contained password data. |
+| 85, 86, 87 | OAuth redirect, state, and PKCE weaknesses | The fake OAuth flow accepted a code without PKCE and echoed an attacker redirect URI and unvalidated state. |
 | 372, 394, 435, 558 | Weak password storage, sensitive logging, and exposed environment credentials | The returned password hash matched MD5 of the synthetic one-character password; the isolated API log contained that password; `/.env` returned a deliberately fake AWS marker. |
-| 543, 544, 618 | Vulnerable/outdated JavaScript dependencies | See the dated `npm audit` summary in [dependency-audit.md](dependency-audit.md). |
 | 643, 645, 646, 650, 651, 652 | Customer PII, admin data, business information, and cross-customer leakage | The unauthenticated admin list exposed synthetic email, phone, card/SSN and password fields; product detail exposed cost/admin note; user 2 received user 3's order and address. |
 | 675, 678 | API BOLA data access and forged payment attack chains | The cross-customer read returned user 3's order; the unsigned webhook changed a pending order to paid/processing. |
+
+Dependency findings **#543 Vulnerable Dependencies**, **#544 Outdated Dependencies**, and **#618 JavaScript Dependency Vulnerability** are recorded separately in [dependency-audit.md](dependency-audit.md).
 
 These results cover only the listed findings. The other vulnerability entries, attack chains, components, and environment-dependent infrastructure checks remain `unverified` / `not_tested`; catalog completeness does not imply complete implementation.

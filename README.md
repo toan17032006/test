@@ -6,7 +6,7 @@ VulnShop is an intentionally vulnerable e-commerce training lab for authorized t
 
 The supplied brief has 275 store and architecture components plus a numbered 1–726 catalog. Those 726 entries comprise 661 vulnerability topics, 29 attack-chain scenarios, and 36 test-matrix fields. The complete inventory is preserved in [vulndb/catalog.json](vulndb/catalog.json) and [vulndb/checklist.md](vulndb/checklist.md).
 
-The complete inventory is preserved. Loopback smoke evidence verifies 38 vulnerability topics and two attack chains; the dependency audit verifies three dependency topics. Evidence is linked in the checklist and documented in [docs/smoke-findings.md](docs/smoke-findings.md) and [docs/dependency-audit.md](docs/dependency-audit.md). All remaining findings and most component checks remain `unverified` / `not_tested`; a listed item is not evidence that every topic is implemented.
+The complete inventory is preserved. Loopback smoke evidence verifies 75 vulnerability topics and two attack chains; the dependency audit verifies three dependency topics. Evidence is linked in the checklist and documented in [docs/smoke-findings.md](docs/smoke-findings.md) and [docs/dependency-audit.md](docs/dependency-audit.md). All remaining findings and most component checks remain `unverified` / `not_tested`; a listed item is not evidence that every topic is implemented.
 
 ## Local run
 

@@ -332,62 +332,62 @@
 | ID | Name | Type | Implementation | Test | Evidence |
 |---:|---|---|---|---|---|
 | 31 | Weak Password Policy | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
-| 32 | Weak Default Credentials | vulnerability | unverified | not_tested | — |
-| 33 | Default Admin Account | vulnerability | unverified | not_tested | — |
-| 34 | Username Enumeration | vulnerability | unverified | not_tested | — |
-| 35 | Email Enumeration | vulnerability | unverified | not_tested | — |
+| 32 | Weak Default Credentials | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 33 | Default Admin Account | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 34 | Username Enumeration | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 35 | Email Enumeration | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 36 | Phone Number Enumeration | vulnerability | unverified | not_tested | — |
-| 37 | Account Enumeration | vulnerability | unverified | not_tested | — |
-| 38 | Brute Force | vulnerability | unverified | not_tested | — |
+| 37 | Account Enumeration | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 38 | Brute Force | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 39 | Password Spraying | vulnerability | unverified | not_tested | — |
 | 40 | Credential Stuffing | vulnerability | unverified | not_tested | — |
-| 41 | Missing Login Rate Limiting | vulnerability | unverified | not_tested | — |
+| 41 | Missing Login Rate Limiting | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 42 | Rate Limit Bypass | vulnerability | unverified | not_tested | — |
-| 43 | CAPTCHA Bypass | vulnerability | unverified | not_tested | — |
-| 44 | MFA Bypass | vulnerability | unverified | not_tested | — |
+| 43 | CAPTCHA Bypass | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 44 | MFA Bypass | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 45 | MFA Fatigue | vulnerability | unverified | not_tested | — |
-| 46 | OTP Brute Force | vulnerability | unverified | not_tested | — |
-| 47 | OTP Replay | vulnerability | unverified | not_tested | — |
-| 48 | OTP Predictability | vulnerability | unverified | not_tested | — |
+| 46 | OTP Brute Force | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 47 | OTP Replay | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 48 | OTP Predictability | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 49 | OTP Expiration Bypass | vulnerability | unverified | not_tested | — |
 | 50 | OTP Race Condition | vulnerability | unverified | not_tested | — |
-| 51 | Password Reset Token Leakage | vulnerability | unverified | not_tested | — |
-| 52 | Password Reset Token Prediction | vulnerability | unverified | not_tested | — |
-| 53 | Password Reset Token Reuse | vulnerability | unverified | not_tested | — |
+| 51 | Password Reset Token Leakage | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 52 | Password Reset Token Prediction | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 53 | Password Reset Token Reuse | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 54 | Password Reset Token Not Expiring | vulnerability | unverified | not_tested | — |
-| 55 | Password Reset Account Takeover | vulnerability | unverified | not_tested | — |
-| 56 | Password Reset Host Header Injection | vulnerability | unverified | not_tested | — |
-| 57 | Insecure Email Verification | vulnerability | unverified | not_tested | — |
-| 58 | Email Verification Token Reuse | vulnerability | unverified | not_tested | — |
-| 59 | Email Verification Bypass | vulnerability | unverified | not_tested | — |
+| 55 | Password Reset Account Takeover | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 56 | Password Reset Host Header Injection | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 57 | Insecure Email Verification | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 58 | Email Verification Token Reuse | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 59 | Email Verification Bypass | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 60 | Phone Verification Bypass | vulnerability | unverified | not_tested | — |
 | 61 | Authentication Bypass | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
-| 62 | Insecure Remember Me | vulnerability | unverified | not_tested | — |
+| 62 | Insecure Remember Me | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 63 | Broken Authentication | vulnerability | unverified | not_tested | — |
 | 64 | Authentication Logic Flaws | vulnerability | unverified | not_tested | — |
-| 65 | Session Fixation | vulnerability | unverified | not_tested | — |
+| 65 | Session Fixation | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 66 | Session Hijacking | vulnerability | unverified | not_tested | — |
 | 67 | Session Replay | vulnerability | unverified | not_tested | — |
-| 68 | Session Not Invalidated After Logout | vulnerability | unverified | not_tested | — |
-| 69 | Session Not Invalidated After Password Change | vulnerability | unverified | not_tested | — |
+| 68 | Session Not Invalidated After Logout | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 69 | Session Not Invalidated After Password Change | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 70 | Concurrent Session Abuse | vulnerability | unverified | not_tested | — |
-| 71 | Insecure Session Cookie | vulnerability | unverified | not_tested | — |
-| 72 | JWT None Algorithm | vulnerability | unverified | not_tested | — |
+| 71 | Insecure Session Cookie | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 72 | JWT None Algorithm | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 73 | JWT Algorithm Confusion | vulnerability | unverified | not_tested | — |
-| 74 | JWT Signature Validation Bypass | vulnerability | unverified | not_tested | — |
+| 74 | JWT Signature Validation Bypass | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 75 | JWT Weak Secret | vulnerability | unverified | not_tested | — |
 | 76 | JWT Key Confusion | vulnerability | unverified | not_tested | — |
-| 77 | JWT Expiration Validation Bypass | vulnerability | unverified | not_tested | — |
-| 78 | JWT Audience Validation Bypass | vulnerability | unverified | not_tested | — |
-| 79 | JWT Issuer Validation Bypass | vulnerability | unverified | not_tested | — |
-| 80 | JWT Token Replay | vulnerability | unverified | not_tested | — |
-| 81 | JWT Sensitive Data Exposure | vulnerability | unverified | not_tested | — |
-| 82 | Refresh Token Reuse | vulnerability | unverified | not_tested | — |
-| 83 | Refresh Token Rotation Failure | vulnerability | unverified | not_tested | — |
+| 77 | JWT Expiration Validation Bypass | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 78 | JWT Audience Validation Bypass | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 79 | JWT Issuer Validation Bypass | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 80 | JWT Token Replay | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 81 | JWT Sensitive Data Exposure | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 82 | Refresh Token Reuse | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 83 | Refresh Token Rotation Failure | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 84 | OAuth Account Takeover | vulnerability | unverified | not_tested | — |
-| 85 | OAuth Redirect URI Manipulation | vulnerability | unverified | not_tested | — |
-| 86 | OAuth State Parameter CSRF | vulnerability | unverified | not_tested | — |
-| 87 | OAuth PKCE Bypass | vulnerability | unverified | not_tested | — |
+| 85 | OAuth Redirect URI Manipulation | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 86 | OAuth State Parameter CSRF | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 87 | OAuth PKCE Bypass | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 88 | OAuth Token Leakage | vulnerability | unverified | not_tested | — |
 | 89 | OAuth Scope Escalation | vulnerability | unverified | not_tested | — |
 | 90 | OpenID Connect Misconfiguration | vulnerability | unverified | not_tested | — |

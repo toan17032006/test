@@ -52,10 +52,33 @@ class CatalogTests(unittest.TestCase):
             self.assertTrue(row.get("evidence"), row["id"])
             self.assertTrue((ROOT / row["evidence"]).is_file(), row["id"])
 
+    def test_smoke_report_lists_every_finding_it_supports(self):
+        expected = {row["id"] for row in self.catalog["entries"] if row.get("evidence") == "docs/smoke-findings.md"}
+        report = (ROOT / "docs" / "smoke-findings.md").read_text(encoding="utf-8")
+        documented = set()
+        in_findings_table = False
+        for line in report.splitlines():
+            if line.startswith("| IDs"):
+                in_findings_table = True
+                continue
+            if in_findings_table and not line.startswith("|"):
+                break
+            if not in_findings_table or line.startswith("|---"):
+                continue
+            values = line.split("|")[1].strip()
+            documented.update(int(value.strip()) for value in values.split(","))
+        self.assertEqual(documented, expected)
+
     def test_checked_in_checklist_matches_the_catalog(self):
         expected = render(self.catalog)
         actual = (ROOT / "vulndb" / "checklist.md").read_text(encoding="utf-8")
         self.assertEqual(actual, expected)
+
+    def test_checklist_ui_displays_verified_state_and_evidence(self):
+        page = (ROOT / "vulndb" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("verified: 'Đã xác minh'", page)
+        self.assertIn("Bằng chứng: ${row.evidence}", page)
+        self.assertIn("node.textContent = safe(value)", page)
 
 
 if __name__ == "__main__":
