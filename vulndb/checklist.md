@@ -46,12 +46,12 @@
 | 28 | Shopping Cart | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 29 | Wishlist | Frontend và Browser | unverified | not_tested | — |
 | 30 | Checkout | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
-| 31 | Order Tracking | Frontend và Browser | unverified | not_tested | — |
+| 31 | Order Tracking | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 32 | User Profile | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 33 | Address Book | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 34 | Login | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 35 | Sign Up | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
-| 36 | Logout | Frontend và Browser | unverified | not_tested | — |
+| 36 | Logout | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 37 | Forgot Password | Frontend và Browser | unverified | not_tested | — |
 | 38 | Reset Password | Frontend và Browser | unverified | not_tested | — |
 | 39 | Email Verification | Frontend và Browser | unverified | not_tested | — |
@@ -71,7 +71,7 @@
 | 53 | CSP | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 54 | HTTP Security Headers | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 55 | Responsive Design | Frontend và Browser | unverified | not_tested | — |
-| 56 | Admin Dashboard | Frontend và Browser | unverified | not_tested | — |
+| 56 | Admin Dashboard | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 57 | User Dashboard | Frontend và Browser | unverified | not_tested | — |
 | 58 | REST API | Backend và API | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 59 | GraphQL | Backend và API | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
@@ -107,7 +107,7 @@
 | 89 | Flash Sale | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 90 | Inventory Management | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 91 | Stock Reservation | Chức năng thương mại điện tử | unverified | not_tested | — |
-| 92 | Shopping Cart | Chức năng thương mại điện tử | unverified | not_tested | — |
+| 92 | Shopping Cart | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 93 | Cart Synchronization | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 94 | Guest Checkout | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 95 | Customer Checkout | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
@@ -121,7 +121,7 @@
 | 103 | Payment Callback | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 104 | Payment Webhook | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 105 | Order Management | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
-| 106 | Order History | Chức năng thương mại điện tử | unverified | not_tested | — |
+| 106 | Order History | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 107 | Order Cancellation | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 108 | Order Return | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 109 | Order Exchange | Chức năng thương mại điện tử | unverified | not_tested | — |
@@ -182,7 +182,7 @@
 | 164 | Analytics Services | Tích hợp bên thứ ba | unverified | not_tested | — |
 | 165 | CRM | Tích hợp bên thứ ba | unverified | not_tested | — |
 | 166 | ERP | Tích hợp bên thứ ba | unverified | not_tested | — |
-| 167 | Search Services | Tích hợp bên thứ ba | unverified | not_tested | — |
+| 167 | Search Services | Tích hợp bên thứ ba | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 168 | AI Integration | Tích hợp bên thứ ba | unverified | not_tested | — |
 | 169 | CI/CD Pipeline | DevOps và vận hành | unverified | not_tested | — |
 | 170 | Source Code Repository | DevOps và vận hành | unverified | not_tested | — |
@@ -319,8 +319,8 @@
 | 21 | Directory Listing | vulnerability | unverified | not_tested | — |
 | 22 | Hidden Endpoint Exposure | vulnerability | unverified | not_tested | — |
 | 23 | Sensitive Metadata Exposure | vulnerability | unverified | not_tested | — |
-| 24 | Error Message Information Leakage | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
-| 25 | Stack Trace Disclosure | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 24 | Error Message Information Leakage | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 25 | Stack Trace Disclosure | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 26 | Internal IP Disclosure | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 27 | Cloud Metadata Exposure | vulnerability | unverified | not_tested | — |
 | 28 | Public Cloud Storage Exposure | vulnerability | unverified | not_tested | — |
@@ -420,7 +420,7 @@
 | 112 | User Data Access Violation | vulnerability | unverified | not_tested | — |
 | 113 | Unauthorized Order Access | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 114 | Unauthorized Invoice Access | vulnerability | unverified | not_tested | — |
-| 115 | Unauthorized Payment Access | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 115 | Unauthorized Payment Access | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 116 | Unauthorized Address Access | vulnerability | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 117 | Unauthorized File Access | vulnerability | unverified | not_tested | — |
 | 118 | Unauthorized Refund | vulnerability | unverified | not_tested | — |
@@ -430,7 +430,7 @@
 | 122 | Unauthorized User Management | vulnerability | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 123 | Forced Browsing | vulnerability | unverified | not_tested | — |
 | 124 | Parameter-Based Authorization Bypass | vulnerability | unverified | not_tested | — |
-| 125 | HTTP Method-Based Authorization Bypass | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 125 | HTTP Method-Based Authorization Bypass | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 126 | Inconsistent Authorization Across APIs | vulnerability | unverified | not_tested | — |
 | 127 | Insecure Resource Ownership Validation | vulnerability | unverified | not_tested | — |
 
@@ -589,9 +589,9 @@
 | 261 | GraphQL Authorization Bypass | vulnerability | unverified | not_tested | — |
 | 262 | GraphQL Field-Level Authorization Bypass | vulnerability | unverified | not_tested | — |
 | 263 | GraphQL Alias-Based DoS | vulnerability | unverified | not_tested | — |
-| 264 | GraphQL Query Depth Abuse | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 264 | GraphQL Query Depth Abuse | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 265 | GraphQL Query Complexity Abuse | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
-| 266 | GraphQL Batching Abuse | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 266 | GraphQL Batching Abuse | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 267 | GraphQL Subscription Authorization Bypass | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
 | 268 | GraphQL Federation Trust Abuse | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
 | 269 | gRPC Authorization Bypass | vulnerability | unverified | not_tested | — |
@@ -716,7 +716,7 @@
 | 373 | SHA1 Password Storage | vulnerability | unverified | not_tested | — |
 | 374 | Weak Password Hashing | vulnerability | unverified | not_tested | — |
 | 375 | Hardcoded Encryption Keys | vulnerability | unverified | not_tested | — |
-| 376 | Hardcoded Secrets | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 376 | Hardcoded Secrets | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 377 | Weak Random Number Generator | vulnerability | unverified | not_tested | — |
 | 378 | Predictable Token Generation | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
 | 379 | Weak Encryption | vulnerability | unverified | not_tested | — |
@@ -733,7 +733,7 @@
 | 390 | Weak TLS Protocol | vulnerability | unverified | not_tested | — |
 | 391 | Weak Cipher Suites | vulnerability | unverified | not_tested | — |
 | 392 | Missing HSTS | vulnerability | unverified | not_tested | — |
-| 393 | Sensitive Data in URL | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 393 | Sensitive Data in URL | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 394 | Sensitive Data in Logs | vulnerability | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 395 | Sensitive Data in Browser Storage | vulnerability | unverified | not_tested | — |
 | 396 | Sensitive Data in Cache | vulnerability | unverified | not_tested | — |
@@ -934,8 +934,8 @@
 |---:|---|---|---|---|---|
 | 557 | Sensitive Data Logging | vulnerability | unverified | not_tested | — |
 | 558 | Password Logging | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
-| 559 | Token Logging | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
-| 560 | PII Logging | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 559 | Token Logging | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 560 | PII Logging | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 561 | Log Injection | vulnerability | unverified | not_tested | — |
 | 562 | CRLF Log Injection | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
 | 563 | Audit Log Tampering | vulnerability | unverified | not_tested | — |
@@ -1043,7 +1043,7 @@
 | 645 | Customer Phone Exposure | vulnerability | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 646 | Customer Email Exposure | vulnerability | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 647 | Order History Exposure | vulnerability | unverified | not_tested | — |
-| 648 | Payment Information Exposure | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 648 | Payment Information Exposure | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 649 | Invoice Exposure | vulnerability | unverified | not_tested | — |
 | 650 | Admin Data Exposure | vulnerability | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 651 | Internal Business Data Exposure | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |

@@ -230,8 +230,9 @@
       "id": 31,
       "category": "Frontend và Browser",
       "name": "Order Tracking",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 32,
@@ -269,8 +270,9 @@
       "id": 36,
       "category": "Frontend và Browser",
       "name": "Logout",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 37,
@@ -417,8 +419,9 @@
       "id": 56,
       "category": "Frontend và Browser",
       "name": "Admin Dashboard",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 57,
@@ -682,8 +685,9 @@
       "id": 92,
       "category": "Chức năng thương mại điện tử",
       "name": "Shopping Cart",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 93,
@@ -789,8 +793,9 @@
       "id": 106,
       "category": "Chức năng thương mại điện tử",
       "name": "Order History",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 107,
@@ -1224,8 +1229,9 @@
       "id": 167,
       "category": "Tích hợp bên thứ ba",
       "name": "Search Services",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 168,
@@ -2232,8 +2238,9 @@
       "name": "Error Message Information Leakage",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 25,
@@ -2241,8 +2248,9 @@
       "name": "Stack Trace Disclosure",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 26,
@@ -3058,8 +3066,9 @@
       "name": "Unauthorized Payment Access",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 116,
@@ -3142,8 +3151,9 @@
       "name": "HTTP Method-Based Authorization Bypass",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 126,
@@ -4286,8 +4296,9 @@
       "name": "GraphQL Query Depth Abuse",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 265,
@@ -4304,8 +4315,9 @@
       "name": "GraphQL Batching Abuse",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 267,
@@ -5230,8 +5242,9 @@
       "name": "Hardcoded Secrets",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 377,
@@ -5368,8 +5381,9 @@
       "name": "Sensitive Data in URL",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 394,
@@ -6709,8 +6723,9 @@
       "name": "Token Logging",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 560,
@@ -6718,8 +6733,9 @@
       "name": "PII Logging",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 561,
@@ -7437,8 +7453,9 @@
       "name": "Payment Information Exposure",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 649,

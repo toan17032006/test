@@ -106,7 +106,7 @@ try {
   }
   if (-not $ready) { throw 'The local services did not become ready.' }
 
-  $paths = @('/','/products','/products/1','/cart','/checkout','/login','/register','/profile','/admin/vulns')
+  $paths = @('/','/products','/products/1','/cart','/checkout','/login','/register','/profile','/admin/vulns','/admin/dashboard','/orders?user_id=3','/track/1002')
   foreach ($path in $paths) {
     $response = Invoke-WebRequest -Uri "$webBase$path" -TimeoutSec 8
     Assert-Equal $response.StatusCode 200 "GET $path"
@@ -117,6 +117,8 @@ try {
   if ($searchPage.Content -notmatch 'iPhone 15 Pro Max') { throw 'The product search page did not render the matching product.' }
   $searchApi = Invoke-RestMethod -Uri "$apiBase/api/v1/search?q=iPhone&limit=1" -TimeoutSec 5
   Assert-Equal $searchApi.items[0].id 1 'Product search API result'
+  $searchSuggestions = Invoke-RestMethod -Uri "$apiBase/api/v1/search/suggest?q=iPhone" -TimeoutSec 5
+  Assert-Equal $searchSuggestions.suggestions[0] 'iPhone 15 Pro Max' 'Product search suggestions'
   $filteredProducts = Invoke-RestMethod -Uri "$apiBase/api/v1/products?category=Electronics&sort=id" -TimeoutSec 5
   if ($filteredProducts.total -lt 2) { throw 'The category filter did not return the synthetic electronics products.' }
   $flashSale = Invoke-RestMethod -Uri "$apiBase/api/v1/products/flash-sale" -TimeoutSec 5
@@ -152,6 +154,11 @@ try {
   Assert-Equal $debugInfo.aws_key 'LAB_ONLY_NOT_A_CREDENTIAL' 'Unauthenticated debug credential exposure'
   Assert-Equal $debugInfo.jwt_secret 'local-smoke-jwt' 'Unauthenticated debug JWT secret exposure'
   Assert-Equal $debugInfo.admin_password 'admin123' 'Unauthenticated debug admin password exposure'
+  $backupInfo = Invoke-RestMethod -Uri "$apiBase/backup/db.sql" -TimeoutSec 5
+  Assert-Equal $backupInfo.url '/uploads/backup_2024.sql' 'Unauthenticated database backup path disclosure'
+  if ($backupInfo.note -notmatch 'full database dump') { throw 'The backup reference did not disclose its claimed dump contents.' }
+  $invalidSort = Invoke-RestMethod -Uri "$apiBase/api/v1/products?sort=private_column" -TimeoutSec 5
+  if ($invalidSort.error -notmatch 'private_column' -or $invalidSort.hint -notmatch 'price') { throw 'The product endpoint did not reflect internal sort validation details.' }
   $securityHeaders = Invoke-WebRequest -Uri "$apiBase/" -TimeoutSec 5
   foreach ($headerName in @('Content-Security-Policy','Strict-Transport-Security','X-Frame-Options','X-Content-Type-Options')) {
     if ($securityHeaders.Headers.AllKeys -contains $headerName) { throw "The expected missing security header was present: $headerName" }
@@ -165,6 +172,19 @@ try {
   Assert-Equal $docsResponse.StatusCode 200 'Unauthenticated API documentation'
   $envResponse = Invoke-WebRequest -Uri "$apiBase/.env" -TimeoutSec 5
   if ($envResponse.Content -notmatch 'AWS_ACCESS_KEY_ID=LAB_ONLY_NOT_A_CREDENTIAL') { throw 'The synthetic environment marker was not exposed by the lab env endpoint.' }
+
+  $graphqlFederation = Invoke-WebRequest -Uri "$graphqlBase/graphql" -Method Post -ContentType 'application/json' -Body '{"query":"{ _service { sdl } }"}' -SkipHttpErrorCheck -TimeoutSec 8
+  Assert-Equal $graphqlFederation.StatusCode 400 'GraphQL federation service metadata availability'
+  if ($graphqlFederation.Content -notmatch 'Cannot query field.*_service') { throw 'The GraphQL service did not report its unavailable federation metadata field.' }
+  if ($graphqlFederation.Content -notmatch 'stacktrace|stackTrace') { throw 'The GraphQL validation error did not include a stack trace.' }
+  $graphqlBatchBody = '[{"query":"{ __typename }"},{"query":"{ __schema { queryType { name } } }"}]'
+  $graphqlBatch = Invoke-RestMethod -Uri "$graphqlBase/graphql" -Method Post -ContentType 'application/json' -Body $graphqlBatchBody -TimeoutSec 8
+  Assert-Equal $graphqlBatch.Count 2 'Unauthenticated GraphQL request batching'
+  $deepTypeFields = ('ofType { ' * 12) + 'name ' + ('}' * 12)
+  $graphqlDepthQuery = '{ __type(name:"User") { fields { type { ' + $deepTypeFields + ' } } } }'
+  $graphqlDepthBody = @{ query = $graphqlDepthQuery } | ConvertTo-Json -Compress
+  $graphqlDepth = Invoke-RestMethod -Uri "$graphqlBase/graphql" -Method Post -ContentType 'application/json' -Body $graphqlDepthBody -TimeoutSec 8
+  if ($graphqlDepth.errors) { throw 'The GraphQL service rejected the bounded 16-level introspection query.' }
 
   $bypassBody = '{"admin":true}'
   $bypass = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/bypass" -Method Post -ContentType 'application/json' -Body $bypassBody -TimeoutSec 5
@@ -216,6 +236,12 @@ try {
   Assert-Equal $massAssignedProduct.product.hidden_discount 100 'Hidden discount mass assignment'
   $csvExport = Invoke-WebRequest -Uri "$apiBase/api/v1/products/export" -TimeoutSec 5
   if ($csvExport.Content -notmatch '(?m)^\d+,=1\+1,') { throw 'The CSV export did not preserve the synthetic formula marker as an active cell formula.' }
+  $unauthProductUpdateBody = '{"price":-1,"admin_note":"Synthetic unauthenticated PUT"}'
+  $unauthProductUpdate = Invoke-RestMethod -Uri "$apiBase/api/v1/products/$($massAssignedProduct.product.id)" -Method Put -ContentType 'application/json' -Body $unauthProductUpdateBody -TimeoutSec 5
+  Assert-Equal $unauthProductUpdate.product.price -1 'Unauthenticated product update through PUT'
+  Assert-Equal $unauthProductUpdate.product.admin_note 'Synthetic unauthenticated PUT' 'Unauthenticated privileged product field update'
+  $deletedSyntheticProduct = Invoke-RestMethod -Uri "$apiBase/api/v1/products/$($massAssignedProduct.product.id)" -Method Delete -TimeoutSec 5
+  if ($deletedSyntheticProduct.message -notmatch 'deleted') { throw 'The synthetic product cleanup did not complete.' }
   $unboundedList = Invoke-RestMethod -Uri "$apiBase/api/v1/products?limit=1&offset=0&page=1" -TimeoutSec 5
   if ($unboundedList.products.Count -le 1) { throw 'The product endpoint unexpectedly capped results to the requested page size.' }
 
@@ -234,6 +260,19 @@ try {
   Assert-Equal $checkout.StatusCode 200 'Storefront checkout'
   $emptyCart = Invoke-WebRequest -Uri "$webBase/cart" -WebSession $session -TimeoutSec 5
   if ($emptyCart.Content -notmatch 'Giỏ hàng đang trống') { throw 'Checkout did not clear the session cart.' }
+
+  $storefrontAuthSession = New-Object Microsoft.PowerShell.Commands.WebRequestSession
+  $storefrontLogin = Invoke-WebRequest -Uri "$webBase/login" -Method Post -WebSession $storefrontAuthSession -ContentType 'application/x-www-form-urlencoded' -Body 'email=admin%40vulnshop.com&password=admin123' -TimeoutSec 8
+  Assert-Equal $storefrontLogin.StatusCode 200 'Storefront login redirect'
+  $storefrontLogout = Invoke-WebRequest -Uri "$webBase/logout" -WebSession $storefrontAuthSession -TimeoutSec 8
+  Assert-Equal $storefrontLogout.StatusCode 200 'Storefront logout redirect'
+  $loggedOutProfile = Invoke-WebRequest -Uri "$webBase/profile" -WebSession $storefrontAuthSession -TimeoutSec 5
+  if ($loggedOutProfile.Content -notmatch 'Guest User') { throw 'The storefront session still appeared authenticated after logout.' }
+
+  $urlToken = 'LAB_ONLY_QUERY_TOKEN'
+  $urlEmail = 'lab-pii-marker@example.test'
+  $urlTokenPage = Invoke-WebRequest -Uri "$webBase/reset-password?token=$urlToken&email=$urlEmail" -TimeoutSec 5
+  if ($urlTokenPage.Content -notmatch [regex]::Escape($urlToken)) { throw 'The synthetic reset token was not reflected into the reset form.' }
 
   $email = "smoke-$([guid]::NewGuid().ToString('N'))@example.test"
   $registerBody = @{ email = $email; name = 'Lab Smoke User'; password = 'x'; role = 'admin'; is_admin = $true } | ConvertTo-Json -Compress
@@ -263,6 +302,7 @@ try {
   Assert-Equal $unprotectedAdminList.items[0].password_plain 'admin123' 'Unauthenticated admin PII and credential exposure'
   Assert-Equal $unprotectedAdminList.items[0].email 'admin@vulnshop.com' 'Unauthenticated customer email exposure'
   Assert-Equal $unprotectedAdminList.items[0].phone '0901234567' 'Unauthenticated customer phone exposure'
+  Assert-Equal $unprotectedAdminList.items[0].credit_card '4532015112830366' 'Unauthenticated synthetic payment card exposure'
   if (-not $unprotectedAdminList.items[0].credit_card -or -not $unprotectedAdminList.items[0].ssn) { throw 'The admin list did not expose synthetic PII fields.' }
   $roleChangeBody = '{"role":"admin"}'
   $unauthorizedRoleChange = Invoke-RestMethod -Uri "$apiBase/api/v1/admin/users/2/role" -Method Patch -ContentType 'application/json' -Body $roleChangeBody -TimeoutSec 5
@@ -292,6 +332,7 @@ try {
 
   $mfaSetup = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/mfa/setup?email=$email" -Method Post -TimeoutSec 5
   Assert-Equal $mfaSetup.current_otp '123456' 'Predictable MFA one-time password'
+  Assert-Equal $mfaSetup.otp_secret 'JBSWY3DPEHPK3PXP' 'Hardcoded MFA secret disclosure'
   $invalidOtpBody = @{ email = $email; otp = '999999' } | ConvertTo-Json -Compress
   for ($attempt = 0; $attempt -lt 3; $attempt++) {
     $otpError = Get-ApiErrorMessage "$apiBase/api/v1/auth/mfa/verify" $invalidOtpBody
@@ -375,6 +416,10 @@ try {
   $addedApiItem = Invoke-RestMethod -Uri "$apiBase/api/v1/cart/items" -Method Post -Headers $userHeaders -ContentType 'application/json' -Body '{"product_id":1,"quantity":2,"unit_price":10}' -TimeoutSec 5
   Assert-Equal $addedApiItem.total 20 'API cart subtotal'
   if ($addedApiItem.item.unit_price -ge $productRecord.product.price) { throw 'The API did not accept the client-supplied below-catalog unit price.' }
+  $apiCart = Invoke-RestMethod -Uri "$apiBase/api/v1/cart" -Headers $userHeaders -TimeoutSec 5
+  Assert-Equal $apiCart.items[0].product_id 1 'REST cart read after adding a synthetic item'
+  $removedApiItem = Invoke-RestMethod -Uri "$apiBase/api/v1/cart/items/1" -Method Delete -Headers $userHeaders -TimeoutSec 5
+  Assert-Equal $removedApiItem.items.Count 0 'REST cart item removal'
   $negativePriceCart = Invoke-RestMethod -Uri "$apiBase/api/v1/cart/items" -Method Post -Headers @{ 'x-user-id' = '4' } -ContentType 'application/json' -Body '{"product_id":4,"quantity":1,"unit_price":-1}' -TimeoutSec 5
   Assert-Equal $negativePriceCart.total -1 'Negative cart price'
   $zeroPriceCart = Invoke-RestMethod -Uri "$apiBase/api/v1/cart/items" -Method Post -Headers @{ 'x-user-id' = '5' } -ContentType 'application/json' -Body '{"product_id":4,"quantity":1,"unit_price":0}' -TimeoutSec 5
@@ -394,6 +439,8 @@ try {
   $orderId = $order.order_id
   Assert-Equal $order.order.total 17 'API accepted order total'
   Assert-Equal $order.order.user_id '3' 'Client-controlled order ownership'
+  $orderHistoryPage = Invoke-WebRequest -Uri "$webBase/orders?user_id=3" -TimeoutSec 8
+  if ($orderHistoryPage.Content -notmatch [regex]::Escape([string]$orderId)) { throw 'The synthetic order was missing from the unauthenticated order history page.' }
   $canceledOrder = Invoke-RestMethod -Uri "$apiBase/api/v1/orders/$orderId/cancel" -Method Post -TimeoutSec 5
   Assert-Equal $canceledOrder.order.status 'cancelled' 'Unauthenticated cross-user order cancellation'
   $shippingOrderBody = '{"user_id":"4","items":[{"product_id":1,"quantity":1,"unit_price":100}],"total":100}'
@@ -406,6 +453,8 @@ try {
   $deliveredBody = @{ order_id = $shippingOrderId; status = 'delivered'; tracking_number = 'LAB-SHIP-100' } | ConvertTo-Json -Compress
   $deliveredOrder = Invoke-RestMethod -Uri "$apiBase/api/v1/webhooks/shipping" -Method Post -ContentType 'application/json' -Body $deliveredBody -TimeoutSec 5
   Assert-Equal $deliveredOrder.order.shipping_status 'delivered' 'Synthetic order delivery status'
+  $trackingPage = Invoke-WebRequest -Uri "$webBase/track/$shippingOrderId" -TimeoutSec 8
+  if ($trackingPage.Content -notmatch [regex]::Escape([string]$shippingOrderId)) { throw 'The synthetic order was missing from the order tracking page.' }
   $payment = Invoke-RestMethod -Uri "$apiBase/api/v1/payment/process" -Method Post -ContentType 'application/json' -Body ("{`"order_id`":$orderId,`"amount`":0}") -TimeoutSec 5
   Assert-Equal $payment.payment.amount 0 'Mock payment accepted a zero amount'
   Assert-Equal $payment.order.payment_status 'paid' 'Mock payment status'
@@ -413,6 +462,7 @@ try {
   if ($duplicatePayment.payment.id -eq $payment.payment.id) { throw 'Repeated mock payment processing did not create a duplicate payment.' }
   $paymentHistory = Invoke-RestMethod -Uri "$apiBase/api/v1/payment/$orderId" -TimeoutSec 5
   Assert-Equal $paymentHistory.payments.Count 2 'Payment idempotency failure'
+  Assert-Equal $paymentHistory.payments[0].id $payment.payment.id 'Unauthenticated cross-user payment history access'
   $event = '{"order_id":1002,"status":"paid"}'
   $first = Invoke-RestMethod -Uri "$apiBase/api/v1/webhooks/payment" -Method Post -ContentType 'application/json' -Body $event -TimeoutSec 5
   $replay = Invoke-RestMethod -Uri "$apiBase/api/v1/webhooks/payment" -Method Post -ContentType 'application/json' -Body $event -TimeoutSec 5
@@ -428,8 +478,12 @@ try {
 
   $apiLog = Get-Content -Raw -LiteralPath (Join-Path $logDir 'api.out')
   if ($apiLog -notmatch [regex]::Escape("email=$email password=x role=admin")) { throw 'The synthetic signup password was not present in the lab API log.' }
+  $webLog = Get-Content -Raw -LiteralPath (Join-Path $logDir 'web.out')
+  foreach ($loggedMarker in @($urlToken,$urlEmail)) {
+    if ($webLog -notmatch [regex]::Escape($loggedMarker)) { throw "The expected synthetic URL marker was not present in the storefront access log: $loggedMarker" }
+  }
 
-  Write-Output 'Loopback smoke passed: storefront/catalog/search/filter/product detail/cart/checkout/notification/shipping/flash sale/Q&A, service fingerprinting/debug/health/metrics disclosure, missing security headers/CORS reflection, docs/env/backup exposure, auth SQL injection/default credentials/enumeration/rate limits, email/OTP/reset flows, refresh/session/JWT/OAuth flaws, product mass assignment/CSV export/pagination/customer data exposure and fake reviews, role/order ownership changes, cart price/quantity tampering, duplicate payments, unauthorized cancellation/refunds, payment webhook forgery/replay, and GraphQL introspection.'
+  Write-Output 'Loopback smoke passed: storefront/catalog/search/suggestions/filter/product detail/cart/checkout/order history/tracking/logout/admin dashboard/notification/shipping/flash sale/Q&A, service fingerprinting/debug/health/metrics/backup disclosure, missing security headers/CORS reflection, docs/env exposure, auth SQL injection/default credentials/enumeration/rate limits, email/OTP/reset flows, refresh/session/JWT/OAuth flaws, product mass assignment/unauthenticated PUT/CSV export/pagination, synthetic payment data and fake reviews, role/order ownership changes, cart price/quantity tampering, duplicate payments, unauthorized cancellation/refunds, payment webhook forgery/replay, GraphQL depth/batching/introspection/stack traces.'
 }
 catch {
   foreach ($name in @('api.err','web.err','graphql.err')) {
