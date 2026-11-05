@@ -47,8 +47,8 @@
 | 29 | Wishlist | Frontend và Browser | unverified | not_tested | — |
 | 30 | Checkout | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 31 | Order Tracking | Frontend và Browser | unverified | not_tested | — |
-| 32 | User Profile | Frontend và Browser | unverified | not_tested | — |
-| 33 | Address Book | Frontend và Browser | unverified | not_tested | — |
+| 32 | User Profile | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
+| 33 | Address Book | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 34 | Login | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 35 | Sign Up | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 36 | Logout | Frontend và Browser | unverified | not_tested | — |
@@ -68,7 +68,7 @@
 | 50 | Service Workers | Frontend và Browser | unverified | not_tested | — |
 | 51 | Browser Cache | Frontend và Browser | unverified | not_tested | — |
 | 52 | CORS | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
-| 53 | CSP | Frontend và Browser | unverified | not_tested | — |
+| 53 | CSP | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 54 | HTTP Security Headers | Frontend và Browser | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 55 | Responsive Design | Frontend và Browser | unverified | not_tested | — |
 | 56 | Admin Dashboard | Frontend và Browser | unverified | not_tested | — |
@@ -96,12 +96,12 @@
 | 78 | Event-Driven Architecture | Backend và API | unverified | not_tested | — |
 | 79 | Message Queue | Backend và API | unverified | not_tested | — |
 | 80 | Event Streaming | Backend và API | unverified | not_tested | — |
-| 81 | Product Management | Chức năng thương mại điện tử | unverified | not_tested | — |
+| 81 | Product Management | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 82 | Product Variants | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 83 | Product Attributes | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 84 | Product Categories | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 85 | Product Brands | Chức năng thương mại điện tử | unverified | not_tested | — |
-| 86 | Product Pricing | Chức năng thương mại điện tử | unverified | not_tested | — |
+| 86 | Product Pricing | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 87 | Discount Management | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 88 | Coupon Management | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 89 | Flash Sale | Chức năng thương mại điện tử | unverified | not_tested | — |
@@ -128,10 +128,10 @@
 | 110 | Invoice Generation | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 111 | Tax Calculation | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 112 | Review & Rating | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
-| 113 | Product Q&A | Chức năng thương mại điện tử | unverified | not_tested | — |
+| 113 | Product Q&A | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 114 | Wishlist | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 115 | Recently Viewed Products | Chức năng thương mại điện tử | unverified | not_tested | — |
-| 116 | Recommendation System | Chức năng thương mại điện tử | unverified | not_tested | — |
+| 116 | Recommendation System | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 117 | Loyalty Points | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 118 | Gift Cards | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 119 | Affiliate System | Chức năng thương mại điện tử | unverified | not_tested | — |

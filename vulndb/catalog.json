@@ -237,15 +237,17 @@
       "id": 32,
       "category": "Frontend và Browser",
       "name": "User Profile",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 33,
       "category": "Frontend và Browser",
       "name": "Address Book",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 34,
@@ -392,8 +394,9 @@
       "id": 53,
       "category": "Frontend và Browser",
       "name": "CSP",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 54,
@@ -598,8 +601,9 @@
       "id": 81,
       "category": "Chức năng thương mại điện tử",
       "name": "Product Management",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 82,
@@ -633,8 +637,9 @@
       "id": 86,
       "category": "Chức năng thương mại điện tử",
       "name": "Product Pricing",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 87,
@@ -834,8 +839,9 @@
       "id": 113,
       "category": "Chức năng thương mại điện tử",
       "name": "Product Q&A",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 114,
@@ -855,8 +861,9 @@
       "id": 116,
       "category": "Chức năng thương mại điện tử",
       "name": "Recommendation System",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 117,

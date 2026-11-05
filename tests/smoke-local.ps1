@@ -119,6 +119,8 @@ try {
   Assert-Equal $searchApi.items[0].id 1 'Product search API result'
   $filteredProducts = Invoke-RestMethod -Uri "$apiBase/api/v1/products?category=Electronics&sort=id" -TimeoutSec 5
   if ($filteredProducts.total -lt 2) { throw 'The category filter did not return the synthetic electronics products.' }
+  $productQna = Invoke-RestMethod -Uri "$apiBase/api/v1/products/1/qna?q=Synthetic+question" -TimeoutSec 5
+  Assert-Equal $productQna.question 'Synthetic question' 'Product Q&A query'
   $notificationBody = @{ user_id = 'smoke-notify'; title = 'Synthetic smoke notice'; message = 'Lab-only notification' } | ConvertTo-Json -Compress
   $createdNotification = Invoke-RestMethod -Uri "$apiBase/api/v1/notify" -Method Post -ContentType 'application/json' -Body $notificationBody -TimeoutSec 5
   $notificationHeaders = @{ 'x-user-id' = 'smoke-notify' }
@@ -192,6 +194,8 @@ try {
   $httpxAvailable = $false
   try { & python -c 'import httpx' *> $null; $httpxAvailable = ($LASTEXITCODE -eq 0) } catch { $httpxAvailable = $false }
   if ($httpxAvailable) {
+    $recommendationList = Invoke-RestMethod -Uri "$apiBase/api/v1/products/1/recommendations" -TimeoutSec 5
+    if ($recommendationList.recommendations.Count -lt 1) { throw 'The local product recommendation route returned no category matches.' }
     $recommendationUrl = [uri]::EscapeDataString("$apiBase/health")
     $loopbackSsrf = Invoke-RestMethod -Uri "$apiBase/api/v1/products/1/recommendations?url=$recommendationUrl" -TimeoutSec 8
     Assert-Equal $loopbackSsrf.url_fetched "$apiBase/health" 'Loopback-only SSRF target'
