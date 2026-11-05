@@ -1,0 +1,16 @@
+celery==5.3.4
+redis==5.0.1
+jinja2==3.1.2
+pymongo==4.6.0
+psycopg2-binary==2.9.9
+requests==2.31.0
+python-dotenv==1.0.0
+reportlab==4.0.7
+Pillow==10.1.0
+pyyaml==6.0.1
+aiosmtplib==3.0.0
+kombu==5.3.3
+billiard==4.2.0
+vine==5.1.0
+lxml==4.9.3
+cryptography==41.0.7

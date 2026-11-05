@@ -1,0 +1,25 @@
+# Local runtimes and dependencies
+**/node_modules/
+**/.venv/
+**/venv/
+**/__pycache__/
+*.py[cod]
+npm-debug.log*
+*.log
+
+# Secrets and machine-specific configuration
+.env
+.env.*
+!.env.example
+
+# Local state and generated uploads
+uploads/**
+!uploads/.gitkeep
+**/data/
+**/logs/
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

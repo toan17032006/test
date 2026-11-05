@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#10284a"><title><%= title %> | VulnShop</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="site-header"><a class="wordmark" href="/">Vuln<span>Shop</span></a>
+    <form class="quick-search" action="/products" method="get"><input name="q" placeholder="Tìm sản phẩm…"><button type="submit">Tìm</button></form>
+    <nav class="site-nav"><a href="/products">Sản phẩm</a><a href="/cart">Giỏ hàng</a>
+      <% if (user) { %><a href="/profile"><%= user.name || user.username || user.email %></a><a href="/logout">Đăng xuất</a><% } else { %><a href="/login">Đăng nhập</a><a href="/register">Tạo tài khoản</a><% } %>
+    </nav>
+  </header>
+  <main class="page-shell">

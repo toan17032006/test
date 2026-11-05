@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /admin
+Disallow: /api/internal
+Disallow: /debug
+Disallow: /backup
+Disallow: /.env
+Disallow: /config
+Disallow: /phpinfo.php
+Disallow: /server-status
+Disallow: /actuator
+Disallow: /.git
+Allow: /
+
+Sitemap: http://localhost:3000/sitemap.xml

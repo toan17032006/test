@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>Pentest checklist | VulnShop</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0b1220;--panel:#121d2d;--panel2:#172437;--line:#26364b;--text:#eff5ff;--muted:#a4b3c7;--accent:#55d6be;--blue:#78a9ff;--warn:#ffca75}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top left,#13243a 0,transparent 48%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+    a{color:var(--accent)}button,input,select{font:inherit}.shell{max-width:1280px;margin:auto;padding:28px 22px 48px}.top{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:28px}.brand{font-weight:800;letter-spacing:.02em}.brand span{color:var(--accent)}.top a{text-decoration:none;color:var(--muted)}
+    .hero{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:end;margin-bottom:22px}.eyebrow{text-transform:uppercase;letter-spacing:.14em;color:var(--accent);font-size:.76rem;font-weight:800}.hero h1{font-size:clamp(2rem,4vw,3.25rem);line-height:1.05;margin:8px 0 12px}.hero p{max-width:760px;color:var(--muted);margin:0}.warning{max-width:270px;border:1px solid #735d37;background:#382e20;color:#ffe5b4;border-radius:12px;padding:12px 14px;font-size:.85rem}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}.stat,.filters,.table-wrap,.empty{background:linear-gradient(145deg,var(--panel),#101a29);border:1px solid var(--line);border-radius:14px}.stat{padding:16px 18px}.stat b{display:block;font-size:1.65rem}.stat span{font-size:.84rem;color:var(--muted)}
+    .filters{padding:14px;display:grid;grid-template-columns:minmax(220px,2fr) repeat(3,minmax(145px,1fr)) auto;gap:10px;margin:18px 0}.field{width:100%;background:#0b1422;color:var(--text);border:1px solid #33465e;border-radius:9px;padding:10px 12px;min-height:42px}.btn{border:1px solid #436076;background:#1b3343;color:var(--text);border-radius:9px;padding:9px 12px;cursor:pointer}.btn:hover{border-color:var(--accent)}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--muted);margin:12px 2px}.table-wrap{overflow:hidden}.table-scroll{overflow:auto}table{border-collapse:collapse;width:100%;min-width:860px}th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:middle}th{font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;color:#a8bad0;background:#111b29;position:sticky;top:0}td.id{color:var(--blue);font-variant-numeric:tabular-nums;width:72px}td.name{font-weight:650}.sub{display:block;color:var(--muted);font-size:.78rem;font-weight:400;margin-top:3px}.pill{display:inline-block;padding:3px 8px;border:1px solid #344d63;border-radius:999px;color:#bfcee1;font-size:.75rem;white-space:nowrap}.status{min-width:142px;background:#0b1422;color:var(--text);border:1px solid #33465e;border-radius:8px;padding:7px}.pagination{display:flex;align-items:center;gap:8px}.empty{padding:30px;text-align:center;color:var(--muted)}.foot{margin-top:16px;color:var(--muted);font-size:.82rem}.foot strong{color:var(--warn)}
+    @media(max-width:860px){.hero{grid-template-columns:1fr}.warning{max-width:none}.stats{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr 1fr}.filters input{grid-column:1/-1}.toolbar{align-items:flex-start;flex-direction:column}}
+    @media(max-width:480px){.shell{padding:18px 12px 32px}.stats{gap:8px}.stat{padding:12px}.stat b{font-size:1.35rem}.filters{grid-template-columns:1fr}.filters input{grid-column:auto}.top{align-items:flex-start}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="top"><div class="brand">VULN<span>SHOP</span> <span style="color:#a4b3c7;font-weight:500">/ LAB</span></div><a href="/">← Về cửa hàng</a></header>
+    <section class="hero">
+      <div><div class="eyebrow">Pentest workspace</div><h1>Danh sách kiểm thử</h1><p>Tra cứu thành phần, lỗ hổng, chuỗi tấn công và trường dữ liệu kiểm thử từ brief. Tiến độ đánh dấu được lưu trong trình duyệt hiện tại.</p></div>
+      <aside class="warning"><strong>Lab giới hạn tại máy local.</strong><br>Chỉ chạy và kiểm thử trên hệ thống bạn được phép sử dụng. Các mục trong danh sách chưa mặc định là đã triển khai.</aside>
+    </section>
+    <section class="stats" aria-label="Tổng quan">
+      <div class="stat"><b id="component-count">—</b><span>Thành phần ứng dụng</span></div>
+      <div class="stat"><b id="vulnerability-count">—</b><span>Mục lỗ hổng</span></div>
+      <div class="stat"><b id="chain-count">—</b><span>Chuỗi tấn công</span></div>
+      <div class="stat"><b id="field-count">—</b><span>Trường ma trận kiểm thử</span></div>
+    </section>
+    <section class="filters" aria-label="Bộ lọc">
+      <input id="search" class="field" type="search" placeholder="Tìm theo ID, tên hoặc nhóm..." autocomplete="off">
+      <select id="type" class="field" aria-label="Loại mục">
+        <option value="vulnerability">Lỗ hổng</option><option value="attack_chain">Chuỗi tấn công</option><option value="test_matrix_field">Trường ma trận</option><option value="component">Thành phần ứng dụng</option><option value="all">Tất cả 1001 mục</option>
+      </select>
+      <select id="category" class="field" aria-label="Nhóm"><option value="">Tất cả nhóm</option></select>
+      <select id="status-filter" class="field" aria-label="Trạng thái">
+        <option value="">Mọi trạng thái</option><option value="not_tested">Chưa kiểm thử</option><option value="passed">Đạt</option><option value="failed">Không đạt</option><option value="blocked">Bị chặn</option><option value="not_applicable">Không áp dụng</option>
+      </select>
+      <button id="export" class="btn" type="button">Xuất tiến độ</button>
+    </section>
+    <div class="toolbar"><div id="result-count" aria-live="polite">Đang tải danh mục…</div><div class="pagination"><button class="btn" id="prev" type="button">Trước</button><span id="page-label">Trang 1</span><button class="btn" id="next" type="button">Sau</button></div></div>
+    <section class="table-wrap"><div class="table-scroll"><table><thead><tr><th>ID</th><th>Tên mục</th><th>Nhóm</th><th>Loại</th><th>Trạng thái kiểm thử</th></tr></thead><tbody id="rows"></tbody></table></div><div id="empty" class="empty" hidden>Không có mục phù hợp với bộ lọc.</div></section>
+    <p class="foot"><strong>Lưu ý:</strong> trạng thái gốc và đường dẫn bằng chứng lấy từ catalog; thay đổi tại đây chỉ lưu trong trình duyệt hiện tại, không sửa báo cáo kiểm thử.</p>
+  </main>
+  <script>
+    (() => {
+      const storageKey = 'vulnshop-checklist-progress-v1';
+      const labels = { vulnerability: 'Lỗ hổng', attack_chain: 'Chuỗi tấn công', test_matrix_field: 'Trường ma trận', component: 'Thành phần' };
+      const statusLabels = { not_tested: 'Chưa kiểm thử', verified: 'Đã xác minh', passed: 'Đạt', failed: 'Không đạt', blocked: 'Bị chặn', not_applicable: 'Không áp dụng' };
+      const implementationLabels = { unverified: 'Chưa xác minh', observed: 'Đã quan sát' };
+      const state = { data: [], page: 0, size: 25, progress: {} };
+      const el = id => document.getElementById(id);
+      try { state.progress = JSON.parse(localStorage.getItem(storageKey) || '{}') || {}; } catch (_) { state.progress = {}; }
+      const safe = value => String(value ?? '');
+      const makeCell = (tag, value, className) => { const node = document.createElement(tag); node.textContent = safe(value); if (className) node.className = className; return node; };
+      const selectedType = () => el('type').value;
+      const allRows = () => [...state.data.entries, ...state.data.components.map(row => ({ ...row, record_type: 'component', test_status: 'not_applicable' }))];
+      const filterRows = () => {
+        const q = el('search').value.trim().toLocaleLowerCase();
+        const type = selectedType(), category = el('category').value, status = el('status-filter').value;
+        return allRows().filter(row => {
+          const rowType = row.record_type;
+          const rowStatus = state.progress[rowType + ':' + row.id] || row.test_status;
+          const haystack = `${row.id} ${row.name} ${row.category}`.toLocaleLowerCase();
+          return (type === 'all' || (type === 'component' ? rowType === 'component' : rowType === type)) &&
+            (!category || row.category === category) && (!status || rowStatus === status) && (!q || haystack.includes(q));
+        });
+      };
+      const render = () => {
+        const rows = filterRows(), pageCount = Math.max(1, Math.ceil(rows.length / state.size));
+        state.page = Math.min(state.page, pageCount - 1);
+        const body = el('rows'); body.replaceChildren();
+        rows.slice(state.page * state.size, (state.page + 1) * state.size).forEach(row => {
+          const tr = document.createElement('tr');
+          tr.append(makeCell('td', row.id, 'id'));
+          const name = makeCell('td', row.name, 'name');
+          const details = [];
+          if (row.record_type !== 'test_matrix_field') details.push(`Triển khai: ${implementationLabels[row.implementation_status] || row.implementation_status}`);
+          if (row.evidence) details.push(`Bằng chứng: ${row.evidence}`);
+          if (details.length) name.append(makeCell('span', details.join(' · '), 'sub'));
+          tr.append(name, makeCell('td', row.category), makeCell('td', labels[row.record_type] || row.record_type));
+          const statusCell = document.createElement('td');
+          if (row.record_type === 'component' || row.record_type === 'test_matrix_field') {
+            const label = row.record_type === 'component'
+              ? `${implementationLabels[row.implementation_status] || row.implementation_status} · ${statusLabels[row.test_status] || row.test_status}`
+              : 'Trường dữ liệu';
+            statusCell.append(makeCell('span', label, 'pill'));
+          } else {
+            const select = document.createElement('select'); select.className = 'status'; select.setAttribute('aria-label', `Trạng thái ${row.id}`);
+            Object.entries(statusLabels).forEach(([value, label]) => { const option = document.createElement('option'); option.value = value; option.textContent = label; select.append(option); });
+            const key = row.record_type + ':' + row.id; select.value = state.progress[key] || row.test_status;
+            select.addEventListener('change', () => { state.progress[key] = select.value; localStorage.setItem(storageKey, JSON.stringify(state.progress)); render(); });
+            statusCell.append(select);
+          }
+          tr.append(statusCell); body.append(tr);
+        });
+        el('empty').hidden = rows.length !== 0;
+        el('result-count').textContent = `${rows.length.toLocaleString()} mục phù hợp`;
+        el('page-label').textContent = `Trang ${state.page + 1} / ${pageCount}`;
+        el('prev').disabled = state.page === 0; el('next').disabled = state.page >= pageCount - 1;
+      };
+      fetch('/api/vuln-catalog').then(response => { if (!response.ok) throw new Error('Không tải được danh mục'); return response.json(); }).then(data => {
+        state.data = data;
+        el('component-count').textContent = data.counts.components.toLocaleString();
+        el('vulnerability-count').textContent = data.counts.vulnerabilities.toLocaleString();
+        el('chain-count').textContent = data.counts.attack_chains.toLocaleString();
+        el('field-count').textContent = data.counts.test_matrix_fields.toLocaleString();
+        const categories = [...new Set([...data.entries, ...data.components].map(row => row.category))].sort((a,b) => a.localeCompare(b));
+        categories.forEach(category => { const option = document.createElement('option'); option.value = category; option.textContent = category; el('category').append(option); });
+        render();
+      }).catch(error => { el('result-count').textContent = error.message; el('empty').hidden = false; });
+      ['search','type','category','status-filter'].forEach(id => el(id).addEventListener(id === 'search' ? 'input' : 'change', () => { state.page = 0; render(); }));
+      el('prev').addEventListener('click', () => { state.page--; render(); });
+      el('next').addEventListener('click', () => { state.page++; render(); });
+      el('export').addEventListener('click', () => {
+        const blob = new Blob([JSON.stringify({ exported_at: new Date().toISOString(), progress: state.progress }, null, 2)], { type: 'application/json' });
+        const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = 'vulnshop-checklist-progress.json'; link.click(); URL.revokeObjectURL(link.href);
+      });
+    })();
+  </script>
+</body>
+</html>

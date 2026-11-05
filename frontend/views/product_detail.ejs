@@ -1,0 +1,18 @@
+<%- include('partials/header') %>
+<nav class="crumbs"><a href="/">Trang chủ</a><span>/</span><a href="/products">Sản phẩm</a><span>/</span><span><%= product.name %></span></nav>
+<section class="product-detail">
+  <div class="product-image"><img src="<%= product.image || (product.images && product.images[0]) || 'https://placehold.co/700x600?text=VulnShop' %>" alt="<%= product.name %>"></div>
+  <div class="product-info"><span class="eyebrow"><%= product.brand || product.category || 'VulnShop Select' %></span><h1><%= product.name %></h1>
+    <div class="rating">★★★★★ <span><%= product.rating || '4.8' %> · <%= product.sold || '1.2k' %> lượt mua</span></div>
+    <p class="price"><%= formatVND(product.price) %></p><p class="muted">Còn <strong><%= product.stock %></strong> sản phẩm · Giao hàng dự kiến 1–3 ngày</p>
+    <div class="description"><%- product.description %></div>
+    <label class="field-label" for="detail-qty">Số lượng</label><input class="qty-input" id="detail-qty" type="number" min="1" value="1">
+    <div class="button-row"><button class="button primary" type="button" onclick="VulnShop.addToCart({productId:'<%= product.id %>',name:'<%= product.name %>',price:<%= product.price %>,qty:parseInt(document.getElementById('detail-qty').value,10),image:'<%= product.image || (product.images && product.images[0]) || '' %>'})">Thêm vào giỏ</button><a class="button secondary" href="/cart">Xem giỏ hàng</a></div>
+    <div class="notice">Đổi trả trong 7 ngày · Thanh toán linh hoạt · Hỗ trợ mỗi ngày</div>
+  </div>
+</section>
+<section class="section-block"><div class="section-heading"><div><span class="eyebrow">Đánh giá khách hàng</span><h2>Nhận xét sản phẩm</h2></div></div>
+  <div class="review-list"><% if (reviews && reviews.length) { reviews.forEach(function(review) { %><article class="review-card"><div class="rating">★★★★★ <span><%= review.user || review.user_name || 'Khách hàng' %></span></div><p><%- review.comment || review.content || '' %></p><small><%= review.date || review.created_at || '' %></small></article><% }); } else { %><p class="muted">Chưa có đánh giá. Hãy là người đầu tiên chia sẻ trải nghiệm.</p><% } %></div>
+</section>
+<section class="section-block"><div class="section-heading"><div><span class="eyebrow">Gợi ý cho bạn</span><h2>Sản phẩm tương tự</h2></div></div><div class="product-grid"><% (related || []).forEach(function(item) { %><a class="mini-product" href="/products/<%= item.id %>"><img src="<%= item.image || (item.images && item.images[0]) || 'https://placehold.co/240x180?text=VulnShop' %>" alt=""><strong><%= item.name %></strong><span><%= formatVND(item.price) %></span></a><% }); %></div></section>
+<%- include('partials/footer') %>

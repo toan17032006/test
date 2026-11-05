@@ -1,0 +1,175 @@
+$ErrorActionPreference = 'Stop'
+$repoRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+$logDir = Join-Path $env:TEMP ("vulnshop-smoke-" + [guid]::NewGuid().ToString('N'))
+New-Item -ItemType Directory -Path $logDir | Out-Null
+
+function Get-FreeLoopbackPort {
+  $listener = [System.Net.Sockets.TcpListener]::new([System.Net.IPAddress]::Loopback, 0)
+  $listener.Start()
+  try { return ([System.Net.IPEndPoint]$listener.LocalEndpoint).Port }
+  finally { $listener.Stop() }
+}
+
+function Assert-Equal($actual, $expected, $label) {
+  if ($actual -ne $expected) { throw "$label expected '$expected', got '$actual'." }
+}
+
+do { $apiPort = Get-FreeLoopbackPort } while ($apiPort -in @($webPort,$graphqlPort))
+do { $webPort = Get-FreeLoopbackPort } while ($webPort -eq $apiPort)
+do { $graphqlPort = Get-FreeLoopbackPort } while ($graphqlPort -in @($apiPort,$webPort))
+$api = $null
+$web = $null
+$graphql = $null
+$oldEnvironment = @{}
+foreach ($name in @('UPLOAD_DIR','API_URL','HOST','PORT','VULNDB_DIR','NODE_ENV','SESSION_SECRET','SECRET_KEY','JWT_SECRET','ADMIN_PASSWORD','AWS_ACCESS_KEY_ID','AWS_SECRET_ACCESS_KEY','SMTP_HOST','SMTP_PORT','DATABASE_URL','MYSQL_URL','MONGODB_URL','REDIS_URL','PYTHONUNBUFFERED')) {
+  $oldEnvironment[$name] = [Environment]::GetEnvironmentVariable($name, 'Process')
+}
+
+try {
+  $env:UPLOAD_DIR = Join-Path $repoRoot 'uploads'
+  $env:SECRET_KEY = 'local-smoke-secret'
+  $env:JWT_SECRET = 'local-smoke-jwt'
+  $env:PYTHONUNBUFFERED = '1'
+  $env:ADMIN_PASSWORD = 'admin123'
+  $env:AWS_ACCESS_KEY_ID = 'LAB_ONLY_NOT_A_CREDENTIAL'
+  $env:AWS_SECRET_ACCESS_KEY = 'LAB_ONLY_NOT_A_CREDENTIAL'
+  $env:SMTP_HOST = '127.0.0.1'
+  $env:SMTP_PORT = '1'
+  $env:DATABASE_URL = 'postgresql://lab:lab@127.0.0.1:1/vulnshop'
+  $env:MYSQL_URL = 'mysql://lab:lab@127.0.0.1:1/vulnshop'
+  $env:MONGODB_URL = 'mongodb://127.0.0.1:1/vulnshop'
+  $env:REDIS_URL = 'redis://127.0.0.1:1/0'
+  $api = Start-Process -FilePath 'python' -ArgumentList @('-m','uvicorn','main:app','--host','127.0.0.1','--port',"$apiPort") -WorkingDirectory (Join-Path $repoRoot 'backend') -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $logDir 'api.out') -RedirectStandardError (Join-Path $logDir 'api.err')
+
+  $env:API_URL = "http://127.0.0.1:$apiPort"
+  $env:HOST = '127.0.0.1'
+  $env:PORT = "$webPort"
+  $env:SESSION_SECRET = 'local-smoke-session'
+  $env:VULNDB_DIR = Join-Path $repoRoot 'vulndb'
+  $web = Start-Process -FilePath 'node' -ArgumentList @('server.js') -WorkingDirectory (Join-Path $repoRoot 'frontend') -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $logDir 'web.out') -RedirectStandardError (Join-Path $logDir 'web.err')
+
+  $env:PORT = "$graphqlPort"
+  $graphql = Start-Process -FilePath 'node' -ArgumentList @('src/index.js') -WorkingDirectory (Join-Path $repoRoot 'services/graphql') -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $logDir 'graphql.out') -RedirectStandardError (Join-Path $logDir 'graphql.err')
+
+  $apiBase = "http://127.0.0.1:$apiPort"
+  $webBase = "http://127.0.0.1:$webPort"
+  $graphqlBase = "http://127.0.0.1:$graphqlPort"
+
+  $ready = $false
+  for ($i = 0; $i -lt 30; $i++) {
+    try {
+      $null = Invoke-RestMethod -Uri "$apiBase/health" -TimeoutSec 2
+      $null = Invoke-WebRequest -Uri "$webBase/admin/vulns" -TimeoutSec 2
+      $null = Invoke-RestMethod -Uri "$webBase/api/vuln-catalog" -TimeoutSec 2
+      $query = Invoke-RestMethod -Uri "$graphqlBase/graphql" -Method Post -ContentType 'application/json' -Body '{"query":"{ __schema { queryType { name } } }"}' -TimeoutSec 2
+      if ($query.data.__schema.queryType.name -eq 'Query') { $ready = $true; break }
+    } catch { Start-Sleep -Milliseconds 300 }
+  }
+  if (-not $ready) { throw 'The local services did not become ready.' }
+
+  $paths = @('/','/products','/products/1','/cart','/checkout','/login','/register','/profile','/admin/vulns')
+  foreach ($path in $paths) {
+    $response = Invoke-WebRequest -Uri "$webBase$path" -TimeoutSec 8
+    Assert-Equal $response.StatusCode 200 "GET $path"
+  }
+
+  $catalog = Invoke-RestMethod -Uri "$webBase/api/vuln-catalog" -TimeoutSec 8
+  Assert-Equal $catalog.counts.components 275 'Component inventory count'
+  Assert-Equal $catalog.counts.vulnerabilities 661 'Vulnerability inventory count'
+  Assert-Equal $catalog.counts.attack_chains 29 'Attack-chain inventory count'
+  Assert-Equal $catalog.counts.test_matrix_fields 36 'Test-matrix inventory count'
+
+  $docsResponse = Invoke-WebRequest -Uri "$apiBase/docs" -TimeoutSec 5
+  Assert-Equal $docsResponse.StatusCode 200 'Unauthenticated API documentation'
+  $envResponse = Invoke-WebRequest -Uri "$apiBase/.env" -TimeoutSec 5
+  if ($envResponse.Content -notmatch 'AWS_ACCESS_KEY_ID=LAB_ONLY_NOT_A_CREDENTIAL') { throw 'The synthetic environment marker was not exposed by the lab env endpoint.' }
+
+  $bypassBody = '{"admin":true}'
+  $bypass = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/bypass" -Method Post -ContentType 'application/json' -Body $bypassBody -TimeoutSec 5
+  Assert-Equal $bypass.bypass $true 'Authentication bypass endpoint'
+  Assert-Equal $bypass.user.role 'admin' 'Authentication bypass administrator role'
+
+  $productRecord = Invoke-RestMethod -Uri "$apiBase/api/v1/products/1" -TimeoutSec 5
+  Assert-Equal $productRecord.product.price 29990000 'Synthetic product catalog price'
+  Assert-Equal $productRecord.internal_data.cost 15000000 'Unauthenticated internal cost disclosure'
+  Assert-Equal $productRecord.internal_data.admin_note 'Profit margin 40%' 'Unauthenticated internal business data disclosure'
+
+  $session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
+  $null = Invoke-WebRequest -Uri "$webBase/cart" -WebSession $session -TimeoutSec 5
+  $added = Invoke-RestMethod -Uri "$webBase/cart/add" -Method Post -WebSession $session -ContentType 'application/json' -Body '{"productId":1,"name":"Lab phone","price":100,"qty":2,"image":"/img/lab.png"}' -TimeoutSec 5
+  Assert-Equal $added.cartCount 1 'Storefront cart item count'
+  $formBody = 'shipping_name=Lab+User&shipping_address=Synthetic+address&shipping_phone=0900000000&payment_method=cod&total_amount=200&shipping_fee=0&coupon_code='
+  $checkout = Invoke-WebRequest -Uri "$webBase/checkout" -Method Post -WebSession $session -ContentType 'application/x-www-form-urlencoded' -Body $formBody -TimeoutSec 8
+  Assert-Equal $checkout.StatusCode 200 'Storefront checkout'
+  $emptyCart = Invoke-WebRequest -Uri "$webBase/cart" -WebSession $session -TimeoutSec 5
+  if ($emptyCart.Content -notmatch 'Giỏ hàng đang trống') { throw 'Checkout did not clear the session cart.' }
+
+  $email = "smoke-$([guid]::NewGuid().ToString('N'))@example.test"
+  $registerBody = @{ email = $email; name = 'Lab Smoke User'; password = 'x'; role = 'admin'; is_admin = $true } | ConvertTo-Json -Compress
+  $registered = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/register" -Method Post -ContentType 'application/json' -Body $registerBody -TimeoutSec 8
+  Assert-Equal $registered.role 'admin' 'Synthetic account registration'
+  $registeredProfile = Invoke-RestMethod -Uri "$apiBase/api/v1/users/$($registered.user_id)" -TimeoutSec 5
+  Assert-Equal $registeredProfile.password_plain 'x' 'Unauthenticated profile password exposure'
+  if ($registeredProfile.password_hash.Length -ne 32) { throw 'The lab password hash was not the expected MD5-sized value.' }
+  $md5 = [System.Security.Cryptography.MD5]::Create()
+  try { $expectedMd5 = [Convert]::ToHexString($md5.ComputeHash([Text.Encoding]::UTF8.GetBytes('x'))).ToLowerInvariant() }
+  finally { $md5.Dispose() }
+  Assert-Equal $registeredProfile.password_hash $expectedMd5 'Weak MD5 password storage'
+  Assert-Equal $registeredProfile.role 'admin' 'Signup privilege escalation by mass assignment'
+  $userHeaders = @{ 'x-user-id' = '2' }
+  $unprotectedAdminList = Invoke-RestMethod -Uri "$apiBase/api/v1/admin/users" -TimeoutSec 5
+  if ($unprotectedAdminList.total -lt 4) { throw 'The admin user list was not available to an unauthenticated caller.' }
+  Assert-Equal $unprotectedAdminList.items[0].password_plain 'admin123' 'Unauthenticated admin PII and credential exposure'
+  Assert-Equal $unprotectedAdminList.items[0].email 'admin@vulnshop.com' 'Unauthenticated customer email exposure'
+  Assert-Equal $unprotectedAdminList.items[0].phone '0901234567' 'Unauthenticated customer phone exposure'
+  if (-not $unprotectedAdminList.items[0].credit_card -or -not $unprotectedAdminList.items[0].ssn) { throw 'The admin list did not expose synthetic PII fields.' }
+  $otherUserOrder = Invoke-RestMethod -Uri "$apiBase/api/v1/orders/1002" -Headers $userHeaders -TimeoutSec 5
+  Assert-Equal $otherUserOrder.user_id '3' 'Unauthenticated cross-user order read'
+  $otherUserAddress = Invoke-RestMethod -Uri "$apiBase/api/v1/users/3/addresses" -Headers $userHeaders -TimeoutSec 5
+  if ($otherUserAddress.addresses[0].phone -ne '0923456789') { throw 'Cross-user address/phone read did not return the synthetic record.' }
+  $loginBody = @{ email = $email; password = 'x' } | ConvertTo-Json -Compress
+  $login = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/login" -Method Post -ContentType 'application/json' -Body $loginBody -TimeoutSec 8
+  if (-not $login.access_token) { throw 'Login did not return an access token.' }
+  $me = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/me" -Headers @{ Authorization = "Bearer $($login.access_token)" } -TimeoutSec 5
+  Assert-Equal $me.user.role 'admin' 'Authenticated profile role'
+
+  $addedApiItem = Invoke-RestMethod -Uri "$apiBase/api/v1/cart/items" -Method Post -Headers $userHeaders -ContentType 'application/json' -Body '{"product_id":1,"quantity":2,"unit_price":10}' -TimeoutSec 5
+  Assert-Equal $addedApiItem.total 20 'API cart subtotal'
+  if ($addedApiItem.item.unit_price -ge $productRecord.product.price) { throw 'The API did not accept the client-supplied below-catalog unit price.' }
+  $order = Invoke-RestMethod -Uri "$apiBase/api/v1/orders" -Method Post -Headers $userHeaders -ContentType 'application/json' -Body '{"total":17}' -TimeoutSec 5
+  $orderId = $order.order_id
+  Assert-Equal $order.order.total 17 'API accepted order total'
+  $payment = Invoke-RestMethod -Uri "$apiBase/api/v1/payment/process" -Method Post -ContentType 'application/json' -Body ("{`"order_id`":$orderId,`"amount`":0}") -TimeoutSec 5
+  Assert-Equal $payment.payment.amount 0 'Mock payment accepted a zero amount'
+  Assert-Equal $payment.order.payment_status 'paid' 'Mock payment status'
+  $event = '{"order_id":1002,"status":"paid"}'
+  $first = Invoke-RestMethod -Uri "$apiBase/api/v1/webhooks/payment" -Method Post -ContentType 'application/json' -Body $event -TimeoutSec 5
+  $replay = Invoke-RestMethod -Uri "$apiBase/api/v1/webhooks/payment" -Method Post -ContentType 'application/json' -Body $event -TimeoutSec 5
+  Assert-Equal $first.duplicate_count 1 'First payment callback count'
+  Assert-Equal $replay.duplicate_count 2 'Repeated payment callback count'
+  $forgedOrder = Invoke-RestMethod -Uri "$apiBase/api/v1/orders/1002" -TimeoutSec 5
+  Assert-Equal $forgedOrder.payment_status 'paid' 'Unsigned payment callback state change'
+
+  $apiLog = Get-Content -Raw -LiteralPath (Join-Path $logDir 'api.out')
+  if ($apiLog -notmatch [regex]::Escape("email=$email password=x role=admin")) { throw 'The synthetic signup password was not present in the lab API log.' }
+
+  Write-Output 'Loopback smoke passed: 9 storefront pages, complete catalog totals, API docs/env exposure, auth bypass, synthetic product/user data exposure, role escalation, cross-user access, price/amount tampering, MD5 password storage/logging, mock payment/webhook forgery and replay, and GraphQL introspection.'
+}
+catch {
+  foreach ($name in @('api.err','web.err','graphql.err')) {
+    $path = Join-Path $logDir $name
+    if (Test-Path $path) {
+      $content = Get-Content -Raw -LiteralPath $path
+      if ($content) { Write-Output "$name`:`n$content" }
+    }
+  }
+  throw
+}
+finally {
+  foreach ($process in @($web,$api,$graphql)) {
+    if ($process -and -not $process.HasExited) { Stop-Process -Id $process.Id -Force -ErrorAction SilentlyContinue }
+  }
+  foreach ($file in Get-ChildItem -LiteralPath $logDir -File -ErrorAction SilentlyContinue) { Remove-Item -LiteralPath $file.FullName -Force }
+  Remove-Item -LiteralPath $logDir -Force -ErrorAction SilentlyContinue
+  foreach ($name in $oldEnvironment.Keys) { [Environment]::SetEnvironmentVariable($name, $oldEnvironment[$name], 'Process') }
+}

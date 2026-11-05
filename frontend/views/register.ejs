@@ -1,0 +1,6 @@
+<%- include('partials/header') %>
+<section class="auth-wrap"><div class="auth-card"><a class="back-link" href="/">← Về cửa hàng</a><span class="eyebrow">VulnShop account</span><h1>Tạo tài khoản</h1><p class="muted">Đăng ký để theo dõi đơn hàng và nhận ưu đãi.</p>
+  <% if (error) { %><div class="notice error"><%= error %></div><% } %>
+  <form class="stack-form" action="/register" method="post"><label>Họ và tên<input name="name" required autocomplete="name"></label><label>Email<input type="email" name="email" required autocomplete="email"></label><label>Số điện thoại<input name="phone" autocomplete="tel"></label><label>Mật khẩu<input type="password" name="password" required autocomplete="new-password"></label><label>Xác nhận mật khẩu<input type="password" name="confirm_password" required autocomplete="new-password"></label><button class="button primary full-width">Tạo tài khoản</button></form><p class="muted">Đã có tài khoản? <a href="/login">Đăng nhập</a></p>
+</div></section>
+<%- include('partials/footer') %>

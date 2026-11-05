@@ -1,0 +1,12 @@
+<%- include('partials/header') %>
+<nav class="crumbs"><a href="/">Trang chủ</a><span>/</span><a href="/cart">Giỏ hàng</a><span>/</span><span>Thanh toán</span></nav>
+<section class="section-block"><div class="section-heading"><div><span class="eyebrow">An tâm đặt hàng</span><h1>Thanh toán</h1></div></div>
+  <% if (!cart || !cart.length) { %><div class="empty-state"><h2>Giỏ hàng của bạn đang trống</h2><a class="button primary" href="/products">Quay lại cửa hàng</a></div><% } else { %>
+  <form class="checkout-layout" action="/checkout" method="post"><div class="checkout-form">
+    <section class="form-card"><h2>Thông tin nhận hàng</h2><label>Họ và tên<input required name="shipping_name" value="<%= user ? user.name : '' %>" autocomplete="name"></label><label>Số điện thoại<input required name="shipping_phone" value="<%= user ? user.phone : '' %>" autocomplete="tel"></label><label>Địa chỉ giao hàng<textarea required name="shipping_address" rows="3" autocomplete="street-address"><%= user ? user.address : '' %></textarea></label></section>
+    <section class="form-card"><h2>Phương thức thanh toán</h2><label class="choice"><input type="radio" name="payment_method" value="cod" checked> Thanh toán khi nhận hàng</label><label class="choice"><input type="radio" name="payment_method" value="bank"> Chuyển khoản ngân hàng</label><label class="choice"><input type="radio" name="payment_method" value="card"> Thẻ thanh toán (mô phỏng)</label></section>
+    <section class="form-card"><h2>Mã ưu đãi</h2><label>Mã giảm giá<input name="coupon_code" placeholder="Nhập mã nếu có"></label></section>
+  </div><aside class="summary-card"><h2>Đơn hàng</h2><% cart.forEach(function(item) { %><div class="summary-line"><span><%= item.name %> × <%= item.qty %></span><strong><%= formatVND(item.price * item.qty) %></strong></div><% }); %><hr><div class="summary-line"><span>Tạm tính</span><strong><%= formatVND(subtotal) %></strong></div><div class="summary-line"><span>Giao hàng</span><strong>0đ</strong></div><div class="summary-line total-line"><span>Tổng cộng</span><strong><%= formatVND(subtotal) %></strong></div>
+    <input type="hidden" name="total_amount" value="<%= subtotal %>"><input type="hidden" name="shipping_fee" value="0"><button class="button primary full-width" type="submit">Đặt hàng</button><p class="muted tiny">Bằng cách đặt hàng, bạn đồng ý với điều khoản mua sắm của VulnShop.</p></aside></form><% } %>
+</section>
+<%- include('partials/footer') %>
