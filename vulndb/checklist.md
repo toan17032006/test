@@ -518,9 +518,9 @@
 
 | ID | Name | Type | Implementation | Test | Evidence |
 |---:|---|---|---|---|---|
-| 198 | SSRF | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 198 | SSRF | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 199 | Blind SSRF | vulnerability | unverified | not_tested | — |
-| 200 | SSRF to Internal Services | vulnerability | unverified | not_tested | — |
+| 200 | SSRF to Internal Services | vulnerability | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 201 | SSRF to Cloud Metadata | vulnerability | unverified | not_tested | — |
 | 202 | SSRF Through Webhooks | vulnerability | unverified | not_tested | — |
 | 203 | SSRF Through Image Processing | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |

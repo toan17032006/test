@@ -3729,8 +3729,9 @@
       "name": "SSRF",
       "record_type": "vulnerability",
       "implementation_status": "observed",
-      "test_status": "not_tested",
-      "implementation_evidence": "docs/implementation-map.md"
+      "test_status": "verified",
+      "implementation_evidence": "docs/implementation-map.md",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 199,
@@ -3745,8 +3746,9 @@
       "category": "Server-Side Vulnerabilities",
       "name": "SSRF to Internal Services",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 201,
