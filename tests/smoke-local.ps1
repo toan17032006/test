@@ -147,6 +147,11 @@ try {
   Assert-Equal $productRecord.product.price 29990000 'Synthetic product catalog price'
   Assert-Equal $productRecord.internal_data.cost 15000000 'Unauthenticated internal cost disclosure'
   Assert-Equal $productRecord.internal_data.admin_note 'Profit margin 40%' 'Unauthenticated internal business data disclosure'
+  $reviewBody = @{ content = 'Synthetic smoke review'; rating = 5; user_name = 'Unauthenticated Reviewer' } | ConvertTo-Json -Compress
+  $fakeReview = Invoke-RestMethod -Uri "$apiBase/api/v1/products/1/review" -Method Post -ContentType 'application/json' -Body $reviewBody -TimeoutSec 5
+  Assert-Equal $fakeReview.review.user_name 'Unauthenticated Reviewer' 'Fake product review injection'
+  $reviewList = Invoke-RestMethod -Uri "$apiBase/api/v1/products/1/reviews" -TimeoutSec 5
+  Assert-Equal $reviewList.reviews[0].content 'Synthetic smoke review' 'Unauthenticated review ownership bypass'
 
   $session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
   $null = Invoke-WebRequest -Uri "$webBase/cart" -WebSession $session -TimeoutSec 5
@@ -298,12 +303,34 @@ try {
   $addedApiItem = Invoke-RestMethod -Uri "$apiBase/api/v1/cart/items" -Method Post -Headers $userHeaders -ContentType 'application/json' -Body '{"product_id":1,"quantity":2,"unit_price":10}' -TimeoutSec 5
   Assert-Equal $addedApiItem.total 20 'API cart subtotal'
   if ($addedApiItem.item.unit_price -ge $productRecord.product.price) { throw 'The API did not accept the client-supplied below-catalog unit price.' }
-  $order = Invoke-RestMethod -Uri "$apiBase/api/v1/orders" -Method Post -Headers $userHeaders -ContentType 'application/json' -Body '{"total":17}' -TimeoutSec 5
+  $negativePriceCart = Invoke-RestMethod -Uri "$apiBase/api/v1/cart/items" -Method Post -Headers @{ 'x-user-id' = '4' } -ContentType 'application/json' -Body '{"product_id":4,"quantity":1,"unit_price":-1}' -TimeoutSec 5
+  Assert-Equal $negativePriceCart.total -1 'Negative cart price'
+  $zeroPriceCart = Invoke-RestMethod -Uri "$apiBase/api/v1/cart/items" -Method Post -Headers @{ 'x-user-id' = '5' } -ContentType 'application/json' -Body '{"product_id":4,"quantity":1,"unit_price":0}' -TimeoutSec 5
+  Assert-Equal $zeroPriceCart.total 0 'Zero cart price'
+  $negativeQuantityCart = Invoke-RestMethod -Uri "$apiBase/api/v1/cart/items" -Method Post -Headers @{ 'x-user-id' = '6' } -ContentType 'application/json' -Body '{"product_id":4,"quantity":-1,"unit_price":100}' -TimeoutSec 5
+  Assert-Equal $negativeQuantityCart.total -100 'Negative cart quantity'
+  $victimCart = Invoke-RestMethod -Uri "$apiBase/api/v1/cart/items" -Method Post -Headers @{ 'x-user-id' = '3' } -ContentType 'application/json' -Body '{"product_id":1,"quantity":1,"unit_price":10}' -TimeoutSec 5
+  $cartBypass = Invoke-RestMethod -Uri "$apiBase/api/v1/cart?user_id=3" -TimeoutSec 5
+  Assert-Equal $cartBypass.items[0].product_id 1 'Unauthenticated cart ownership bypass'
+  $couponBody = '{"code":"SALE10","total":100}'
+  $couponUseOne = Invoke-RestMethod -Uri "$apiBase/api/v1/coupons/validate" -Method Post -ContentType 'application/json' -Body $couponBody -TimeoutSec 5
+  $couponUseTwo = Invoke-RestMethod -Uri "$apiBase/api/v1/coupons/validate" -Method Post -ContentType 'application/json' -Body $couponBody -TimeoutSec 5
+  Assert-Equal $couponUseOne.valid $true 'First coupon use'
+  Assert-Equal $couponUseTwo.valid $true 'Coupon reuse without a use limit'
+  $orderBody = '{"user_id":"3","items":[{"product_id":1,"quantity":1,"unit_price":17}],"total":17}'
+  $order = Invoke-RestMethod -Uri "$apiBase/api/v1/orders" -Method Post -Headers $userHeaders -ContentType 'application/json' -Body $orderBody -TimeoutSec 5
   $orderId = $order.order_id
   Assert-Equal $order.order.total 17 'API accepted order total'
+  Assert-Equal $order.order.user_id '3' 'Client-controlled order ownership'
+  $canceledOrder = Invoke-RestMethod -Uri "$apiBase/api/v1/orders/$orderId/cancel" -Method Post -TimeoutSec 5
+  Assert-Equal $canceledOrder.order.status 'cancelled' 'Unauthenticated cross-user order cancellation'
   $payment = Invoke-RestMethod -Uri "$apiBase/api/v1/payment/process" -Method Post -ContentType 'application/json' -Body ("{`"order_id`":$orderId,`"amount`":0}") -TimeoutSec 5
   Assert-Equal $payment.payment.amount 0 'Mock payment accepted a zero amount'
   Assert-Equal $payment.order.payment_status 'paid' 'Mock payment status'
+  $duplicatePayment = Invoke-RestMethod -Uri "$apiBase/api/v1/payment/process" -Method Post -ContentType 'application/json' -Body ("{`"order_id`":$orderId,`"amount`":0}") -TimeoutSec 5
+  if ($duplicatePayment.payment.id -eq $payment.payment.id) { throw 'Repeated mock payment processing did not create a duplicate payment.' }
+  $paymentHistory = Invoke-RestMethod -Uri "$apiBase/api/v1/payment/$orderId" -TimeoutSec 5
+  Assert-Equal $paymentHistory.payments.Count 2 'Payment idempotency failure'
   $event = '{"order_id":1002,"status":"paid"}'
   $first = Invoke-RestMethod -Uri "$apiBase/api/v1/webhooks/payment" -Method Post -ContentType 'application/json' -Body $event -TimeoutSec 5
   $replay = Invoke-RestMethod -Uri "$apiBase/api/v1/webhooks/payment" -Method Post -ContentType 'application/json' -Body $event -TimeoutSec 5
@@ -320,7 +347,7 @@ try {
   $apiLog = Get-Content -Raw -LiteralPath (Join-Path $logDir 'api.out')
   if ($apiLog -notmatch [regex]::Escape("email=$email password=x role=admin")) { throw 'The synthetic signup password was not present in the lab API log.' }
 
-  Write-Output 'Loopback smoke passed: storefront/catalog, docs/env/backup exposure, coupon discovery, auth bypass/default credentials/enumeration/rate limits, email/OTP/reset flows, refresh/session/JWT/OAuth flaws, product/customer data exposure, role escalation, cross-user access, price/amount tampering, unauthorized refunds, MD5 password storage/logging, payment webhook forgery/replay, and GraphQL introspection.'
+  Write-Output 'Loopback smoke passed: storefront/catalog, docs/env/backup exposure, coupon discovery/reuse, auth bypass/default credentials/enumeration/rate limits, email/OTP/reset flows, refresh/session/JWT/OAuth flaws, product/customer data exposure and fake reviews, role/order ownership changes, cart price/quantity tampering, duplicate payments, unauthorized cancellation/refunds, payment webhook forgery/replay, and GraphQL introspection.'
 }
 catch {
   foreach ($name in @('api.err','web.err','graphql.err')) {

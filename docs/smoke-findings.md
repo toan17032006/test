@@ -8,6 +8,8 @@ The automated smoke reproduced the following behaviors and records them as `obse
 |---|---|---|
 | 17, 19, 20 | Exposed environment configuration, API docs, and GraphQL introspection | Unauthenticated `/.env` returned deliberately fake environment values; `/docs` returned 200; GraphQL `__schema` returned the `Query` root. |
 | 293, 576 | Coupon enumeration and backup data exposure | Unauthenticated coupon listing revealed the synthetic `ADMIN` coupon; the admin backup endpoint returned synthetic user and order records. |
+| 284, 285, 286, 287, 289 | Negative/zero price, quantity, and cart ownership abuse | The API accepted negative and zero unit prices, a negative quantity, and returned user 3's cart through a caller-selected user ID. |
+| 294 | Coupon reuse | The same synthetic coupon validated successfully twice without a use limit. |
 | 32, 33 | Weak default credentials and default admin account | The seeded synthetic admin account accepted `admin123` without CAPTCHA. |
 | 31, 61 | Weak password policy and authentication bypass | Registration accepted a one-character password; `/auth/bypass` returned an admin principal for `{"admin":true}`. |
 | 34, 35, 37, 38, 41, 43 | Account enumeration, missing login throttling, and CAPTCHA bypass | Unknown and known usernames returned different errors; duplicate registration and password reset distinguished known emails; five invalid logins did not lock out the account; a valid login required no CAPTCHA. |
@@ -18,6 +20,9 @@ The automated smoke reproduced the following behaviors and records them as `obse
 | 251, 252, 260 | Excessive API data, parameter tampering, and GraphQL introspection | Product responses included internal cost/admin notes; cart and order requests set below-catalog prices and totals; schema introspection succeeded. |
 | 277, 278, 279, 283, 288, 290, 307, 308, 309, 311, 312, 313 | Forged/replayed payment events and client-controlled pricing | A below-catalog cart price and altered order total were accepted; a zero-amount mock payment set an order to paid; an unsigned payment webhook changed another synthetic order to paid and accepted the same event twice. |
 | 316, 317 | Refund manipulation and unauthorized refund | An unauthenticated request refunded a synthetic paid order for an amount of one. |
+| 314, 315 | Duplicate payment processing and idempotency failure | Repeating the same mock payment request created two distinct payment records for one order. |
+| 320, 322 | Order ownership manipulation and cancellation abuse | User 2 created an order for user 3 through a client-supplied owner ID, then cancelled that order without authentication. |
+| 332, 333, 334 | Review manipulation, fake review injection, and ownership bypass | An unauthenticated caller created and retrieved a synthetic review under an arbitrary display name. |
 | 62, 65, 68, 69, 71 | Insecure remember-me and session controls | A long-lived cookie lacked `HttpOnly`/`Secure`, a caller-supplied session ID was retained, and access tokens stayed valid after logout and password reset. |
 | 72, 74, 77, 78, 79, 80, 81, 82, 83 | JWT and refresh-token weaknesses | An unsigned token and an expired token were accepted; incorrect audience/issuer claims were not checked; access and refresh tokens were reusable; login responses/claims contained password data. |
 | 85, 86, 87 | OAuth redirect, state, and PKCE weaknesses | The fake OAuth flow accepted a code without PKCE and echoed an attacker redirect URI and unvalidated state. |

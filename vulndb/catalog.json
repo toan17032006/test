@@ -4264,32 +4264,36 @@
       "category": "E-commerce Business Logic Vulnerabilities",
       "name": "Negative Price Manipulation",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 285,
       "category": "E-commerce Business Logic Vulnerabilities",
       "name": "Zero Price Manipulation",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 286,
       "category": "E-commerce Business Logic Vulnerabilities",
       "name": "Quantity Manipulation",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 287,
       "category": "E-commerce Business Logic Vulnerabilities",
       "name": "Negative Quantity Manipulation",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 288,
@@ -4305,8 +4309,9 @@
       "category": "E-commerce Business Logic Vulnerabilities",
       "name": "Cart Ownership Bypass",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 290,
@@ -4347,8 +4352,9 @@
       "category": "E-commerce Business Logic Vulnerabilities",
       "name": "Coupon Reuse",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 295,
@@ -4513,16 +4519,18 @@
       "category": "E-commerce Business Logic Vulnerabilities",
       "name": "Duplicate Payment Processing",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 315,
       "category": "E-commerce Business Logic Vulnerabilities",
       "name": "Payment Idempotency Failure",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 316,
@@ -4563,8 +4571,9 @@
       "category": "E-commerce Business Logic Vulnerabilities",
       "name": "Order Ownership Manipulation",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 321,
@@ -4579,8 +4588,9 @@
       "category": "E-commerce Business Logic Vulnerabilities",
       "name": "Order Cancellation Abuse",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 323,
@@ -4659,24 +4669,27 @@
       "category": "E-commerce Business Logic Vulnerabilities",
       "name": "Review Manipulation",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 333,
       "category": "E-commerce Business Logic Vulnerabilities",
       "name": "Fake Review Injection",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 334,
       "category": "E-commerce Business Logic Vulnerabilities",
       "name": "Review Ownership Bypass",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 335,

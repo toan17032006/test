@@ -614,17 +614,17 @@
 | ID | Name | Type | Implementation | Test | Evidence |
 |---:|---|---|---|---|---|
 | 283 | Product Price Manipulation | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
-| 284 | Negative Price Manipulation | vulnerability | unverified | not_tested | — |
-| 285 | Zero Price Manipulation | vulnerability | unverified | not_tested | — |
-| 286 | Quantity Manipulation | vulnerability | unverified | not_tested | — |
-| 287 | Negative Quantity Manipulation | vulnerability | unverified | not_tested | — |
+| 284 | Negative Price Manipulation | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 285 | Zero Price Manipulation | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 286 | Quantity Manipulation | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 287 | Negative Quantity Manipulation | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 288 | Cart Manipulation | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
-| 289 | Cart Ownership Bypass | vulnerability | unverified | not_tested | — |
+| 289 | Cart Ownership Bypass | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 290 | Cart Price Desynchronization | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 291 | Cart Item Substitution | vulnerability | unverified | not_tested | — |
 | 292 | Coupon Code Brute Force | vulnerability | unverified | not_tested | — |
 | 293 | Coupon Enumeration | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
-| 294 | Coupon Reuse | vulnerability | unverified | not_tested | — |
+| 294 | Coupon Reuse | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 295 | Coupon Stacking Abuse | vulnerability | unverified | not_tested | — |
 | 296 | Coupon Expiration Bypass | vulnerability | unverified | not_tested | — |
 | 297 | Coupon Scope Bypass | vulnerability | unverified | not_tested | — |
@@ -644,15 +644,15 @@
 | 311 | Payment Callback Forgery | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 312 | Payment Webhook Forgery | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 313 | Payment Replay | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
-| 314 | Duplicate Payment Processing | vulnerability | unverified | not_tested | — |
-| 315 | Payment Idempotency Failure | vulnerability | unverified | not_tested | — |
+| 314 | Duplicate Payment Processing | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 315 | Payment Idempotency Failure | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 316 | Refund Manipulation | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 317 | Unauthorized Refund | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 318 | Partial Refund Abuse | vulnerability | unverified | not_tested | — |
 | 319 | Refund Race Condition | vulnerability | unverified | not_tested | — |
-| 320 | Order Ownership Manipulation | vulnerability | unverified | not_tested | — |
+| 320 | Order Ownership Manipulation | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 321 | Order Status Manipulation | vulnerability | unverified | not_tested | — |
-| 322 | Order Cancellation Abuse | vulnerability | unverified | not_tested | — |
+| 322 | Order Cancellation Abuse | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 323 | Order Reuse | vulnerability | unverified | not_tested | — |
 | 324 | Shipping Fee Manipulation | vulnerability | unverified | not_tested | — |
 | 325 | Shipping Address Manipulation | vulnerability | unverified | not_tested | — |
@@ -662,9 +662,9 @@
 | 329 | Loyalty Points Manipulation | vulnerability | unverified | not_tested | — |
 | 330 | Affiliate Commission Manipulation | vulnerability | unverified | not_tested | — |
 | 331 | Referral Abuse | vulnerability | unverified | not_tested | — |
-| 332 | Review Manipulation | vulnerability | unverified | not_tested | — |
-| 333 | Fake Review Injection | vulnerability | unverified | not_tested | — |
-| 334 | Review Ownership Bypass | vulnerability | unverified | not_tested | — |
+| 332 | Review Manipulation | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 333 | Fake Review Injection | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
+| 334 | Review Ownership Bypass | vulnerability | observed | verified | [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 335 | Wishlist Authorization Bypass | vulnerability | unverified | not_tested | — |
 | 336 | Subscription Billing Bypass | vulnerability | unverified | not_tested | — |
 | 337 | Subscription Plan Manipulation | vulnerability | unverified | not_tested | — |
