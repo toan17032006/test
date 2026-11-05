@@ -386,6 +386,16 @@ try {
   Assert-Equal $order.order.user_id '3' 'Client-controlled order ownership'
   $canceledOrder = Invoke-RestMethod -Uri "$apiBase/api/v1/orders/$orderId/cancel" -Method Post -TimeoutSec 5
   Assert-Equal $canceledOrder.order.status 'cancelled' 'Unauthenticated cross-user order cancellation'
+  $shippingOrderBody = '{"user_id":"4","items":[{"product_id":1,"quantity":1,"unit_price":100}],"total":100}'
+  $shippingOrder = Invoke-RestMethod -Uri "$apiBase/api/v1/orders" -Method Post -Headers @{ 'x-user-id' = '4' } -ContentType 'application/json' -Body $shippingOrderBody -TimeoutSec 5
+  $shippingOrderId = $shippingOrder.order_id
+  $shippingBody = @{ order_id = $shippingOrderId; status = 'shipped'; tracking_number = 'LAB-SHIP-100' } | ConvertTo-Json -Compress
+  $shippedOrder = Invoke-RestMethod -Uri "$apiBase/api/v1/webhooks/shipping" -Method Post -ContentType 'application/json' -Body $shippingBody -TimeoutSec 5
+  Assert-Equal $shippedOrder.order.shipping_status 'shipped' 'Unauthenticated shipping webhook status update'
+  Assert-Equal $shippedOrder.order.tracking_number 'LAB-SHIP-100' 'Shipping tracking number update'
+  $deliveredBody = @{ order_id = $shippingOrderId; status = 'delivered'; tracking_number = 'LAB-SHIP-100' } | ConvertTo-Json -Compress
+  $deliveredOrder = Invoke-RestMethod -Uri "$apiBase/api/v1/webhooks/shipping" -Method Post -ContentType 'application/json' -Body $deliveredBody -TimeoutSec 5
+  Assert-Equal $deliveredOrder.order.shipping_status 'delivered' 'Synthetic order delivery status'
   $payment = Invoke-RestMethod -Uri "$apiBase/api/v1/payment/process" -Method Post -ContentType 'application/json' -Body ("{`"order_id`":$orderId,`"amount`":0}") -TimeoutSec 5
   Assert-Equal $payment.payment.amount 0 'Mock payment accepted a zero amount'
   Assert-Equal $payment.order.payment_status 'paid' 'Mock payment status'
@@ -409,7 +419,7 @@ try {
   $apiLog = Get-Content -Raw -LiteralPath (Join-Path $logDir 'api.out')
   if ($apiLog -notmatch [regex]::Escape("email=$email password=x role=admin")) { throw 'The synthetic signup password was not present in the lab API log.' }
 
-  Write-Output 'Loopback smoke passed: storefront/catalog/search/filter/product detail/cart/checkout, service fingerprinting/health/metrics disclosure, missing security headers/CORS reflection, docs/env/backup exposure, auth SQL injection/default credentials/enumeration/rate limits, email/OTP/reset flows, refresh/session/JWT/OAuth flaws, product mass assignment/CSV export/pagination/customer data exposure and fake reviews, role/order ownership changes, cart price/quantity tampering, duplicate payments, unauthorized cancellation/refunds, payment webhook forgery/replay, and GraphQL introspection.'
+  Write-Output 'Loopback smoke passed: storefront/catalog/search/filter/product detail/cart/checkout/notification/shipping, service fingerprinting/health/metrics disclosure, missing security headers/CORS reflection, docs/env/backup exposure, auth SQL injection/default credentials/enumeration/rate limits, email/OTP/reset flows, refresh/session/JWT/OAuth flaws, product mass assignment/CSV export/pagination/customer data exposure and fake reviews, role/order ownership changes, cart price/quantity tampering, duplicate payments, unauthorized cancellation/refunds, payment webhook forgery/replay, and GraphQL introspection.'
 }
 catch {
   foreach ($name in @('api.err','web.err','graphql.err')) {

@@ -706,8 +706,9 @@
       "id": 96,
       "category": "Chức năng thương mại điện tử",
       "name": "Shipping Management",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 97,
@@ -1926,8 +1927,9 @@
       "id": 264,
       "category": "Các kịch bản nghiệp vụ end-to-end",
       "name": "Đặt hàng → Theo dõi vận chuyển → Nhận hàng",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/component-smoke.md"
     },
     {
       "id": 265,
@@ -4424,8 +4426,9 @@
       "category": "API Security Vulnerabilities",
       "name": "Webhook Event Injection",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "verified",
+      "evidence": "docs/smoke-findings.md"
     },
     {
       "id": 283,

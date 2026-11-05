@@ -111,7 +111,7 @@
 | 93 | Cart Synchronization | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 94 | Guest Checkout | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 95 | Customer Checkout | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
-| 96 | Shipping Management | Chức năng thương mại điện tử | unverified | not_tested | — |
+| 96 | Shipping Management | Chức năng thương mại điện tử | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 97 | Shipping Fee Calculation | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 98 | Shipping Address | Chức năng thương mại điện tử | unverified | not_tested | — |
 | 99 | Billing Address | Chức năng thương mại điện tử | unverified | not_tested | — |
@@ -279,7 +279,7 @@
 | 261 | Checkout → Thanh toán → Xác nhận đơn hàng | Các kịch bản nghiệp vụ end-to-end | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 262 | Thanh toán thất bại → Thử lại thanh toán | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
 | 263 | Đặt hàng → Hủy đơn → Hoàn tiền | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
-| 264 | Đặt hàng → Theo dõi vận chuyển → Nhận hàng | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
+| 264 | Đặt hàng → Theo dõi vận chuyển → Nhận hàng | Các kịch bản nghiệp vụ end-to-end | observed | verified | Test/audit: [docs/component-smoke.md](docs/component-smoke.md) |
 | 265 | Yêu cầu đổi trả → Duyệt yêu cầu → Hoàn tiền | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
 | 266 | Admin → Quản lý người dùng → Phân quyền | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
 | 267 | Admin → Quản lý sản phẩm → Quản lý kho | Các kịch bản nghiệp vụ end-to-end | unverified | not_tested | — |
@@ -607,7 +607,7 @@
 | 279 | Webhook Replay | vulnerability | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 280 | Webhook SSRF | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
 | 281 | Webhook Secret Leakage | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
-| 282 | Webhook Event Injection | vulnerability | unverified | not_tested | — |
+| 282 | Webhook Event Injection | vulnerability | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 
 ## E-commerce Business Logic Vulnerabilities
 
