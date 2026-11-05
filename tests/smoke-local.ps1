@@ -216,6 +216,9 @@ try {
   $bypass = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/bypass" -Method Post -ContentType 'application/json' -Body $bypassBody -TimeoutSec 5
   Assert-Equal $bypass.bypass $true 'Authentication bypass endpoint'
   Assert-Equal $bypass.user.role 'admin' 'Authentication bypass administrator role'
+  $v2Bypass = Invoke-RestMethod -Uri "$apiBase/api/v2/auth/bypass" -Method Post -ContentType 'application/json' -Body $bypassBody -TimeoutSec 5
+  Assert-Equal $v2Bypass.bypass $true 'Authentication bypass exposed through the duplicate v2 route'
+  Assert-Equal $v2Bypass.user.role 'admin' 'Unauthenticated v2 route returned the synthetic admin principal'
 
   $defaultLoginBody = @{ email = 'admin@vulnshop.com'; password = $debugInfo.admin_password } | ConvertTo-Json -Compress
   $defaultLogin = Invoke-RestMethod -Uri "$apiBase/api/v1/auth/login" -Method Post -ContentType 'application/json' -Body $defaultLoginBody -TimeoutSec 5

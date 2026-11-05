@@ -354,7 +354,7 @@
 | 51 | Password Reset Token Leakage | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 52 | Password Reset Token Prediction | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 53 | Password Reset Token Reuse | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
-| 54 | Password Reset Token Not Expiring | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 54 | Password Reset Token Not Expiring | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 55 | Password Reset Account Takeover | vulnerability | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 56 | Password Reset Host Header Injection | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 57 | Insecure Email Verification | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
@@ -578,7 +578,7 @@
 | 250 | API Mass Assignment | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 251 | API Excessive Data Exposure | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 252 | API Parameter Tampering | vulnerability | observed | verified | Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
-| 253 | API Versioning Bypass | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 253 | API Versioning Bypass | vulnerability | observed | verified | Source: [docs/implementation-map.md](docs/implementation-map.md) · Test/audit: [docs/smoke-findings.md](docs/smoke-findings.md) |
 | 254 | API Authentication Inconsistency | vulnerability | unverified | not_tested | — |
 | 255 | API Authorization Inconsistency | vulnerability | unverified | not_tested | — |
 | 256 | API Rate Limit Bypass | vulnerability | unverified | not_tested | — |
