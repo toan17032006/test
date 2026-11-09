@@ -150,7 +150,9 @@ async def register(data: RegisterRequest, request: Request):
     token = weak_token(data.email)
     verify_tokens_db[token] = data.email
 
-    verify_url = f"http://localhost:3000/verify-email?token={token}&email={data.email}"
+    host = request.headers.get("Host", "localhost:13000")
+    proto = request.headers.get("X-Forwarded-Proto", "http")
+    verify_url = f"{proto}://{host}/verify-email?token={token}&email={data.email}"
     send_email_smtp(data.email, "Verify your email - VulnShop",
                     f"<p>Click to verify: <a href='{verify_url}'>{verify_url}</a></p>"
                     f"<p>Your token: {token}</p>")
@@ -241,7 +243,7 @@ async def forgot_password(data: ForgotPasswordRequest, request: Request):
         "created_at": time.time(),
     }
 
-    host = request.headers.get("Host", "localhost:3000")
+    host = request.headers.get("Host", "localhost:13000")
     proto = request.headers.get("X-Forwarded-Proto", "http")
     reset_url = f"{proto}://{host}/reset-password?token={token}&email={data.email}"
 
@@ -365,7 +367,9 @@ async def get_me(request: Request):
 @router.post("/social/google")
 async def social_login_google(request: Request):
     body = await request.json()
-    redirect_uri = body.get("redirect_uri", "http://localhost:3000/callback")
+    host = request.headers.get("Host", "localhost:13000")
+    proto = request.headers.get("X-Forwarded-Proto", "http")
+    redirect_uri = body.get("redirect_uri", f"{proto}://{host}/callback")
     state = body.get("state", "")
     code = body.get("code", "")
 

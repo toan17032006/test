@@ -213,7 +213,7 @@ async def swagger_json():
 @app.get("/graphql", tags=["GraphQL"])
 async def graphql_info():
     return {
-        "graphql_url": "http://localhost:4000/graphql",
+        "graphql_url": "http://localhost:14000/graphql",
         "introspection": True,
         "subscriptions": True,
     }

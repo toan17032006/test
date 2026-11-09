@@ -53,7 +53,7 @@ SMTP_HOST = os.getenv('SMTP_HOST', 'mailhog')
 SMTP_PORT = int(os.getenv('SMTP_PORT', '1025'))
 SMTP_USER = os.getenv('SMTP_USER', '')
 SMTP_PASS = os.getenv('SMTP_PASS', '')
-FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:3000')
+FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:13000')
 BACKUP_DIR = os.getenv('BACKUP_DIR', '/var/www/html/backups')
 UPLOAD_DIR = os.getenv('UPLOAD_DIR', '/app/uploads')
 

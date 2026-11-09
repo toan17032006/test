@@ -1,6 +1,6 @@
 # VulnShop
 
-VulnShop is an intentionally vulnerable e-commerce training lab for authorized testing. Use synthetic data and run it only on a machine and network you control. Do not expose it to the public internet or use production data.
+VulnShop is an intentionally vulnerable e-commerce training lab for authorized testing. Use synthetic data and run it only on a machine and network you control. Do not expose it to the public internet or use production data. The externally reachable storefront port is intended for a trusted lab network only.
 
 The shopping site is a complete storefront: catalog, search, product detail, reviews, cart, checkout, order history, tracking, profile, password reset, login, and registration. The vulnerability inventory is documentation only and no longer appears as hints in the application source or storefront UI.
 
@@ -17,26 +17,63 @@ Coverage is recorded honestly:
 
 Evidence is documented in [docs/smoke-findings.md](docs/smoke-findings.md), [docs/component-smoke.md](docs/component-smoke.md), [docs/dependency-audit.md](docs/dependency-audit.md), and [docs/implementation-map.md](docs/implementation-map.md). The checklist is regenerated with `python scripts/render_checklist.py`.
 
-## Local run
+## Docker deployment and one-command startup
 
-Requirements: Docker Engine with Compose, or Node.js 20+ for the storefront and Python 3.12+ for the API.
+Requirements: Docker Desktop or Docker Engine with Compose v2. The launchers build every image and start the full stack: storefront, backend API, GraphQL, worker, nginx, and the seeded databases.
 
 ```powershell
-docker compose up --build
+# Windows: build all images, start the stack, wait until it is ready
+scripts\start-app.ps1
 ```
 
-Local endpoints:
+```bash
+# Linux, macOS, or Git Bash
+./scripts/start-app.sh
+```
 
-- Storefront: `http://127.0.0.1:3000`
-- Inventory documentation: [vulndb/checklist.md](vulndb/checklist.md) and [vulndb/catalog.json](vulndb/catalog.json)
-- API and OpenAPI: `http://127.0.0.1:8000` and `http://127.0.0.1:8000/docs`
-- GraphQL: `http://127.0.0.1:4000/graphql`
-- Nginx entry point: `http://127.0.0.1`
-- MailHog: `http://127.0.0.1:8025`
+`start-app` uses Docker by default. The available modes:
 
-The Compose topology binds host ports to loopback and uses an internal Docker network without outbound internet access. Keep these defaults. Do not change them to `0.0.0.0` or add host networking. Payments are mock-only and do not contact a real provider. The API's cart, order, and notification routes use in-memory state; database containers are seeded with synthetic sample rows.
+| Command | Purpose |
+|---|---|
+| `scripts/start-app.ps1 -NoBuild` / `scripts/start-app.sh --no-build` | reuse existing images |
+| `scripts/start-app.ps1 -Local` / `scripts/start-app.sh --local` | run backend and frontend natively, without Docker |
+| `scripts/start-app.ps1 -Foreground` / `scripts/start-app.sh --foreground` | stream Compose logs in the terminal |
+| `scripts/start-app.ps1 -Stop` / `scripts/start-app.sh --stop` | stop the Docker stack and native processes |
 
-For the storefront without Docker, run `npm install` and `npm start` from `frontend/`. It listens on `127.0.0.1` by default. To run the API, install `backend/requirements.txt` and start Uvicorn from `backend/`.
+Individual launchers: `scripts/docker-up.ps1` / `scripts/docker-up.sh` build and start only the Docker stack; `scripts/dev-up.ps1` / `scripts/dev-up.sh` run the backend and storefront natively. Both wait for the API health check and storefront before printing URLs, and `dev-up` writes logs and PID files under `.run/`.
+
+### Externally reachable storefront
+
+The storefront is published on host port **13000** and nginx on **9080**, both on every host interface. Open `http://<host-lan-ip>:13000` from another machine on the same network; the launchers print the address they detect. Every published host port is above 9000:
+
+| Service | Host port | Binding | URL from another machine |
+|---|---:|---|---|
+| Storefront (direct) | 13000 | all interfaces | `http://<host-lan-ip>:13000` |
+| Nginx entry point | 9080 | all interfaces | `http://<host-lan-ip>:9080` |
+| Backend API | 18000 | loopback | `http://127.0.0.1:18000/health` |
+| GraphQL | 14000 | loopback | `http://127.0.0.1:14000/graphql` |
+| MailHog UI | 18025 | loopback | `http://127.0.0.1:18025` |
+| MailHog SMTP | 11025 | loopback | `127.0.0.1:11025` |
+| PostgreSQL | 15432 | loopback | — |
+| MySQL | 13306 | loopback | — |
+| MongoDB | 27017 | loopback | — |
+| Redis | 16379 | loopback | — |
+| Elasticsearch | 19200 / 19300 | loopback | — |
+| Neo4j | 17474 / 17687 | loopback | — |
+| InfluxDB | 18086 | loopback | — |
+
+Containers keep their normal internal ports (8000 API, 3000 storefront, 80 nginx); only the host side is remapped. The default Docker network remains `internal: true`, so containers have no outbound internet access, and no Docker socket or privileged container is used. When started natively, `dev-up` serves the same addresses: backend on 18000 and storefront on 13000, both bound to `0.0.0.0`.
+
+**Trusted lab network only.** Ports 13000 and 9080 are intentionally reachable from other hosts, so anyone on the network can reach an intentionally vulnerable application. Run the lab on an isolated or trusted network, never on the public internet, and never with production data. Accounts, products, payments, and emails are synthetic; payments are mock-only and never contact a real provider.
+
+### Verification performed here
+
+- `docker-compose.yml` parses with PyYAML; every published host port is above 9000; frontend and nginx are non-loopback; every database, API, GraphQL, and mail service is loopback-only.
+- `bash -n` and the PowerShell parser accept all six launchers.
+- The native path (`scripts/dev-up.sh`) was started on this machine: `http://127.0.0.1:13000` and `http://192.168.1.103:13000` both returned HTTP 200, `http://127.0.0.1:18000/health` returned `"status": "healthy"`, and the robots/sitemap and WebSocket URLs follow the browser host.
+- The Docker CLI is not installed on this machine, so `docker compose build` and `docker compose up` could not be executed here. The Compose file, Dockerfiles, and scripts passed static validation; `scripts/start-app.ps1` performs the first image build on a machine with Docker Desktop.
+
+The vulnerability inventory remains documentation only: [vulndb/checklist.md](vulndb/checklist.md) and [vulndb/catalog.json](vulndb/catalog.json).
 
 ## Accounts and customer flows
 
@@ -60,7 +97,8 @@ For a loopback HTTP smoke test of the storefront, API, and GraphQL service, run 
 - `backend/` — FastAPI routes for authentication, catalog, cart, orders, payments, users, admin, files, search, coupons, notifications, and webhooks
 - `services/graphql/` — GraphQL API
 - `services/worker/` — background job examples
-- `docker-compose.yml` — local-only services and synthetic database seeds
+- `docker-compose.yml` — lab services with the storefront exposed on 13000 and synthetic database seeds
+- `scripts/` — Docker, native, and one-command launchers for Windows and Bash
 - `vulndb/` — complete source inventory, searchable checklist, and symbol-level annotation map
 
 High-impact topics such as denial of service, host escape, cloud metadata access, arbitrary command execution, and third-party attack chains must be tested only in disposable, isolated lab infrastructure. Never run tests against systems outside your authorization.

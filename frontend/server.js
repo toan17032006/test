@@ -93,7 +93,10 @@ app.get('/.env', (req, res) => {
 
 // robots.txt
 app.get('/robots.txt', (req, res) => {
-  res.sendFile(path.join(__dirname, 'robots.txt'));
+  const base = `${req.protocol}://${req.get('host')}`;
+  const body = fs.readFileSync(path.join(__dirname, 'robots.txt'), 'utf8')
+    .replace(/^Sitemap: .*$/m, `Sitemap: ${base}/sitemap.xml`);
+  res.type('text/plain').send(body);
 });
 
 app.get('/debug', (req, res) => {

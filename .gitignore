@@ -13,6 +13,7 @@ npm-debug.log*
 !.env.example
 
 # Local state and generated uploads
+.run/
 uploads/**
 !uploads/.gitkeep
 !uploads/backup_2024.sql

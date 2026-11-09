@@ -9,7 +9,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres123
     ports:
-      - "127.0.0.1:5432:5432"
+      - "127.0.0.1:15432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./backend/db/init_postgres.sql:/docker-entrypoint-initdb.d/init.sql
@@ -24,7 +24,7 @@ services:
       MYSQL_USER: mysql_user
       MYSQL_PASSWORD: mysql_pass
     ports:
-      - "127.0.0.1:3306:3306"
+      - "127.0.0.1:13306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
       - ./backend/db/init_mysql.sql:/docker-entrypoint-initdb.d/init.sql
@@ -44,7 +44,7 @@ services:
     image: redis:7
     container_name: vulnshop_redis
     ports:
-      - "127.0.0.1:6379:6379"
+      - "127.0.0.1:16379:6379"
     command: redis-server --loglevel verbose
     restart: always
 
@@ -56,8 +56,8 @@ services:
       - xpack.security.enabled=false
       - ES_JAVA_OPTS=-Xms512m -Xmx512m
     ports:
-      - "127.0.0.1:9200:9200"
-      - "127.0.0.1:9300:9300"
+      - "127.0.0.1:19200:9200"
+      - "127.0.0.1:19300:9300"
     volumes:
       - elastic_data:/usr/share/elasticsearch/data
     restart: always
@@ -69,8 +69,8 @@ services:
       NEO4J_AUTH: neo4j/password
       NEO4J_PLUGINS: '["apoc"]'
     ports:
-      - "127.0.0.1:7474:7474"
-      - "127.0.0.1:7687:7687"
+      - "127.0.0.1:17474:7474"
+      - "127.0.0.1:17687:7687"
     volumes:
       - neo4j_data:/data
     restart: always
@@ -86,7 +86,7 @@ services:
       DOCKER_INFLUXDB_INIT_BUCKET: metrics
       DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: vulnshop-super-secret-token
     ports:
-      - "127.0.0.1:8086:8086"
+      - "127.0.0.1:18086:8086"
     volumes:
       - influx_data:/var/lib/influxdb2
     restart: always
@@ -95,8 +95,8 @@ services:
     image: mailhog/mailhog
     container_name: vulnshop_mailhog
     ports:
-      - "127.0.0.1:1025:1025"
-      - "127.0.0.1:8025:8025"
+      - "127.0.0.1:11025:1025"
+      - "127.0.0.1:18025:8025"
     restart: always
 
   api:
@@ -124,7 +124,7 @@ services:
       AWS_ACCESS_KEY_ID: AKIAIOSFODNN7EXAMPLE
       AWS_SECRET_ACCESS_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
     ports:
-      - "127.0.0.1:8000:8000"
+      - "127.0.0.1:18000:8000"
     volumes:
       - ./backend:/app
       - ./uploads:/app/uploads
@@ -146,7 +146,7 @@ services:
       SESSION_SECRET: session-secret-weak
       HOST: "0.0.0.0"
     ports:
-      - "127.0.0.1:3000:3000"
+      - "13000:3000"
     volumes:
       - ./frontend:/app
       - /app/node_modules
@@ -167,7 +167,7 @@ services:
       DEBUG: "true"
       HOST: "0.0.0.0"
     ports:
-      - "127.0.0.1:4000:4000"
+      - "127.0.0.1:14000:4000"
     volumes:
       - ./services/graphql:/app
       - /app/node_modules
@@ -188,6 +188,7 @@ services:
       MONGODB_URL: mongodb://mongodb:27017/vulnshop
       SMTP_HOST: mailhog
       SMTP_PORT: 1025
+      FRONTEND_URL: http://localhost:13000
     volumes:
       - ./services/worker:/app
       - ./uploads:/app/uploads
@@ -200,7 +201,7 @@ services:
     image: nginx:alpine
     container_name: vulnshop_nginx
     ports:
-      - "127.0.0.1:80:80"
+      - "9080:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
