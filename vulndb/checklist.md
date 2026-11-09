@@ -993,8 +993,8 @@
 | 605 | DOM-Based XSS | vulnerability | unverified | not_tested | — |
 | 606 | Client-Side Validation Bypass | vulnerability | unverified | not_tested | — |
 | 607 | Sensitive Data in JavaScript | vulnerability | unverified | not_tested | — |
-| 608 | Hardcoded API Keys | vulnerability | unverified | not_tested | — |
-| 609 | Exposed Source Maps | vulnerability | unverified | not_tested | — |
+| 608 | Hardcoded API Keys | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
+| 609 | Exposed Source Maps | vulnerability | observed | not_tested | Source: [docs/implementation-map.md](docs/implementation-map.md) |
 | 610 | Insecure LocalStorage | vulnerability | unverified | not_tested | — |
 | 611 | Insecure SessionStorage | vulnerability | unverified | not_tested | — |
 | 612 | IndexedDB Data Exposure | vulnerability | unverified | not_tested | — |

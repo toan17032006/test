@@ -1,16 +1,15 @@
 version: '3.8'
 
 services:
-  # ==================== DATABASES ====================
   postgres:
     image: postgres:15
     container_name: vulnshop_postgres
     environment:
       POSTGRES_DB: vulnshop
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres123  # Intentionally weak
+      POSTGRES_PASSWORD: postgres123
     ports:
-      - "127.0.0.1:5432:5432"  # Intentionally exposed
+      - "127.0.0.1:5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./backend/db/init_postgres.sql:/docker-entrypoint-initdb.d/init.sql
@@ -20,12 +19,12 @@ services:
     image: mysql:8.0
     container_name: vulnshop_mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root  # Intentionally weak default
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: vulnshop_legacy
       MYSQL_USER: mysql_user
       MYSQL_PASSWORD: mysql_pass
     ports:
-      - "127.0.0.1:3306:3306"  # Intentionally exposed
+      - "127.0.0.1:3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
       - ./backend/db/init_mysql.sql:/docker-entrypoint-initdb.d/init.sql
@@ -34,9 +33,8 @@ services:
   mongodb:
     image: mongo:7
     container_name: vulnshop_mongo
-    # No auth - Intentional MongoDB Unauthorized Access vuln
     ports:
-      - "127.0.0.1:27017:27017"  # Intentionally exposed without auth
+      - "127.0.0.1:27017:27017"
     volumes:
       - mongo_data:/data/db
       - ./backend/db/init_mongo.js:/docker-entrypoint-initdb.d/init.js
@@ -45,9 +43,8 @@ services:
   redis:
     image: redis:7
     container_name: vulnshop_redis
-    # No password - Intentional Redis Unauthorized Access vuln
     ports:
-      - "127.0.0.1:6379:6379"  # Intentionally exposed without auth
+      - "127.0.0.1:6379:6379"
     command: redis-server --loglevel verbose
     restart: always
 
@@ -56,10 +53,10 @@ services:
     container_name: vulnshop_elastic
     environment:
       - discovery.type=single-node
-      - xpack.security.enabled=false  # Intentional - Elasticsearch Unauthorized Access
+      - xpack.security.enabled=false
       - ES_JAVA_OPTS=-Xms512m -Xmx512m
     ports:
-      - "127.0.0.1:9200:9200"  # Intentionally exposed
+      - "127.0.0.1:9200:9200"
       - "127.0.0.1:9300:9300"
     volumes:
       - elastic_data:/usr/share/elasticsearch/data
@@ -69,11 +66,11 @@ services:
     image: neo4j:5
     container_name: vulnshop_neo4j
     environment:
-      NEO4J_AUTH: neo4j/password  # Intentionally weak
+      NEO4J_AUTH: neo4j/password
       NEO4J_PLUGINS: '["apoc"]'
     ports:
-      - "127.0.0.1:7474:7474"  # Browser exposed
-      - "127.0.0.1:7687:7687"  # Bolt exposed
+      - "127.0.0.1:7474:7474"
+      - "127.0.0.1:7687:7687"
     volumes:
       - neo4j_data:/data
     restart: always
@@ -84,57 +81,53 @@ services:
     environment:
       DOCKER_INFLUXDB_INIT_MODE: setup
       DOCKER_INFLUXDB_INIT_USERNAME: admin
-      DOCKER_INFLUXDB_INIT_PASSWORD: admin123  # Weak
+      DOCKER_INFLUXDB_INIT_PASSWORD: admin123
       DOCKER_INFLUXDB_INIT_ORG: vulnshop
       DOCKER_INFLUXDB_INIT_BUCKET: metrics
-      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: vulnshop-super-secret-token  # Hardcoded
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: vulnshop-super-secret-token
     ports:
-      - "127.0.0.1:8086:8086"  # Intentionally exposed
+      - "127.0.0.1:8086:8086"
     volumes:
       - influx_data:/var/lib/influxdb2
     restart: always
 
-  # ==================== EMAIL ====================
   mailhog:
     image: mailhog/mailhog
     container_name: vulnshop_mailhog
     ports:
-      - "127.0.0.1:1025:1025"  # SMTP
-      - "127.0.0.1:8025:8025"  # Web UI - Intentionally exposed, no auth
+      - "127.0.0.1:1025:1025"
+      - "127.0.0.1:8025:8025"
     restart: always
 
-  # ==================== BACKEND SERVICES ====================
   api:
     build:
       context: ./backend
       dockerfile: Dockerfile
     container_name: vulnshop_api
     environment:
-      # Intentionally hardcoded secrets in env
       DATABASE_URL: postgresql://postgres:postgres123@postgres:5432/vulnshop
       MYSQL_URL: mysql+pymysql://mysql_user:mysql_pass@mysql:3306/vulnshop_legacy
       MONGODB_URL: mongodb://mongodb:27017/vulnshop
       REDIS_URL: redis://redis:6379/0
       ELASTICSEARCH_URL: http://elasticsearch:9200
       NEO4J_URL: bolt://neo4j:7687
-      SECRET_KEY: super-secret-key-12345  # Intentionally weak JWT secret
-      JWT_SECRET: jwt-secret-weak  # Hardcoded secret
-      ADMIN_PASSWORD: admin123  # Hardcoded admin password
+      SECRET_KEY: super-secret-key-12345
+      JWT_SECRET: jwt-secret-weak
+      ADMIN_PASSWORD: admin123
       SMTP_HOST: mailhog
       SMTP_PORT: 1025
       SMTP_USER: ""
       SMTP_PASS: ""
-      DEBUG: "true"  # Debug mode in production
+      DEBUG: "true"
       FLASK_ENV: development
       PYTHONDONTWRITEBYTECODE: 1
-      # AWS Keys exposed (intentional)
       AWS_ACCESS_KEY_ID: AKIAIOSFODNN7EXAMPLE
       AWS_SECRET_ACCESS_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
     ports:
       - "127.0.0.1:8000:8000"
     volumes:
       - ./backend:/app
-      - ./uploads:/app/uploads  # Writable upload dir
+      - ./uploads:/app/uploads
     depends_on:
       - postgres
       - mongodb
@@ -149,15 +142,13 @@ services:
     environment:
       API_URL: http://api:8000
       GRAPHQL_URL: http://graphql:4000/graphql
-      NODE_ENV: development  # Intentional
+      NODE_ENV: development
       SESSION_SECRET: session-secret-weak
-      HOST: "0.0.0.0"  # Container listener; published host port remains loopback-only.
-      VULNDB_DIR: /vulndb
+      HOST: "0.0.0.0"
     ports:
       - "127.0.0.1:3000:3000"
     volumes:
       - ./frontend:/app
-      - ./vulndb:/vulndb:ro
       - /app/node_modules
     depends_on:
       - api
@@ -172,9 +163,9 @@ services:
       API_URL: http://api:8000
       DATABASE_URL: postgresql://postgres:postgres123@postgres:5432/vulnshop
       MONGODB_URL: mongodb://mongodb:27017/vulnshop
-      INTROSPECTION: "true"  # Intentional - GraphQL Introspection exposed
+      INTROSPECTION: "true"
       DEBUG: "true"
-      HOST: "0.0.0.0"  # Container listener; published host port remains loopback-only.
+      HOST: "0.0.0.0"
     ports:
       - "127.0.0.1:4000:4000"
     volumes:
@@ -205,7 +196,6 @@ services:
       - postgres
     restart: always
 
-  # ==================== REVERSE PROXY ====================
   nginx:
     image: nginx:alpine
     container_name: vulnshop_nginx
@@ -221,7 +211,7 @@ services:
 
 networks:
   default:
-    internal: true  # No outbound internet from lab services by default.
+    internal: true
 
 volumes:
   postgres_data:

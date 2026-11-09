@@ -26,10 +26,13 @@ class BuildInputTests(unittest.TestCase):
         for source in re.findall(r"(?m)^\s+-\s+\.?\.?/?\.?\/([^:\s]+):[^\s]+", compose):
             self.assertTrue((ROOT / source).exists(), f"missing Compose bind source {source}")
 
-    def test_frontend_catalog_mount_matches_service_setting(self):
+    def test_frontend_does_not_mount_or_serve_the_inventory(self):
         compose = (ROOT / "docker-compose.yml").read_text(encoding="utf-8")
-        self.assertIn("VULNDB_DIR: /vulndb", compose)
-        self.assertIn("./vulndb:/vulndb:ro", compose)
+        self.assertNotIn("VULNDB_DIR", compose)
+        self.assertNotIn("./vulndb:/vulndb", compose)
+        server = (ROOT / "frontend" / "server.js").read_text(encoding="utf-8")
+        self.assertNotIn("/admin/vulns", server)
+        self.assertNotIn("/api/vuln-catalog", server)
 
     def test_docker_contexts_exclude_local_dependencies_and_secrets(self):
         for relative in ("frontend/.dockerignore", "backend/.dockerignore", "services/graphql/.dockerignore", "services/worker/.dockerignore"):

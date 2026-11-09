@@ -1,6 +1,4 @@
 """
-Product Routes - Intentionally Vulnerable
-Covers vulns: SQLi (#128), NoSQL Injection (#136), XSS (#171), IDOR (#97), Mass Assignment (#250)
 """
 import re
 import json
@@ -17,13 +15,13 @@ router = APIRouter()
 products_db = {
     1: {
         "id": 1, "name": "iPhone 15 Pro Max", "description": "<b>Flagship iPhone</b>",
-        "price": 29990000, "cost": 15000000,  # Internal cost exposed (vuln #651)
+        "price": 29990000, "cost": 15000000,
         "stock": 50, "category": "Electronics", "brand": "Apple",
         "sku": "IPHONE-15-PM", "weight": 0.221,
         "images": ["/uploads/iphone15.jpg"],
         "variants": [{"color": "Black Titanium", "storage": "256GB", "price": 29990000}],
         "is_active": True, "is_hidden": False,
-        "admin_note": "Profit margin 40%",  # Sensitive business data (vuln #651)
+        "admin_note": "Profit margin 40%",
         "supplier": "Apple Vietnam", "supplier_cost": 14000000,
     },
     2: {
@@ -82,7 +80,6 @@ class ProductCreate(BaseModel):
     stock: int
     category: str
     brand: str
-    # Mass assignment fields - all accepted (vuln #250)
     cost: Optional[float] = None
     is_admin_product: Optional[bool] = False
     admin_note: Optional[str] = None
@@ -91,7 +88,7 @@ class ProductCreate(BaseModel):
     hidden_discount: Optional[float] = 0  # Hidden discount
 
 class ReviewCreate(BaseModel):
-    content: str  # No XSS sanitization
+    content: str
     rating: int
     user_name: Optional[str] = "Anonymous"
 
@@ -105,19 +102,14 @@ async def list_products(
     max_price: Optional[float] = None,
     sort: Optional[str] = "id",
     order: Optional[str] = "asc",
-    limit: Optional[int] = None,  # No limit = unbounded (vuln #603)
+    limit: Optional[int] = None,
     offset: Optional[int] = 0,
-    page: Optional[int] = None,  # Unbounded pagination (vuln #603)
+    page: Optional[int] = None,
 ):
-    """List products - SQL injection in search, unbounded pagination (vuln #128, #603)"""
     products = list(products_db.values())
 
-    # SQL injection simulation in search (vuln #128)
-    # In real: SELECT * FROM products WHERE name LIKE '%{search}%'
     if search:
-        # ReDoS vulnerability (vuln #239, #587) - catastrophic backtracking
         try:
-            # Vulnerable regex pattern
             pattern = re.compile(f".*{search}.*", re.IGNORECASE)  # ReDoS possible
             products = [p for p in products if pattern.search(p["name"])]
         except re.error:
@@ -132,37 +124,32 @@ async def list_products(
     if max_price is not None:
         products = [p for p in products if p["price"] <= max_price]
 
-    # SQL injection in sort parameter (vuln #128, #259)
     # ORDER BY {sort} {order} - injectable
     if sort not in ["id", "name", "price", "stock"]:
-        # Injection reflected back (vuln #24)
         return {"error": f"Invalid sort field: {sort}", "hint": "Try: id, name, price, stock"}
 
-    # Return ALL fields including sensitive ones (vuln #251)
     return {
-        "products": products,  # Including cost, admin_note, supplier_cost (vuln #651)
+        "products": products,
         "total": len(products),
-        "search_query": search,  # Reflected back (potential XSS context)
+        "search_query": search,
         "debug": {"sql": f"SELECT * FROM products WHERE name LIKE '%{search}%' ORDER BY {sort} {order}"},
     }
 
 
 @router.get("/export")
 async def export_products_csv(format: str = "csv"):
-    """Export products - CSV injection (vuln #168)"""
     output = io.StringIO()
     writer = csv.writer(output)
     writer.writerow(["ID", "Name", "Price", "Stock", "Cost", "Supplier Cost", "Admin Note"])
 
     for p in products_db.values():
-        # CSV injection - name or admin_note can contain formulas (vuln #168)
         writer.writerow([
             p["id"],
             p["name"],  # Could be: =cmd|'/c calc'!A0
             p["price"],
             p["stock"],
-            p["cost"],  # Sensitive data exposed
-            p["supplier_cost"],  # Sensitive data exposed
+            p["cost"],
+            p["supplier_cost"],
             p["admin_note"],
         ])
 
@@ -176,18 +163,15 @@ async def export_products_csv(format: str = "csv"):
 
 @router.get("/flash-sale")
 async def flash_sale():
-    """Flash sale - race condition vulnerability (vuln #300, #305)"""
     return {"flash_sales": list(flash_sales_db.values()), "note": "Race condition possible - no locking"}
 
 
 @router.get("/{product_id}")
 async def get_product(product_id: int, request: Request):
-    """Get product - IDOR, returns ALL fields including sensitive (vuln #97, #251)"""
     product = products_db.get(product_id)
     if not product:
         raise HTTPException(status_code=404, detail=f"Product {product_id} not found")
 
-    # Return ALL fields including internal data (vuln #251, #651)
     return {
         "product": product,
         "internal_data": {
@@ -200,24 +184,21 @@ async def get_product(product_id: int, request: Request):
 
 @router.post("")
 async def create_product(data: ProductCreate, request: Request):
-    """Create product - mass assignment, no auth check (vuln #250, #104)"""
-    # No authentication check (vuln #104)
-    # Mass assignment - all fields accepted including privileged ones (vuln #250)
     new_id = max(products_db.keys()) + 1 if products_db else 1
     product = {
         "id": new_id,
         "name": data.name,
-        "description": data.description,  # XSS in description not sanitized (vuln #171)
+        "description": data.description,
         "price": data.price,
         "cost": data.cost,
         "stock": data.stock,
         "category": data.category,
         "brand": data.brand,
         "is_active": data.is_active,
-        "is_admin_product": data.is_admin_product,  # Mass assignment
+        "is_admin_product": data.is_admin_product,
         "admin_note": data.admin_note,
         "supplier_cost": data.supplier_cost,
-        "hidden_discount": data.hidden_discount,  # Mass assignment
+        "hidden_discount": data.hidden_discount,
         "images": [], "variants": [],
         "sku": f"SKU-{new_id}", "weight": 0,
     }
@@ -227,38 +208,30 @@ async def create_product(data: ProductCreate, request: Request):
 
 @router.put("/{product_id}")
 async def update_product(product_id: int, data: dict, request: Request):
-    """Update product - no ownership check, IDOR (vuln #97, #125)"""
-    # No auth check
-    # No ownership validation
-    # HTTP method bypass - PUT works for anyone
     product = products_db.get(product_id)
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
 
-    # Mass assignment - update any field (vuln #250)
     products_db[product_id].update(data)
     return {"product": products_db[product_id], "updated_fields": list(data.keys())}
 
 
 @router.delete("/{product_id}")
 async def delete_product(product_id: int, request: Request):
-    """Delete product - no auth (vuln #104)"""
     if product_id not in products_db:
         raise HTTPException(status_code=404, detail="Product not found")
     del products_db[product_id]
-    return {"message": f"Product {product_id} deleted", "note": "No auth check performed"}
+    return {"message": f"Product {product_id} deleted"}
 
 
 @router.get("/{product_id}/recommendations")
 async def get_recommendations(product_id: int, url: Optional[str] = None):
-    """Get recommendations - SSRF via external URL (vuln #198, #203)"""
     import httpx
 
     if url:
-        # SSRF - fetch any URL including internal services (vuln #198)
         try:
             async with httpx.AsyncClient(follow_redirects=True, timeout=10) as client:
-                resp = await client.get(url)  # Fetch attacker-controlled URL
+                resp = await client.get(url)
                 return {"recommendations": resp.text[:1000], "url_fetched": url}
         except Exception as e:
             return {"error": str(e), "url_attempted": url}
@@ -271,7 +244,6 @@ async def get_recommendations(product_id: int, url: Optional[str] = None):
 
 @router.post("/{product_id}/review")
 async def add_review(product_id: int, data: ReviewCreate, request: Request):
-    """Add review - stored XSS (vuln #171, #177)"""
     if product_id not in products_db:
         raise HTTPException(status_code=404, detail="Product not found")
 
@@ -280,27 +252,24 @@ async def add_review(product_id: int, data: ReviewCreate, request: Request):
 
     review = {
         "id": len(reviews_db[product_id]) + 1,
-        "content": data.content,  # Stored without sanitization - XSS (vuln #171)
+        "content": data.content,
         "rating": data.rating,
-        "user_name": data.user_name,  # Also unsanitized
+        "user_name": data.user_name,
         "created_at": "2024-01-01",
     }
     reviews_db[product_id].append(review)
-    return {"review": review, "note": "Content stored without XSS sanitization"}
+    return {"review": review}
 
 
 @router.get("/{product_id}/reviews")
 async def get_reviews(product_id: int):
-    """Get reviews - returns XSS payloads unsanitized (vuln #171)"""
-    return {"reviews": reviews_db.get(product_id, []), "note": "Content rendered without escaping"}
+    return {"reviews": reviews_db.get(product_id, [])}
 
 
 @router.get("/{product_id}/qna")
 async def get_qna(product_id: int, q: Optional[str] = None):
-    """Q&A - reflected XSS in question (vuln #170)"""
     return {
         "product_id": product_id,
-        "question": q,  # Reflected without sanitization (vuln #170)
+        "question": q,
         "answers": [],
-        "xss_note": "Parameter q reflected without encoding",
     }

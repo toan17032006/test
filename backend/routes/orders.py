@@ -31,7 +31,6 @@ async def create_order(data: CreateOrder, request: Request):
     items = data.items or list(cart_for(owner))
     if not items:
         raise HTTPException(status_code=400, detail="Cart is empty")
-    # The supplied total is accepted to keep checkout price-tampering test cases reproducible.
     total = float(data.total) if data.total is not None else cart_total(items)
     order_id = max(orders.keys(), default=1000) + 1
     row = {

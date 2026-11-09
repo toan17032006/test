@@ -59,13 +59,11 @@
   </div>
 
   <div class="container py-4">
-    <!-- VULN: XSS - search query rendered unescaped with <%- %> -->
     <% if (query) { %>
     <div class="alert alert-info d-flex align-items-center mb-4">
       <i class="bi bi-search me-2 fs-5"></i>
       <div>
         Kết quả tìm kiếm cho: <strong><%- query %></strong>
-        <!-- ^^^ INTENTIONAL XSS VULNERABILITY - unescaped output -->
         <span class="text-muted ms-2">(<%= products.length %> sản phẩm)</span>
       </div>
     </div>

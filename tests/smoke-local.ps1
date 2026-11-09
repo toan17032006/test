@@ -63,7 +63,7 @@ $api = $null
 $web = $null
 $graphql = $null
 $oldEnvironment = @{}
-foreach ($name in @('UPLOAD_DIR','API_URL','HOST','PORT','VULNDB_DIR','NODE_ENV','SESSION_SECRET','SECRET_KEY','JWT_SECRET','ADMIN_PASSWORD','AWS_ACCESS_KEY_ID','AWS_SECRET_ACCESS_KEY','SMTP_HOST','SMTP_PORT','DATABASE_URL','MYSQL_URL','MONGODB_URL','REDIS_URL','LAB_ONLY_STRIPE_WEBHOOK_SECRET','PYTHONUNBUFFERED')) {
+foreach ($name in @('UPLOAD_DIR','API_URL','HOST','PORT','NODE_ENV','SESSION_SECRET','SECRET_KEY','JWT_SECRET','ADMIN_PASSWORD','AWS_ACCESS_KEY_ID','AWS_SECRET_ACCESS_KEY','SMTP_HOST','SMTP_PORT','DATABASE_URL','MYSQL_URL','MONGODB_URL','REDIS_URL','LAB_ONLY_STRIPE_WEBHOOK_SECRET','PYTHONUNBUFFERED')) {
   $oldEnvironment[$name] = [Environment]::GetEnvironmentVariable($name, 'Process')
 }
 
@@ -88,7 +88,6 @@ try {
   $env:HOST = '127.0.0.1'
   $env:PORT = "$webPort"
   $env:SESSION_SECRET = 'local-smoke-session'
-  $env:VULNDB_DIR = Join-Path $repoRoot 'vulndb'
   $web = Start-Process -FilePath 'node' -ArgumentList @('server.js') -WorkingDirectory (Join-Path $repoRoot 'frontend') -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $logDir 'web.out') -RedirectStandardError (Join-Path $logDir 'web.err')
 
   $env:PORT = "$graphqlPort"
@@ -103,8 +102,7 @@ try {
   for ($i = 0; $i -lt 30; $i++) {
     try {
       $null = Invoke-RestMethod -Uri "$apiBase/health" -TimeoutSec 2
-      $null = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/admin/vulns" -TimeoutSec 2
-      $null = Invoke-RestMethod -Uri "$webBase/api/vuln-catalog" -TimeoutSec 2
+      $null = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/" -TimeoutSec 2
       $query = Invoke-RestMethod -Uri "$graphqlBase/graphql" -Method Post -ContentType 'application/json' -Body '{"query":"{ __schema { queryType { name } } }"}' -TimeoutSec 2
       if ($query.data.__schema.queryType.name -eq 'Query') { $ready = $true; break }
     } catch { $readinessError = $_.Exception.Message; Start-Sleep -Milliseconds 300 }
@@ -117,11 +115,15 @@ try {
     throw "The local services did not become ready ($apiBase, $webBase, $graphqlBase). Last readiness error: $readinessError"
   }
 
-  $paths = @('/','/products','/products/1','/cart','/checkout','/login','/register','/profile','/admin/vulns','/admin/dashboard','/orders?user_id=3','/track/1002')
+  $paths = @('/','/products','/products/1','/cart','/checkout','/login','/register','/profile','/orders?user_id=3','/track/1002')
   foreach ($path in $paths) {
     $response = Invoke-WebRequest -UseBasicParsing -Uri "$webBase$path" -TimeoutSec 8
     Assert-Equal $response.StatusCode 200 "GET $path"
   }
+  $inventoryStatus = 0
+  try { $null = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/admin/vulns" -TimeoutSec 5; $inventoryStatus = 200 }
+  catch { $inventoryStatus = [int]$_.Exception.Response.StatusCode }
+  Assert-Equal $inventoryStatus 404 'Retired storefront inventory route'
   $productPage = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/products/1" -TimeoutSec 8
   if ($productPage.Content -notmatch 'iPhone 15 Pro Max') { throw 'The product detail page did not render the API product name.' }
   $searchPage = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/products?q=iPhone" -TimeoutSec 8
@@ -149,7 +151,7 @@ try {
   $markedNotification = Invoke-RestMethod -Uri "$apiBase/api/v1/notify/$($createdNotification.notification.id)/read" -Method Post -TimeoutSec 5
   Assert-Equal $markedNotification.updated $true 'Notification read state'
 
-  $catalog = Invoke-RestMethod -Uri "$webBase/api/vuln-catalog" -TimeoutSec 8
+  $catalog = Get-Content -Raw -LiteralPath (Join-Path $repoRoot 'vulndb/catalog.json') | ConvertFrom-Json
   Assert-Equal $catalog.counts.components 275 'Component inventory count'
   Assert-Equal $catalog.counts.vulnerabilities 661 'Vulnerability inventory count'
   Assert-Equal $catalog.counts.attack_chains 29 'Attack-chain inventory count'
@@ -278,7 +280,7 @@ try {
   $dbQueryProbe = [uri]::EscapeDataString("'; DROP TABLE users;--")
   $internalDbQuery = Invoke-RestMethod -Uri "$apiBase/api/internal/db-query?q=$dbQueryProbe" -TimeoutSec 5
   if ($internalDbQuery.query -notmatch [regex]::Escape('DROP TABLE users')) { throw 'The internal database query endpoint did not echo the injected SQL fragment.' }
-  Assert-Equal $internalDbQuery.warning 'SQL Injection possible here' 'Unauthenticated internal database query endpoint'
+  Assert-Equal $internalDbQuery.query "'; DROP TABLE users;--" 'Unauthenticated internal database query endpoint'
 
   $sortInjection = [uri]::EscapeDataString('(SELECT sleep(5))')
   $sortProbe = Invoke-RestMethod -Uri "$apiBase/api/v1/products?sort=$sortInjection" -TimeoutSec 5
@@ -359,16 +361,24 @@ try {
   $loggedOutProfile = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/profile" -WebSession $storefrontAuthSession -TimeoutSec 5
   if ($loggedOutProfile.Content -notmatch 'Guest User') { throw 'The storefront session still appeared authenticated after logout.' }
 
+  $signupSession = New-Object Microsoft.PowerShell.Commands.WebRequestSession
+  $signupEmail = "storefront-$([guid]::NewGuid().ToString('N'))@example.test"
+  $signupBody = "name=Storefront+Signup&email=$([uri]::EscapeDataString($signupEmail))&phone=0900000001&password=LabPass123&confirm_password=LabPass123"
+  $signupResponse = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/register" -Method Post -WebSession $signupSession -ContentType 'application/x-www-form-urlencoded' -Body $signupBody -TimeoutSec 8
+  Assert-Equal $signupResponse.StatusCode 200 'Storefront signup'
+  $signupProfile = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/profile" -WebSession $signupSession -TimeoutSec 5
+  if ($signupProfile.Content -notmatch 'Storefront Signup') { throw 'The storefront signup did not establish an authenticated session.' }
+
   $csrfSession = New-Object Microsoft.PowerShell.Commands.WebRequestSession
   $normalUserLogin = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/login" -Method Post -WebSession $csrfSession -ContentType 'application/x-www-form-urlencoded' -Body 'email=user%40vulnshop.com&password=password' -TimeoutSec 8
   Assert-Equal $normalUserLogin.StatusCode 200 'Regular storefront user login'
-  $normalUserHome = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/" -WebSession $csrfSession -TimeoutSec 5
-  if ($normalUserHome.Content -match 'class="dropdown-item text-danger" href="/admin"') { throw 'The seeded regular user unexpectedly had the admin menu entry before the cross-origin request.' }
+  $normalUserProfile = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/profile" -WebSession $csrfSession -TimeoutSec 5
+  if ($normalUserProfile.Content -match 'data-role="admin"') { throw 'The seeded regular user unexpectedly had the admin role before the cross-origin request.' }
   $csrfProfileBody = 'name=LAB_CSRF_ADMIN&role=admin'
   $csrfProfileUpdate = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/profile" -Method Post -Headers @{ Origin = 'https://attacker.invalid' } -WebSession $csrfSession -ContentType 'application/x-www-form-urlencoded' -Body $csrfProfileBody -TimeoutSec 8
   Assert-Equal $csrfProfileUpdate.StatusCode 200 'Cross-origin profile form submission'
-  $csrfPromotedHome = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/" -WebSession $csrfSession -TimeoutSec 5
-  if ($csrfPromotedHome.Content -notmatch 'class="dropdown-item text-danger" href="/admin"' -or $csrfPromotedHome.Content -notmatch 'LAB_CSRF_ADMIN') { throw 'The cross-origin profile post did not promote the synthetic account session to admin.' }
+  $csrfPromotedProfile = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/profile" -WebSession $csrfSession -TimeoutSec 5
+  if ($csrfPromotedProfile.Content -notmatch 'data-role="admin"' -or $csrfPromotedProfile.Content -notmatch 'LAB_CSRF_ADMIN') { throw 'The cross-origin profile post did not promote the synthetic account session to admin.' }
   $sessionReplay = New-Object Microsoft.PowerShell.Commands.WebRequestSession
   $storefrontUri = [uri]"$webBase/"
   $capturedSessionCookies = $csrfSession.Cookies.GetCookies($storefrontUri)
@@ -376,8 +386,8 @@ try {
   if (-not $sessionCookie) { throw 'The synthetic authenticated session did not issue the expected sessionId cookie.' }
   if ($sessionCookie.HttpOnly -or $sessionCookie.Secure) { throw 'The storefront session cookie unexpectedly had HttpOnly or Secure protection.' }
   foreach ($cookie in $capturedSessionCookies) { $sessionReplay.Cookies.Add($storefrontUri, $cookie) }
-  $replayedSessionHome = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/" -WebSession $sessionReplay -TimeoutSec 5
-  if ($replayedSessionHome.Content -notmatch 'class="dropdown-item text-danger" href="/admin"' -or $replayedSessionHome.Content -notmatch 'LAB_CSRF_ADMIN') { throw 'Replaying the copied storefront session cookie did not restore the authenticated admin session.' }
+  $replayedSessionProfile = Invoke-WebRequest -UseBasicParsing -Uri "$webBase/profile" -WebSession $sessionReplay -TimeoutSec 5
+  if ($replayedSessionProfile.Content -notmatch 'data-role="admin"' -or $replayedSessionProfile.Content -notmatch 'LAB_CSRF_ADMIN') { throw 'Replaying the copied storefront session cookie did not restore the authenticated admin session.' }
 
   $urlToken = 'LAB_ONLY_QUERY_TOKEN'
   $urlEmail = 'lab-pii-marker@example.test'
@@ -622,7 +632,7 @@ try {
     if ($webLog -notmatch [regex]::Escape($loggedMarker)) { throw "The expected synthetic URL marker was not present in the storefront access log: $loggedMarker" }
   }
 
-  Write-Output 'Loopback smoke passed: storefront/catalog/search/suggestions/reflected and stored HTML/cart/checkout/order history/tracking/logout/admin dashboard/notification/shipping/flash sale/Q&A, REST and GraphQL WebSocket probes, service fingerprinting/debug/health/metrics/backup disclosure, missing security headers/CORS reflection, docs/env/webhook secret exposure, auth SQL injection/default credentials/enumeration/rate limits, email/OTP/reset/concurrent-session flows, refresh/session fixation/hijacking/JWT/OAuth flaws, product mass assignment/unauthenticated PUT/CSV export/pagination, synthetic payment data and fake reviews, role/order ownership changes, cart price/quantity tampering, duplicate payments, unauthorized cancellation/refunds, payment webhook forgery/replay, loopback webhook SSRF, CRLF log injection, GraphQL depth/complexity/batching/introspection/stack traces.'
+  Write-Output 'Loopback smoke passed: storefront/catalog/search/suggestions/reflected and stored HTML/cart/checkout/order history/tracking/logout/retired inventory route/notification/shipping/flash sale/Q&A, REST and GraphQL WebSocket probes, service fingerprinting/debug/health/metrics/backup disclosure, missing security headers/CORS reflection, docs/env/webhook secret exposure, auth SQL injection/default credentials/enumeration/rate limits, email/OTP/reset/concurrent-session flows, refresh/session fixation/hijacking/JWT/OAuth flaws, product mass assignment/unauthenticated PUT/CSV export/pagination, synthetic payment data and fake reviews, role/order ownership changes, cart price/quantity tampering, duplicate payments, unauthorized cancellation/refunds, payment webhook forgery/replay, loopback webhook SSRF, CRLF log injection, GraphQL depth/complexity/batching/introspection/stack traces.'
 }
 catch {
   foreach ($name in @('api.err','web.err','graphql.err')) {

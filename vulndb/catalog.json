@@ -7169,16 +7169,18 @@
       "category": "Frontend & Client-Side Security",
       "name": "Hardcoded API Keys",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 609,
       "category": "Frontend & Client-Side Security",
       "name": "Exposed Source Maps",
       "record_type": "vulnerability",
-      "implementation_status": "unverified",
-      "test_status": "not_tested"
+      "implementation_status": "observed",
+      "test_status": "not_tested",
+      "implementation_evidence": "docs/implementation-map.md"
     },
     {
       "id": 610,

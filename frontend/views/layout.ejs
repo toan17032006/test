@@ -10,7 +10,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
   <!-- Custom CSS -->
   <link href="/css/style.css" rel="stylesheet">
-  <!-- INTENTIONAL VULN #608: Hardcoded API keys -->
   <script>
     const API_KEY = "sk-prod-hardcoded-key-EXAMPLE";
     const STRIPE_PUBLIC = "pk_test_EXAMPLE";
@@ -83,10 +82,6 @@
               <li><a class="dropdown-item" href="/profile"><i class="bi bi-person me-2"></i>Tài khoản</a></li>
               <li><a class="dropdown-item" href="/orders"><i class="bi bi-box-seam me-2"></i>Đơn hàng</a></li>
               <li><a class="dropdown-item" href="/wishlist"><i class="bi bi-heart me-2"></i>Yêu thích</a></li>
-              <% if (user.role === 'admin') { %>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item text-danger" href="/admin"><i class="bi bi-shield me-2"></i>Admin Panel</a></li>
-              <% } %>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="/logout"><i class="bi bi-box-arrow-right me-2"></i>Đăng xuất</a></li>
             </ul>
@@ -150,8 +145,7 @@
             <li><a href="#" class="text-muted text-decoration-none">Tuyển dụng</a></li>
             <li><a href="#" class="text-muted text-decoration-none">Điều khoản sử dụng</a></li>
             <li><a href="#" class="text-muted text-decoration-none">Chính sách bảo mật</a></li>
-            <li><a href="/admin/vulns" class="text-muted text-decoration-none">Pentest checklist</a></li>
-            <li><a href="/admin" class="text-muted text-decoration-none">Admin</a></li>
+            <li><a href="/products" class="text-muted text-decoration-none">Sản phẩm mới</a></li>
           </ul>
         </div>
         <div class="col-lg-2 col-md-6">
@@ -176,13 +170,12 @@
       </div>
       <hr class="border-secondary mt-4">
       <div class="d-flex flex-wrap justify-content-between align-items-center">
-        <p class="text-muted small mb-0">© 2024 VulnShop. Intentionally vulnerable for educational purposes.</p>
+        <p class="text-muted small mb-0">© 2024 VulnShop. Tất cả các quyền được bảo lưu.</p>
         <p class="text-muted small mb-0">Hotline: <strong class="text-warning">1900-6035</strong> | Email: support@vulnshop.com</p>
       </div>
     </div>
   </footer>
 
-  <!-- jQuery 1.x (old - for DOM XSS vulns) -->
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
   <!-- Bootstrap 5 JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -190,7 +183,6 @@
   <script src="/socket.io/socket.io.js"></script>
   <!-- App JS -->
   <script src="/js/app.js"></script>
-  <!-- sourceMappingURL intentional exposure (vuln #609) -->
   <!-- //# sourceMappingURL=app.js.map -->
   <script>
     // Update cart count from localStorage
@@ -200,12 +192,10 @@
     }
     updateCartBadge();
 
-    // Newsletter subscription (XSS in email)
     function subscribeNewsletter() {
       const email = document.getElementById('newsletter-email').value;
-      // VULN: XSS - email rendered via innerHTML
       document.querySelector('footer .text-muted.small.mt-2').innerHTML =
-        'Cảm ơn! Email <b>' + email + '</b> đã được đăng ký.'; // DOM XSS
+        'Cảm ơn! Email <b>' + email + '</b> đã được đăng ký.';
     }
   </script>
 </body>

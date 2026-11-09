@@ -6,7 +6,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from scripts.render_checklist import collect_source_refs, render, render_implementation_map
+from scripts.render_checklist import (
+    ANNOTATIONS_END,
+    ANNOTATIONS_START,
+    INVENTORY_END,
+    INVENTORY_START,
+    collect_source_refs,
+    render,
+    render_implementation_map,
+    render_readme,
+)
 
 
 class CatalogTests(unittest.TestCase):
@@ -123,6 +132,68 @@ class CatalogTests(unittest.TestCase):
         source_ids = set(collect_source_refs())
         self.assertTrue({72, 74, 75, 77, 480, 643, 648}.issubset(source_ids))
         self.assertTrue({40, 42, 227, 375}.isdisjoint(source_ids))
+
+    def test_readme_contains_the_complete_inventory(self):
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        start = readme.index(INVENTORY_START)
+        end = readme.index(INVENTORY_END)
+        section = readme[start:end]
+        ids = []
+        for line in section.splitlines():
+            if not line.startswith("| "):
+                continue
+            first = line.split("|")[1].strip()
+            if first.isdigit():
+                ids.append(int(first))
+        self.assertEqual(len(ids), 275 + 726)
+        self.assertEqual(ids, list(range(1, 276)) + list(range(1, 727)))
+        for row in self.catalog["components"][:5] + self.catalog["entries"][:5]:
+            self.assertIn(row["name"].replace("|", "\\|"), section)
+
+    def test_readme_preserves_every_moved_annotation(self):
+        source_data = json.loads((ROOT / "vulndb" / "source-annotations.json").read_text(encoding="utf-8"))
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        start = readme.index(ANNOTATIONS_START)
+        end = readme.index(ANNOTATIONS_END)
+        section = readme[start:end]
+        self.assertIn(f"**{len(source_data['annotations'])}** notes", section)
+        for item in source_data["annotations"]:
+            note = item["note"].replace("|", "\\|")
+            self.assertIn(note, section)
+
+    def test_readme_matches_the_generator(self):
+        source_data = json.loads((ROOT / "vulndb" / "source-annotations.json").read_text(encoding="utf-8"))
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertEqual(readme, render_readme(readme, self.catalog, source_data))
+
+    def test_source_tree_has_no_vulnerability_hints(self):
+        import re
+
+        hint = re.compile(
+            r"\bVULN\b|vuln\s*#|#\s*vuln\b|(?i:intentionally|intentional|insecure|no auth)",
+        )
+        candidates = []
+        for root in ("backend", "frontend", "services", "nginx"):
+            candidates.extend((ROOT / root).rglob("*"))
+        candidates.append(ROOT / "docker-compose.yml")
+        offenders = []
+        for path in candidates:
+            if not path.is_file():
+                continue
+            if path.suffix not in {".py", ".js", ".ejs", ".yml", ".yaml", ".conf"} and not path.name.startswith("Dockerfile"):
+                continue
+            if {"node_modules", "__pycache__"} & set(path.parts):
+                continue
+            for number, line in enumerate(path.read_text(encoding="utf-8", errors="ignore").splitlines(), 1):
+                if hint.search(line):
+                    offenders.append(f"{path.relative_to(ROOT).as_posix()}:{number}")
+        self.assertEqual(offenders, [])
+
+    def test_source_map_json_is_the_only_implementation_source(self):
+        source_data = json.loads((ROOT / "vulndb" / "source-annotations.json").read_text(encoding="utf-8"))
+        self.assertTrue(source_data["annotations"])
+        self.assertTrue(all(item["path"] and item["symbol"] and item["note"] for item in source_data["annotations"]))
+        self.assertTrue(all(isinstance(key, str) for key in source_data["ids"]))
 
     def test_checklist_ui_displays_verified_state_and_evidence(self):
         page = (ROOT / "vulndb" / "index.html").read_text(encoding="utf-8")

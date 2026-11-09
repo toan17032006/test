@@ -5,7 +5,6 @@ const axios = require('axios');
 const API_URL = process.env.API_URL || 'http://localhost:8000';
 
 // ============================================================
-// VULN: SSRF - target URL controlled by user input
 // ============================================================
 async function proxyRequest(targetUrl, method, data, headers) {
   return axios({
@@ -21,7 +20,6 @@ async function proxyRequest(targetUrl, method, data, headers) {
 // Generic proxy to backend
 router.all('/v1/*', async (req, res) => {
   const path = req.params[0];
-  // VULN: SSRF - user can override target host via header
   const targetHost = req.headers['x-target-host'] || API_URL;
   const targetUrl = `${targetHost}/api/v1/${path}`;
 
@@ -37,17 +35,15 @@ router.all('/v1/*', async (req, res) => {
     if (err.response) {
       res.status(err.response.status).json(err.response.data);
     } else {
-      res.status(502).json({ error: err.message, url: targetUrl }); // VULN: exposes internal URL
+      res.status(502).json({ error: err.message, url: targetUrl });
     }
   }
 });
 
 // ============================================================
-// VULN: SSRF - fetch any URL provided by user
 // ============================================================
 router.get('/fetch', async (req, res) => {
   const { url } = req.query;
-  // VULN: SSRF - no validation of URL
   if (!url) return res.status(400).json({ error: 'url required' });
   try {
     const response = await axios.get(url, { timeout: 5000 });
@@ -58,10 +54,8 @@ router.get('/fetch', async (req, res) => {
 });
 
 // ============================================================
-// VULN: Unauthenticated internal endpoints
 // ============================================================
 router.get('/internal/users', async (req, res) => {
-  // No auth check
   try {
     const r = await axios.get(`${API_URL}/api/v1/users`, { timeout: 3000 });
     res.json(r.data);
@@ -74,7 +68,6 @@ router.get('/internal/users', async (req, res) => {
 });
 
 router.get('/internal/config', (req, res) => {
-  // VULN: Exposes internal config
   res.json({
     api_url: API_URL,
     session_secret: process.env.SESSION_SECRET,
@@ -85,11 +78,9 @@ router.get('/internal/config', (req, res) => {
 });
 
 // ============================================================
-// Product search with SQLi passthrough
 // ============================================================
 router.get('/search', async (req, res) => {
   const { q, category, min_price, max_price, sort, page } = req.query;
-  // VULN: params passed directly to backend without sanitization
   try {
     const params = new URLSearchParams({ q, category, min_price, max_price, sort, page });
     const r = await axios.get(`${API_URL}/api/v1/products/search?${params}`, { timeout: 3000 });
@@ -99,9 +90,7 @@ router.get('/search', async (req, res) => {
   }
 });
 
-// Order proxy (IDOR)
 router.get('/orders/:orderId', async (req, res) => {
-  // VULN: IDOR - no user ownership check
   const { orderId } = req.params;
   try {
     const r = await axios.get(`${API_URL}/api/v1/orders/${orderId}`, { timeout: 3000 });
@@ -111,9 +100,7 @@ router.get('/orders/:orderId', async (req, res) => {
   }
 });
 
-// User profile proxy (IDOR)
 router.get('/users/:userId', async (req, res) => {
-  // VULN: IDOR - anyone can get any user's data
   const { userId } = req.params;
   try {
     const r = await axios.get(`${API_URL}/api/v1/users/${userId}`, { timeout: 3000 });
@@ -123,14 +110,13 @@ router.get('/users/:userId', async (req, res) => {
   }
 });
 
-// Apply coupon (client-side bypassable)
 router.post('/coupons/validate', (req, res) => {
   const { code, total } = req.body;
   const coupons = {
     'SALE10': { discount: 10, type: 'percent' },
     'FLAT50K': { discount: 50000, type: 'fixed' },
     'VIP': { discount: 50, type: 'percent' },
-    'ADMIN': { discount: 100, type: 'percent' }, // VULN: 100% off coupon
+    'ADMIN': { discount: 100, type: 'percent' },
   };
   const coupon = coupons[code.toUpperCase()];
   if (coupon) {

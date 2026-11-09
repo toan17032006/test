@@ -1,0 +1,6206 @@
+{
+  "generated_from": "inline source annotations moved to README",
+  "ids": {
+    "7": [
+      "backend/config.py::INTERNAL_ADMIN_URL",
+      "backend/main.py::http_exception_handler"
+    ],
+    "8": [
+      "backend/config.py::INTERNAL_ADMIN_URL",
+      "backend/main.py::root"
+    ],
+    "9": [
+      "backend/main.py::phpinfo"
+    ],
+    "10": [
+      "backend/config.py::STRIPE_WEBHOOK_SECRET",
+      "backend/main.py::debug_info"
+    ],
+    "15": [
+      "backend/main.py::db_backup"
+    ],
+    "17": [
+      "backend/main.py::env_file"
+    ],
+    "19": [
+      "backend/main.py::module",
+      "backend/main.py::swagger_json"
+    ],
+    "20": [
+      "backend/main.py::graphql_info",
+      "services/graphql/src/index.js::module",
+      "services/graphql/src/index.js::server",
+      "services/graphql/src/schema.js::module"
+    ],
+    "24": [
+      "backend/routes/products.py::list_products"
+    ],
+    "25": [
+      "backend/main.py::global_exception_handler",
+      "backend/main.py::graphql_info"
+    ],
+    "26": [
+      "backend/main.py::debug_info",
+      "backend/main.py::health"
+    ],
+    "31": [
+      "backend/routes/auth.py::register",
+      "backend/routes/auth.py::reset_password"
+    ],
+    "33": [
+      "backend/config.py::JWT_EXPIRE_MINUTES"
+    ],
+    "34": [
+      "backend/routes/auth.py::login",
+      "backend/routes/auth.py::register",
+      "frontend/routes/index.js::status"
+    ],
+    "35": [
+      "backend/routes/auth.py::forgot_password",
+      "backend/routes/auth.py::register"
+    ],
+    "38": [
+      "backend/routes/auth.py::login"
+    ],
+    "41": [
+      "backend/config.py::RATE_LIMIT_ENABLED",
+      "backend/routes/auth.py::login"
+    ],
+    "43": [
+      "backend/routes/auth.py::login"
+    ],
+    "44": [
+      "backend/routes/auth.py::mfa_verify"
+    ],
+    "46": [
+      "backend/routes/auth.py::mfa_verify"
+    ],
+    "47": [
+      "backend/routes/auth.py::mfa_verify"
+    ],
+    "48": [
+      "backend/config.py::RATE_LIMIT_WINDOW",
+      "backend/routes/auth.py::mfa_setup",
+      "backend/routes/auth.py::mfa_verify"
+    ],
+    "49": [
+      "backend/config.py::OTP_EXPIRE_SECONDS"
+    ],
+    "51": [
+      "backend/routes/auth.py::forgot_password",
+      "backend/routes/auth.py::register",
+      "services/graphql/src/schema.js::typeDefs",
+      "services/worker/worker.py::module",
+      "services/worker/worker.py::send_password_reset_email",
+      "services/worker/worker.py::send_verification_email"
+    ],
+    "52": [
+      "backend/config.py::OTP_SECRET",
+      "backend/routes/auth.py::forgot_password",
+      "backend/routes/auth.py::register",
+      "backend/routes/auth.py::weak_token",
+      "services/worker/worker.py::module",
+      "services/worker/worker.py::send_password_reset_email",
+      "services/worker/worker.py::send_verification_email"
+    ],
+    "53": [
+      "backend/routes/auth.py::reset_password"
+    ],
+    "54": [
+      "backend/config.py::PASSWORD_RESET_TOKEN_EXPIRE",
+      "backend/routes/auth.py::forgot_password",
+      "backend/routes/auth.py::reset_password"
+    ],
+    "56": [
+      "backend/routes/auth.py::forgot_password"
+    ],
+    "57": [
+      "backend/routes/auth.py::verify_email"
+    ],
+    "58": [
+      "backend/routes/auth.py::verify_email",
+      "services/worker/worker.py::module",
+      "services/worker/worker.py::send_verification_email"
+    ],
+    "59": [
+      "backend/routes/auth.py::verify_email_bypass"
+    ],
+    "61": [
+      "backend/routes/auth.py::auth_bypass"
+    ],
+    "62": [
+      "backend/routes/auth.py::login"
+    ],
+    "64": [
+      "backend/routes/auth.py::login"
+    ],
+    "65": [
+      "backend/routes/auth.py::login"
+    ],
+    "66": [
+      "backend/routes/auth.py::login"
+    ],
+    "68": [
+      "backend/routes/auth.py::login",
+      "backend/routes/auth.py::logout",
+      "services/worker/worker.py::cleanup_sessions",
+      "services/worker/worker.py::module"
+    ],
+    "69": [
+      "backend/routes/auth.py::reset_password"
+    ],
+    "70": [
+      "backend/routes/auth.py::login"
+    ],
+    "71": [
+      "backend/config.py::SESSION_COOKIE_HTTPONLY",
+      "backend/config.py::SESSION_COOKIE_SECURE",
+      "backend/routes/auth.py::login"
+    ],
+    "72": [
+      "backend/routes/auth.py::get_me",
+      "services/graphql/src/auth.js::REFRESH_SECRET",
+      "services/graphql/src/auth.js::module"
+    ],
+    "73": [
+      "backend/routes/auth.py::get_me"
+    ],
+    "74": [
+      "backend/routes/auth.py::get_me",
+      "services/graphql/src/auth.js::REFRESH_SECRET",
+      "services/graphql/src/auth.js::module"
+    ],
+    "75": [
+      "backend/config.py::INFLUXDB_TOKEN",
+      "services/graphql/src/auth.js::jwt",
+      "services/graphql/src/auth.js::module"
+    ],
+    "77": [
+      "backend/config.py::JWT_EXPIRE_MINUTES",
+      "backend/routes/auth.py::create_jwt",
+      "backend/routes/auth.py::get_me",
+      "services/graphql/src/auth.js::REFRESH_SECRET",
+      "services/graphql/src/auth.js::module"
+    ],
+    "81": [
+      "backend/routes/auth.py::create_jwt",
+      "backend/routes/auth.py::login"
+    ],
+    "82": [
+      "backend/routes/auth.py::login",
+      "backend/routes/auth.py::refresh_token"
+    ],
+    "83": [
+      "backend/routes/auth.py::refresh_token"
+    ],
+    "84": [
+      "backend/routes/auth.py::social_login_google"
+    ],
+    "85": [
+      "backend/routes/auth.py::social_login_google"
+    ],
+    "86": [
+      "backend/routes/auth.py::social_login_google"
+    ],
+    "94": [
+      "backend/routes/auth.py::social_login_google"
+    ],
+    "95": [
+      "backend/routes/auth.py::social_login_google"
+    ],
+    "97": [
+      "backend/routes/products.py::get_product",
+      "backend/routes/products.py::module",
+      "backend/routes/products.py::update_product",
+      "services/graphql/src/resolvers.js::if",
+      "services/graphql/src/resolvers.js::module",
+      "services/graphql/src/schema.js::module",
+      "services/graphql/src/schema.js::typeDefs"
+    ],
+    "102": [
+      "services/graphql/src/resolvers.js::module",
+      "services/graphql/src/resolvers.js::rows",
+      "services/graphql/src/schema.js::module",
+      "services/graphql/src/schema.js::typeDefs"
+    ],
+    "103": [
+      "backend/routes/auth.py::RegisterRequest",
+      "backend/routes/auth.py::register"
+    ],
+    "104": [
+      "backend/routes/auth.py::list_all_users",
+      "backend/routes/products.py::create_product",
+      "backend/routes/products.py::delete_product",
+      "services/graphql/src/resolvers.js::module",
+      "services/graphql/src/resolvers.js::resolvers",
+      "services/graphql/src/schema.js::module",
+      "services/graphql/src/schema.js::typeDefs"
+    ],
+    "108": [
+      "services/graphql/src/auth.js::if",
+      "services/graphql/src/resolvers.js::deleteUser",
+      "services/graphql/src/resolvers.js::module",
+      "services/graphql/src/resolvers.js::rows",
+      "services/graphql/src/schema.js::module",
+      "services/graphql/src/schema.js::typeDefs"
+    ],
+    "113": [
+      "services/graphql/src/resolvers.js::module",
+      "services/graphql/src/resolvers.js::productsByCategory",
+      "services/graphql/src/schema.js::module",
+      "services/graphql/src/schema.js::typeDefs"
+    ],
+    "115": [
+      "services/graphql/src/resolvers.js::module",
+      "services/graphql/src/resolvers.js::rows",
+      "services/graphql/src/schema.js::module",
+      "services/graphql/src/schema.js::typeDefs"
+    ],
+    "125": [
+      "backend/routes/products.py::update_product"
+    ],
+    "128": [
+      "backend/routes/auth.py::login",
+      "backend/routes/products.py::list_products",
+      "backend/routes/products.py::module"
+    ],
+    "136": [
+      "backend/routes/products.py::module"
+    ],
+    "161": [
+      "backend/routes/auth.py::send_email_smtp",
+      "services/worker/worker.py::module",
+      "services/worker/worker.py::send_bulk_email",
+      "services/worker/worker.py::send_email",
+      "services/worker/worker.py::send_password_reset_email",
+      "services/worker/worker.py::send_smtp"
+    ],
+    "168": [
+      "backend/routes/products.py::export_products_csv"
+    ],
+    "170": [
+      "backend/routes/products.py::get_qna"
+    ],
+    "171": [
+      "backend/routes/products.py::add_review",
+      "backend/routes/products.py::create_product",
+      "backend/routes/products.py::get_reviews",
+      "backend/routes/products.py::module"
+    ],
+    "177": [
+      "backend/routes/products.py::add_review"
+    ],
+    "184": [
+      "backend/config.py::SESSION_COOKIE_SAMESITE"
+    ],
+    "187": [
+      "backend/config.py::EMAIL_VERIFY_TOKEN_EXPIRE",
+      "backend/main.py::module",
+      "services/graphql/src/index.js::app",
+      "services/graphql/src/index.js::module"
+    ],
+    "189": [
+      "backend/config.py::CORS_CREDENTIALS",
+      "backend/main.py::module"
+    ],
+    "198": [
+      "backend/routes/products.py::get_recommendations"
+    ],
+    "203": [
+      "backend/routes/products.py::get_recommendations"
+    ],
+    "204": [
+      "services/worker/worker.py::generate_invoice",
+      "services/worker/worker.py::module"
+    ],
+    "230": [
+      "services/worker/worker.py::module",
+      "services/worker/worker.py::process_payment_async"
+    ],
+    "239": [
+      "backend/routes/products.py::list_products"
+    ],
+    "250": [
+      "backend/routes/products.py::ProductCreate",
+      "backend/routes/products.py::create_product",
+      "backend/routes/products.py::module",
+      "backend/routes/products.py::update_product",
+      "services/graphql/src/resolvers.js::logout",
+      "services/graphql/src/resolvers.js::module",
+      "services/graphql/src/resolvers.js::register",
+      "services/graphql/src/schema.js::module",
+      "services/graphql/src/schema.js::typeDefs"
+    ],
+    "251": [
+      "backend/routes/products.py::get_product",
+      "backend/routes/products.py::list_products",
+      "services/graphql/src/schema.js::typeDefs"
+    ],
+    "253": [
+      "backend/main.py::module"
+    ],
+    "259": [
+      "backend/routes/products.py::list_products"
+    ],
+    "260": [
+      "services/graphql/src/index.js::module",
+      "services/graphql/src/index.js::server",
+      "services/graphql/src/schema.js::module"
+    ],
+    "264": [
+      "services/graphql/src/index.js::module",
+      "services/graphql/src/index.js::server",
+      "services/graphql/src/resolvers.js::module",
+      "services/graphql/src/schema.js::module"
+    ],
+    "265": [
+      "services/graphql/src/index.js::module",
+      "services/graphql/src/index.js::server",
+      "services/graphql/src/resolvers.js::module",
+      "services/graphql/src/schema.js::module"
+    ],
+    "266": [
+      "services/graphql/src/index.js::module",
+      "services/graphql/src/index.js::server",
+      "services/graphql/src/resolvers.js::module",
+      "services/graphql/src/schema.js::module"
+    ],
+    "267": [
+      "services/graphql/src/index.js::httpServer",
+      "services/graphql/src/index.js::module",
+      "services/graphql/src/index.js::serverCleanup",
+      "services/graphql/src/resolvers.js::resetAllPasswords",
+      "services/graphql/src/schema.js::module",
+      "services/graphql/src/schema.js::typeDefs"
+    ],
+    "268": [
+      "services/graphql/src/index.js::app",
+      "services/graphql/src/index.js::module",
+      "services/graphql/src/schema.js::module"
+    ],
+    "271": [
+      "backend/main.py::admin_ws",
+      "backend/main.py::websocket_endpoint",
+      "frontend/server.js::server"
+    ],
+    "272": [
+      "backend/main.py::websocket_endpoint"
+    ],
+    "278": [
+      "backend/config.py::WEBHOOK_VERIFY_SIGNATURES",
+      "frontend/routes/webhook.js::API_URL"
+    ],
+    "280": [
+      "frontend/routes/webhook.js::payload"
+    ],
+    "281": [
+      "backend/config.py::WEBHOOK_SECRET"
+    ],
+    "283": [
+      "frontend/routes/index.js::route /cart/add",
+      "frontend/routes/index.js::route /checkout"
+    ],
+    "300": [
+      "backend/routes/products.py::flash_sale"
+    ],
+    "305": [
+      "backend/routes/products.py::flash_sale"
+    ],
+    "309": [
+      "services/graphql/src/resolvers.js::deleteProduct",
+      "services/graphql/src/resolvers.js::module",
+      "services/graphql/src/resolvers.js::rows",
+      "services/graphql/src/schema.js::module",
+      "services/graphql/src/schema.js::typeDefs",
+      "services/worker/worker.py::process_payment_async"
+    ],
+    "345": [
+      "backend/config.py::ALLOWED_EXTENSIONS"
+    ],
+    "355": [
+      "services/worker/worker.py::module",
+      "services/worker/worker.py::process_image"
+    ],
+    "369": [
+      "services/worker/worker.py::export_user_data",
+      "services/worker/worker.py::generate_invoice",
+      "services/worker/worker.py::module",
+      "services/worker/worker.py::process_image"
+    ],
+    "372": [
+      "backend/routes/auth.py::login",
+      "backend/routes/auth.py::module",
+      "backend/routes/auth.py::register"
+    ],
+    "376": [
+      "backend/config.py::INFLUXDB_TOKEN",
+      "backend/config.py::JWT_EXPIRE_MINUTES",
+      "backend/routes/auth.py::mfa_setup"
+    ],
+    "378": [
+      "backend/config.py::OTP_SECRET",
+      "backend/routes/auth.py::weak_token"
+    ],
+    "393": [
+      "backend/routes/auth.py::register"
+    ],
+    "401": [
+      "backend/main.py::internal_db_query"
+    ],
+    "406": [
+      "backend/main.py::internal_db_query"
+    ],
+    "410": [
+      "backend/main.py::db_backup",
+      "services/worker/worker.py::BACKUP_DIR",
+      "services/worker/worker.py::backup_database",
+      "services/worker/worker.py::module"
+    ],
+    "435": [
+      "backend/config.py::EMAIL_FROM",
+      "backend/main.py::debug_info"
+    ],
+    "480": [
+      "backend/main.py::log_requests"
+    ],
+    "558": [
+      "backend/main.py::http_exception_handler",
+      "backend/main.py::log_requests",
+      "backend/routes/auth.py::login",
+      "backend/routes/auth.py::register",
+      "backend/routes/auth.py::reset_password"
+    ],
+    "559": [
+      "backend/main.py::log_requests",
+      "backend/routes/auth.py::send_email_smtp",
+      "services/graphql/src/resolvers.js::rawQuery",
+      "services/worker/worker.py::backup_database",
+      "services/worker/worker.py::db_query",
+      "services/worker/worker.py::export_user_data",
+      "services/worker/worker.py::generate_invoice",
+      "services/worker/worker.py::module",
+      "services/worker/worker.py::process_payment_async",
+      "services/worker/worker.py::send_email",
+      "services/worker/worker.py::send_order_confirmation",
+      "services/worker/worker.py::send_password_reset_email",
+      "services/worker/worker.py::send_smtp",
+      "services/worker/worker.py::send_verification_email"
+    ],
+    "560": [
+      "backend/main.py::log_requests"
+    ],
+    "562": [
+      "backend/main.py::log_requests"
+    ],
+    "570": [
+      "backend/main.py::metrics"
+    ],
+    "587": [
+      "backend/routes/products.py::list_products"
+    ],
+    "589": [
+      "backend/config.py::MAX_UPLOAD_SIZE"
+    ],
+    "603": [
+      "backend/routes/products.py::list_products"
+    ],
+    "608": [
+      "frontend/views/layout.ejs::template"
+    ],
+    "609": [
+      "frontend/views/layout.ejs::template"
+    ],
+    "631": [
+      "backend/config.py::S3_BUCKET"
+    ],
+    "643": [
+      "backend/routes/auth.py::list_all_users",
+      "services/graphql/src/schema.js::typeDefs"
+    ],
+    "648": [
+      "services/graphql/src/schema.js::typeDefs"
+    ],
+    "651": [
+      "backend/routes/products.py::get_product",
+      "backend/routes/products.py::list_products",
+      "backend/routes/products.py::module"
+    ],
+    "657": [
+      "services/worker/worker.py::export_user_data",
+      "services/worker/worker.py::module"
+    ]
+  },
+  "annotations": [
+    {
+      "path": "backend/config.py",
+      "symbol": "module",
+      "line": 4,
+      "ids": [],
+      "note": "VulnShop Configuration"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "module",
+      "line": 5,
+      "ids": [],
+      "note": "INTENTIONALLY INSECURE - FOR PENTEST LAB ONLY"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "INFLUXDB_TOKEN",
+      "line": 20,
+      "ids": [
+        75,
+        376
+      ],
+      "note": "Hardcoded weak JWT and application secrets (vuln #75, #376)"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "JWT_EXPIRE_MINUTES",
+      "line": 24,
+      "ids": [
+        77
+      ],
+      "note": "Never expires (vuln #77)"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "JWT_EXPIRE_MINUTES",
+      "line": 26,
+      "ids": [
+        33,
+        376
+      ],
+      "note": "Admin credentials (hardcoded - vuln #33, #376)"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "EMAIL_FROM",
+      "line": 38,
+      "ids": [
+        435
+      ],
+      "note": "AWS Keys (intentionally exposed - vuln #435)"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "S3_BUCKET",
+      "line": 44,
+      "ids": [
+        631
+      ],
+      "note": "Payment (Stripe - fake keys exposed - vuln #631)"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "STRIPE_WEBHOOK_SECRET",
+      "line": 46,
+      "ids": [],
+      "note": "Hardcoded"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "STRIPE_WEBHOOK_SECRET",
+      "line": 48,
+      "ids": [
+        10
+      ],
+      "note": "Debug mode (intentional - vuln #10)"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "MAX_UPLOAD_SIZE",
+      "line": 54,
+      "ids": [
+        589
+      ],
+      "note": "999MB - intentionally huge (vuln #589)"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "ALLOWED_EXTENSIONS",
+      "line": 55,
+      "ids": [
+        345
+      ],
+      "note": "Empty = all allowed (vuln #345)"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "ALLOWED_EXTENSIONS",
+      "line": 57,
+      "ids": [],
+      "note": "Rate limiting (intentionally off)"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "RATE_LIMIT_ENABLED",
+      "line": 58,
+      "ids": [
+        41
+      ],
+      "note": "vuln #41"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "RATE_LIMIT_WINDOW",
+      "line": 62,
+      "ids": [
+        48
+      ],
+      "note": "OTP Settings (predictable - vuln #48)"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "OTP_EXPIRE_SECONDS",
+      "line": 64,
+      "ids": [
+        49
+      ],
+      "note": "Never expires (vuln #49)"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "OTP_SECRET",
+      "line": 65,
+      "ids": [],
+      "note": "Hardcoded OTP secret"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "OTP_SECRET",
+      "line": 67,
+      "ids": [
+        52,
+        378
+      ],
+      "note": "Token settings (weak - vuln #52, #378)"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "PASSWORD_RESET_TOKEN_EXPIRE",
+      "line": 68,
+      "ids": [
+        54
+      ],
+      "note": "Never expires (vuln #54)"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "EMAIL_VERIFY_TOKEN_EXPIRE",
+      "line": 71,
+      "ids": [
+        187
+      ],
+      "note": "CORS (intentional misconfiguration - vuln #187)"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "CORS_CREDENTIALS",
+      "line": 73,
+      "ids": [
+        189
+      ],
+      "note": "vuln #189"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "SESSION_COOKIE_SECURE",
+      "line": 78,
+      "ids": [
+        71
+      ],
+      "note": "vuln #71"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "SESSION_COOKIE_HTTPONLY",
+      "line": 79,
+      "ids": [
+        71
+      ],
+      "note": "vuln #71"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "SESSION_COOKIE_SAMESITE",
+      "line": 80,
+      "ids": [
+        184
+      ],
+      "note": "vuln #184"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "WEBHOOK_VERIFY_SIGNATURES",
+      "line": 83,
+      "ids": [
+        278
+      ],
+      "note": "vuln #278"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "WEBHOOK_SECRET",
+      "line": 84,
+      "ids": [
+        281
+      ],
+      "note": "Hardcoded (vuln #281)"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "WEBHOOK_SECRET",
+      "line": 86,
+      "ids": [],
+      "note": "Internal services (for SSRF demos)"
+    },
+    {
+      "path": "backend/config.py",
+      "symbol": "INTERNAL_ADMIN_URL",
+      "line": 91,
+      "ids": [
+        7,
+        8
+      ],
+      "note": "Version info (exposed - vuln #7, #8)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "module",
+      "line": 1,
+      "ids": [],
+      "note": "VulnShop FastAPI Main Application INTENTIONALLY VULNERABLE E-COMMERCE PLATFORM FOR PENTESTING"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "module",
+      "line": 27,
+      "ids": [
+        19
+      ],
+      "note": "Swagger UI - no auth (vuln #19)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "module",
+      "line": 28,
+      "ids": [],
+      "note": "ReDoc - no auth"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "module",
+      "line": 32,
+      "ids": [
+        187
+      ],
+      "note": "─── CORS Middleware (intentionally misconfigured - vuln #187) ───────────────"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "module",
+      "line": 35,
+      "ids": [
+        187
+      ],
+      "note": "vuln #187 - CORS Origin Reflection"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "module",
+      "line": 36,
+      "ids": [
+        189
+      ],
+      "note": "vuln #189 - with credentials=True + *origins = dangerous"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "module",
+      "line": 61,
+      "ids": [
+        253
+      ],
+      "note": "API versioning bypass (vuln #253)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "websocket_endpoint",
+      "line": 79,
+      "ids": [
+        271,
+        272
+      ],
+      "note": "WebSocket - no auth check (vuln #271, #272)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "websocket_endpoint",
+      "line": 82,
+      "ids": [],
+      "note": "No authentication or authorization"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "websocket_endpoint",
+      "line": 86,
+      "ids": [],
+      "note": "Reflect data back (potential XSS via WebSocket)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "websocket_endpoint",
+      "line": 88,
+      "ids": [
+        272
+      ],
+      "note": "Broadcast to ALL connected clients (no isolation - vuln #272)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "admin_ws",
+      "line": 100,
+      "ids": [
+        271
+      ],
+      "note": "Admin WebSocket - no auth check (vuln #271)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "admin_ws",
+      "line": 107,
+      "ids": [],
+      "note": "Intentional exposure"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "root",
+      "line": 115,
+      "ids": [
+        8
+      ],
+      "note": "Root endpoint - technology stack disclosure (vuln #8)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "health",
+      "line": 131,
+      "ids": [
+        26
+      ],
+      "note": "Health check - internal IP disclosure (vuln #26)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "health",
+      "line": 140,
+      "ids": [],
+      "note": "Credential exposure"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "debug_info",
+      "line": 147,
+      "ids": [
+        10,
+        26
+      ],
+      "note": "Debug endpoint - full system info disclosure (vuln #10, #26)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "debug_info",
+      "line": 152,
+      "ids": [],
+      "note": "All env vars exposed"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "debug_info",
+      "line": 161,
+      "ids": [
+        435
+      ],
+      "note": "Cloud credential exposure (vuln #435)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "metrics",
+      "line": 171,
+      "ids": [
+        570
+      ],
+      "note": "Prometheus-style metrics - no auth (vuln #570)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "metrics",
+      "line": 185,
+      "ids": [],
+      "note": "Intentional exposure"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "phpinfo",
+      "line": 190,
+      "ids": [
+        9
+      ],
+      "note": "Fake phpinfo for fingerprinting (vuln #9)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "env_file",
+      "line": 205,
+      "ids": [
+        17
+      ],
+      "note": "Exposed .env file (vuln #17)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "db_backup",
+      "line": 218,
+      "ids": [
+        15,
+        410
+      ],
+      "note": "Database backup exposure (vuln #15, #410)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "internal_db_query",
+      "line": 223,
+      "ids": [
+        401,
+        406
+      ],
+      "note": "Internal DB query endpoint - no auth (vuln #401, #406)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "swagger_json",
+      "line": 229,
+      "ids": [
+        19
+      ],
+      "note": "Swagger exposure (vuln #19)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "graphql_info",
+      "line": 234,
+      "ids": [
+        20
+      ],
+      "note": "GraphQL introspection info (vuln #20)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "graphql_info",
+      "line": 241,
+      "ids": [
+        25
+      ],
+      "note": "─── Error Handlers (stack trace disclosure - vuln #25) ─────────────────────"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "global_exception_handler",
+      "line": 245,
+      "ids": [
+        25
+      ],
+      "note": "Return full stack trace (vuln #25)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "global_exception_handler",
+      "line": 251,
+      "ids": [],
+      "note": "Full stack trace exposed"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "http_exception_handler",
+      "line": 270,
+      "ids": [
+        7
+      ],
+      "note": "Server version disclosure in error (vuln #7)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "http_exception_handler",
+      "line": 274,
+      "ids": [
+        7
+      ],
+      "note": "vuln #7"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "http_exception_handler",
+      "line": 280,
+      "ids": [
+        558
+      ],
+      "note": "─── Request Logging Middleware (logs passwords - vuln #558) ─────────────────"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "log_requests",
+      "line": 284,
+      "ids": [
+        558,
+        559,
+        560
+      ],
+      "note": "Log all requests including sensitive data (vuln #558, #559, #560)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "log_requests",
+      "line": 301,
+      "ids": [
+        562
+      ],
+      "note": "CRLF injection in logs (vuln #562)"
+    },
+    {
+      "path": "backend/main.py",
+      "symbol": "log_requests",
+      "line": 311,
+      "ids": [
+        480
+      ],
+      "note": "No security headers added (vuln #480)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "module",
+      "line": 1,
+      "ids": [],
+      "note": "Authentication Routes - Intentionally Vulnerable Covers vulns: #31-95 (Authentication Vulnerabilities)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "module",
+      "line": 31,
+      "ids": [
+        372
+      ],
+      "note": "vuln #372 MD5"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "module",
+      "line": 32,
+      "ids": [
+        372
+      ],
+      "note": "Plaintext stored! vuln #372"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "RegisterRequest",
+      "line": 73,
+      "ids": [
+        103
+      ],
+      "note": "Mass assignment - anyone can set role (vuln #103)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "RegisterRequest",
+      "line": 74,
+      "ids": [],
+      "note": "Mass assignment vuln"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "weak_token",
+      "line": 93,
+      "ids": [
+        52,
+        378
+      ],
+      "note": "Predictable token generation (vuln #52, #378)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "weak_token",
+      "line": 94,
+      "ids": [],
+      "note": "Token based on email + timestamp truncated to seconds = predictable"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "weak_token",
+      "line": 97,
+      "ids": [],
+      "note": "Short MD5 = predictable"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "create_jwt",
+      "line": 100,
+      "ids": [
+        81
+      ],
+      "note": "Create JWT - stores sensitive data in payload (vuln #81)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "create_jwt",
+      "line": 106,
+      "ids": [
+        81
+      ],
+      "note": "PII in token (vuln #81)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "create_jwt",
+      "line": 107,
+      "ids": [
+        81
+      ],
+      "note": "PII in token (vuln #81)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "create_jwt",
+      "line": 108,
+      "ids": [
+        81
+      ],
+      "note": "PII in token (vuln #81)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "create_jwt",
+      "line": 111,
+      "ids": [
+        77
+      ],
+      "note": "No exp = never expires (vuln #77)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "send_email_smtp",
+      "line": 116,
+      "ids": [
+        161
+      ],
+      "note": "Send email via MailHog - SMTP injection possible (vuln #161)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "send_email_smtp",
+      "line": 119,
+      "ids": [
+        161
+      ],
+      "note": "SMTP injection via subject (vuln #161)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "send_email_smtp",
+      "line": 120,
+      "ids": [],
+      "note": "Not sanitized"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "send_email_smtp",
+      "line": 122,
+      "ids": [],
+      "note": "Not sanitized - SMTP injection"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "send_email_smtp",
+      "line": 123,
+      "ids": [
+        559
+      ],
+      "note": "Log email including content (vuln #559)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "register",
+      "line": 134,
+      "ids": [
+        31,
+        34,
+        35
+      ],
+      "note": "Register - weak password policy, email enumeration (vuln #31, #34, #35)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "register",
+      "line": 135,
+      "ids": [
+        558
+      ],
+      "note": "Log registration data including password (vuln #558)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "register",
+      "line": 138,
+      "ids": [
+        31
+      ],
+      "note": "Weak password policy - no length/complexity check (vuln #31)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "register",
+      "line": 141,
+      "ids": [
+        35
+      ],
+      "note": "Email enumeration - different error messages (vuln #35)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "register",
+      "line": 145,
+      "ids": [
+        103
+      ],
+      "note": "Mass assignment - role can be set by user (vuln #103)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "register",
+      "line": 148,
+      "ids": [],
+      "note": "Privilege escalation via mass assignment"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "register",
+      "line": 154,
+      "ids": [
+        372
+      ],
+      "note": "MD5! vuln #372"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "register",
+      "line": 155,
+      "ids": [
+        372
+      ],
+      "note": "Store plaintext vuln #372"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "register",
+      "line": 165,
+      "ids": [
+        52
+      ],
+      "note": "Generate predictable token (vuln #52)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "register",
+      "line": 169,
+      "ids": [
+        393
+      ],
+      "note": "Token in email URL (sensitive data in URL - vuln #393)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "register",
+      "line": 180,
+      "ids": [
+        51
+      ],
+      "note": "Token in response (vuln #51)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "login",
+      "line": 187,
+      "ids": [
+        38,
+        64,
+        65,
+        66
+      ],
+      "note": "Login - SQL injection sim, timing attack, brute force possible (vuln #38, #64, #65, #66)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "login",
+      "line": 188,
+      "ids": [
+        558
+      ],
+      "note": "Log credentials (vuln #558)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "login",
+      "line": 191,
+      "ids": [
+        38,
+        41
+      ],
+      "note": "No rate limiting (vuln #38, #41)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "login",
+      "line": 192,
+      "ids": [
+        43
+      ],
+      "note": "No CAPTCHA (vuln #43)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "login",
+      "line": 194,
+      "ids": [
+        65
+      ],
+      "note": "Session fixation - use existing session ID if provided (vuln #65)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "login",
+      "line": 197,
+      "ids": [
+        128
+      ],
+      "note": "SQL injection simulation in login (vuln #128)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "login",
+      "line": 199,
+      "ids": [],
+      "note": "With: email = \"admin@vulnshop.com' OR '1'='1'--\" → bypasses auth"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "login",
+      "line": 201,
+      "ids": [],
+      "note": "Simulate SQLi bypass"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "login",
+      "line": 204,
+      "ids": [],
+      "note": "vuln: should block but doesn't"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "login",
+      "line": 208,
+      "ids": [
+        34
+      ],
+      "note": "Username enumeration via timing (vuln #34)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "login",
+      "line": 211,
+      "ids": [],
+      "note": "Faster for non-existent (timing attack)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "login",
+      "line": 214,
+      "ids": [
+        372
+      ],
+      "note": "Password check using MD5 (vuln #372)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "login",
+      "line": 218,
+      "ids": [],
+      "note": "Different msg = enumeration"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "login",
+      "line": 220,
+      "ids": [
+        81
+      ],
+      "note": "Create JWT with sensitive data (vuln #81)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "login",
+      "line": 222,
+      "ids": [
+        82
+      ],
+      "note": "Refresh token - never expires, can be reused (vuln #82)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "login",
+      "line": 226,
+      "ids": [
+        68,
+        70
+      ],
+      "note": "Session management - session NOT invalidated if exists (vuln #68, #70)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "login",
+      "line": 231,
+      "ids": [
+        70
+      ],
+      "note": "Concurrent sessions allowed (vuln #70)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "login",
+      "line": 236,
+      "ids": [
+        62
+      ],
+      "note": "Remember me - insecure persistent cookie (vuln #62)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "login",
+      "line": 248,
+      "ids": [
+        71
+      ],
+      "note": "Insecure cookie (vuln #71) - no Secure, no HttpOnly, SameSite=None"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "login",
+      "line": 254,
+      "ids": [
+        62
+      ],
+      "note": "Insecure remember me (vuln #62)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "logout",
+      "line": 262,
+      "ids": [
+        68
+      ],
+      "note": "Logout - session NOT invalidated (vuln #68)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "logout",
+      "line": 265,
+      "ids": [
+        68
+      ],
+      "note": "Session NOT removed from server (vuln #68)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "logout",
+      "line": 266,
+      "ids": [],
+      "note": "sessions_db.pop(session_id, None)  <-- intentionally commented out"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "forgot_password",
+      "line": 273,
+      "ids": [
+        51,
+        56
+      ],
+      "note": "Forgot password - host header injection (vuln #56), token exposure (vuln #51)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "forgot_password",
+      "line": 274,
+      "ids": [
+        35
+      ],
+      "note": "Email enumeration - confirm if email exists (vuln #35)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "forgot_password",
+      "line": 277,
+      "ids": [],
+      "note": "Enumeration"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "forgot_password",
+      "line": 279,
+      "ids": [
+        52
+      ],
+      "note": "Predictable token (vuln #52)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "forgot_password",
+      "line": 284,
+      "ids": [
+        54
+      ],
+      "note": "No expiry set (vuln #54)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "forgot_password",
+      "line": 287,
+      "ids": [
+        56
+      ],
+      "note": "Host Header Injection (vuln #56) - use Host header for reset URL"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "forgot_password",
+      "line": 288,
+      "ids": [],
+      "note": "Attacker controls this"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "forgot_password",
+      "line": 292,
+      "ids": [
+        51
+      ],
+      "note": "Token leaked in response (vuln #51)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "forgot_password",
+      "line": 301,
+      "ids": [
+        51
+      ],
+      "note": "Token in response body (vuln #51)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "forgot_password",
+      "line": 303,
+      "ids": [],
+      "note": "URL exposed in response"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "reset_password",
+      "line": 309,
+      "ids": [
+        53,
+        54
+      ],
+      "note": "Reset password - token reuse, never expires (vuln #53, #54)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "reset_password",
+      "line": 314,
+      "ids": [
+        54
+      ],
+      "note": "No expiry check (vuln #54) - tokens never expire"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "reset_password",
+      "line": 315,
+      "ids": [
+        53
+      ],
+      "note": "Token NOT deleted after use (vuln #53) - can be reused"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "reset_password",
+      "line": 322,
+      "ids": [
+        31
+      ],
+      "note": "Weak new password accepted (vuln #31)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "reset_password",
+      "line": 326,
+      "ids": [
+        69
+      ],
+      "note": "Sessions NOT invalidated after password change (vuln #69)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "reset_password",
+      "line": 329,
+      "ids": [
+        558
+      ],
+      "note": "Log password change (vuln #558)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "verify_email",
+      "line": 337,
+      "ids": [
+        57,
+        58
+      ],
+      "note": "Email verification - token reuse (vuln #57, #58)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "verify_email",
+      "line": 342,
+      "ids": [
+        58
+      ],
+      "note": "Token NOT deleted = can be reused (vuln #58)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "verify_email_bypass",
+      "line": 351,
+      "ids": [
+        59
+      ],
+      "note": "Email verification bypass (vuln #59) - no token needed"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "mfa_verify",
+      "line": 360,
+      "ids": [
+        44,
+        46,
+        47,
+        48
+      ],
+      "note": "MFA verify - OTP brute force, replay (vuln #44, #46, #47, #48)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "mfa_verify",
+      "line": 361,
+      "ids": [
+        46
+      ],
+      "note": "No rate limiting on OTP (vuln #46)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "mfa_verify",
+      "line": 362,
+      "ids": [
+        48
+      ],
+      "note": "Predictable OTP (vuln #48)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "mfa_verify",
+      "line": 363,
+      "ids": [],
+      "note": "Default OTP = \"123456\" (predictable)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "mfa_verify",
+      "line": 365,
+      "ids": [
+        47
+      ],
+      "note": "OTP not deleted after use (vuln #47 - replay)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "mfa_verify",
+      "line": 366,
+      "ids": [
+        44
+      ],
+      "note": "Backdoor OTP (vuln #44)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "mfa_verify",
+      "line": 372,
+      "ids": [],
+      "note": "Different error for wrong OTP vs expired (enumeration)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "mfa_setup",
+      "line": 378,
+      "ids": [
+        376
+      ],
+      "note": "MFA setup - hardcoded secret (vuln #376)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "mfa_setup",
+      "line": 379,
+      "ids": [
+        48
+      ],
+      "note": "Predictable OTP (vuln #48)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "mfa_setup",
+      "line": 381,
+      "ids": [],
+      "note": "Hardcoded secret exposed"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "mfa_setup",
+      "line": 383,
+      "ids": [],
+      "note": "Weak backup codes"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "refresh_token",
+      "line": 389,
+      "ids": [
+        82,
+        83
+      ],
+      "note": "Refresh token - reuse allowed, rotation failure (vuln #82, #83)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "refresh_token",
+      "line": 394,
+      "ids": [
+        83
+      ],
+      "note": "Token NOT rotated (vuln #83) - same token works forever"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "refresh_token",
+      "line": 401,
+      "ids": [
+        82
+      ],
+      "note": "Same refresh token returned (vuln #82)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "get_me",
+      "line": 407,
+      "ids": [
+        72
+      ],
+      "note": "Get current user - JWT none algorithm accepted (vuln #72)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "get_me",
+      "line": 415,
+      "ids": [
+        72
+      ],
+      "note": "Accept none algorithm (vuln #72)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "get_me",
+      "line": 416,
+      "ids": [
+        73
+      ],
+      "note": "Accept any algorithm (vuln #73)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "get_me",
+      "line": 420,
+      "ids": [
+        74
+      ],
+      "note": "Try without algorithm check (vuln #74)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "get_me",
+      "line": 427,
+      "ids": [
+        77
+      ],
+      "note": "No expiry check bypass (vuln #77)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "social_login_google",
+      "line": 436,
+      "ids": [
+        84,
+        85
+      ],
+      "note": "OAuth Google login - redirect URI manipulation (vuln #84, #85)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "social_login_google",
+      "line": 439,
+      "ids": [
+        86
+      ],
+      "note": "No state validation (vuln #86)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "social_login_google",
+      "line": 442,
+      "ids": [
+        85
+      ],
+      "note": "No redirect_uri validation (vuln #85)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "social_login_google",
+      "line": 443,
+      "ids": [],
+      "note": "Attacker can set redirect_uri to their server"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "social_login_google",
+      "line": 445,
+      "ids": [
+        86
+      ],
+      "note": "No state parameter CSRF check (vuln #86)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "social_login_google",
+      "line": 450,
+      "ids": [
+        94,
+        95
+      ],
+      "note": "Create account linking - no verification (vuln #94, #95)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "list_all_users",
+      "line": 473,
+      "ids": [
+        104,
+        643
+      ],
+      "note": "List all users - no auth required (vuln #104, #643)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "auth_bypass",
+      "line": 480,
+      "ids": [
+        61
+      ],
+      "note": "Authentication bypass endpoint (vuln #61)"
+    },
+    {
+      "path": "backend/routes/auth.py",
+      "symbol": "auth_bypass",
+      "line": 482,
+      "ids": [],
+      "note": "Logic flaw - any request with admin=true bypasses auth"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "module",
+      "line": 1,
+      "ids": [
+        97,
+        128,
+        136,
+        171,
+        250
+      ],
+      "note": "Product Routes - Intentionally Vulnerable Covers vulns: SQLi (#128), NoSQL Injection (#136), XSS (#171), IDOR (#97), Mass Assignment (#250)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "module",
+      "line": 20,
+      "ids": [
+        651
+      ],
+      "note": "Internal cost exposed (vuln #651)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "module",
+      "line": 26,
+      "ids": [
+        651
+      ],
+      "note": "Sensitive business data (vuln #651)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "ProductCreate",
+      "line": 85,
+      "ids": [
+        250
+      ],
+      "note": "Mass assignment fields - all accepted (vuln #250)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "ReviewCreate",
+      "line": 94,
+      "ids": [],
+      "note": "No XSS sanitization"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "list_products",
+      "line": 108,
+      "ids": [
+        603
+      ],
+      "note": "No limit = unbounded (vuln #603)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "list_products",
+      "line": 110,
+      "ids": [
+        603
+      ],
+      "note": "Unbounded pagination (vuln #603)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "list_products",
+      "line": 112,
+      "ids": [
+        128,
+        603
+      ],
+      "note": "List products - SQL injection in search, unbounded pagination (vuln #128, #603)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "list_products",
+      "line": 115,
+      "ids": [
+        128
+      ],
+      "note": "SQL injection simulation in search (vuln #128)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "list_products",
+      "line": 118,
+      "ids": [
+        239,
+        587
+      ],
+      "note": "ReDoS vulnerability (vuln #239, #587) - catastrophic backtracking"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "list_products",
+      "line": 120,
+      "ids": [],
+      "note": "Vulnerable regex pattern"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "list_products",
+      "line": 135,
+      "ids": [
+        128,
+        259
+      ],
+      "note": "SQL injection in sort parameter (vuln #128, #259)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "list_products",
+      "line": 138,
+      "ids": [
+        24
+      ],
+      "note": "Injection reflected back (vuln #24)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "list_products",
+      "line": 141,
+      "ids": [
+        251
+      ],
+      "note": "Return ALL fields including sensitive ones (vuln #251)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "list_products",
+      "line": 143,
+      "ids": [
+        651
+      ],
+      "note": "Including cost, admin_note, supplier_cost (vuln #651)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "list_products",
+      "line": 145,
+      "ids": [],
+      "note": "Reflected back (potential XSS context)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "export_products_csv",
+      "line": 152,
+      "ids": [
+        168
+      ],
+      "note": "Export products - CSV injection (vuln #168)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "export_products_csv",
+      "line": 158,
+      "ids": [
+        168
+      ],
+      "note": "CSV injection - name or admin_note can contain formulas (vuln #168)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "export_products_csv",
+      "line": 164,
+      "ids": [],
+      "note": "Sensitive data exposed"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "export_products_csv",
+      "line": 165,
+      "ids": [],
+      "note": "Sensitive data exposed"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "flash_sale",
+      "line": 179,
+      "ids": [
+        300,
+        305
+      ],
+      "note": "Flash sale - race condition vulnerability (vuln #300, #305)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "get_product",
+      "line": 185,
+      "ids": [
+        97,
+        251
+      ],
+      "note": "Get product - IDOR, returns ALL fields including sensitive (vuln #97, #251)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "get_product",
+      "line": 190,
+      "ids": [
+        251,
+        651
+      ],
+      "note": "Return ALL fields including internal data (vuln #251, #651)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "create_product",
+      "line": 203,
+      "ids": [
+        104,
+        250
+      ],
+      "note": "Create product - mass assignment, no auth check (vuln #250, #104)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "create_product",
+      "line": 204,
+      "ids": [
+        104
+      ],
+      "note": "No authentication check (vuln #104)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "create_product",
+      "line": 205,
+      "ids": [
+        250
+      ],
+      "note": "Mass assignment - all fields accepted including privileged ones (vuln #250)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "create_product",
+      "line": 210,
+      "ids": [
+        171
+      ],
+      "note": "XSS in description not sanitized (vuln #171)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "create_product",
+      "line": 217,
+      "ids": [],
+      "note": "Mass assignment"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "create_product",
+      "line": 220,
+      "ids": [],
+      "note": "Mass assignment"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "update_product",
+      "line": 230,
+      "ids": [
+        97,
+        125
+      ],
+      "note": "Update product - no ownership check, IDOR (vuln #97, #125)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "update_product",
+      "line": 231,
+      "ids": [],
+      "note": "No auth check"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "update_product",
+      "line": 232,
+      "ids": [],
+      "note": "No ownership validation"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "update_product",
+      "line": 233,
+      "ids": [],
+      "note": "HTTP method bypass - PUT works for anyone"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "update_product",
+      "line": 238,
+      "ids": [
+        250
+      ],
+      "note": "Mass assignment - update any field (vuln #250)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "delete_product",
+      "line": 245,
+      "ids": [
+        104
+      ],
+      "note": "Delete product - no auth (vuln #104)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "get_recommendations",
+      "line": 254,
+      "ids": [
+        198,
+        203
+      ],
+      "note": "Get recommendations - SSRF via external URL (vuln #198, #203)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "get_recommendations",
+      "line": 258,
+      "ids": [
+        198
+      ],
+      "note": "SSRF - fetch any URL including internal services (vuln #198)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "get_recommendations",
+      "line": 261,
+      "ids": [],
+      "note": "Fetch attacker-controlled URL"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "add_review",
+      "line": 274,
+      "ids": [
+        171,
+        177
+      ],
+      "note": "Add review - stored XSS (vuln #171, #177)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "add_review",
+      "line": 283,
+      "ids": [
+        171
+      ],
+      "note": "Stored without sanitization - XSS (vuln #171)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "add_review",
+      "line": 285,
+      "ids": [],
+      "note": "Also unsanitized"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "get_reviews",
+      "line": 294,
+      "ids": [
+        171
+      ],
+      "note": "Get reviews - returns XSS payloads unsanitized (vuln #171)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "get_qna",
+      "line": 300,
+      "ids": [
+        170
+      ],
+      "note": "Q&A - reflected XSS in question (vuln #170)"
+    },
+    {
+      "path": "backend/routes/products.py",
+      "symbol": "get_qna",
+      "line": 303,
+      "ids": [
+        170
+      ],
+      "note": "Reflected without sanitization (vuln #170)"
+    },
+    {
+      "path": "frontend/routes/api.js",
+      "symbol": "API_URL",
+      "line": 8,
+      "ids": [],
+      "note": "VULN: SSRF - target URL controlled by user input"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "r",
+      "line": 50,
+      "ids": [],
+      "note": "GET /products — Product listing (XSS in search query)"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "query",
+      "line": 53,
+      "ids": [],
+      "note": "VULN: used unescaped in template"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "r",
+      "line": 77,
+      "ids": [],
+      "note": "VULN: passed to template, rendered unescaped"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "r",
+      "line": 89,
+      "ids": [],
+      "note": "GET /products/:id — Product detail (stored XSS in description/reviews)"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "reviews",
+      "line": 97,
+      "ids": [],
+      "note": "VULN: Review comment rendered unescaped (stored XSS possible)"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "route /cart/add",
+      "line": 140,
+      "ids": [
+        283
+      ],
+      "note": "VULN: Price taken from request body - price manipulation #283"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "if",
+      "line": 150,
+      "ids": [],
+      "note": "VULN: price from client"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "if",
+      "line": 165,
+      "ids": [],
+      "note": "VULN: price manipulation"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "route /checkout",
+      "line": 197,
+      "ids": [
+        283
+      ],
+      "note": "VULN: Total price taken from form (client-side) - vuln #283"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "order",
+      "line": 207,
+      "ids": [],
+      "note": "VULN: from form"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "order",
+      "line": 208,
+      "ids": [],
+      "note": "VULN: from form"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "order",
+      "line": 222,
+      "ids": [],
+      "note": "GET /orders — Order history (IDOR - no session check)"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "route /orders",
+      "line": 225,
+      "ids": [],
+      "note": "VULN: IDOR - user_id from query param, no ownership check"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "r",
+      "line": 246,
+      "ids": [],
+      "note": "GET /profile — User profile (mass assignment, no current password)"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "route /profile",
+      "line": 260,
+      "ids": [],
+      "note": "Update profile (mass assignment)"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "route /profile",
+      "line": 262,
+      "ids": [],
+      "note": "VULN: Mass assignment - user can set role, loyalty_points, etc."
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "if",
+      "line": 264,
+      "ids": [],
+      "note": "VULN: mass assignment"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "route /profile/change-password",
+      "line": 273,
+      "ids": [],
+      "note": "VULN: No current password required - logic flaw"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "route /profile/change-password",
+      "line": 274,
+      "ids": [],
+      "note": "VULN: No token/CSRF check"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "wishlist",
+      "line": 300,
+      "ids": [],
+      "note": "GET /login — Login page (no CSRF, user enumeration)"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "route /login",
+      "line": 309,
+      "ids": [],
+      "note": "VULN: No CSRF token"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "userData",
+      "line": 320,
+      "ids": [],
+      "note": "VULN: Remember me stores credentials in cookie without encryption"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "status",
+      "line": 328,
+      "ids": [
+        34
+      ],
+      "note": "VULN: Different error messages leak user existence (enumeration #34)"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "error",
+      "line": 330,
+      "ids": [],
+      "note": "VULN: user enumeration"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "error",
+      "line": 331,
+      "ids": [],
+      "note": "VULN: confirms user exists"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "if",
+      "line": 342,
+      "ids": [],
+      "note": "GET /register — Registration (no CSRF, weak validation)"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "route /forgot-password",
+      "line": 387,
+      "ids": [],
+      "note": "Always return success (no enumeration protection but demo)"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "route /forgot-password",
+      "line": 402,
+      "ids": [],
+      "note": "GET /reset-password — Token in URL (sensitive data exposure)"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "route /reset-password",
+      "line": 405,
+      "ids": [],
+      "note": "VULN: Token in URL - logged in server logs, browser history, referrer"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "route /reset-password",
+      "line": 412,
+      "ids": [],
+      "note": "VULN: token exposed in URL"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "route /reset-password",
+      "line": 420,
+      "ids": [],
+      "note": "No token expiry check, no rate limiting"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "route /reset-password",
+      "line": 428,
+      "ids": [],
+      "note": "GET /track/:orderId — Order tracking (IDOR)"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "route /track/:orderId",
+      "line": 432,
+      "ids": [],
+      "note": "VULN: IDOR - no ownership check, anyone can track any order"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "r",
+      "line": 461,
+      "ids": [],
+      "note": "GET /addresses/:userId — Address book (IDOR)"
+    },
+    {
+      "path": "frontend/routes/index.js",
+      "symbol": "route /addresses/:userId",
+      "line": 464,
+      "ids": [],
+      "note": "VULN: IDOR - no ownership check"
+    },
+    {
+      "path": "frontend/routes/webhook.js",
+      "symbol": "API_URL",
+      "line": 8,
+      "ids": [],
+      "note": "POST /webhook/payment — Payment webhook (no signature validation)"
+    },
+    {
+      "path": "frontend/routes/webhook.js",
+      "symbol": "API_URL",
+      "line": 9,
+      "ids": [
+        278
+      ],
+      "note": "vuln #278: No HMAC/signature check"
+    },
+    {
+      "path": "frontend/routes/webhook.js",
+      "symbol": "route /payment",
+      "line": 12,
+      "ids": [],
+      "note": "VULN: No signature validation"
+    },
+    {
+      "path": "frontend/routes/webhook.js",
+      "symbol": "payload",
+      "line": 30,
+      "ids": [],
+      "note": "VULN: Webhook SSRF - callback_url from payload"
+    },
+    {
+      "path": "frontend/routes/webhook.js",
+      "symbol": "payload",
+      "line": 31,
+      "ids": [
+        280
+      ],
+      "note": "vuln #280"
+    },
+    {
+      "path": "frontend/routes/webhook.js",
+      "symbol": "if",
+      "line": 38,
+      "ids": [],
+      "note": "VULN: SSRF via callback_url"
+    },
+    {
+      "path": "frontend/routes/webhook.js",
+      "symbol": "if",
+      "line": 48,
+      "ids": [],
+      "note": "POST /webhook/shipping — Shipping webhook (no validation)"
+    },
+    {
+      "path": "frontend/routes/webhook.js",
+      "symbol": "route /shipping",
+      "line": 51,
+      "ids": [],
+      "note": "VULN: No authentication, no signature"
+    },
+    {
+      "path": "frontend/routes/webhook.js",
+      "symbol": "route /shipping",
+      "line": 64,
+      "ids": [],
+      "note": "VULN: SSRF via callback_url"
+    },
+    {
+      "path": "frontend/routes/webhook.js",
+      "symbol": "route /inventory",
+      "line": 79,
+      "ids": [],
+      "note": "VULN: SSRF, no auth"
+    },
+    {
+      "path": "frontend/routes/webhook.js",
+      "symbol": "route /test",
+      "line": 94,
+      "ids": [],
+      "note": "VULN: exposes all env vars"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "server",
+      "line": 17,
+      "ids": [],
+      "note": "INTENTIONAL VULN: Socket.io with NO authentication"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "server",
+      "line": 18,
+      "ids": [
+        271
+      ],
+      "note": "vuln #271 - WebSocket without auth"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "io",
+      "line": 26,
+      "ids": [],
+      "note": "No auth check at all"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "io",
+      "line": 28,
+      "ids": [],
+      "note": "No validation, anyone can join any room"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "io",
+      "line": 33,
+      "ids": [],
+      "note": "No admin check - anyone can broadcast"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "io",
+      "line": 37,
+      "ids": [],
+      "note": "IDOR - returns any user data without auth"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "io",
+      "line": 43,
+      "ids": [],
+      "note": "INTENTIONAL VULN: CORS allows all origins"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "io",
+      "line": 47,
+      "ids": [],
+      "note": "INTENTIONAL: Helmet DISABLED"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "io",
+      "line": 48,
+      "ids": [],
+      "note": "app.use(helmet()); // Disabled intentionally - no security headers"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "io",
+      "line": 55,
+      "ids": [],
+      "note": "INTENTIONAL VULN: Session with weak config"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "io",
+      "line": 56,
+      "ids": [],
+      "note": "Weak secret"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "io",
+      "line": 59,
+      "ids": [],
+      "note": "No sameSite (CSRF possible)"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "io",
+      "line": 66,
+      "ids": [],
+      "note": "VULN: works over HTTP"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "io",
+      "line": 67,
+      "ids": [],
+      "note": "VULN: JS can read session cookie"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "io",
+      "line": 68,
+      "ids": [],
+      "note": "VULN: CSRF possible"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "io",
+      "line": 86,
+      "ids": [],
+      "note": "No file type validation - intentional"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "io",
+      "line": 90,
+      "ids": [],
+      "note": "INTENTIONAL VULN: Request logging with sensitive data"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "io",
+      "line": 98,
+      "ids": [],
+      "note": "INTENTIONAL VULN: Static file serving"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "io",
+      "line": 99,
+      "ids": [],
+      "note": "Exposes source maps"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "io",
+      "line": 100,
+      "ids": [],
+      "note": "Exposes .env"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "io",
+      "line": 101,
+      "ids": [],
+      "note": "Exposes .git"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "route /robots.txt",
+      "line": 130,
+      "ids": [],
+      "note": "Debug endpoint (intentional)"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "route /debug",
+      "line": 140,
+      "ids": [],
+      "note": "Source map (intentional exposure)"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "route /webhook",
+      "line": 154,
+      "ids": [],
+      "note": "Admin redirect (no auth)"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "route /admin",
+      "line": 156,
+      "ids": [],
+      "note": "INTENTIONAL: No auth check before redirect"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "route /admin/dashboard",
+      "line": 164,
+      "ids": [],
+      "note": "INTENTIONAL VULN: Error handler exposes stack traces"
+    },
+    {
+      "path": "frontend/server.js",
+      "symbol": "route /admin/dashboard",
+      "line": 170,
+      "ids": [],
+      "note": "VULN: stack trace exposed"
+    },
+    {
+      "path": "frontend/views/home.ejs",
+      "symbol": "template",
+      "line": 338,
+      "ids": [],
+      "note": "VULN: XSS - email value echoed back without escaping"
+    },
+    {
+      "path": "frontend/views/home.ejs",
+      "symbol": "template",
+      "line": 419,
+      "ids": [],
+      "note": "Newsletter - VULN: DOM XSS"
+    },
+    {
+      "path": "frontend/views/home.ejs",
+      "symbol": "template",
+      "line": 422,
+      "ids": [],
+      "note": "VULN: innerHTML with user input = DOM XSS"
+    },
+    {
+      "path": "frontend/views/layout.ejs",
+      "symbol": "template",
+      "line": 13,
+      "ids": [
+        608
+      ],
+      "note": "INTENTIONAL VULN #608: Hardcoded API keys"
+    },
+    {
+      "path": "frontend/views/layout.ejs",
+      "symbol": "template",
+      "line": 185,
+      "ids": [],
+      "note": "jQuery 1.x (old - for DOM XSS vulns)"
+    },
+    {
+      "path": "frontend/views/layout.ejs",
+      "symbol": "template",
+      "line": 193,
+      "ids": [
+        609
+      ],
+      "note": "sourceMappingURL intentional exposure (vuln #609)"
+    },
+    {
+      "path": "frontend/views/layout.ejs",
+      "symbol": "template",
+      "line": 203,
+      "ids": [],
+      "note": "Newsletter subscription (XSS in email)"
+    },
+    {
+      "path": "frontend/views/layout.ejs",
+      "symbol": "template",
+      "line": 206,
+      "ids": [],
+      "note": "VULN: XSS - email rendered via innerHTML"
+    },
+    {
+      "path": "frontend/views/layout.ejs",
+      "symbol": "template",
+      "line": 208,
+      "ids": [],
+      "note": "DOM XSS"
+    },
+    {
+      "path": "frontend/views/products.ejs",
+      "symbol": "template",
+      "line": 62,
+      "ids": [],
+      "note": "VULN: XSS - search query rendered unescaped with <%-"
+    },
+    {
+      "path": "frontend/views/products.ejs",
+      "symbol": "template",
+      "line": 68,
+      "ids": [],
+      "note": "^^^ INTENTIONAL XSS VULNERABILITY - unescaped output"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "module",
+      "line": 1,
+      "ids": [],
+      "note": "VulnShop GraphQL Auth Middleware"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "module",
+      "line": 2,
+      "ids": [],
+      "note": "INTENTIONALLY VULNERABLE - weak JWT validation"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "module",
+      "line": 3,
+      "ids": [
+        72,
+        74,
+        75,
+        77
+      ],
+      "note": "Vulnerabilities: #75 (weak secret), #77 (expiry bypass), #74 (signature bypass), #72 (alg:none acceptance)"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "jwt",
+      "line": 7,
+      "ids": [
+        75
+      ],
+      "note": "VULN #75: Hardcoded, weak JWT secret"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "REFRESH_SECRET",
+      "line": 11,
+      "ids": [
+        77
+      ],
+      "note": "VULN #77: Expired tokens can pass through the unverified decode fallback"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "REFRESH_SECRET",
+      "line": 12,
+      "ids": [
+        72,
+        74
+      ],
+      "note": "VULN #74, #72: The unverified decode fallback bypasses signatures, including for alg:none tokens"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "verifyToken",
+      "line": 17,
+      "ids": [],
+      "note": "VULN: No algorithm restriction - accepts HS256 or 'none'"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "verifyToken",
+      "line": 18,
+      "ids": [],
+      "note": "An attacker can forge tokens with alg:none"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "decoded",
+      "line": 20,
+      "ids": [],
+      "note": "VULN: Multiple algorithms accepted"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "decoded",
+      "line": 27,
+      "ids": [],
+      "note": "VULN: Try to decode without verification as fallback"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "decoded",
+      "line": 29,
+      "ids": [],
+      "note": "VULN: Decoded without verification"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "if",
+      "line": 32,
+      "ids": [],
+      "note": "VULN: Returns unverified payload!"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "if",
+      "line": 41,
+      "ids": [],
+      "note": "VULN: Weak token generation"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "generateToken",
+      "line": 48,
+      "ids": [],
+      "note": "VULN: No jti (JWT ID) for revocation"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "generateToken",
+      "line": 49,
+      "ids": [],
+      "note": "VULN: No iss or aud claims"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "generateToken",
+      "line": 52,
+      "ids": [],
+      "note": "VULN: Long expiry"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "generateRefreshToken",
+      "line": 60,
+      "ids": [],
+      "note": "VULN: Very long refresh token expiry"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "generateRefreshToken",
+      "line": 64,
+      "ids": [],
+      "note": "VULN: Auth middleware that can be bypassed"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "authHeader",
+      "line": 68,
+      "ids": [],
+      "note": "VULN: Accept token from multiple insecure sources"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "token",
+      "line": 71,
+      "ids": [],
+      "note": "VULN: Custom insecure header"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "token",
+      "line": 72,
+      "ids": [],
+      "note": "VULN: Token in URL query string"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "token",
+      "line": 73,
+      "ids": [],
+      "note": "VULN: Token in request body"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "user",
+      "line": 80,
+      "ids": [],
+      "note": "VULN: X-User-ID header bypass - if no token, trust this header"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "if",
+      "line": 85,
+      "ids": [],
+      "note": "VULN: Role from header"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "if",
+      "line": 92,
+      "ids": [
+        108
+      ],
+      "note": "VULN #108: isAdmin check that can be bypassed"
+    },
+    {
+      "path": "services/graphql/src/auth.js",
+      "symbol": "isAdmin",
+      "line": 95,
+      "ids": [],
+      "note": "VULN: Check role from JWT which can be forged"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "module",
+      "line": 1,
+      "ids": [],
+      "note": "VulnShop GraphQL Service - Main Entry Point"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "module",
+      "line": 2,
+      "ids": [],
+      "note": "INTENTIONALLY VULNERABLE - For educational/pentesting purposes only"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "module",
+      "line": 3,
+      "ids": [
+        20,
+        187,
+        260,
+        264,
+        265,
+        266,
+        267,
+        268
+      ],
+      "note": "Vulnerabilities: #20, #187, #260, #264, #265, #266, #267, #268"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "app",
+      "line": 28,
+      "ids": [
+        187
+      ],
+      "note": "VULN #187: CORS allows ALL origins - no restriction"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "app",
+      "line": 30,
+      "ids": [],
+      "note": "VULN: Wildcard CORS"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "app",
+      "line": 32,
+      "ids": [],
+      "note": "VULN: All headers allowed"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "app",
+      "line": 37,
+      "ids": [],
+      "note": "VULN: Large payload limit (DoS risk)"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "app",
+      "line": 40,
+      "ids": [
+        268
+      ],
+      "note": "Build schema - using buildSubgraphSchema for federation (vuln #268)"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "app",
+      "line": 43,
+      "ids": [
+        268
+      ],
+      "note": "VULN #268: Federation enabled - exposes _service, _entities, _sdl"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "httpServer",
+      "line": 52,
+      "ids": [
+        267
+      ],
+      "note": "VULN #267: WebSocket server for subscriptions - NO AUTH"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "wsServer",
+      "line": 58,
+      "ids": [],
+      "note": "Setup GraphQL over WebSocket (subscriptions) - no auth"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "serverCleanup",
+      "line": 62,
+      "ids": [
+        267
+      ],
+      "note": "VULN #267: No authentication on websocket connection"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "onConnect",
+      "line": 65,
+      "ids": [],
+      "note": "VULN: Accept all connections, log params (may contain tokens)"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "onSubscribe",
+      "line": 70,
+      "ids": [],
+      "note": "VULN: No auth check on subscriptions"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "context",
+      "line": 73,
+      "ids": [],
+      "note": "VULN: Extract user from connection params without validation"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "context",
+      "line": 76,
+      "ids": [],
+      "note": "VULN: Trust user role from client"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "server",
+      "line": 88,
+      "ids": [
+        20,
+        260
+      ],
+      "note": "VULN #20, #260: Introspection ALWAYS enabled regardless of environment"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "server",
+      "line": 91,
+      "ids": [
+        264
+      ],
+      "note": "VULN #264: Effectively no depth limit (1000 is functionally unlimited)"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "server",
+      "line": 95,
+      "ids": [
+        265
+      ],
+      "note": "VULN #265: No query complexity limit configured"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "server",
+      "line": 98,
+      "ids": [
+        266
+      ],
+      "note": "VULN #266: Batching enabled (allows batch GraphQL attacks)"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "server",
+      "line": 101,
+      "ids": [],
+      "note": "VULN: Inline tracing exposes query execution details"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "server",
+      "line": 105,
+      "ids": [],
+      "note": "Custom plugin to log all queries (may log sensitive data)"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "didEncounterErrors",
+      "line": 112,
+      "ids": [],
+      "note": "VULN: Full error details including stack traces"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "didEncounterErrors",
+      "line": 122,
+      "ids": [],
+      "note": "VULN: Detailed error formatting - exposes stack traces"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "formatError",
+      "line": 126,
+      "ids": [],
+      "note": "VULN: Expose internal error details"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "formatError",
+      "line": 130,
+      "ids": [],
+      "note": "VULN: Echo the query back"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "stacktrace",
+      "line": 143,
+      "ids": [],
+      "note": "VULN: Include suggestions in errors (helps attackers enumerate schema)"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "context",
+      "line": 154,
+      "ids": [],
+      "note": "VULN: User extracted from token without strict validation"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "user",
+      "line": 159,
+      "ids": [],
+      "note": "VULN: Pass raw headers to context (accessible in resolvers)"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "user",
+      "line": 167,
+      "ids": [],
+      "note": "VULN: Health check endpoint leaks environment info"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "route /health",
+      "line": 176,
+      "ids": [],
+      "note": "VULN: DB info in health check"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "route /health",
+      "line": 182,
+      "ids": [],
+      "note": "VULN: SDL/Schema endpoint exposed (federation)"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "route /schema",
+      "line": 187,
+      "ids": [],
+      "note": "VULN: Debug endpoint exposes all env vars"
+    },
+    {
+      "path": "services/graphql/src/index.js",
+      "symbol": "route /debug",
+      "line": 199,
+      "ids": [],
+      "note": "VULN: Metrics endpoint without auth"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "module",
+      "line": 1,
+      "ids": [],
+      "note": "VulnShop GraphQL Resolvers"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "module",
+      "line": 2,
+      "ids": [],
+      "note": "INTENTIONALLY VULNERABLE - For educational/pentesting purposes only"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "module",
+      "line": 3,
+      "ids": [
+        97,
+        102,
+        104,
+        108,
+        113,
+        115,
+        250,
+        264,
+        265,
+        266,
+        309
+      ],
+      "note": "Vulnerabilities: #97, #102, #104, #108, #113, #115, #250, #264, #265, #266, #309"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "pool",
+      "line": 18,
+      "ids": [],
+      "note": "VULN: Helper that runs raw SQL without parameterization (SQL Injection)"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rawQuery",
+      "line": 20,
+      "ids": [
+        559
+      ],
+      "note": "VULN #559: SQL logged"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "result",
+      "line": 25,
+      "ids": [],
+      "note": "N+1 query helper - intentionally not batched"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "getUserById",
+      "line": 27,
+      "ids": [],
+      "note": "VULN: No caching, N+1 problem"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 28,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 33,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 38,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "resolvers",
+      "line": 44,
+      "ids": [
+        104
+      ],
+      "note": "VULN #104: Returns all users including passwords, no auth check"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "sql",
+      "line": 46,
+      "ids": [],
+      "note": "VULN: Returns password column"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "if",
+      "line": 48,
+      "ids": [],
+      "note": "VULN: SQL injection via role param"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "if",
+      "line": 50,
+      "ids": [],
+      "note": "VULN: SQLi via limit/offset"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "if",
+      "line": 54,
+      "ids": [
+        97
+      ],
+      "note": "VULN #97: IDOR - returns any user's data including password"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "user",
+      "line": 56,
+      "ids": [],
+      "note": "VULN: No auth check, no ownership verification"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "user",
+      "line": 60,
+      "ids": [],
+      "note": "VULN: User enumeration"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 62,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 67,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 71,
+      "ids": [],
+      "note": "VULN: Returns current user including sensitive fields"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "me",
+      "line": 77,
+      "ids": [],
+      "note": "VULN: SQL injectable search returning PII"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "searchUsers",
+      "line": 79,
+      "ids": [],
+      "note": "VULN: Direct SQL injection"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "sql",
+      "line": 84,
+      "ids": [],
+      "note": "VULN: Filter with SQL injectable fields"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "if",
+      "line": 89,
+      "ids": [],
+      "note": "VULN: SQL injection via search"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "if",
+      "line": 93,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "if",
+      "line": 96,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "if",
+      "line": 99,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "if",
+      "line": 107,
+      "ids": [],
+      "note": "VULN: SQL injection via ORDER BY field name"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "if",
+      "line": 111,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 120,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "productsByCategory",
+      "line": 125,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "productsByCategory",
+      "line": 128,
+      "ids": [
+        113
+      ],
+      "note": "VULN #113: Returns ALL orders regardless of auth or ownership"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "if",
+      "line": 132,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "if",
+      "line": 135,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "if",
+      "line": 138,
+      "ids": [],
+      "note": "VULN: No auth check - returns all orders"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "if",
+      "line": 142,
+      "ids": [],
+      "note": "VULN: IDOR on order"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "order",
+      "line": 144,
+      "ids": [],
+      "note": "VULN: No auth check, no ownership check"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "ordersByUser",
+      "line": 149,
+      "ids": [],
+      "note": "VULN: IDOR - no check if current user owns these orders"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "ordersByUser",
+      "line": 150,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "ordersByUser",
+      "line": 153,
+      "ids": [],
+      "note": "VULN: IDOR on cart"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "targetUserId",
+      "line": 157,
+      "ids": [],
+      "note": "VULN: No ownership check"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 159,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 164,
+      "ids": [
+        115
+      ],
+      "note": "VULN #115: Payment data accessible without auth"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "if",
+      "line": 168,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "if",
+      "line": 171,
+      "ids": [],
+      "note": "VULN: No auth check - returns card numbers, CVVs"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "payment",
+      "line": 176,
+      "ids": [],
+      "note": "VULN: IDOR - returns payment with card details"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 177,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 181,
+      "ids": [],
+      "note": "VULN: All coupons exposed"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 187,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 191,
+      "ids": [
+        108
+      ],
+      "note": "VULN #108: Admin data without auth check"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "adminUsers",
+      "line": 203,
+      "ids": [],
+      "note": "VULN: Expose sensitive system configuration"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "adminUsers",
+      "line": 218,
+      "ids": [],
+      "note": "VULN: System info exposed"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "databaseVersion",
+      "line": 225,
+      "ids": [],
+      "note": "VULN: ALL env vars exposed"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "databaseVersion",
+      "line": 232,
+      "ids": [],
+      "note": "VULN (EXTREME): Direct database dump endpoint"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "for",
+      "line": 247,
+      "ids": [],
+      "note": "VULN: Error details exposed"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "users",
+      "line": 256,
+      "ids": [],
+      "note": "VULN: SQL injectable search"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "search",
+      "line": 258,
+      "ids": [],
+      "note": "VULN: Direct SQL injection in query"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 283,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 287,
+      "ids": [],
+      "note": "VULN: Debug endpoint"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "debugInfo",
+      "line": 296,
+      "ids": [],
+      "note": "VULN: DB connection details in debug"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "debugInfo",
+      "line": 301,
+      "ids": [],
+      "note": "VULN (EXTREME): Direct SQL execution"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "result",
+      "line": 307,
+      "ids": [],
+      "note": "VULN: DB error messages exposed"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "result",
+      "line": 313,
+      "ids": [],
+      "note": "Register with mass assignment"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "register",
+      "line": 316,
+      "ids": [
+        250
+      ],
+      "note": "VULN #250: role directly from input - privilege escalation"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "userRole",
+      "line": 319,
+      "ids": [],
+      "note": "VULN: Password stored in plaintext if no hashing"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "userRole",
+      "line": 320,
+      "ids": [],
+      "note": "VULN: SQL injection in registration"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "refreshToken",
+      "line": 332,
+      "ids": [],
+      "note": "VULN: Store refresh token in DB"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "login",
+      "line": 339,
+      "ids": [],
+      "note": "VULN: SQL injection in login"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "if",
+      "line": 344,
+      "ids": [],
+      "note": "VULN: Timing-based user enumeration possible"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "refreshToken",
+      "line": 354,
+      "ids": [],
+      "note": "VULN: Logging password"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "logout",
+      "line": 359,
+      "ids": [],
+      "note": "VULN: Tokens not actually invalidated server-side"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "logout",
+      "line": 363,
+      "ids": [
+        250
+      ],
+      "note": "VULN #250: Mass assignment - all fields settable including role"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "values",
+      "line": 368,
+      "ids": [],
+      "note": "VULN: SQL injection via field names and values"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 378,
+      "ids": [],
+      "note": "VULN: No ownership check - can update any user"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "updateUser",
+      "line": 380,
+      "ids": [],
+      "note": "VULN: No auth check, no ownership verification"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "setClauses",
+      "line": 382,
+      "ids": [],
+      "note": "VULN: SQL injection in key names and values"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 390,
+      "ids": [
+        102
+      ],
+      "note": "VULN #102: Privilege escalation - change any user's role"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "updateUserRole",
+      "line": 392,
+      "ids": [],
+      "note": "VULN: No auth check - any user can escalate any other user's role"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 394,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 399,
+      "ids": [],
+      "note": "VULN: Delete any user without auth"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "deleteUser",
+      "line": 401,
+      "ids": [],
+      "note": "VULN: SQLi, no auth"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "deleteUser",
+      "line": 405,
+      "ids": [
+        108
+      ],
+      "note": "VULN #108: Admin update without admin check"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "adminUpdateUser",
+      "line": 407,
+      "ids": [],
+      "note": "VULN: Same as updateUser but labeled \"admin\" - no actual check"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "createProduct",
+      "line": 417,
+      "ids": [],
+      "note": "VULN: No auth check - anyone can create products"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 422,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "updateProduct",
+      "line": 427,
+      "ids": [],
+      "note": "VULN: No auth check"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "deleteProduct",
+      "line": 440,
+      "ids": [
+        309
+      ],
+      "note": "VULN #309: Price/total injectable by client"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "createOrder",
+      "line": 444,
+      "ids": [],
+      "note": "VULN: Total comes from client - no server-side calculation"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "createOrder",
+      "line": 445,
+      "ids": [],
+      "note": "VULN: Status settable on creation"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 450,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "for",
+      "line": 460,
+      "ids": [],
+      "note": "VULN: SQLi, price injectable"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "for",
+      "line": 467,
+      "ids": [],
+      "note": "VULN: No auth on status change"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 470,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "cancelOrder",
+      "line": 476,
+      "ids": [],
+      "note": "VULN: No ownership check"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 483,
+      "ids": [
+        309
+      ],
+      "note": "VULN #309: Payment amount injectable"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "processPayment",
+      "line": 485,
+      "ids": [],
+      "note": "VULN: Amount comes from client - no validation against order total"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "processPayment",
+      "line": 486,
+      "ids": [],
+      "note": "VULN: Arbitrary amount can be passed (send $0.01 for a $1000 order)"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "processPayment",
+      "line": 489,
+      "ids": [],
+      "note": "VULN: Logging PCI data"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 495,
+      "ids": [],
+      "note": "VULN: SQLi; CVV stored (PCI violation)"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 497,
+      "ids": [],
+      "note": "VULN: Update order without validating amount"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 503,
+      "ids": [],
+      "note": "VULN: Refund amount injectable"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "refundPayment",
+      "line": 505,
+      "ids": [],
+      "note": "VULN: No check if refund amount <= original payment amount"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 513,
+      "ids": [],
+      "note": "VULN: Price injectable; can add to any user's cart"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "addToCart",
+      "line": 515,
+      "ids": [],
+      "note": "VULN: price comes from client"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "if",
+      "line": 525,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "removeFromCart",
+      "line": 531,
+      "ids": [],
+      "note": "VULN: SQLi, no auth"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "clearCart",
+      "line": 536,
+      "ids": [],
+      "note": "VULN: Can clear any user's cart - no ownership check"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "clearCart",
+      "line": 541,
+      "ids": [],
+      "note": "VULN: Discount amount injected by client"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "applyDiscount",
+      "line": 543,
+      "ids": [],
+      "note": "VULN: discount value comes from client - no validation against coupon table"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 546,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 550,
+      "ids": [],
+      "note": "VULN: Create coupon without auth"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 556,
+      "ids": [],
+      "note": "VULN: SQLi, no auth"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 560,
+      "ids": [],
+      "note": "VULN (EXTREME): Direct SQL execution - no auth"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "result",
+      "line": 563,
+      "ids": [],
+      "note": "VULN: Arbitrary SQL execution"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "result",
+      "line": 566,
+      "ids": [],
+      "note": "VULN: Error + query in response"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "result",
+      "line": 570,
+      "ids": [],
+      "note": "VULN: System config update without auth"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "cfg",
+      "line": 574,
+      "ids": [],
+      "note": "VULN: Directly modifying process environment"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "cfg",
+      "line": 581,
+      "ids": [],
+      "note": "VULN: Reset ALL passwords without auth"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "resetAllPasswords",
+      "line": 583,
+      "ids": [],
+      "note": "VULN: No auth check on destructive admin operation"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "resetAllPasswords",
+      "line": 589,
+      "ids": [
+        267
+      ],
+      "note": "VULN #267: Subscriptions without auth"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "subscribe",
+      "line": 593,
+      "ids": [],
+      "note": "VULN: No auth check - anyone can subscribe to any user's order updates"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "resolve",
+      "line": 602,
+      "ids": [],
+      "note": "VULN: ALL payment events broadcast to all subscribers"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "resolve",
+      "line": 608,
+      "ids": [],
+      "note": "VULN: Admin alerts accessible to any subscriber"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "resolve",
+      "line": 629,
+      "ids": [],
+      "note": "Type resolvers for relations (N+1 problem - vuln for DoS)"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "orders",
+      "line": 632,
+      "ids": [],
+      "note": "VULN: N+1 query - no DataLoader"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "user",
+      "line": 648,
+      "ids": [],
+      "note": "VULN: Accessing any user via order - IDOR"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "items",
+      "line": 652,
+      "ids": [],
+      "note": "VULN: N+1"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 656,
+      "ids": [],
+      "note": "VULN: Returns card number, CVV"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "reviews",
+      "line": 667,
+      "ids": [],
+      "note": "VULN: N+1 - no batching"
+    },
+    {
+      "path": "services/graphql/src/resolvers.js",
+      "symbol": "rows",
+      "line": 676,
+      "ids": [],
+      "note": "VULN: Returns contract terms and sensitive supplier data"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "module",
+      "line": 1,
+      "ids": [],
+      "note": "VulnShop GraphQL Schema"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "module",
+      "line": 2,
+      "ids": [],
+      "note": "INTENTIONALLY VULNERABLE - For educational/pentesting purposes only"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "module",
+      "line": 3,
+      "ids": [
+        20,
+        97,
+        102,
+        104,
+        108,
+        113,
+        115,
+        250,
+        260,
+        264,
+        265,
+        266,
+        267,
+        268,
+        309
+      ],
+      "note": "Vulnerabilities: #20, #97, #102, #104, #108, #113, #115, #250, #260, #264, #265, #266, #267, #268, #309"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 8,
+      "ids": [
+        251
+      ],
+      "note": "VULN #251: Password field exposed in schema - excessive data exposure"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 9,
+      "ids": [
+        643,
+        648
+      ],
+      "note": "VULN #643, #648: PII and payment fields exposed in schema"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 14,
+      "ids": [],
+      "note": "VULN: Password hash directly accessible"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 18,
+      "ids": [
+        648
+      ],
+      "note": "VULN #648: Payment data exposed"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 19,
+      "ids": [
+        643
+      ],
+      "note": "VULN #643: SSN directly in schema"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 20,
+      "ids": [
+        643
+      ],
+      "note": "VULN #643: Bank info exposed"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 25,
+      "ids": [],
+      "note": "VULN: Token exposed in schema"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 26,
+      "ids": [
+        51
+      ],
+      "note": "VULN #51: Password reset token exposed"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 31,
+      "ids": [],
+      "note": "VULN: Internal admin notes accessible"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 39,
+      "ids": [],
+      "note": "VULN: Internal cost/margin data exposed"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 45,
+      "ids": [],
+      "note": "VULN: Supplier info exposed"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 46,
+      "ids": [],
+      "note": "VULN: Business-sensitive pricing"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 77,
+      "ids": [],
+      "note": "VULN: Sensitive contract data exposed"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 80,
+      "ids": [
+        97,
+        113
+      ],
+      "note": "VULN #97, #113: Order accessible without ownership check (IDOR)"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 83,
+      "ids": [],
+      "note": "VULN: Can access any user's data via order"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 87,
+      "ids": [],
+      "note": "VULN: Sensitive payment data returned"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 90,
+      "ids": [],
+      "note": "VULN: Internal order notes"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 94,
+      "ids": [],
+      "note": "VULN: Internal fulfillment status"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 105,
+      "ids": [
+        648
+      ],
+      "note": "VULN #648: Payment card data exposed in API responses"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 108,
+      "ids": [],
+      "note": "VULN: Full card number exposed"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 110,
+      "ids": [],
+      "note": "VULN: CVV exposed (PCI DSS violation)"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 115,
+      "ids": [],
+      "note": "VULN: Raw gateway response with internals"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 124,
+      "ids": [],
+      "note": "VULN: Full card data"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 125,
+      "ids": [],
+      "note": "VULN: CVV stored and exposed"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 152,
+      "ids": [],
+      "note": "VULN: Discount percentage exposed"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 167,
+      "ids": [],
+      "note": "VULN: Admin notes exposed to all"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 171,
+      "ids": [
+        108
+      ],
+      "note": "VULN #108: Admin data accessible without auth"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 176,
+      "ids": [],
+      "note": "VULN: System config exposed"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 177,
+      "ids": [],
+      "note": "VULN: API keys and secrets in response"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 178,
+      "ids": [],
+      "note": "VULN: DB connection string exposed"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 179,
+      "ids": [],
+      "note": "VULN: Log data exposed"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 180,
+      "ids": [],
+      "note": "VULN: All active user data"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 181,
+      "ids": [],
+      "note": "VULN: Admin accounts exposed"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 186,
+      "ids": [],
+      "note": "VULN: Version fingerprinting"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 187,
+      "ids": [],
+      "note": "VULN: OS info exposed"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 188,
+      "ids": [],
+      "note": "VULN: DB version exposed"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 189,
+      "ids": [],
+      "note": "VULN: Environment variables exposed"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 191,
+      "ids": [],
+      "note": "VULN: Memory stats exposed"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 192,
+      "ids": [],
+      "note": "VULN: Package list exposed"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 201,
+      "ids": [],
+      "note": "VULN: Raw metadata in alerts"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 206,
+      "ids": [],
+      "note": "VULN: User data in search results"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 211,
+      "ids": [
+        250
+      ],
+      "note": "VULN #250: Permissive input types allow mass assignment"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 218,
+      "ids": [
+        102
+      ],
+      "note": "VULN #102: Role directly settable in input"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 223,
+      "ids": [],
+      "note": "VULN: Internal field settable by users"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 224,
+      "ids": [],
+      "note": "VULN: Token settable by users"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 231,
+      "ids": [],
+      "note": "VULN: Internal cost field settable"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 236,
+      "ids": [],
+      "note": "VULN: Business data settable"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 240,
+      "ids": [],
+      "note": "VULN: User ID settable = IDOR"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 242,
+      "ids": [
+        309
+      ],
+      "note": "VULN #309: Total price settable by client"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 246,
+      "ids": [],
+      "note": "VULN: Discount settable directly"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 247,
+      "ids": [],
+      "note": "VULN: Status settable on creation"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 253,
+      "ids": [
+        309
+      ],
+      "note": "VULN #309: Price settable by client"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 254,
+      "ids": [],
+      "note": "VULN: Discount settable per item"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 262,
+      "ids": [
+        309
+      ],
+      "note": "VULN #309: Amount client-controlled"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 269,
+      "ids": [],
+      "note": "VULN: SQL injectable via raw query"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 270,
+      "ids": [],
+      "note": "VULN: SQL injectable field name"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 271,
+      "ids": [],
+      "note": "VULN: SQL injectable order direction"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 272,
+      "ids": [],
+      "note": "VULN: Soft-deleted items accessible"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 275,
+      "ids": [
+        104,
+        108,
+        113,
+        115
+      ],
+      "note": "VULN #104, #108, #113, #115: Many queries lack auth checks"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 278,
+      "ids": [
+        104
+      ],
+      "note": "VULN #104: Admin only but no check"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 279,
+      "ids": [
+        97
+      ],
+      "note": "VULN #97: IDOR - any user data"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 280,
+      "ids": [],
+      "note": "VULN: User enumeration"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 281,
+      "ids": [],
+      "note": "VULN: User enumeration"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 283,
+      "ids": [],
+      "note": "VULN: SQL injectable, returns PII"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 292,
+      "ids": [
+        113
+      ],
+      "note": "VULN #113: Returns ALL orders"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 293,
+      "ids": [],
+      "note": "VULN: IDOR"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 294,
+      "ids": [],
+      "note": "VULN: IDOR"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 297,
+      "ids": [],
+      "note": "VULN: Access any user's cart"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 300,
+      "ids": [
+        115
+      ],
+      "note": "VULN #115: Payment data, no auth"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 301,
+      "ids": [],
+      "note": "VULN: IDOR on payments"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 304,
+      "ids": [],
+      "note": "VULN: All coupon codes exposed"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 305,
+      "ids": [],
+      "note": "VULN: Coupon detail including discount"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 308,
+      "ids": [
+        108
+      ],
+      "note": "VULN #108: No auth"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 309,
+      "ids": [],
+      "note": "VULN: Internal system info exposed"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 310,
+      "ids": [],
+      "note": "VULN (extreme): Full DB dump"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 311,
+      "ids": [],
+      "note": "VULN: All user PII exported"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 317,
+      "ids": [],
+      "note": "VULN: SQL/NoSQL injectable"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 324,
+      "ids": [],
+      "note": "VULN: Debug info"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 325,
+      "ids": [],
+      "note": "VULN (extreme): Direct SQL execution"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 328,
+      "ids": [
+        102,
+        250,
+        309
+      ],
+      "note": "VULN #102, #250, #309: Mutations without auth or input validation"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 335,
+      "ids": [
+        250
+      ],
+      "note": "VULN #250: Mass assignment"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 336,
+      "ids": [],
+      "note": "VULN: No ownership check; mass assign"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 337,
+      "ids": [
+        102
+      ],
+      "note": "VULN #102: Privilege escalation"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 338,
+      "ids": [],
+      "note": "VULN: No auth check"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 339,
+      "ids": [
+        108
+      ],
+      "note": "VULN #108: No admin check"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 342,
+      "ids": [],
+      "note": "VULN: No admin check"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 343,
+      "ids": [],
+      "note": "VULN: No auth"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 344,
+      "ids": [],
+      "note": "VULN: No auth"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 347,
+      "ids": [
+        309
+      ],
+      "note": "VULN #309: Total/price injectable"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 348,
+      "ids": [],
+      "note": "VULN: No auth check"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 349,
+      "ids": [],
+      "note": "VULN: Can cancel anyone's order"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 352,
+      "ids": [
+        309
+      ],
+      "note": "VULN #309: Amount client-controlled"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 353,
+      "ids": [],
+      "note": "VULN: Refund amount client-controlled"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 356,
+      "ids": [],
+      "note": "VULN: Price injectable"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 358,
+      "ids": [],
+      "note": "VULN: Can clear anyone's cart"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 361,
+      "ids": [],
+      "note": "VULN: Discount injectable"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 362,
+      "ids": [],
+      "note": "VULN: No auth"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 365,
+      "ids": [],
+      "note": "VULN (extreme): Direct SQL execution"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 366,
+      "ids": [],
+      "note": "VULN: No auth"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 367,
+      "ids": [],
+      "note": "VULN: Extreme admin action no check"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 370,
+      "ids": [
+        267
+      ],
+      "note": "VULN #267: Subscriptions without authentication"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 372,
+      "ids": [],
+      "note": "VULN: Anyone can subscribe to any user's orders"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 373,
+      "ids": [],
+      "note": "VULN: Leaks all payment events globally"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 374,
+      "ids": [],
+      "note": "VULN: Admin alerts exposed to all subscribers"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 375,
+      "ids": [],
+      "note": "VULN: Login events expose user data"
+    },
+    {
+      "path": "services/graphql/src/schema.js",
+      "symbol": "typeDefs",
+      "line": 376,
+      "ids": [],
+      "note": "VULN: All new orders visible"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "module",
+      "line": 1,
+      "ids": [],
+      "note": "VulnShop Celery Worker"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "module",
+      "line": 2,
+      "ids": [],
+      "note": "INTENTIONALLY VULNERABLE - For educational/pentesting purposes only"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "module",
+      "line": 3,
+      "ids": [
+        51,
+        52,
+        58,
+        68,
+        161,
+        204,
+        230,
+        355,
+        369,
+        410,
+        559,
+        657
+      ],
+      "note": "Vulnerabilities: #51, #52, #58, #68, #161, #204, #230, #355, #369, #410, #559, #657"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "module",
+      "line": 37,
+      "ids": [
+        559
+      ],
+      "note": "Logging setup - VULN #559: Logs may capture sensitive data"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "module",
+      "line": 39,
+      "ids": [],
+      "note": "VULN: DEBUG level logs everything"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "module",
+      "line": 43,
+      "ids": [],
+      "note": "VULN: Logs to world-readable tmp"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "BACKUP_DIR",
+      "line": 61,
+      "ids": [
+        410
+      ],
+      "note": "VULN #410: Web-accessible backup dir"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "UPLOAD_DIR",
+      "line": 73,
+      "ids": [],
+      "note": "VULN: Long task result expiry"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "UPLOAD_DIR",
+      "line": 75,
+      "ids": [],
+      "note": "VULN: No rate limiting on tasks"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "UPLOAD_DIR",
+      "line": 85,
+      "ids": [],
+      "note": "VULN: autoescape disabled - XSS in email templates possible"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "db_query",
+      "line": 101,
+      "ids": [],
+      "note": "Execute a query - VULN: Some callers build SQL via string formatting."
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "db_query",
+      "line": 102,
+      "ids": [
+        559
+      ],
+      "note": "VULN #559: SQL logged"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_smtp",
+      "line": 123,
+      "ids": [
+        161
+      ],
+      "note": "Send email via SMTP (MailHog in dev).     VULN #161: SMTP injection in `to_addr` and `subject` - no sanitization."
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_smtp",
+      "line": 127,
+      "ids": [
+        161
+      ],
+      "note": "VULN #161: No validation/sanitization on to_addr or subject"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_smtp",
+      "line": 128,
+      "ids": [],
+      "note": "Attacker can inject headers:"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_smtp",
+      "line": 129,
+      "ids": [],
+      "note": "to_addr = \"victim@example.com\\r\\nBcc: attacker@evil.com\""
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_smtp",
+      "line": 131,
+      "ids": [
+        559
+      ],
+      "note": "VULN #559"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_smtp",
+      "line": 134,
+      "ids": [
+        161
+      ],
+      "note": "VULN #161: Direct assignment without sanitization"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_smtp",
+      "line": 137,
+      "ids": [],
+      "note": "VULN: Header injection point"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_smtp",
+      "line": 144,
+      "ids": [
+        161
+      ],
+      "note": "VULN #161: to_addr passed directly - can contain injected recipients"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_email",
+      "line": 152,
+      "ids": [
+        161,
+        559
+      ],
+      "note": "Send a generic email.     VULN #161: SMTP header injection via `to` and `subject`.     VULN #559: Full email content logged including sensitive body."
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_email",
+      "line": 157,
+      "ids": [
+        559
+      ],
+      "note": "VULN #559: Log entire email content"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_email",
+      "line": 159,
+      "ids": [],
+      "note": "VULN: Body may contain PII/tokens"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_email",
+      "line": 164,
+      "ids": [],
+      "note": "VULN: Template rendering with user-supplied data (SSTI possible)"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_email",
+      "line": 173,
+      "ids": [
+        161
+      ],
+      "note": "VULN #161: to and subject passed without sanitization"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_password_reset_email",
+      "line": 184,
+      "ids": [
+        51,
+        52,
+        559
+      ],
+      "note": "Send password reset email.     VULN #51: Reset token logged.     VULN #52: Predictable token generation.     VULN #559: Sensitive data in logs."
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_password_reset_email",
+      "line": 190,
+      "ids": [
+        52
+      ],
+      "note": "VULN #52: Predictable token - uses timestamp + simple hash"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_password_reset_email",
+      "line": 193,
+      "ids": [],
+      "note": "VULN: Predictable - only based on timestamp"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_password_reset_email",
+      "line": 196,
+      "ids": [
+        51,
+        559
+      ],
+      "note": "VULN #51, #559: Token logged in plaintext"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_password_reset_email",
+      "line": 200,
+      "ids": [],
+      "note": "VULN: Store token in DB without expiry check (or very long expiry)"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_password_reset_email",
+      "line": 203,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_password_reset_email",
+      "line": 213,
+      "ids": [],
+      "note": "VULN: Token in template context (may render it)"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_password_reset_email",
+      "line": 214,
+      "ids": [
+        52
+      ],
+      "note": "VULN #52: Long expiry"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_password_reset_email",
+      "line": 219,
+      "ids": [
+        161
+      ],
+      "note": "VULN #161: user_email not sanitized"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_password_reset_email",
+      "line": 221,
+      "ids": [],
+      "note": "VULN: Token in return value"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_order_confirmation",
+      "line": 229,
+      "ids": [],
+      "note": "VULN: SQLi via order_id if not integer"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_order_confirmation",
+      "line": 236,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_order_confirmation",
+      "line": 239,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_order_confirmation",
+      "line": 242,
+      "ids": [
+        559
+      ],
+      "note": "VULN #559: PII logged"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_verification_email",
+      "line": 264,
+      "ids": [
+        51,
+        58
+      ],
+      "note": "Send email verification.     VULN #51: Token logged.     VULN #58: Token reusable indefinitely (no single-use enforcement)."
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_verification_email",
+      "line": 269,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_verification_email",
+      "line": 276,
+      "ids": [
+        58
+      ],
+      "note": "VULN #58: Token reusable - generated once, never invalidated after use"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_verification_email",
+      "line": 277,
+      "ids": [
+        52
+      ],
+      "note": "VULN #52: Predictable"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_verification_email",
+      "line": 280,
+      "ids": [
+        51,
+        559
+      ],
+      "note": "VULN #51, #559: Token logged"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_verification_email",
+      "line": 283,
+      "ids": [
+        58
+      ],
+      "note": "VULN #58: Token stored permanently, never marked as used after verification"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_verification_email",
+      "line": 299,
+      "ids": [],
+      "note": "VULN: Token in return"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_payment_async",
+      "line": 304,
+      "ids": [
+        230,
+        309,
+        559
+      ],
+      "note": "Async payment processing.     VULN #230: Race condition - no distributed locking.     VULN #309: Amount from client not re-validated.     VULN #559: Payment data with card info logged."
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_payment_async",
+      "line": 310,
+      "ids": [
+        559
+      ],
+      "note": "VULN #559: Logging full payment data including card details"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_payment_async",
+      "line": 314,
+      "ids": [
+        309
+      ],
+      "note": "VULN #309: Amount from client"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_payment_async",
+      "line": 319,
+      "ids": [
+        230
+      ],
+      "note": "VULN #230: Race condition - no lock acquired before reading order"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_payment_async",
+      "line": 327,
+      "ids": [
+        230
+      ],
+      "note": "VULN #230: Time-of-check / time-of-use gap"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_payment_async",
+      "line": 331,
+      "ids": [
+        230
+      ],
+      "note": "VULN #230: This check can fail under concurrent requests"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_payment_async",
+      "line": 333,
+      "ids": [],
+      "note": "Should return error but intentionally continues"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_payment_async",
+      "line": 335,
+      "ids": [
+        309
+      ],
+      "note": "VULN #309: No re-validation that amount == order total"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_payment_async",
+      "line": 339,
+      "ids": [],
+      "note": "VULN: SQLi + CVV stored in plaintext (PCI violation)"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_payment_async",
+      "line": 345,
+      "ids": [
+        230
+      ],
+      "note": "VULN #230: Update order status without atomic lock"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "generate_invoice",
+      "line": 358,
+      "ids": [
+        204,
+        369,
+        559
+      ],
+      "note": "Generate PDF invoice for an order.     VULN #204: SSRF via logo_url - no URL validation.     VULN #369: Path traversal in output filename.     VULN #559: Order data with PII logged."
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "generate_invoice",
+      "line": 366,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "generate_invoice",
+      "line": 372,
+      "ids": [
+        559
+      ],
+      "note": "VULN #559"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "generate_invoice",
+      "line": 376,
+      "ids": [
+        369
+      ],
+      "note": "VULN #369: Path traversal in filename"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "generate_invoice",
+      "line": 378,
+      "ids": [],
+      "note": "Attacker can write to arbitrary locations"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "generate_invoice",
+      "line": 382,
+      "ids": [
+        369
+      ],
+      "note": "VULN #369: filename constructed from user-controllable data without sanitization"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "generate_invoice",
+      "line": 390,
+      "ids": [
+        204
+      ],
+      "note": "VULN #204: SSRF - logo_url fetched without validation"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "generate_invoice",
+      "line": 391,
+      "ids": [],
+      "note": "Attacker can supply: logo_url = \"http://169.254.169.254/latest/meta-data/\""
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "generate_invoice",
+      "line": 395,
+      "ids": [],
+      "note": "VULN: logs SSRF target"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "generate_invoice",
+      "line": 396,
+      "ids": [
+        204
+      ],
+      "note": "VULN #204: No URL scheme check, no IP validation, no redirect protection"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "generate_invoice",
+      "line": 400,
+      "ids": [],
+      "note": "VULN: Follows redirects (open redirect to SSRF)"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "generate_invoice",
+      "line": 401,
+      "ids": [],
+      "note": "VULN: TLS verification disabled"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "generate_invoice",
+      "line": 404,
+      "ids": [],
+      "note": "VULN: Response content returned to PDF (data exfiltration)"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "generate_invoice",
+      "line": 412,
+      "ids": [],
+      "note": "VULN: Even if not an image, response body goes into error log"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "export_user_data",
+      "line": 440,
+      "ids": [
+        657
+      ],
+      "note": "GDPR data export.     VULN #657: Returns ALL user data including sensitive PII fields.     No access control - any user_id can be exported."
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "export_user_data",
+      "line": 447,
+      "ids": [
+        657
+      ],
+      "note": "VULN #657: Returns ALL columns including password, cvv, ssn, credit_card"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "export_user_data",
+      "line": 448,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "export_user_data",
+      "line": 453,
+      "ids": [
+        657
+      ],
+      "note": "VULN #657: ALL PII included"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "export_user_data",
+      "line": 459,
+      "ids": [
+        657
+      ],
+      "note": "VULN #657: Includes password, ssn, credit_card"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "export_user_data",
+      "line": 461,
+      "ids": [
+        657
+      ],
+      "note": "VULN #657: Includes card_number, cvv"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "export_user_data",
+      "line": 466,
+      "ids": [
+        369
+      ],
+      "note": "VULN #369: Path traversal in export filename"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "export_user_data",
+      "line": 469,
+      "ids": [],
+      "note": "VULN: user_id could be path traversal"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "export_user_data",
+      "line": 475,
+      "ids": [
+        559
+      ],
+      "note": "VULN #559: Logs full user data"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "export_user_data",
+      "line": 482,
+      "ids": [
+        657
+      ],
+      "note": "VULN #657: Full PII data in task result"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "cleanup_sessions",
+      "line": 488,
+      "ids": [
+        68
+      ],
+      "note": "Cleanup expired sessions.     VULN #68: Does NOT actually clean up expired sessions.     Old/expired sessions remain valid indefinitely."
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "cleanup_sessions",
+      "line": 495,
+      "ids": [
+        68
+      ],
+      "note": "VULN #68: Query shows expired sessions but does NOT delete them"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "cleanup_sessions",
+      "line": 501,
+      "ids": [
+        68
+      ],
+      "note": "VULN #68: Intentionally skip the actual cleanup"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "cleanup_sessions",
+      "line": 514,
+      "ids": [
+        68
+      ],
+      "note": "VULN #68: Always 0"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "backup_database",
+      "line": 521,
+      "ids": [
+        410,
+        559
+      ],
+      "note": "Create a database backup.     VULN #410: Backup stored in web-accessible public directory.     Backup filename is predictable.     VULN #559: DB credentials logged."
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "backup_database",
+      "line": 528,
+      "ids": [
+        410
+      ],
+      "note": "VULN #410: Backup stored in BACKUP_DIR which is web-accessible (/var/www/html/backups)"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "backup_database",
+      "line": 529,
+      "ids": [],
+      "note": "Anyone can download: http://victim.com/backups/vulnshop_backup_20240101_120000.sql"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "backup_database",
+      "line": 534,
+      "ids": [
+        559
+      ],
+      "note": "VULN #559: DB credentials logged"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "backup_database",
+      "line": 538,
+      "ids": [],
+      "note": "VULN: DB password in environment / command line (visible in /proc)"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "backup_database",
+      "line": 552,
+      "ids": [],
+      "note": "VULN: Error output may contain sensitive info"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "backup_database",
+      "line": 555,
+      "ids": [
+        410
+      ],
+      "note": "VULN #410: Set world-readable permissions on backup"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "backup_database",
+      "line": 561,
+      "ids": [
+        410
+      ],
+      "note": "VULN #410: Return public URL to backup"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "backup_database",
+      "line": 567,
+      "ids": [
+        410
+      ],
+      "note": "VULN #410: Backup accessible publicly"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "backup_database",
+      "line": 585,
+      "ids": [
+        410
+      ],
+      "note": "VULN #410: World-readable"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "backup_database",
+      "line": 590,
+      "ids": [],
+      "note": "VULN: Full DB dump in task result"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_image",
+      "line": 596,
+      "ids": [
+        355,
+        369
+      ],
+      "note": "Process an uploaded image.     VULN #355: ImageMagick vulnerabilities (ImageTragick / command injection).     VULN #369: Path traversal via image_path."
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_image",
+      "line": 601,
+      "ids": [
+        369
+      ],
+      "note": "VULN #369: No path traversal check"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_image",
+      "line": 605,
+      "ids": [
+        369
+      ],
+      "note": "VULN #369: Path traversal - read arbitrary files"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_image",
+      "line": 619,
+      "ids": [
+        355
+      ],
+      "note": "VULN #355: Using convert (ImageMagick) with user-supplied path"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_image",
+      "line": 628,
+      "ids": [
+        355
+      ],
+      "note": "VULN #355: Shell injection via image_path"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_image",
+      "line": 629,
+      "ids": [],
+      "note": "VULN: subprocess with shell=True and user input"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_image",
+      "line": 634,
+      "ids": [],
+      "note": "VULN: shell=True with user input"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_image",
+      "line": 642,
+      "ids": [],
+      "note": "VULN: Error output returned (may contain path info)"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_image",
+      "line": 650,
+      "ids": [
+        355
+      ],
+      "note": "VULN #355: Operation parameters not sanitized"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_image",
+      "line": 652,
+      "ids": [],
+      "note": "VULN: Injected args go directly to convert"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_image",
+      "line": 654,
+      "ids": [],
+      "note": "VULN: injection"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_image",
+      "line": 660,
+      "ids": [],
+      "note": "VULN: PIL/Pillow also used - ReDoS via crafted image metadata"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_image",
+      "line": 663,
+      "ids": [],
+      "note": "VULN: No size check - decompression bomb if huge image"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "process_image",
+      "line": 668,
+      "ids": [],
+      "note": "VULN: Raw EXIF data returned"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_bulk_email",
+      "line": 683,
+      "ids": [
+        161
+      ],
+      "note": "Send bulk email to multiple users.     VULN #161: SMTP injection in subject.     VULN: No rate limiting on bulk sending."
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_bulk_email",
+      "line": 693,
+      "ids": [],
+      "note": "VULN: SQLi, N+1"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_bulk_email",
+      "line": 700,
+      "ids": [],
+      "note": "VULN: User-controlled context can cause SSTI"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "send_bulk_email",
+      "line": 702,
+      "ids": [
+        161
+      ],
+      "note": "VULN #161: subject not sanitized"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "run_report",
+      "line": 713,
+      "ids": [],
+      "note": "Run internal reports.     VULN: SQL injectable report type and params.     VULN: No auth check - any worker message can trigger."
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "run_report",
+      "line": 721,
+      "ids": [],
+      "note": "VULN: report_type directly interpolated into SQL"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "run_report",
+      "line": 722,
+      "ids": [],
+      "note": "VULN: Table name from user input (SQLi)"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "run_report",
+      "line": 725,
+      "ids": [],
+      "note": "VULN: Direct SQLi"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "run_report",
+      "line": 728,
+      "ids": [],
+      "note": "VULN: SQLi"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "run_report",
+      "line": 734,
+      "ids": [],
+      "note": "VULN: DB error message returned"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "parse_yaml_config",
+      "line": 740,
+      "ids": [],
+      "note": "Parse YAML configuration.     VULN: Unsafe YAML loading allows arbitrary code execution."
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "parse_yaml_config",
+      "line": 745,
+      "ids": [],
+      "note": "VULN: yaml.load without Loader=SafeLoader allows deserialization attacks"
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "parse_yaml_config",
+      "line": 746,
+      "ids": [],
+      "note": "Attacker payload: \"!!python/object/apply:os.system ['rm -rf /']\""
+    },
+    {
+      "path": "services/worker/worker.py",
+      "symbol": "parse_yaml_config",
+      "line": 747,
+      "ids": [],
+      "note": "VULN: Unsafe loader"
+    }
+  ]
+}

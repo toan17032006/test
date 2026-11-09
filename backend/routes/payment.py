@@ -37,7 +37,6 @@ async def process_payment(data: PaymentRequest):
     amount = float(data.amount if data.amount is not None else order["total"])
     payment = {"id": f"pay_{data.order_id}_{len(payments.get(data.order_id, [])) + 1}", "order_id": data.order_id, "amount": amount, "currency": data.currency, "method": data.method, "status": "succeeded"}
     payments.setdefault(data.order_id, []).append(payment)
-    # Lab provider always reports success; no external provider is contacted.
     order["payment_status"] = "paid"
     order["status"] = "processing"
     return {"payment": payment, "order": order}

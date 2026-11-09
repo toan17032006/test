@@ -47,10 +47,9 @@ router.get('/', async (req, res) => {
 });
 
 // ============================================================
-// GET /products — Product listing (XSS in search query)
 // ============================================================
 router.get('/products', async (req, res) => {
-  const query = req.query.q || '';           // VULN: used unescaped in template
+  const query = req.query.q || '';
   const category = req.query.category || '';
   const sort = req.query.sort || 'popular';
   const page = parseInt(req.query.page) || 1;
@@ -74,7 +73,7 @@ router.get('/products', async (req, res) => {
     title: query ? `Kết quả tìm kiếm: ${query}` : 'Tất cả sản phẩm',
     user: req.session.user || null,
     products,
-    query,          // VULN: passed to template, rendered unescaped
+    query,
     category,
     sort,
     page,
@@ -86,7 +85,6 @@ router.get('/products', async (req, res) => {
 });
 
 // ============================================================
-// GET /products/:id — Product detail (stored XSS in description/reviews)
 // ============================================================
 router.get('/products/:id', async (req, res) => {
   const productId = req.params.id;
@@ -94,7 +92,6 @@ router.get('/products/:id', async (req, res) => {
   let reviews = [
     { id: 1, user: 'Nguyễn Văn A', rating: 5, comment: 'Sản phẩm tốt lắm, giao hàng nhanh!', date: '2024-01-15', helpful: 23 },
     { id: 2, user: 'Trần Thị B', rating: 4, comment: 'Hàng đúng mô tả, đóng gói cẩn thận.', date: '2024-01-10', helpful: 12 },
-    // VULN: Review comment rendered unescaped (stored XSS possible)
   ];
 
   try {
@@ -137,7 +134,6 @@ router.get('/cart', (req, res) => {
 
 // Add to cart
 router.post('/cart/add', (req, res) => {
-  // VULN: Price taken from request body - price manipulation #283
   const { productId, name, price, qty, image } = req.body;
   if (!req.session.cart) req.session.cart = [];
   const existing = req.session.cart.find(i => i.productId == productId);
@@ -147,7 +143,7 @@ router.post('/cart/add', (req, res) => {
     req.session.cart.push({
       productId,
       name,
-      price: parseFloat(price),  // VULN: price from client
+      price: parseFloat(price),
       qty: parseInt(qty) || 1,
       image: image || 'https://placehold.co/80x80'
     });
@@ -162,7 +158,7 @@ router.post('/cart/update', (req, res) => {
     const item = req.session.cart.find(i => i.productId == productId);
     if (item) {
       item.qty = parseInt(qty);
-      if (price) item.price = parseFloat(price); // VULN: price manipulation
+      if (price) item.price = parseFloat(price);
     }
   }
   res.json({ success: true });
@@ -194,18 +190,16 @@ router.get('/checkout', (req, res) => {
 
 // Process checkout
 router.post('/checkout', async (req, res) => {
-  // VULN: Total price taken from form (client-side) - vuln #283
   const { shipping_name, shipping_address, shipping_phone, payment_method, total_amount, coupon_code, shipping_fee } = req.body;
   const cart = req.session.cart || [];
 
-  // No server-side price recalculation!
   const order = {
     id: 'ORD-' + Date.now(),
     items: cart,
     shipping: { name: shipping_name, address: shipping_address, phone: shipping_phone },
     payment: payment_method,
-    total: parseFloat(total_amount), // VULN: from form
-    shipping_fee: parseFloat(shipping_fee) || 0, // VULN: from form
+    total: parseFloat(total_amount),
+    shipping_fee: parseFloat(shipping_fee) || 0,
     coupon: coupon_code,
     status: 'pending',
     created_at: new Date()
@@ -219,10 +213,8 @@ router.post('/checkout', async (req, res) => {
 });
 
 // ============================================================
-// GET /orders — Order history (IDOR - no session check)
 // ============================================================
 router.get('/orders', async (req, res) => {
-  // VULN: IDOR - user_id from query param, no ownership check
   const userId = req.query.user_id || (req.session.user && req.session.user.id) || 1;
   let orders = req.session.orders || [];
 
@@ -243,7 +235,6 @@ router.get('/orders', async (req, res) => {
 });
 
 // ============================================================
-// GET /profile — User profile (mass assignment, no current password)
 // ============================================================
 router.get('/profile', (req, res) => {
   res.render('profile', {
@@ -257,23 +248,17 @@ router.get('/profile', (req, res) => {
   });
 });
 
-// Update profile (mass assignment)
 router.post('/profile', (req, res) => {
-  // VULN: Mass assignment - user can set role, loyalty_points, etc.
   if (req.session.user) {
-    Object.assign(req.session.user, req.body); // VULN: mass assignment
+    Object.assign(req.session.user, req.body);
   }
   req.session.flash = { type: 'success', message: 'Cập nhật thông tin thành công!' };
   res.redirect('/profile');
 });
 
-// Change password (no current password required)
 router.post('/profile/change-password', (req, res) => {
   const { new_password, confirm_password } = req.body;
-  // VULN: No current password required - logic flaw
-  // VULN: No token/CSRF check
   if (new_password === confirm_password) {
-    // "Update" password - in real app would update DB without verifying old password
     req.session.flash = { type: 'success', message: 'Đổi mật khẩu thành công!' };
   }
   res.redirect('/profile');
@@ -297,7 +282,6 @@ router.get('/wishlist', (req, res) => {
 });
 
 // ============================================================
-// GET /login — Login page (no CSRF, user enumeration)
 // ============================================================
 router.get('/login', (req, res) => {
   if (req.session.user) return res.redirect('/');
@@ -306,7 +290,6 @@ router.get('/login', (req, res) => {
     user: null,
     error: req.query.error || null,
     redirect: req.query.redirect || '/',
-    // VULN: No CSRF token
   });
 });
 
@@ -315,9 +298,9 @@ router.post('/login', async (req, res) => {
   try {
     const r = await axios.post(`${API_URL}/api/v1/auth/login`, { email, password }, { timeout: 3000 });
     const userData = r.data;
-    req.session.user = userData.user || userData;
-    req.session.token = userData.access_token;
-    // VULN: Remember me stores credentials in cookie without encryption
+    const profile = userData.user || userData;
+    req.session.user = { ...profile, name: profile.name || profile.username || profile.email };
+    req.session.token = userData.access_token || profile.access_token;
     if (remember) {
       res.cookie('remember_email', email, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: false });
       res.cookie('remember_token', Buffer.from(`${email}:${password}`).toString('base64'), { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: false });
@@ -325,11 +308,9 @@ router.post('/login', async (req, res) => {
     res.redirect(req.query.redirect || '/');
   } catch (err) {
     const status = err.response && err.response.status;
-    // VULN: Different error messages leak user existence (enumeration #34)
     let error = 'Đăng nhập thất bại.';
-    if (status === 404) error = 'Email không tồn tại trong hệ thống.'; // VULN: user enumeration
-    if (status === 401) error = 'Mật khẩu không đúng.';               // VULN: confirms user exists
-    // Fallback for demo
+    if (status === 404) error = 'Email không tồn tại trong hệ thống.';
+    if (status === 401) error = 'Mật khẩu không đúng.';
     if (email === 'admin@vulnshop.com' && password === 'admin123') {
       req.session.user = { id: 1, name: 'Admin', email, role: 'admin', loyalty_points: 9999 };
       return res.redirect('/');
@@ -339,7 +320,6 @@ router.post('/login', async (req, res) => {
 });
 
 // ============================================================
-// GET /register — Registration (no CSRF, weak validation)
 // ============================================================
 router.get('/register', (req, res) => {
   if (req.session.user) return res.redirect('/');
@@ -353,10 +333,11 @@ router.post('/register', async (req, res) => {
   }
   try {
     const r = await axios.post(`${API_URL}/api/v1/auth/register`, { name, email, phone, password }, { timeout: 3000 });
-    req.session.user = r.data.user || r.data;
+    const profile = r.data.user || r.data;
+    req.session.user = { ...profile, id: profile.id || r.data.user_id || Date.now(), name: profile.name || name, email: profile.email || email, role: profile.role || 'user' };
+    req.session.token = r.data.access_token || profile.access_token;
     res.redirect('/');
   } catch (err) {
-    // Demo fallback
     req.session.user = { id: Date.now(), name, email, phone, role: 'user', loyalty_points: 0 };
     res.redirect('/');
   }
@@ -384,7 +365,6 @@ router.get('/forgot-password', (req, res) => {
 
 router.post('/forgot-password', async (req, res) => {
   const { email } = req.body;
-  // Always return success (no enumeration protection but demo)
   try {
     await axios.post(`${API_URL}/api/v1/auth/forgot-password`, { email }, { timeout: 2000 });
   } catch (_) {}
@@ -399,17 +379,15 @@ router.post('/forgot-password', async (req, res) => {
 });
 
 // ============================================================
-// GET /reset-password — Token in URL (sensitive data exposure)
 // ============================================================
 router.get('/reset-password', (req, res) => {
-  // VULN: Token in URL - logged in server logs, browser history, referrer
   const { token, email } = req.query;
   res.render('login', {
     title: 'Đặt lại mật khẩu',
     user: null,
     error: null,
     view: 'reset',
-    token,  // VULN: token exposed in URL
+    token,
     email,
     redirect: '/'
   });
@@ -417,7 +395,6 @@ router.get('/reset-password', (req, res) => {
 
 router.post('/reset-password', async (req, res) => {
   const { token, email, new_password } = req.body;
-  // No token expiry check, no rate limiting
   try {
     await axios.post(`${API_URL}/api/v1/auth/reset-password`, { token, email, new_password }, { timeout: 2000 });
   } catch (_) {}
@@ -425,11 +402,9 @@ router.post('/reset-password', async (req, res) => {
 });
 
 // ============================================================
-// GET /track/:orderId — Order tracking (IDOR)
 // ============================================================
 router.get('/track/:orderId', async (req, res) => {
   const { orderId } = req.params;
-  // VULN: IDOR - no ownership check, anyone can track any order
   let order = null;
   try {
     const r = await axios.get(`${API_URL}/api/v1/orders/${orderId}`, { timeout: 2000 });
@@ -458,10 +433,8 @@ router.get('/track/:orderId', async (req, res) => {
 });
 
 // ============================================================
-// GET /addresses/:userId — Address book (IDOR)
 // ============================================================
 router.get('/addresses/:userId', async (req, res) => {
-  // VULN: IDOR - no ownership check
   const { userId } = req.params;
   let addresses = [];
   try {
