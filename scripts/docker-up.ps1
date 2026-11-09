@@ -29,12 +29,23 @@ function Wait-Url {
     param([string]$Url, [int]$TimeoutSeconds = 180)
     $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
     while ((Get-Date) -lt $deadline) {
-        try {
-            $response = Invoke-WebRequest -Uri $Url -UseBasicParsing -TimeoutSec 3
-            if ($response.StatusCode -ge 200 -and $response.StatusCode -lt 500) { return $true }
-        } catch {
-            Start-Sleep -Seconds 2
+        if (Get-Command curl.exe -ErrorAction SilentlyContinue) {
+            & curl.exe -fsS -o NUL --max-time 3 $Url 2>$null
+            if ($LASTEXITCODE -eq 0) { return $true }
+        } else {
+            try {
+                $request = [System.Net.WebRequest]::Create($Url)
+                $request.Timeout = 3000
+                $request.Proxy = $null
+                $response = $request.GetResponse()
+                $status = [int]$response.StatusCode
+                $response.Close()
+                if ($status -ge 200 -and $status -lt 500) { return $true }
+            } catch {
+                # Retry until the deadline.
+            }
         }
+        Start-Sleep -Seconds 2
     }
     return $false
 }
